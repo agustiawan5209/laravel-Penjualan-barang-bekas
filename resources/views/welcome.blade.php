@@ -1,4 +1,4 @@
-<x-home-layout>
+<x-guest-layout>
 
     @include('page.hero')
     @include('page.item')
@@ -129,4 +129,4 @@
     @include('page.trending')
 
 
-</x-home-layout>
+</x-guest-layout>
