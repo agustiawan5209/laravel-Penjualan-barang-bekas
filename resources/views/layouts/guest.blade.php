@@ -13,8 +13,9 @@
 
 </head>
 
-<body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]">
-    <div class="bg-gray-900" x-data="{ Dropdown: false }">
+<body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"
+    x-data="{ Dropdown: false, ChatPopUp: false }">
+    <div class="bg-gray-900">
         <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div class="relative flex items-center justify-between">
                 <div class="flex items-center"><a href="#" class="inline-flex items-center mr-8"><span
@@ -29,9 +30,9 @@
                         </span><span class="ml-2 text-base font-bold tracking-wide text-gray-100 uppercase">Jual Beli
                             Barang Bekas.</span></a>
 
-                    <ul class="flex items-center hidden space-x-8 lg:flex">
+                    <ul class=" items-center hidden space-x-8 lg:flex">
                         <li class="">
-                            <div class="flex items-center hidden space-x-8 lg:flex w-96 relative">
+                            <div class=" items-center hidden space-x-8 lg:flex w-96 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-10 text-gray-600"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -42,7 +43,7 @@
                             </div>
                         </li>
                         <li class="">
-                            <a href="{{route('page.Jual-titip')}}"
+                            <a href="{{ route('page.Jual-titip') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -52,7 +53,7 @@
                                 <span>jual/Titip</span>
                             </a>
                         </li>
-                        <li class=""><a href="{{route('page.keranjang')}}"
+                        <li class=""><a href="{{ route('page.keranjang') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
@@ -65,67 +66,68 @@
                     </ul>
 
                 </div>
-                <ul class="flex items-center hidden space-x-8 lg:flex">
+                <ul class=" items-center hidden space-x-8 lg:flex">
                     @if (Route::has('login'))
                         @auth
-                        <li class="">
-                            <div class="ml-3 relative">
-                                <x-jet-dropdown align="right" width="48">
-                                    <x-slot name="trigger">
-                                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                            <button
-                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                                <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                                                    alt="{{ Auth::user()->name }}" />
-                                            </button>
-                                        @else
-                                            <span class="inline-flex rounded-md">
-                                                <button type="button"
-                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
-                                                    {{ Auth::user()->name }}
-
-                                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
+                            <li class="">
+                                <div class="ml-3 relative">
+                                    <x-jet-dropdown align="right" width="48">
+                                        <x-slot name="trigger">
+                                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                                <button
+                                                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                                    <img class="h-8 w-8 rounded-full object-cover"
+                                                        src="{{ Auth::user()->profile_photo_url }}"
+                                                        alt="{{ Auth::user()->name }}" />
                                                 </button>
-                                            </span>
-                                        @endif
-                                    </x-slot>
+                                            @else
+                                                <span class="inline-flex rounded-md">
+                                                    <button type="button"
+                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                                        {{ Auth::user()->name }}
 
-                                    <x-slot name="content">
-                                        <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Manage Account') }}
-                                        </div>
+                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            @endif
+                                        </x-slot>
 
-                                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                            {{ __('Profile') }}
-                                        </x-jet-dropdown-link>
+                                        <x-slot name="content">
+                                            <!-- Account Management -->
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                {{ __('Manage Account') }}
+                                            </div>
 
-                                        @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                            <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                                {{ __('API Tokens') }}
+                                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                                {{ __('Profile') }}
                                             </x-jet-dropdown-link>
-                                        @endif
 
-                                        <div class="border-t border-gray-100"></div>
+                                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                                    {{ __('API Tokens') }}
+                                                </x-jet-dropdown-link>
+                                            @endif
 
-                                        <!-- Authentication -->
-                                        <form method="POST" action="{{ route('logout') }}" x-data>
-                                            @csrf
+                                            <div class="border-t border-gray-100"></div>
 
-                                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                @click.prevent="$root.submit();">
-                                                {{ __('Log Out') }}
-                                            </x-jet-dropdown-link>
-                                        </form>
-                                    </x-slot>
-                                </x-jet-dropdown>
-                            </div>
-                        </li>
+                                            <!-- Authentication -->
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
+
+                                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                    @click.prevent="$root.submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-jet-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-jet-dropdown>
+                                </div>
+                            </li>
                         @else
                             <li class=""><a href="{{ route('login') }}"
                                     class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>
@@ -347,14 +349,21 @@
             </div>
         </div>
     </footer>
-    <div
-        class="w-16 h-16 bg-blue-400 rounded-full flex justify-center items-center cursor-pointer fixed right-5 bottom-10 z-50">
+    <div x-on:click="ChatPopUp = ! ChatPopUp"
+        class="w-16 h-16 bg-blue-400 rounded-full flex justify-center items-center cursor-pointer fixed right-5 bottom-10 border-2  border-white z-50">
         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
             </path>
         </svg>
+    </div>
+    <div x-show="ChatPopUp"
+        class="fixed right-0 bottom-8 flex flex-row-reverse items-end justify-between md:w-full  pl-52 pt-20"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -right-80"
+        x-transition:enter-end="opacity-100 right-0" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 right-0" x-transition:leave-end="opacity-0 -right-80">
+        <div class="z-50 bg-blue-400 rounded-md w-full h-96 "></div>
     </div>
     <!-- AlpineJS Library -->
     <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>

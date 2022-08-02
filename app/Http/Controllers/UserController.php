@@ -42,6 +42,7 @@ class UserController extends Controller
         // dd($request);
         if (Auth::user()->role_id == 'SuperAdmin') {
             return redirect()->route('dashboard');
+            abort_if(Auth::user()->role_id == "Csutomer", 404);
         }
         return redirect()->route('home');
     }
