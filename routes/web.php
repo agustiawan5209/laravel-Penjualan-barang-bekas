@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Admin\PageBarang;
+use App\Http\Livewire\Admin\Penitipan;
+use App\Http\Livewire\Admin\Penjualan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +38,9 @@ Route::middleware([
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('Penitipan/Barang', Penitipan::class)->name('Admin.Penitipan');
+    Route::get('Penjualan/Barang', Penjualan::class)->name('Admin.Penjualan');
+    Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
 });
+
