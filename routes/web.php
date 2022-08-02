@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Livewire\Admin\PageBarang;
+use App\Models\Barang;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Penitipan;
 use App\Http\Livewire\Admin\Penjualan;
-use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\PageBarang;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $barang = Barang::all();
+    return view('welcome', [
+        'barang'=> $barang
+    ]);
 })->name('home');
 
 Route::get('/Jual-Titip', function(){

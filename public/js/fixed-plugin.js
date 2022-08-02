@@ -57,17 +57,17 @@ if (pageName != "rtl") {
   });
 } else {
   fixedPluginButton.addEventListener("click", function () {
-    fixedPluginCard.classList.toggle("-left-90");
+    fixedPluginCard.classList.toggle("-left-[300px]");
     fixedPluginCard.classList.toggle("left-0");
   });
 
   fixedPluginButtonNav.addEventListener("click", function () {
-    fixedPluginCard.classList.toggle("-left-90");
+    fixedPluginCard.classList.toggle("-left-[300px]");
     fixedPluginCard.classList.toggle("left-0");
   });
 
   fixedPluginCloseButton.addEventListener("click", function () {
-    fixedPluginCard.classList.toggle("-left-90");
+    fixedPluginCard.classList.toggle("-left-[300px]");
     fixedPluginCard.classList.toggle("left-0");
   });
 

@@ -6,21 +6,22 @@
                 more</a>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-8">
-            <div class=""><a href="#"
-                    class="group h-80 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
-                        alt="No alt"
-                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&amp;q=75&amp;fit=crop&amp;w=600"
-                        class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /><span
-                        class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span></a>
+            @foreach ($barang as $item)
                 <div class=""><a href="#"
-                        class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">Timely
-                        Watch</a>
-                    <div class="flex items-end gap-2"><span
-                            class="text-gray-800 lg:text-lg font-bold">$15.00</span><span
-                            class="text-red-500 line-through mb-0.5">$30.00</span></div>
+                        class="group h-80 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
+                            alt="No alt"
+                            src="{{asset('upload/'. $item->foto_produk)}}"
+                            class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /><span
+                            class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span></a>
+                    <div class=""><a href="#"
+                            class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{$item->nama_produk}}</a>
+                        <div class="flex items-end gap-2"><span
+                                class="text-gray-800 lg:text-lg font-bold">Rp. {{number_format($item->harga,0,2)}}</span><span
+                                class="text-red-500 line-through mb-0.5">Diskon</span></div>
+                    </div>
                 </div>
-            </div>
-            <div class=""><a href="#"
+            @endforeach
+            {{-- <div class=""><a href="#"
                     class="group h-80 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                         alt="No alt"
                         src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&amp;q=75&amp;fit=crop&amp;w=600"
@@ -104,7 +105,7 @@
                     <div class="flex items-end gap-2"><span
                             class="text-gray-800 lg:text-lg font-bold">$9.00</span></div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
