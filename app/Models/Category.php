@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $table = 'categories';
-    protected $fillable = 'kategory';
+    protected $fillable = ['kategory'];
 
     use HasFactory;
     public function barang(){

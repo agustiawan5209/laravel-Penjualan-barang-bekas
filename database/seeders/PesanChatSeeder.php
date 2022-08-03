@@ -14,6 +14,13 @@ class PesanChatSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Category::insert([
+            ['kategory' => 'Elektronik',],
+            ['kategory' => 'Pakaian Pria',],
+            ['kategory' => 'Pakaian Wanita',],
+            ['kategory' => 'Peralatan Rumah Tangga',],
+            ['kategory' => 'Komputer Dan Laptop',],
+            ['kategory' => 'Alat Tulis Kantor',],
+        ]);
     }
 }

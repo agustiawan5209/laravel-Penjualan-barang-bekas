@@ -18,7 +18,7 @@
     <div class="bg-gray-900">
         <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div class="relative flex items-center justify-between">
-                <div class="flex items-center"><a href="#" class="inline-flex items-center mr-8"><span
+                <div class="flex items-center"><a href="{{route('home')}}" class="inline-flex items-center mr-8"><span
                             class="text-2xl text-white">
                             <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor"
                                     fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em"

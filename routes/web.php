@@ -6,6 +6,7 @@ use App\Http\Livewire\Admin\Penitipan;
 use App\Http\Livewire\Admin\Penjualan;
 use App\Http\Livewire\Admin\PageBarang;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,10 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    $barang = Barang::all();
+    $barang = Barang::paginate(10);
     return view('welcome', [
-        'barang'=> $barang
+        'barang'=> $barang,
+        'kategory' => Category::all(),
     ]);
 })->name('home');
 
@@ -32,6 +34,9 @@ Route::get('/keranjang', function(){
     return view('page.keranjang');
 })->name('page.keranjang');
 
+Route::get('Barang', function(){
+    return view('page.penjualan.penjualan');
+})->name('page.penjualan');
 Route::get('/cek', [UserController::class, 'authenticate']);
 
 Route::middleware([

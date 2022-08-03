@@ -13,6 +13,6 @@ class Barang extends Model
     use HasFactory;
 
     public function category(){
-        return $this->hasOne(Category::class, 'categories');
+        return $this->belongsTo(Category::class, 'categories');
     }
 }
