@@ -359,12 +359,17 @@
         </svg>
     </div>
     <div x-show="ChatPopUp"
-        class="fixed right-0 bottom-8 flex flex-row-reverse items-end justify-between md:w-full  pl-52 pt-20"
+        class="fixed right-0 bottom-8 flex flex-row-reverse items-end justify-between md:w-1/2 "
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -right-80"
         x-transition:enter-end="opacity-100 right-0" x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="opacity-100 right-0" x-transition:leave-end="opacity-0 -right-80">
-        <div class="z-50 bg-blue-400 rounded-md w-full h-96 "></div>
+        <div class="z-50 bg-blue-400 rounded-md w-full h-max">
+            @include('page.chat')
+        </div>
     </div>
+    @stack('modals')
+
+    @livewireScripts
     <!-- AlpineJS Library -->
     <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
 </body>

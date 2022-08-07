@@ -18,7 +18,7 @@
             <div
                 class=" col-span-1 md:col-span-6  grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-8">
                 @foreach ($barang as $item)
-                    <div class=""><a href="#"
+                    <div class=""><a href="{{route('Produk-list', ['id'=> $item->id, 'name'=> $item->nama_produk])}}"
                             class="group h-60 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                                 alt="No alt" src="{{ asset('upload/' . $item->foto_produk) }}"
                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /><span
@@ -27,7 +27,7 @@
                                 class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{ $item->nama_produk }}</a>
                             <div class="flex items-end gap-2"><span class="text-gray-800 lg:text-lg font-bold">Rp.
                                     {{ number_format($item->harga, 0, 2) }}</span><span
-                                    class="text-red-500 line-through mb-0.5">Diskon</span></div>
+                                    class="text-red-500 line-through mb-0.5">{{$item->diskons}}</span></div>
                         </div>
                     </div>
                 @endforeach

@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chatids', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->integer('user1_id')->default('1');
-            $table->integer('user2_id');
+            $table->string('cart_id')->nullable();
+            $table->string('ID_transaksi', 50);
+            $table->date('tgl_transaksi');
+            $table->string('gross_amount');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chatids');
+        Schema::dropIfExists('transaksis');
     }
 };

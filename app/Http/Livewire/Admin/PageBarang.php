@@ -214,4 +214,7 @@ class PageBarang extends Component
         session()->flash('message', $diskon ? 'Diskon Produk ' . $this->nama_produk . ' Berhasil Ditambah' : 'Gagal Di Tambah');
 
     }
+    public function Promo(){
+        return redirect()->route('Admin.Promo');
+    }
 }

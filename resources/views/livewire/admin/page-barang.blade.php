@@ -10,6 +10,9 @@
                 <button type="button" class="ml-5 bg-blue-400 px-4 text-white py-2 rounded-md"
                     wire:click='ShowKategori()'>
                     Kategori</button>
+                <button type="button" class="ml-5 bg-blue-400 px-4 text-white py-2 rounded-md"
+                    wire:click='Promo()'>
+                    Promo</button>
 
 
                 @if (session()->has('message'))
