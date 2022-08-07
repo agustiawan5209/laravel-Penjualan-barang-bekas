@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('cart_id')->nullable();
             $table->string('ID_transaksi', 50);
             $table->date('tgl_transaksi');
             $table->string('gross_amount');

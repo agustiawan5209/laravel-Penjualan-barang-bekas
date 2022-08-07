@@ -3,20 +3,25 @@
 namespace App\Services\Midtrans;
 
 use Midtrans\Snap;
+use App\Models\User;
 
 class CreateSnapTokenService extends Midtrans
 {
 	protected $order;
+    protected $user_id;
+    protected $barang_id = [];
 
-	public function __construct($order)
+	public function __construct($order, $user_id, $barang_id = [])
 	{
 		parent::__construct();
-
+        $this->user_id = $user_id;
+        $this->barang_id = $barang_id;
 		$this->order = $order;
 	}
 
 	public function getSnapToken()
 	{
+        $user = User::find($this->user_id);
 		$params = [
 			/**
 			 * 'order_id' => id order unik yang akan digunakan sebagai "primary key" oleh Midtrans untuk
@@ -47,8 +52,8 @@ class CreateSnapTokenService extends Midtrans
 			],
 			'customer_details' => [
 				// Key `customer_details` dapat diisi dengan data customer yang melakukan order.
-				'first_name' => 'Martin Mulyo Syahidin',
-				'email' => 'mulyosyahidin95@gmail.com',
+				'first_name' => $user->name,
+				'email' => $user->email,
 				'phone' => '081234567890',
 			]
 		];

@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             ['kategory' => 'Komputer Dan Laptop',],
             ['kategory' => 'Alat Tulis Kantor',],
         ]);
-        \App\Models\Payment::factory(10)->create();
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
