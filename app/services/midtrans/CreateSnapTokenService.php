@@ -4,6 +4,7 @@ namespace App\Services\Midtrans;
 
 use Midtrans\Snap;
 use App\Models\User;
+use App\Models\Payment;
 
 class CreateSnapTokenService extends Midtrans
 {
@@ -18,7 +19,13 @@ class CreateSnapTokenService extends Midtrans
         $this->barang_id = $barang_id;
 		$this->order = $order;
 	}
-
+    public function generateUniqueNumber()
+    {
+        do {
+            $code = random_int(1111, 9999);
+        } while (Payment::where("number", "=", $code)->first());
+        return $code;
+    }
 	public function getSnapToken()
 	{
         $user = User::find($this->user_id);
@@ -39,8 +46,8 @@ class CreateSnapTokenService extends Midtrans
 			 * 'gross_amount' => merupakan total harga yang harus dibayar customer.
 			 */
 			'transaction_details' => [
-				'order_id' => $this->order->number,
-				'gross_amount' => $this->order->total_price,
+				'order_id' => $this->generateUniqueNumber(),
+				// 'gross_amount' => '201820000',
 			],
 			/**
 			 * 'item_details' bisa diisi dengan detail item dalam order.

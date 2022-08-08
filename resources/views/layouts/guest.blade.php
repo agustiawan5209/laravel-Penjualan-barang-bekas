@@ -14,6 +14,8 @@
     <!-- Styles -->
     @livewireStyles
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="{{asset('js/jquery-3.6.0.slim.min.js')}}"></script>
 </head>
 
 <body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"

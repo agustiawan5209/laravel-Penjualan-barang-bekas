@@ -29,9 +29,6 @@ use App\Http\Livewire\Page\Payment;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/cek', [UserController::class, 'authenticate']);
 Route::get('/', function () {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
@@ -42,34 +39,10 @@ Route::get('/', function () {
         'kategory' => Category::all(),
     ]);
 })->name('home');
-// Route List kategori
-Route::get('/Category/{Category}', function($Category,Request $request){
-    // Mendapatkan Data Barang Dan Diskon
-    $diskon = Diskon::all();
-    $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
-        $query->where('kategory', 'like', '%'.$Category.'%');
-    })->get();
-    return view('welcome', [
-        'barang' => $BarangDiskon,
-        'kategory' => Category::all(),
-    ]);
-})->name('Get-Kategory');
-Route::resource('/Jual-Titip', PenitipanController::class);
 
-// Route::get('/keranjang', [CartController::class, 'index'])->name('page.keranjang');
-Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
-// Route::delete('/keranjang/{Cart}', [CartController::class, 'destroy'])->name('page.keranjang.delete');
-Route::get('Keranjang', Payment::class)->name('page.keranjang');
 
-Route::get('Barang', function () {
-    return view('page.penjualan.penjualan');
-})->name('page.penjualan');
-Route::get('/produk-list/{id}/{name}', function ($id, $name) {
-    return view('page.produk-view', [
-        'produk_id' => $id,
-        'produk_name' => $name,
-    ]);
-})->name('Produk-list');
+// Cek User
+Route::get('/cek', [UserController::class, 'authenticate']);
 
 Route::middleware([
     'auth:sanctum',
@@ -86,13 +59,44 @@ Route::middleware([
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
     });
+
     Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
     Route::prefix('user/profile')->group(function () {
         Route::get('Penitipan', [CustomerController::class, 'index'])->name('Customer.Penitipan');
     });
-    // Midtrans
-Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
 });
 
+// Route List kategori
+Route::get('/Category/{Category}', function ($Category, Request $request) {
+    // Mendapatkan Data Barang Dan Diskon
+    $diskon = Diskon::all();
+    $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
+        $query->where('kategory', 'like', '%' . $Category . '%');
+    })->get();
+    return view('welcome', [
+        'barang' => $BarangDiskon,
+        'kategory' => Category::all(),
+    ]);
+})->name('Get-Kategory');
 
 
+
+// Page Jual Dan Titip Barang
+Route::resource('/Jual-Titip', PenitipanController::class);
+Route::get('Barang', function () {
+    return view('page.penjualan.penjualan');
+})->name('page.penjualan');
+Route::get('/produk-list/{id}/{name}', function ($id, $name) {
+    return view('page.produk-view', [
+        'produk_id' => $id,
+        'produk_name' => $name,
+    ]);
+})->name('Produk-list');
+
+
+// Midtrans
+Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
+Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
+Route::post('/transaksi', [CartController::class, 'getDataPayment'])->name('json-data');
+Route::get('/transaksi', [CartController::class, 'createSnap'])->name('Lanjutkan-Pembayaran');
+Route::get('Keranjang', [CartController::class, 'index'])->name('page.keranjang');

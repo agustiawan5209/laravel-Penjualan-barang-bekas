@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Services\Midtrans\CallbackService;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
@@ -46,4 +47,5 @@ class PaymentController extends Controller
                 ], 403);
         }
     }
+
 }
