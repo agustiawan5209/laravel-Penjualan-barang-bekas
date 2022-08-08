@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Barang;
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 
@@ -18,14 +19,14 @@ class Penitipan extends Component
     // Modal Item
     public $detailItem = false, $itemID;
     // item field table barang
-    public $user_name,$user_email,$foto, $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto;
+    public $user_name, $user_email, $foto, $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto;
     public $categoryAll;
 
     public function render()
     {
-        $barang = Barang::paginate($this->row);
+        $barang = Barang::where('user_id', '!=', 1)->paginate($this->row);
         if ($this->search != null) {
-            $barang = Barang::where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
+            $barang = Barang::where('user_id', '!=', 1)->where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
         }
         $this->categoryAll = Category::all();
         return view('livewire.admin.penitipan', [
@@ -46,5 +47,4 @@ class Penitipan extends Component
         $this->kategori_produk = $barang->category->kategory;
         $this->detailItem = true;
     }
-
 }

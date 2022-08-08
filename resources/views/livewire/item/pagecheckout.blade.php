@@ -101,7 +101,7 @@
                     <div class="mb-4">
                         <div class="flex items-end gap-2"><span class="text-gray-800 text-xl md:text-2xl font-bold"> Rp.
                                 {{ number_format($harga, 0, 2) }}</span><span
-                                class="text-red-500 line-through mb-0.5">Diskon</span></div><span
+                                class="text-red-500 line-through mb-0.5">Rp. {{number_format($diskon,0,2)}}</span></div><span
                             class="text-gray-500 text-sm">{{ $categories }}</span>
                     </div>
                     <div class="flex items-center text-gray-500 gap-2 mb-6"><span><svg class="w-6 h-6"

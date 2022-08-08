@@ -86,6 +86,8 @@ Route::resource('/Jual-Titip', PenitipanController::class);
 Route::get('Barang', function () {
     return view('page.penjualan.penjualan');
 })->name('page.penjualan');
+
+// Produk Detail Sebelum Cek out
 Route::get('/produk-list/{id}/{name}', function ($id, $name) {
     return view('page.produk-view', [
         'produk_id' => $id,
@@ -97,6 +99,7 @@ Route::get('/produk-list/{id}/{name}', function ($id, $name) {
 // Midtrans
 Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
 Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
+Route::delete('/keranjang/{id}', [CartController::class, 'delete'])->name('page.keranjang.delete');
 Route::post('/transaksi', [CartController::class, 'getDataPayment'])->name('json-data');
 Route::get('/transaksi', [CartController::class, 'createSnap'])->name('Lanjutkan-Pembayaran');
 Route::get('Keranjang', [CartController::class, 'index'])->name('page.keranjang');

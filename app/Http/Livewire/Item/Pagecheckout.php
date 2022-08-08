@@ -15,6 +15,7 @@ class Pagecheckout extends Component
     public $jumlah = 0;
     public $sub_total, $count = 1;
     public $harga;
+    public $diskon;
     public function mount($itemID, $nameID)
     {
         $this->itemID = $itemID;
@@ -28,13 +29,17 @@ class Pagecheckout extends Component
         $deskripsi = '';
         $categories = '';
         $barang = Barang::where('id', '=', $this->itemID)->where('nama_produk', '=', $this->nameID)->get();
+
         foreach ($barang as $item) {
             $foto_produk = $item->foto_produk;
             $nama_produk = $item->nama_produk;
             $this->harga = $item->harga;
             $deskripsi = $item->deskripsi;
             $categories = $item->category->kategory;
+            $this->diskon = isset($item->diskon->diskon) ? $item->diskon->diskon : 0;
         }
+        // Hitung Diskon
+        $this->diskon = ($this->diskon / 100) *  $this->harga;
         // $data = [;
         return view('livewire.item.pagecheckout', [
             'randomLink' => Str::random(10),
@@ -42,7 +47,7 @@ class Pagecheckout extends Component
             'foto_produk' => $foto_produk,
             'nama_produk' => $nama_produk,
             'deskripsi' => $deskripsi,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
     public function toCart()
@@ -66,7 +71,7 @@ class Pagecheckout extends Component
                         'user_id' => Auth::user()->id,
                         'jumlah_barang' => $this->jumlah,
                         'barang_id' => $this->itemID,
-                        'sub_total' => $this->jumlah * $this->harga,
+                        'sub_total' => $this->jumlah * $this->harga - $this->diskon,
                     ]);
                     session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
                     return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);
@@ -77,11 +82,11 @@ class Pagecheckout extends Component
     public function Hitung()
     {
         $this->jumlah++;
-        $this->sub_total = 'Rp. ' . number_format($this->jumlah * $this->harga, 0, 2);
+        $this->sub_total = 'Rp. ' . number_format($this->jumlah * $this->harga - $this->diskon, 0, 2);
     }
     public function kurang()
     {
         $this->jumlah--;
-        $this->sub_total = 'Rp. ' . number_format($this->jumlah * $this->harga, 0, 2);
+        $this->sub_total = 'Rp. ' . number_format($this->jumlah * $this->harga - $this->diskon, 0, 2);
     }
 }

@@ -16,9 +16,9 @@ class Barang extends Model
     {
         return $this->belongsTo(Category::class, 'categories');
     }
-    public function diskons()
+    public function diskon()
     {
-        return $this->hasMany(Diskon::class, 'barang_id', 'id');
+        return $this->hasOne(Diskon::class, 'barang_id', 'id');
     }
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');

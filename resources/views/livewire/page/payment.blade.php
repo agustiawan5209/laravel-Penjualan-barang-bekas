@@ -33,8 +33,8 @@
                                                     class="w-5 h-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
                                                     class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24"
                                                     stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M5 13l4 4L19 7" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7" />
                                                 </svg></span><span> In stock </span></span></div>
                                 </div>
                                 <div class="w-full sm:w-auto flex justify-between border-t sm:border-none pt-4 sm:pt-0">
@@ -42,10 +42,16 @@
                                         <div class="w-20 h-12 flex border rounded overflow-hidden">
                                             <input id="total_jumlah"
                                                 class="w-full focus:ring ring-inset ring-indigo-300 outline-none transition duration-100 px-4 py-2"
-                                                min="0" max="5" disabled value="{{ $item->jumlah_barang }}" />
+                                                min="0" max="5" disabled
+                                                value="{{ $item->jumlah_barang }}" />
                                         </div>
-                                                <button id="Byolvd" type="button" wire:click='delete({{$item->id}})'
-                                                    class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 text-sm font-semibold select-none transition duration-100 ">Delete</button>
+                                        <form action="{{ route('page.keranjang.delete', ['id'=> $item->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button id="Byolvd" type="submit"
+                                                wire:click='delete({{ $item->id }})'
+                                                class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 text-sm font-semibold select-none transition duration-100 ">Delete</button>
+                                        </form>
 
                                     </div>
                                     <div class="pt-3 sm:pt-2 ml-4 md:ml-8 lg:ml-16">
@@ -60,12 +66,12 @@
                 <div class="flex flex-col items-end gap-4">
                     <div class="w-full sm:max-w-xs bg-gray-100 rounded-lg p-4">
                         <div class="space-y-1">
-                            <div class="flex justify-between text-gray-500 gap-4"><span class="">Subtotal</span><span
-                                    id="total_harga" x-model='total_harga'>Rp.
+                            <div class="flex justify-between text-gray-500 gap-4"><span
+                                    class="">Subtotal</span><span id="total_harga" x-model='total_harga'>Rp.
                                     {{ number_format($sub_total, 0, 2) }}</span>
                             </div>
-                            <div class="flex justify-between text-gray-500 gap-4"><span class="">Diskon</span><span
-                                    class="">$4.99</span></div>
+                            <div class="flex justify-between text-gray-500 gap-4"><span
+                                    class="">Promo</span><span class="">$4.99</span></div>
                         </div>
                         <div class="border-t pt-4 mt-4">
                             <div class="flex justify-between items-start text-gray-800 gap-4"><span
@@ -74,7 +80,7 @@
                                         class="text-gray-500 text-sm">including VAT</span></span></div>
                         </div>
                     </div>
-                    <a href="{{route('Lanjutkan-Pembayaran')}}">
+                    <a href="{{ route('Lanjutkan-Pembayaran') }}">
                         <x-jet-button class="bg-blue-500" id="pay-button">Bayar Sekarang</x-jet-button>
                     </a>
                 </div>

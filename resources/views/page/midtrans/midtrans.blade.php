@@ -63,8 +63,7 @@
         payButton.addEventListener('click', function(e) {
             e.preventDefault();
             swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
+                title: "Lanjutkan Pembayaran?",
                 icon: "warning",
                 buttons: [
                     'No, cancel it!',
@@ -73,7 +72,7 @@
                 dangerMode: true,
             }).then(function(isConfirm) {
                 if (isConfirm) {
-
+                    // console.log({{ $snapToken }})
                     snap.pay('{{ $snapToken }}', {
                         // Optional
                         onSuccess: function(result) {

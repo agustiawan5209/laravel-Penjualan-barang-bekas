@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pdf_url', 200)->nullable();
             $table->string('transaksi_id')->nullable();
             $table->string('snap_token', 36)->nullable();
+            $table->string('item_details');
             $table->timestamps();
         });
     }

@@ -33,10 +33,10 @@ class UserController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest', ['except' => 'logout']);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function authenticate(Request $request)
     {
         // dd($request);

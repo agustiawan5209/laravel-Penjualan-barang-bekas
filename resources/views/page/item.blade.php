@@ -13,7 +13,8 @@
                     @foreach ($kategory as $item)
                         <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600"><a
                                 class="w-full h-full"
-                                href="{{ route('Get-Kategory', ['Category' => $item->kategory, 'id'=> $item->id]) }}">{{$item->kategory}}</a></li>
+                                href="{{ route('Get-Kategory', ['Category' => $item->kategory, 'id' => $item->id]) }}">{{ $item->kategory }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -25,12 +26,12 @@
                             class="group h-60 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                                 alt="No alt" src="{{ asset('upload/' . $item->foto_produk) }}"
                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /><span
-                                class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span></a>
+                                class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">{{ isset($item->diskon->diskon) ? 'Diskon '. $item->diskon->diskon .'%' : '' }}</span></a>
                         <div class=""><a href="#"
                                 class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{ $item->nama_produk }}</a>
                             <div class="flex items-end gap-2"><span class="text-gray-800 lg:text-lg font-bold">Rp.
                                     {{ number_format($item->harga, 0, 2) }}</span><span
-                                    class="text-red-500 line-through mb-0.5">{{ $item->diskons }}</span></div>
+                                    class="text-red-500 line-through mb-0.5"></span></div>
                         </div>
                     </div>
                 @endforeach

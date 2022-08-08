@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Models\Payment;
+use App\Models\TransaksiDetail;
 use App\Services\Midtrans\CreateSnapTokenService;
+use Carbon\Carbon;
 
 class CartController extends Controller
 {
@@ -61,12 +63,24 @@ class CartController extends Controller
     }
     public function getDataPayment(Request $request)
     {
+        // return $request;
         $randomNumber = $this->generateUniqueNumber();
-        $json = json_decode($request->get('json'),true);
+        $json = json_decode($request->get('json'), true);
         $jsonResponse = response()->json($request->all());
-        // dd($json['order_id']);
+
+        // Memasukkan Detail
+        $cek_snapToken = Cart::whereNotNull('snap_token')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($cek_snapToken as $data) {
+            $array[] =
+                'harga' . ' = ' . $data->barang->harga . ',' . // harga satuan produk
+                'quantity' . ' = ' . $data->jumlah_barang . ',' . // kuantitas pembelian
+                'name' . ' = ' . $data->barang->nama_produk // nama produk
+            ;
+        }
+        $data = implode('|', $array);
+        // dd(Carbon::now()->timestamp());
         Payment::insert([
-            'user_id'=> Auth::user()->id,
+            'user_id' => Auth::user()->id,
             'number' => $json['order_id'],
             'total_price' => $json['gross_amount'],
             'payment_status' => $json['transaction_status'],
@@ -75,9 +89,13 @@ class CartController extends Controller
             'total_price' => $json['gross_amount'],
             'transaksi_id' => $json['transaction_id'],
             'snap_token' => $request->snap_token,
+            'item_details' => $data,
+            // 'created_at' => Carbon::now()->timestamp(),
         ]);
+        $array = [];
+
         Cart::where('user_id', '=', Auth::user()->id)->delete();
-        return redirect()->route('page.keranjang')->with('message', 'Menunggu Pembayaran');
+        return redirect()->route('home')->with('message', 'Menunggu Pembayaran');
     }
 
     public function createSnap()
@@ -85,13 +103,18 @@ class CartController extends Controller
         $snapToken = '';
         $payment = '';
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
-        $total_price = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
+        $cek_snapToken = Cart::whereNull('snap_token')->where('user_id', '=', Auth::user()->id)->get();
         $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
-
+        // dd($cek_snapToken);
         if ($keranjang->count() > 0) {
             // Jika snap token masih NULL, buat token snap dan simpan ke database
             $midtrans = new CreateSnapTokenService($payment, $user_ID->user_id, $keranjang);
             $snapToken = $midtrans->getSnapToken();
+            if ($cek_snapToken != null) {
+                Cart::whereNull('snap_token')->where('user_id', '=', Auth::user()->id)->update([
+                    'snap_token' => $snapToken,
+                ]);
+            }
         }
         // dd($snapToken);
         $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
@@ -101,5 +124,10 @@ class CartController extends Controller
             'payment' => $payment,
             'sub_total' => $sub_total
         ]);
+    }
+    public function delete($id)
+    {
+        $keranjang = Cart::where('id', $id)->where('user_id', '=', Auth::user()->id)->delete();
+        return redirect()->back()->with('message', 'Berhasil Di Hapus');
     }
 }
