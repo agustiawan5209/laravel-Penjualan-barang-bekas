@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Barang;
 use App\Models\Category;
 use App\Models\Diskon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -72,6 +73,7 @@ class PageBarang extends Component
         // dd($randomize);
         // melakukan return foto
         $barang = Barang::create([
+            'user_id'=> Auth::user()->id,
             'foto_produk' => $randomize,
             'nama_produk' => $this->nama_produk,
             'harga' => $this->harga_produk,

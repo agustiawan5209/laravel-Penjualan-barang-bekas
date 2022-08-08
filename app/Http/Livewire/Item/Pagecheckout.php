@@ -50,22 +50,28 @@ class Pagecheckout extends Component
         // pengecekan jumlah Barang
         if ($this->jumlah < 1) {
             session()->flash('message', 'Maaf Jumlah Barang Mohon Di Isi');
-        }else{
+        } else {
             // Cek Apakah Barang Ada Atau Tidak
             $Cek_Cart = Cart::where('user_id', '=', Auth::user()->id)->where('barang_id', '=', $this->itemID)->get();
             // dd($Cek_Cart);
-            if ($Cek_Cart->count() > 0) {
-                session()->flash('message', $Cek_Cart ? 'Maaf Sudah Di Masukkan Ke Keranjang' : 'Barang Belum Di Masukkan Ke Keranjang');
+            $user_cek = Barang::where('user_id', '=', Auth::user()->id)->get();
+            // dd($user_cek);
+            if ($user_cek->count() > 0) {
+                session()->flash('alert', 'Maaf Gagal Respon');
             } else {
-                $cart = Cart::create([
-                    'user_id' => Auth::user()->id,
-                    'jumlah_barang' => $this->jumlah,
-                    'barang_id' => $this->itemID,
-                    'sub_total' => $this->jumlah * $this->harga,
-                ]);
-                session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
+                if ($Cek_Cart->count() > 0) {
+                    session()->flash('message', $Cek_Cart ? 'Maaf Sudah Di Masukkan Ke Keranjang' : 'Barang Belum Di Masukkan Ke Keranjang');
+                } else {
+                    $cart = Cart::create([
+                        'user_id' => Auth::user()->id,
+                        'jumlah_barang' => $this->jumlah,
+                        'barang_id' => $this->itemID,
+                        'sub_total' => $this->jumlah * $this->harga,
+                    ]);
+                    session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
+                    return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);
+                }
             }
-            return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);
         }
     }
     public function Hitung()

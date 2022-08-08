@@ -1,17 +1,23 @@
 <?php
 
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\PaymentController;
 use App\Models\Barang;
 use App\Models\Diskon;
 use App\Models\Category;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\Penitipan;
 use App\Http\Livewire\Admin\Penjualan;
 use App\Http\Livewire\Admin\PageBarang;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Admin\PagePromo;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PenitipanController;
+use App\Http\Livewire\Admin\UpdateTokoInformation;
+use App\Http\Livewire\Page\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +42,24 @@ Route::get('/', function () {
         'kategory' => Category::all(),
     ]);
 })->name('home');
+// Route List kategori
+Route::get('/Category/{Category}', function($Category,Request $request){
+    // Mendapatkan Data Barang Dan Diskon
+    $diskon = Diskon::all();
+    $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
+        $query->where('kategory', 'like', '%'.$Category.'%');
+    })->get();
+    return view('welcome', [
+        'barang' => $BarangDiskon,
+        'kategory' => Category::all(),
+    ]);
+})->name('Get-Kategory');
+Route::resource('/Jual-Titip', PenitipanController::class);
 
-Route::get('/Jual-Titip', function () {
-    return view('page.jual_titip');
-})->name('page.Jual-titip');
-
-Route::get('/keranjang', [CartController::class , 'index'])->name('page.keranjang');
-Route::get('/keranjang/{Barang}', [CartController::class , 'create'])->name('page.keranjang.create');
-Route::delete('/keranjang/{Cart}', [CartController::class , 'destroy'])->name('page.keranjang.delete');
+// Route::get('/keranjang', [CartController::class, 'index'])->name('page.keranjang');
+Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
+// Route::delete('/keranjang/{Cart}', [CartController::class, 'destroy'])->name('page.keranjang.delete');
+Route::get('Keranjang', Payment::class)->name('page.keranjang');
 
 Route::get('Barang', function () {
     return view('page.penjualan.penjualan');
@@ -60,7 +76,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::prefix('Admin')->group(function(){
+    Route::prefix('Admin')->group(function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
@@ -70,8 +86,13 @@ Route::middleware([
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
     });
+    Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
+    Route::prefix('user/profile')->group(function () {
+        Route::get('Penitipan', [CustomerController::class, 'index'])->name('Customer.Penitipan');
+    });
+    // Midtrans
+Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
 });
 
 
-// Midtrans
-Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
+

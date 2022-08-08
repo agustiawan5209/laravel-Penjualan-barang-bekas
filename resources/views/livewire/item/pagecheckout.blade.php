@@ -1,12 +1,15 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
+    @if (session()->has('alert'))
+        <x-alert :message="session('alert')" />
+    @endif
     @if ($foto_produk == null && $nama_produk == null && $harga == null && $deskripsi == null && $categories == null)
         {{-- Detail Produk --}}
         Maaf Barang Belum Tersedia
     @else
         <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
             @if (session()->has('message'))
-            <x-alert :message="session('message')" />
-        @endif
+                <x-alert :message="session('message')" />
+            @endif
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-4">
                     <div class="bg-gray-100 rounded-lg overflow-hidden relative"><img alt="No alt"
@@ -77,7 +80,7 @@
                     <div class="w-full sm:w-auto flex justify-between border-t sm:border-none pt-4 sm:pt-0">
                         <div class="flex flex-col items-start gap-2">
                             <div class="w-20 h-12 flex border rounded overflow-hidden">
-                                <input id="total_jumlah"  wire:model='jumlah'
+                                <input id="total_jumlah" wire:model='jumlah'
                                     class="w-full focus:ring ring-inset ring-indigo-300 outline-none transition duration-100 px-4 py-2"
                                     min="0" max="5" disabled />
                                 <div class="flex flex-col border-l divide-y">

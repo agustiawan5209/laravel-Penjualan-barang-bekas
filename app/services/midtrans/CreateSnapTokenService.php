@@ -22,6 +22,16 @@ class CreateSnapTokenService extends Midtrans
 	public function getSnapToken()
 	{
         $user = User::find($this->user_id);
+        $array = [];
+        foreach($this->barang_id as $data){
+            $array[] =  [
+                'id' => $data->id, // primary key produk
+                'price' => $data->barang->harga, // harga satuan produk
+                'quantity' => $data->jumlah_barang, // kuantitas pembelian
+                'name' => $data->barang->nama_produk, // nama produk
+            ];
+        }
+        // dd($array);
 		$params = [
 			/**
 			 * 'order_id' => id order unik yang akan digunakan sebagai "primary key" oleh Midtrans untuk
@@ -36,20 +46,7 @@ class CreateSnapTokenService extends Midtrans
 			 * 'item_details' bisa diisi dengan detail item dalam order.
 			 * Umumnya, data ini diambil dari tabel `order_items`.
 			 */
-			'item_details' => [
-				[
-					'id' => 1, // primary key produk
-					'price' => '150000', // harga satuan produk
-					'quantity' => 1, // kuantitas pembelian
-					'name' => 'Flashdisk Toshiba 32GB', // nama produk
-				],
-				[
-					'id' => 2,
-					'price' => '60000',
-					'quantity' => 2,
-					'name' => 'Memory Card VGEN 4GB',
-				],
-			],
+			'item_details' => $array,
 			'customer_details' => [
 				// Key `customer_details` dapat diisi dengan data customer yang melakukan order.
 				'first_name' => $user->name,

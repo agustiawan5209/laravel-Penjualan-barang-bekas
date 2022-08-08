@@ -2,11 +2,6 @@
     <x-slot name="title">
         {{ __('Profile Information') }}
     </x-slot>
-
-    <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
-    </x-slot>
-
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -80,6 +75,11 @@
                     </p>
                 @endif
             @endif
+        </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="alamat" value="{{ __('Alamat') }}" />
+            <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.alamat" />
+            <x-jet-input-error for="alamat" class="mt-2" />
         </div>
     </x-slot>
 

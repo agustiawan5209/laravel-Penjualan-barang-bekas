@@ -5,12 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
     <title>{{ config('APP_NAME', 'Jual') }}</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"
@@ -43,7 +46,7 @@
                             </div>
                         </li>
                         <li class="">
-                            <a href="{{ route('page.Jual-titip') }}"
+                            <a href="{{ route('Jual-Titip.index') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -193,7 +196,7 @@
             </div>
         </div>
     </div>
-    <div class=" dark:bg-gray-900">
+    {{-- <div class=" dark:bg-gray-900">
         <div class="px-2 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div class="relative flex items-center justify-center">
                 <ul
@@ -212,7 +215,7 @@
                             Rumah</a></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     {{-- Content --}}
@@ -221,10 +224,10 @@
     </main>
 
     <footer class="shadow-lg">
-        <div class="pt-12 lg:pt-16">
+        <div class="pt-5">
             <div class="px-4 mx-auto max-w-7xl md:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 lg:gap-8 mb-16">
-                    <div class="col-span-full lg:col-span-2">
+                    {{-- <div class="col-span-full">
                         <div class="lg:-mt-2 mb-4"><a href="#"
                                 class="inline-flex items-center text-black-800 text-xl md:text-2xl font-bold gap-2"><span
                                     class="w-5 h-auto text-indigo-500">
@@ -274,75 +277,7 @@
                                             </path>
                                         </svg></div>
                                 </span></a></div>
-                    </div>
-                    <div class="">
-                        <div class="text-gray-800 font-bold tracking-widest uppercase mb-4">Products</div>
-                        <nav class="flex flex-col gap-4">
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Overview</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Solutions</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Pricing</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Customers</a>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="">
-                        <div class="text-gray-800 font-bold tracking-widest uppercase mb-4">Company</div>
-                        <nav class="flex flex-col gap-4">
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">About</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Investor
-                                    Relations</a></div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Jobs</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Press</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Blog</a>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="">
-                        <div class="text-gray-800 font-bold tracking-widest uppercase mb-4">Support</div>
-                        <nav class="flex flex-col gap-4">
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Contact</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Documentation</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Chat</a>
-                            </div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">FAQ</a>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="">
-                        <div class="text-gray-800 font-bold tracking-widest uppercase mb-4">Legal</div>
-                        <nav class="flex flex-col gap-4">
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Terms
-                                    of Service</a></div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Privacy
-                                    Policy</a></div>
-                            <div class=""><a href="#"
-                                    class="text-gray-500 hover:text-indigo-500 active:text-indigo-600 transition duration-100">Cookie
-                                    settings</a></div>
-                        </nav>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="text-gray-400 text-sm text-center border-t py-8">© 2021 - Present Chai Builder. All rights
                     reserved.</div>

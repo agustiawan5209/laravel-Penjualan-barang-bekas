@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('tokos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('jumlah_barang');
-            $table->foreignId('barang_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('sub_total', 20);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('kode_toko', 20);
+            $table->string('nama_toko', 30);
+            $table->string('alamat', 50);
+            $table->string('no_telpon', 15);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('tokos');
     }
 };

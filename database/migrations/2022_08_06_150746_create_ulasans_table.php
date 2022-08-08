@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ulasans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
+            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('point1')->nullable();
             $table->integer('point2')->nullable();
             $table->integer('point3')->nullable();

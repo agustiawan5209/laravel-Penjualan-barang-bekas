@@ -8,14 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     protected $table = 'barangs';
-    protected $fillable = ['foto_produk', 'nama_produk', 'harga', 'deskripsi', 'categories'];
-    protected $hidden = ['foto_produk', 'harga', 'categories'];
+    protected $fillable = ['user_id', 'foto_produk', 'nama_produk', 'harga', 'deskripsi', 'stock', 'categories'];
+    protected $hidden = ['user_id', 'foto_produk', 'harga', 'categories'];
     use HasFactory;
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'categories');
     }
-    public function diskons(){
-        return $this->hasOne(Diskon::class, 'barang_id', 'id');
+    public function diskons()
+    {
+        return $this->hasMany(Diskon::class, 'barang_id', 'id');
+    }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

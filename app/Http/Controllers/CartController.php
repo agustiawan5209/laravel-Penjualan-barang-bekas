@@ -22,29 +22,48 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Cart $cart)
     {
-        $payment = Payment::find(2);
-        $snapToken = $payment->snap_token;
-        if (empty($snapToken)) {
-            // Jika snap token masih NULL, buat token snap dan simpan ke database
-
-            $midtrans = new CreateSnapTokenService($payment);
-            $snapToken = $midtrans->getSnapToken();
-            $payment->snap_token = $snapToken;
-            $payment->save();
-        }
+        $snapToken = '';
+        $payment = '';
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
+        // session()->put('ItemCart', $keranjang);
+        // $dataCart = session('ItemCart');
+        // dd($user_ID->user_id);
+        // dd($Barang);
+
+        // dd($keranjang);
+        if ($keranjang->count() > 0) {
+
+            $payment = Payment::latest()->first();
+            $snapToken = $payment->snap_token;
+
+            if (empty($snapToken)) {
+                // Jika snap token masih NULL, buat token snap dan simpan ke database
+                $midtrans = new CreateSnapTokenService($payment, $user_ID->user_id, $keranjang);
+                $snapToken = $midtrans->getSnapToken();
+                $payment->snap_token = $snapToken;
+                $payment->save();
+            }
+        }
         // dd($snapToken);
         $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
         return view('livewire.page.payment', [
-            'keranjang'=> $keranjang,
-            'snapToken'=> $snapToken,
-            'payment'=> $payment,
-            'sub_total'=> $sub_total
+            'keranjang' => $keranjang,
+            'snapToken' => $snapToken,
+            'payment' => $payment,
+            'sub_total' => $sub_total
         ]);
     }
+    public function generateUniqueNumber()
+    {
+        do {
+            $code = random_int(100000, 999999);
+        } while (Payment::where("number", "=", $code)->first());
 
+        return $code;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -52,26 +71,36 @@ class CartController extends Controller
      */
     public function create(Barang $Barang)
     {
-        // dd($Barang);
-        $payment = Payment::find(1);
-        $snapToken = $payment->snap_token;
-        if (empty($snapToken)) {
-            // Jika snap token masih NULL, buat token snap dan simpan ke database
-
-            $midtrans = new CreateSnapTokenService($payment);
-            $snapToken = $midtrans->getSnapToken();
-            $payment->snap_token = $snapToken;
-            $payment->save();
-        }
-
+        $snapToken = '';
+        $payment = '';
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $total_price = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
+        $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
+        $randomNumber = $this->generateUniqueNumber();
+        if ($keranjang->count() > 0) {
+            Payment::create([
+                'number' => $randomNumber,
+                'total_price' => $total_price,
+                'payment_status' => 1,
+            ]);
+            $payment = Payment::where('number', '=', $randomNumber)->first();
+            $snapToken = $payment->snap_token;
+
+            if (empty($snapToken)) {
+                // Jika snap token masih NULL, buat token snap dan simpan ke database
+                $midtrans = new CreateSnapTokenService($payment, $user_ID->user_id, $keranjang);
+                $snapToken = $midtrans->getSnapToken();
+                $payment->snap_token = $snapToken;
+                $payment->save();
+            }
+        }
         // dd($snapToken);
         $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
         return view('livewire.page.payment', [
-            'keranjang'=> $keranjang,
-            'snapToken'=> $snapToken,
-            'payment'=> $payment,
-            'sub_total'=> $sub_total
+            'keranjang' => $keranjang,
+            'snapToken' => $snapToken,
+            'payment' => $payment,
+            'sub_total' => $sub_total
         ]);
     }
 
@@ -94,16 +123,16 @@ class CartController extends Controller
      */
     public function show(Payment $payment)
     {
-        $snapToken = $payment->snap_token;
-        if (empty($snapToken)) {
-            // Jika snap token masih NULL, buat token snap dan simpan ke database
+        // $snapToken = $payment->snap_token;
+        // if (empty($snapToken)) {
+        //     // Jika snap token masih NULL, buat token snap dan simpan ke database
 
-            $midtrans = new CreateSnapTokenService($payment);
-            $snapToken = $midtrans->getSnapToken();
+        //     // $midtrans = new CreateSnapTokenService($payment);
+        //     $snapToken = $midtrans->getSnapToken();
 
-            $payment->snap_token = $snapToken;
-            $payment->save();
-        }
+        //     $payment->snap_token = $snapToken;
+        //     $payment->save();
+        // }
     }
 
     /**
