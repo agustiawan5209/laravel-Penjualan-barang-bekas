@@ -10,7 +10,6 @@
     <title>{{ config('APP_NAME', 'Jual') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <!-- Styles -->
     @livewireStyles
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
