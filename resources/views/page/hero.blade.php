@@ -2,10 +2,14 @@
     <div
         class="grid gap-2 bg-primary-500 text-white px-1 mx-3 rounded-lg grid-rows-2 md:grid-cols-2 md:grid-rows-none xl:mx-auto xl:max-w-5xl">
         <div class="p-7 md:flex md:flex-col md:justify-center md:py-8 lg:py-20 lg:pl-20">
-            <h1 class="text-3xl font-black sm:text-4xl text-white">Create Your World</h1>
-            <p class="tracking-tight mt-2 text-lg leading-6 text-white">Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Condimentum diam orci pretium a pharetra, feugiat cursus. Dictumst risus, sem
-                egestas odio cras adipiscing vulputate.</p>
+            <h1 class="text-3xl font-black sm:text-4xl text-white">Masukkan Kode Promo</h1>
+            <p class="tracking-tight mt-2 text-lg leading-6 text-white">
+            <form action="{{route('masukan-kode-promo')}}" method="POST">
+                @csrf
+                <x-jet-input name="kode_promo" type='text' placeholder="Masukkan Kode Promo"/>
+                <x-jet-button type='submit'>Cek Kode Promo</x-jet-button>
+            </form>
+            </p>
         </div>
         <div class="relative "><img alt="No alt"
                 src="https://res.cloudinary.com/dpatgkgqs/image/upload/v1639027081/mobile_gmjdzu.png"

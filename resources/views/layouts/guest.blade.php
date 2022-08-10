@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
     <title>{{ config('APP_NAME', 'Jual') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -14,7 +14,14 @@
     @livewireStyles
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
     <script src="{{asset('js/jquery-3.6.0.slim.min.js')}}"></script>
+    <style>
+        .flickity-viewport {
+  height: 500px !important;
+}
+    </style>
 </head>
 
 <body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"

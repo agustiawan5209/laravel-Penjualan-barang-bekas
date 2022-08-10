@@ -23,7 +23,13 @@
     <!-- Styles -->
     @livewireStyles
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{asset('js/jquery-3.6.0.slim.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.slim.min.js') }}"></script>
+    <!-- plugin for charts  -->
+    <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
+    <!-- plugin for scrollbar  -->
+    <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
+    <!-- main script file  -->
+    <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
 </head>
 
 @can('Manage-Admin')
@@ -580,11 +586,6 @@
         {{-- <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script> --}}
     </body>
 @endcan
-<!-- plugin for charts  -->
-<script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
-<!-- plugin for scrollbar  -->
-<script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
-<!-- main script file  -->
-<script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
+
 
 </html>

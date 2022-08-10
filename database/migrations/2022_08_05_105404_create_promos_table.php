@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('promo');
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

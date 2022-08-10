@@ -45,7 +45,8 @@
                                                 min="0" max="5" disabled
                                                 value="{{ $item->jumlah_barang }}" />
                                         </div>
-                                        <form action="{{ route('page.keranjang.delete', ['id'=> $item->id]) }}" method="POST">
+                                        <form action="{{ route('page.keranjang.delete', ['id' => $item->id]) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button id="Byolvd" type="submit"
@@ -70,13 +71,37 @@
                                     class="">Subtotal</span><span id="total_harga" x-model='total_harga'>Rp.
                                     {{ number_format($sub_total, 0, 2) }}</span>
                             </div>
-                            <div class="flex justify-between text-gray-500 gap-4"><span
-                                    class="">Promo</span><span class="">$4.99</span></div>
+                            @if (session()->has('promo') || session()->has('nam_promo'))
+                                <div class="flex justify-between text-gray-500 gap-4">
+                                    {{-- @dd(sum(session('promo'))) --}}
+                                    <div class="flex flex-col">
+                                        @foreach (session('nam_promo') as $item => $value)
+                                            <span class="">{{ $value }}</span>
+                                        @endforeach
+                                    </div>
+                                    <div class="flex flex-col">
+                                        @foreach (session('promo') as $item => $value)
+                                            <span class="">Rp
+                                                {{ number_format($sub_total * ($value / 100), 0, 2) }}</span>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            @endif
+                            @php
+                                            if (session()->has('promo')) {
+                                                $promo = intval(array_sum(session('promo')));
+                                                $subtotal = $sub_total * ($promo / 100);
+                                                $subtotal = $sub_total - $subtotal;
+                                            }else{
+                                                $subtotal = $sub_total;
+                                            }
+                                        @endphp
                         </div>
                         <div class="border-t pt-4 mt-4">
                             <div class="flex justify-between items-start text-gray-800 gap-4"><span
                                     class="text-lg font-bold">Total</span><span class="flex flex-col items-end"><span
-                                        class="text-lg font-bold">Rp. {{ number_format($sub_total, 0, 2) }}</span><span
+                                        class="text-lg font-bold">Rp. {{ number_format($subtotal, 0, 2) }}</span><span
                                         class="text-gray-500 text-sm">including VAT</span></span></div>
                         </div>
                     </div>

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Barang;
+use App\Models\Payment;
+use App\Models\PromoUser;
 use Illuminate\Http\Request;
+use App\Models\TransaksiDetail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
-use App\Models\Payment;
-use App\Models\TransaksiDetail;
 use App\Services\Midtrans\CreateSnapTokenService;
-use Carbon\Carbon;
 
 class CartController extends Controller
 {
@@ -56,6 +57,7 @@ class CartController extends Controller
         $total_price = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
         $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
         $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
+
         return view('livewire.page.payment', [
             'keranjang' => $keranjang,
             'sub_total' => $sub_total
@@ -86,7 +88,6 @@ class CartController extends Controller
             'payment_status' => $json['transaction_status'],
             'payment_type' => $json['payment_type'],
             'pdf_url' => $json['pdf_url'],
-            'total_price' => $json['gross_amount'],
             'transaksi_id' => $json['transaction_id'],
             'snap_token' => $request->snap_token,
             'item_details' => $data,

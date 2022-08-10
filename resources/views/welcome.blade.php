@@ -1,8 +1,11 @@
 <x-guest-layout>
 
-   @if (request()->routeIs('home'))
-   @include('page.hero')
-   @endif
+    @if (request()->routeIs('home'))
+        @if (session()->has('message'))
+            <x-alert :message="session('message')" />
+        @endif
+        @include('page.hero')
+    @endif
     @include('page.item')
     {{-- <div class="py-10">
         <div class="container mx-auto px-4">

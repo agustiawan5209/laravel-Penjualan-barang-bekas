@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page;
 
 use App\Models\Cart;
 use App\Models\Payment as Pembayaran;
+use App\Models\PromoUser;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Midtrans\CreateSnapTokenService;
@@ -35,7 +36,8 @@ class Payment extends Component
             }
         }
         // dd($snapToken);'
-        $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
+        // Cek Promo Yang Ada Di User
+        $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total')->get();
         return view('livewire.page.payment', [
             'keranjang' => $keranjang,
             'sub_total' => $sub_total

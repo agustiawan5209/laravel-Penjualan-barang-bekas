@@ -66,4 +66,7 @@ class User extends Authenticatable
     public function ulasan(){
         return $this->hasMany(ulasan::class);
     }
+    public function promo_user(){
+        return $this->hasOne(PromoUser::class, 'user_id', 'id');
+    }
 }

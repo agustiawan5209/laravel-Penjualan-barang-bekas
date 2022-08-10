@@ -33,7 +33,7 @@
             </div>
             <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto  md:w-1/2 md:flex-none lg:w-4/12">
                 <div class="relative right-0">
-                    <ul class="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" nav-pills role="tablist">
+                    <ul class="relative flex flex-wrap gap-3 p-1 list-none bg-gray-50 rounded-xl" nav-pills role="tablist">
                         <li class="z-30 flex-auto text-center">
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700 {{ request()->routeIs('Jual-Titip.index') ? 'px-1 bg-white shadow-gray-300 shadow-sm' : '' }}"
                                 href="{{ route('Jual-Titip.index') }}">
@@ -56,12 +56,20 @@
                             </a>
                         </li>
                         <li class="z-30 flex-auto text-center">
+                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-colors ease-in-out border-0 rounded-lg bg-inherit text-slate-700  {{ request()->routeIs('profile.pesanan') ? 'px-1 bg-white shadow-gray-300  shadow-sm' : '' }}" href="{{ route('profile.pesanan') }}"
+                                role="tab" aria-selected="false">
+                                <i class="ni ni-settings-gear-65"></i>
+                                <span class="ml-2">Pesanan</span>
+                            </a>
+                        </li>
+                        <li class="z-30 flex-auto text-center">
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-colors ease-in-out border-0 rounded-lg bg-inherit text-slate-700  {{ request()->routeIs('profile.show') ? 'px-1 bg-white shadow-gray-300  shadow-sm' : '' }}" href="{{ route('profile.show') }}"
                                 role="tab" aria-selected="false">
                                 <i class="ni ni-settings-gear-65"></i>
                                 <span class="ml-2">Settings</span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>

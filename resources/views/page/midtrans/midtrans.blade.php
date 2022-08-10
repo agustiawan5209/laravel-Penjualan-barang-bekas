@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex items-center justify-end max-w-full px-3 dark:text-white/80 md:w-1/2 md:flex-none">
                             <i class="mr-2 far fa-calendar-alt" aria-hidden="true"></i>
-                            <small>23 - 30 March 2020</small>
+                            <small>{{date('Y-m-d')}}</small>
                         </div>
                     </div>
                 </div>
@@ -43,19 +43,61 @@
                     </ul>
                     <h6 class="my-4 font-bold leading-tight uppercase dark:text-white text-size-xs text-slate-500">Sub Total : {{$item->sub_total}}
                     </h6>
-                    <ul class="flex justify-between pl-0 mb-0 rounded-lg">
-                        <li><x-jet-button type='button' id="pay-button">Bayar</x-jet-button></li>
-                        <li><x-jet-danger-button type="button">Batal</x-jet-danger-button></li>
-                    </ul>
+
                 </div>
             </div>
         </div>
+        <form action="{{ route('json-data') }}" method="POST" id='submit_json'>
+            @csrf
+            <div class="flex-auto p-6">
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Informasi Alamat Penerima</p>
+                <div class="flex flex-wrap -mx-3">
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                    <div class="mb-4">
+                      <label for="address" class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Alamat</label>
+                      <input type="text" name="address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                    </div>
+                  </div>
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                    <div class="mb-4">
+                      <label for="city" class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kota</label>
+                      <input type="text" name="city" value="New York" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                    </div>
+                  </div>
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                    <div class="mb-4">
+                      <label for="country" class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kabupaten/Kota</label>
+                      <input type="text" name="country" value="United States" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                    </div>
+                  </div>
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                    <div class="mb-4">
+                      <label for="postal code" class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kode Pos</label>
+                      <input type="text" name="postal code" value="437300" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                    </div>
+                  </div>
+                </div>
+                <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
+
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Masukkan Ciri/Nomor Block</p>
+                <div class="flex flex-wrap -mx-3">
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                    <div class="mb-4">
+                      <input type="text" name="about me" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source." class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <ul class="flex justify-around pl-0 mb-0 rounded-lg">
+                <li><x-jet-button type='button' id="pay-button">Bayar</x-jet-button></li>
+                <li><x-jet-danger-button type="button">Batal</x-jet-danger-button></li>
+            </ul>
+            <input type="hidden" name="json" id="json_callback">
+            <input type="hidden" name="snap_token" value="{{$snapToken}}">
+        </form>
     </div>
-    <form action="{{ route('json-data') }}" method="POST" id='submit_json'>
-        @csrf
-        <input type="text" name="json" id="json_callback">
-        <input type="text" name="snap_token" value="{{$snapToken}}">
-    </form>
+
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
     </script>
     <script>

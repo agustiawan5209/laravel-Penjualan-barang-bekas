@@ -84,9 +84,9 @@
                                     class="w-full focus:ring ring-inset ring-indigo-300 outline-none transition duration-100 px-4 py-2"
                                     min="0" max="5" disabled />
                                 <div class="flex flex-col border-l divide-y">
-                                    <button id="plus" wire:click='Hitung()'
+                                    <button id="plus" wire:click='Hitung({{$itemID}})'
                                         class="w-6 flex justify-center items-center flex-1 bg-white hover:bg-gray-100 active:bg-gray-200 leading-none select-none transition duration-100 ">+</button>
-                                    <button id="mines" wire:click='kurang()'
+                                    <button id="mines" wire:click='kurang({{$itemID}})'
                                         class="w-6 flex justify-center items-center flex-1 bg-white hover:bg-gray-100 active:bg-gray-200 leading-none select-none transition duration-100 ">-</button>
                                 </div>
                             </div>
