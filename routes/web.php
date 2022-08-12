@@ -16,6 +16,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
+use App\Http\Livewire\Admin\SlideController;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\MetodePembayaran;
 use App\Http\Livewire\User\JualTitip;
@@ -62,9 +63,10 @@ Route::middleware([
         Route::get('Penjualan/Barang', Penjualan::class)->name('Admin.Penjualan');
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
+        Route::get('Slide/Setting', SlideController::class)->name('Admin.Slide');
     });
-// Metode Pembayaran
-Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
+    // Metode Pembayaran
+    Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
     // Akses User
     Route::middleware(['middleware' => 'role:Customer'])->group(function () {
         Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
@@ -80,6 +82,8 @@ Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayara
         Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
         Route::delete('/keranjang/{id}', [CartController::class, 'delete'])->name('page.keranjang.delete');
         Route::get('Keranjang', [CartController::class, 'index'])->name('page.keranjang');
+        Route::get('Bayar-Sekarang', [CartController::class, 'Kirim'])->name('Kirim-Pembayaran');
+        Route::post('Pembayaran', [PaymentController::class, 'receive'])->name('receive');
         // Route::resource('/Jual-Titip', PenitipanController::class);
 
 
@@ -91,7 +95,7 @@ Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayara
 });
 Route::post('Kode/Promo', [PromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
 // Route List kategori
-Route::get('/Category/{Category}/{id}', function ($Category,$id, Request $request) {
+Route::get('/Category/{Category}/{id}', function ($Category, $id, Request $request) {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
     // $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {

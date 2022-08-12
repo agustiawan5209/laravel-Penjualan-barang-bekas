@@ -7,7 +7,9 @@ use App\Models\Promo;
 use App\Models\Barang;
 use App\Models\Payment;
 use App\Models\PromoUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -56,7 +58,7 @@ class CartController extends Controller
             'snapToken' => $snapToken,
             'payment' => $payment,
             'sub_total' => $array_sum_total_price,
-            'potongan'=> $potongan,
+            'potongan' => $potongan,
             'total_price' => $this->getTotal($promo, $diskon, $array_sum_total_price),
         ]);
     }
@@ -93,18 +95,11 @@ class CartController extends Controller
         if ($hasil == null || $hasil == '') {
             $param = 0;
         } else {
-
             $param = array_sum($hasil);
         }
         return $param;
     }
-    public function generateUniqueNumber()
-    {
-        do {
-            $code = random_int(1111, 9999);
-        } while (Payment::where("number", "=", $code)->first());
-        return $code;
-    }
+
     /**
      * Show the form for creating a new resource.
      *  Membuat Data Keranjang
@@ -139,7 +134,7 @@ class CartController extends Controller
             'promo' => $promo,
             'keranjang' => $keranjang,
             'sub_total' => $array_sum_total_price,
-            'potongan'=> $potongan,
+            'potongan' => $potongan,
             'total_price' => $this->getTotal($promo, $diskon, $array_sum_total_price),
         ]);
     }
@@ -193,5 +188,52 @@ class CartController extends Controller
     {
         $keranjang = Cart::where('id', $id)->where('user_id', '=', Auth::user()->id)->delete();
         return redirect()->back()->with('message', 'Berhasil Di Hapus');
+    }
+
+    public function Kirim(Request $request)
+    {
+        $diskon = null;
+        $promo = null;
+        $snapToken = '';
+        $payment = '';
+        $potongan = [];
+        $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
+        // dd($snapToken);
+        $total_price = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $total_price_array = [];
+        $item_details = [];
+        if ($total_price->count() >  0) {
+            foreach ($total_price as $item) {
+                $total_price_array[] = $item->sub_total;
+                $cart = $item->barang->id;
+                $potongan = $this->GetPromo($item->barang_id);
+                $item_details[] =  $item->barang->nama_produk . '.' . $item->barang->harga;
+            }
+        }
+        $array_sum_total_price = array_sum($total_price_array);
+        $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($diskon_cart as $item) {
+            $diskon = $item->diskon;
+        }
+        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($promo_cart as $item) {
+            $promo = $item->promo;
+        }
+        $sub_total = $this->getTotal($promo, $diskon, $array_sum_total_price);
+        $param = [
+            'sub_total' => $sub_total,
+            'item_details' => $item_details,
+            'potongan' => $potongan,
+        ];
+        if($array_sum_total_price == null || $keranjang == null ){
+            abort(403);
+        }
+        Session::put('param', $param);
+        return  view('page.midtrans.midtrans', [
+            'keranjang'=> $keranjang,
+            'sub_total'=> $sub_total,
+            'potongan' => $potongan,
+            'total_price' => $array_sum_total_price,
+        ]);
     }
 }

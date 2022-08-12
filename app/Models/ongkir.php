@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class ongkir extends Model
 {
-    protected $table = 'payments';
-    protected $fillable = ['user_id','number', 'total_price', 'payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token', 'item_details'];
-    protected $hidden = ['payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token'];
+    protected $table = 'ongkirs';
+    protected $fillable = ['payment_id','tgl_pengiriman','alamat', 'kode_pos', 'kabupaten', 'detail_alamat'];
     use HasFactory;
 
     public function transaksi(){

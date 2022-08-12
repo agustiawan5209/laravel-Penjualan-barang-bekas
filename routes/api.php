@@ -18,6 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Midtrans Payment
-// Route::prefix('payment')->group(function(){
-//     Route::get('Cart/{Payment}', [PaymentController::class, 'show'])->name('Payment');
-// });
+Route::prefix('payment')->group(function(){
+    Route::get('Cart/{Payment}', [PaymentController::class, 'receive'])->name('Payment');
+});

@@ -107,7 +107,7 @@
                                         class="text-gray-500 text-sm">including VAT</span></span></div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{route("Kirim-Pembayaran")}}">
                         <x-jet-button class="bg-blue-500" id="pay-button">Bayar Sekarang</x-jet-button>
                     </a>
                 </div>
@@ -115,6 +115,4 @@
         </div>
 
     </div>
-
-
 </x-guest-layout>
