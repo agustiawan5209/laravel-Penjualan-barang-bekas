@@ -16,11 +16,15 @@
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
-    <script src="{{asset('js/jquery-3.6.0.slim.min.js')}}"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="{{ asset('js/jquery-3.6.0.slim.min.js') }}"></script>
     <style>
         .flickity-viewport {
-  height: 500px !important;
-}
+            height: 500px !important;
+        }
     </style>
 </head>
 
@@ -29,7 +33,7 @@
     <div class="bg-gray-900">
         <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div class="relative flex items-center justify-between">
-                <div class="flex items-center"><a href="{{route('home')}}" class="inline-flex items-center mr-8"><span
+                <div class="flex items-center"><a href="{{ route('home') }}" class="inline-flex items-center mr-8"><span
                             class="text-2xl text-white">
                             <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor"
                                     fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em"
@@ -54,7 +58,7 @@
                             </div>
                         </li>
                         <li class="">
-                            <a href="{{ route('Jual-Titip.index') }}"
+                            <a href="{{ route('User.Penitipan') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -301,8 +305,7 @@
             </path>
         </svg>
     </div>
-    <div x-show="ChatPopUp"
-        class="fixed right-0 bottom-8 flex flex-row-reverse items-end justify-between md:w-1/2 "
+    <div x-show="ChatPopUp" class="fixed right-0 bottom-8 flex flex-row-reverse items-end justify-between md:w-1/2 "
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -right-80"
         x-transition:enter-end="opacity-100 right-0" x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="opacity-100 right-0" x-transition:leave-end="opacity-0 -right-80">

@@ -10,7 +10,7 @@ class UpdateTokoInformation extends Component
 {
     public $user_id, $user_name;
     public $nama_toko, $alamat, $no_telpon, $kode_toko = '';
-
+    public $tokoItem = false;
     public function mount()
     {
         $this->user_id = Auth::user()->id;
@@ -19,8 +19,8 @@ class UpdateTokoInformation extends Component
     public function render()
     {
         $toko = Toko::where('user_id', '=', $this->user_id)->get();
-        if($toko->count() > 0 ){
-            foreach($toko as $item){
+        if ($toko->count() > 0) {
+            foreach ($toko as $item) {
                 $this->nama_toko = $item->nama_toko;
                 $this->alamat = $item->alamat;
                 $this->no_telpon = $item->no_telpon;
@@ -28,7 +28,21 @@ class UpdateTokoInformation extends Component
         }
         return view('livewire.admin.update-toko-information');
     }
-
+    /**
+     * cekToko
+     *  melakukan pengecekan toko
+     *
+     * @return void
+     */
+    public function cekToko()
+    {
+        $this->tokoItem = true;
+    }
+    /**
+     * UpdateToko
+     *  Melakukan Update Informasi Toko User
+     * @return void
+     */
     public function UpdateToko()
     {
         $this->validate([
@@ -51,7 +65,7 @@ class UpdateTokoInformation extends Component
             session()->flash('message', $toko ? 'Toko Berhasil Di Update' : 'Toko Gagal Di Update');
         } else {
             $toko =  Toko::create([
-                'user_id'=> $this->user_id,
+                'user_id' => $this->user_id,
                 'kode_toko' =>  $NamaToko,
                 'nama_toko' => $this->nama_toko,
                 'alamat' => $this->alamat,

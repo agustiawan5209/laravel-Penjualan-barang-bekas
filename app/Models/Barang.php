@@ -23,4 +23,7 @@ class Barang extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function promo(){
+        return $this->hasOne(Promo::class, 'barang_id','id');
+    }
 }

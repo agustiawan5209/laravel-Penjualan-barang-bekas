@@ -14,4 +14,7 @@ class Category extends Model
     public function barang(){
         return $this->belongsTo(Barang::class);
     }
+    public function promo(){
+        return $this->hasOne(Promo::class, 'category_id', 'id');
+    }
 }

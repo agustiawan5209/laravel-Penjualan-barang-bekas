@@ -1,14 +1,9 @@
 <?php
 
-use App\Models\Promo;
 use App\Models\Barang;
 use App\Models\Diskon;
 use App\Models\Category;
-use App\Models\PromoUser;
 use Illuminate\Http\Request;
-use App\Http\Livewire\Page\Payment;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\Penitipan;
@@ -22,6 +17,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
+use App\Http\Livewire\MetodePembayaran;
+use App\Http\Livewire\User\JualTitip;
+use App\Http\Livewire\User\ProfilePesanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,36 +63,41 @@ Route::middleware([
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
     });
-
+// Metode Pembayaran
+Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
     // Akses User
     Route::middleware(['middleware' => 'role:Customer'])->group(function () {
-    Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
-    Route::prefix('user/profile')->group(function () {
-        Route::get('Penitipan', [CustomerController::class, 'index'])->name('Customer.Penitipan');
+        Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
+        Route::get('Penitipan', Penitipan::class)->name('User.Penitipan');
         // Detail Pesanan
-        Route::get('Pesanan', function () {
-            return view('page.pesanan.pesananUser');
-        })->name('profile.pesanan');
-    });
+        Route::get('Pesanan', ProfilePesanan::class)->name('User.pesanan');
+        // Jual TITIP Barang
+        Route::get('Jual-titip', JualTitip::class)->name('User.Jual-Titip');
 
-    // Akses User
+        // Akses User
 
         Route::post('payments/midtrans-notification', [PaymentController::class, 'receive']);
         Route::get('/keranjang/{Barang}', [CartController::class, 'create'])->name('page.keranjang.create');
         Route::delete('/keranjang/{id}', [CartController::class, 'delete'])->name('page.keranjang.delete');
-        Route::post('/transaksi', [CartController::class, 'getDataPayment'])->name('json-data');
-        Route::get('/transaksi', [CartController::class, 'createSnap'])->name('Lanjutkan-Pembayaran');
         Route::get('Keranjang', [CartController::class, 'index'])->name('page.keranjang');
+        // Route::resource('/Jual-Titip', PenitipanController::class);
+
+
+        // Page Jual Dan Titip Barang
+        Route::get('Barang', function () {
+            return view('page.penjualan.penjualan');
+        })->name('page.penjualan');
     });
 });
 Route::post('Kode/Promo', [PromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
 // Route List kategori
-Route::get('/Category/{Category}', function ($Category, Request $request) {
+Route::get('/Category/{Category}/{id}', function ($Category,$id, Request $request) {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
-    $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
-        $query->where('kategory', 'like', '%' . $Category . '%');
-    })->get();
+    // $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
+    //     $query->where('kategory', 'like', '%' . $Category . '%');
+    // })->get();
+    $BarangDiskon = Barang::where('categories', '=', $id)->get();
     return view('welcome', [
         'barang' => $BarangDiskon,
         'kategory' => Category::all(),
@@ -102,12 +105,6 @@ Route::get('/Category/{Category}', function ($Category, Request $request) {
 })->name('Get-Kategory');
 
 
-
-// Page Jual Dan Titip Barang
-Route::resource('/Jual-Titip', PenitipanController::class);
-Route::get('Barang', function () {
-    return view('page.penjualan.penjualan');
-})->name('page.penjualan');
 
 // Produk Detail Sebelum Cek out
 Route::get('/produk-list/{id}/{name}', function ($id, $name) {

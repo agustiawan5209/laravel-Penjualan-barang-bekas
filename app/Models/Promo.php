@@ -16,10 +16,10 @@ class Promo extends Model
     use SoftDeletes;
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'id', 'barang_id');
+        return $this->belongsTo(Barang::class, 'barang_id', 'id');
     }
     public function category()
     {
-        return $this->belongsTo(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

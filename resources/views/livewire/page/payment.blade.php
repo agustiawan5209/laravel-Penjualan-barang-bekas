@@ -71,41 +71,43 @@
                                     class="">Subtotal</span><span id="total_harga" x-model='total_harga'>Rp.
                                     {{ number_format($sub_total, 0, 2) }}</span>
                             </div>
-                            @if (session()->has('promo') || session()->has('nam_promo'))
+                            @if ($potongan != null)
+                                <div class="flex justify-between text-gray-500 gap-4"><span
+                                        class="">Potongan</span><span id="total_harga">Rp.
+                                        {{ number_format($sub_total * ($potongan / 100), 0, 2) }}</span>
+                                </div>
+                            @endif
+                            @if ($diskon != null)
+                                <div class="flex justify-between text-gray-500 gap-4"><span
+                                        class="">Diskon</span><span id="total_harga">Rp.
+                                        {{ number_format($sub_total * ($diskon / 100), 0, 2) }}</span>
+                                </div>
+                            @endif
+
+                            @if ($promo != null)
                                 <div class="flex justify-between text-gray-500 gap-4">
                                     {{-- @dd(sum(session('promo'))) --}}
                                     <div class="flex flex-col">
-                                        @foreach (session('nam_promo') as $item => $value)
-                                            <span class="">{{ $value }}</span>
-                                        @endforeach
+                                        <span class="">Promo</span>
                                     </div>
                                     <div class="flex flex-col">
-                                        @foreach (session('promo') as $item => $value)
-                                            <span class="">Rp
-                                                {{ number_format($sub_total * ($value / 100), 0, 2) }}</span>
-                                        @endforeach
+                                        <span class="text-red-400 font-bold">Rp
+                                            {{ number_format($sub_total * ($promo / 100), 0, 2) }}</span>
 
                                     </div>
                                 </div>
                             @endif
-                            @php
-                                            if (session()->has('promo')) {
-                                                $promo = intval(array_sum(session('promo')));
-                                                $subtotal = $sub_total * ($promo / 100);
-                                                $subtotal = $sub_total - $subtotal;
-                                            }else{
-                                                $subtotal = $sub_total;
-                                            }
-                                        @endphp
+
                         </div>
                         <div class="border-t pt-4 mt-4">
                             <div class="flex justify-between items-start text-gray-800 gap-4"><span
                                     class="text-lg font-bold">Total</span><span class="flex flex-col items-end"><span
-                                        class="text-lg font-bold">Rp. {{ number_format($subtotal, 0, 2) }}</span><span
+                                        class="text-lg font-bold">Rp.
+                                        {{ number_format($total_price, 0, 2) }}</span><span
                                         class="text-gray-500 text-sm">including VAT</span></span></div>
                         </div>
                     </div>
-                    <a href="{{ route('Lanjutkan-Pembayaran') }}">
+                    <a href="#">
                         <x-jet-button class="bg-blue-500" id="pay-button">Bayar Sekarang</x-jet-button>
                     </a>
                 </div>

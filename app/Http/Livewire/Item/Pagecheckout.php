@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Item;
 
 use App\Models\Cart;
 use App\Models\Barang;
+use App\Models\Diskon;
 use Livewire\Component;
 use App\Models\PromoUser;
 use Illuminate\Support\Str;
@@ -18,6 +19,7 @@ class Pagecheckout extends Component
     public $sub_total, $count = 1;
     public $harga;
     public $diskon;
+    public $pemilik_id;
     public function mount($itemID, $nameID)
     {
         $this->itemID = $itemID;
@@ -39,6 +41,7 @@ class Pagecheckout extends Component
             $deskripsi = $item->deskripsi;
             $categories = $item->category->kategory;
             $this->diskon = isset($item->diskon->diskon) ? $item->diskon->diskon : 0;
+            $this->pemilik_id = $item->user_id;
         }
         // Hitung Diskon
         $this->diskon = ($this->diskon / 100) *  $this->harga;
@@ -63,20 +66,18 @@ class Pagecheckout extends Component
                 $Cek_Cart = Cart::where('user_id', '=', Auth::user()->id)->where('barang_id', '=', $this->itemID)->get();
                 // dd($Cek_Cart);
                 $user_cek = Barang::where('user_id', '=', Auth::user()->id)->get();
-                // dd($user_cek);
-                $jumlah_promo = [];
-                $nama_promo = [];
-                $promo = PromoUser::where('user_id', '=', Auth::user()->id)->get();
-                if ($promo->count() > 0) {
-                    foreach ($promo as $item) {
-                        $jumlah_promo[] = $item->promo->promo;
-                        $nama_promo[] = $item->promo->kode_promo;
+
+                // cek diskon jika ada
+                $diskon  = Diskon::where('barang_id', '=', $this->itemID)->get();
+                $diskon_array = [];
+                if($diskon->count() >  0){
+                    foreach($diskon as $item){
+                        $diskon_array[] = $item->diskon;
                     }
-                    Session::put('promo', $jumlah_promo);
-                    Session::put('nam_promo', $nama_promo);
                 }
-                // dd(session('promo'));
-                $promo =  array_sum($jumlah_promo);
+                $array_sum_diskon = array_sum($diskon_array);
+
+                // JIka barang adalah milik user yang ada
                 if ($user_cek->count() > 0) {
                     session()->flash('alert', 'Maaf Gagal Respon');
                 } else {
@@ -87,7 +88,9 @@ class Pagecheckout extends Component
                             'user_id' => Auth::user()->id,
                             'jumlah_barang' => $this->jumlah,
                             'barang_id' => $this->itemID,
-                            'sub_total' => isset($promo) ? $this->jumlah * $this->harga - $this->diskon - $promo : $this->jumlah * $this->harga - $this->diskon,
+                            'sub_total' => $this->jumlah * $this->harga ,
+                            'pemilik_id' => $this->pemilik_id,
+                            'diskon' => $array_sum_diskon,
                         ]);
                         session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
                         return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);

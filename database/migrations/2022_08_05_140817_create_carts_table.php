@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('jumlah_barang');
             $table->foreignId('barang_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('sub_total', 20);
+            $table->foreignId('pemilik_id');
+            $table->integer('diskon')->nullable();
+            $table->integer('promo')->nullable();
             $table->string('snap_token', 200)->nullable();
             $table->timestamps();
         });

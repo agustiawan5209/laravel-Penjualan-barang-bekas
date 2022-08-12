@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\Promo;
 use App\Models\Barang;
 use App\Models\Payment;
 use App\Models\PromoUser;
-use Illuminate\Http\Request;
-use App\Models\TransaksiDetail;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreCartRequest;
-use App\Http\Requests\UpdateCartRequest;
-use App\Services\Midtrans\CreateSnapTokenService;
 
 class CartController extends Controller
 {
@@ -27,17 +22,81 @@ class CartController extends Controller
      */
     public function index(Cart $cart)
     {
+        $diskon = null;
+        $promo = null;
         $snapToken = '';
         $payment = '';
+        $potongan = [];
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
         // dd($snapToken);
-        $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
+        $total_price = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $total_price_array = [];
+        if ($total_price->count() >  0) {
+            foreach ($total_price as $item) {
+                $total_price_array[] = $item->sub_total;
+                $cart = $item->barang->id;
+                $potongan = $this->GetPromo($item->barang_id);
+            }
+        }
+        $array_sum_total_price = array_sum($total_price_array);
+        $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($diskon_cart as $item) {
+            $diskon = $item->diskon;
+        }
+        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($promo_cart as $item) {
+            $promo = $item->promo;
+        }
+
+        // dd($potongan);
         return view('livewire.page.payment', [
+            'diskon' => $diskon,
+            'promo' => $promo,
             'keranjang' => $keranjang,
             'snapToken' => $snapToken,
             'payment' => $payment,
-            'sub_total' => $sub_total
+            'sub_total' => $array_sum_total_price,
+            'potongan'=> $potongan,
+            'total_price' => $this->getTotal($promo, $diskon, $array_sum_total_price),
         ]);
+    }
+    public function GetPromo($id_barang)
+    {
+        $arr = [];
+        $arr_promo = [];
+        $barang = Barang::find($id_barang);
+        $user_promo = PromoUser::where('user_id', Auth::user()->id)->get();
+        foreach ($user_promo as $item) {
+            $promo = Promo::where('id', $item->promo_id)->get();
+            foreach ($promo as $data) {
+                $arr[] = $data->id;
+            }
+        }
+        $count = count($arr);
+        $hasil = [];
+        $promo_kosong = [];
+        $barang_promo = [];
+        $kategori_promo = [];
+        for ($i = 0; $i < $count; $i++) {
+            $cek = Promo::where('id', $arr[$i])->get();
+            foreach ($cek as $item) {
+                if ($item->barang_id == $barang->id) {
+                    $hasil[] =  $item->promo;
+                } else if ($item->category_id == $barang->categories) {
+                    $hasil[] = $item->promo;
+                } else if ($item->category_id == null && $item->barang_id == null) {
+                    $hasil[] =  0;
+                }
+                // $hasil = [$barang_promo, $kategori_promo, $promo_kosong];
+            }
+        }
+        if ($hasil == null || $hasil == '') {
+            $param = 0;
+        } else {
+
+            $param = array_sum($hasil);
+        }
+        return $param;
     }
     public function generateUniqueNumber()
     {
@@ -48,83 +107,87 @@ class CartController extends Controller
     }
     /**
      * Show the form for creating a new resource.
-     *
+     *  Membuat Data Keranjang
      * @return \Illuminate\Http\Response
      */
     public function create(Barang $Barang)
     {
+        $diskon = null;
+        $promo = null;
+        $potongan = [];
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
-        $total_price = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
-        $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
-        $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
-
-        return view('livewire.page.payment', [
-            'keranjang' => $keranjang,
-            'sub_total' => $sub_total
-        ]);
-    }
-    public function getDataPayment(Request $request)
-    {
-        // return $request;
-        $randomNumber = $this->generateUniqueNumber();
-        $json = json_decode($request->get('json'), true);
-        $jsonResponse = response()->json($request->all());
-
-        // Memasukkan Detail
-        $cek_snapToken = Cart::whereNotNull('snap_token')->where('user_id', '=', Auth::user()->id)->get();
-        foreach ($cek_snapToken as $data) {
-            $array[] =
-                'harga' . ' = ' . $data->barang->harga . ',' . // harga satuan produk
-                'quantity' . ' = ' . $data->jumlah_barang . ',' . // kuantitas pembelian
-                'name' . ' = ' . $data->barang->nama_produk // nama produk
-            ;
-        }
-        $data = implode('|', $array);
-        // dd(Carbon::now()->timestamp());
-        Payment::insert([
-            'user_id' => Auth::user()->id,
-            'number' => $json['order_id'],
-            'total_price' => $json['gross_amount'],
-            'payment_status' => $json['transaction_status'],
-            'payment_type' => $json['payment_type'],
-            'pdf_url' => $json['pdf_url'],
-            'transaksi_id' => $json['transaction_id'],
-            'snap_token' => $request->snap_token,
-            'item_details' => $data,
-            // 'created_at' => Carbon::now()->timestamp(),
-        ]);
-        $array = [];
-
-        Cart::where('user_id', '=', Auth::user()->id)->delete();
-        return redirect()->route('home')->with('message', 'Menunggu Pembayaran');
-    }
-
-    public function createSnap()
-    {
-        $snapToken = '';
-        $payment = '';
-        $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
-        $cek_snapToken = Cart::whereNull('snap_token')->where('user_id', '=', Auth::user()->id)->get();
-        $user_ID = Cart::select('user_id')->where('user_id', '=', Auth::user()->id)->first();
-        // dd($cek_snapToken);
-        if ($keranjang->count() > 0) {
-            // Jika snap token masih NULL, buat token snap dan simpan ke database
-            $midtrans = new CreateSnapTokenService($payment, $user_ID->user_id, $keranjang);
-            $snapToken = $midtrans->getSnapToken();
-            if ($cek_snapToken != null) {
-                Cart::whereNull('snap_token')->where('user_id', '=', Auth::user()->id)->update([
-                    'snap_token' => $snapToken,
-                ]);
+        $total_price = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $total_price_array = [];
+        if ($total_price->count() >  0) {
+            foreach ($total_price as $item) {
+                $total_price_array[] = $item->sub_total;
+                $potongan = $this->GetPromo($item->barang_id);
             }
         }
-        // dd($snapToken);
-        $sub_total = Cart::where('user_id', '=', Auth::user()->id)->sum('sub_total');
-        return view('page.midtrans.midtrans', [
+        $array_sum_total_price = array_sum($total_price_array);
+        // Cek Diskon dari Cart
+        $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($diskon_cart as $item) {
+            $diskon = $item->diskon;
+        }
+        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($promo_cart as $item) {
+            $promo = $item->promo;
+        }
+        return view('livewire.page.payment', [
+            'diskon' => $diskon,
+            'promo' => $promo,
             'keranjang' => $keranjang,
-            'snapToken' => $snapToken,
-            'payment' => $payment,
-            'sub_total' => $sub_total
+            'sub_total' => $array_sum_total_price,
+            'potongan'=> $potongan,
+            'total_price' => $this->getTotal($promo, $diskon, $array_sum_total_price),
         ]);
+    }
+
+
+    /**
+     * cekPromo
+     *  Melakukan Pengecekan Jika category dan barang kosong
+     *  Melakukan Pengecekan Jika category kosong
+     *  Melakukan Pengecekan Jika barang kosong
+     * @param  mixed $promo_id
+     * @param  mixed $barang_id
+     * @return void
+     */
+    public function cekPromo($promo_id, $barang_id)
+    {
+        $promo = PromoUser::where('user_id', Auth::user()->id)->get();
+        if ($promo->count() > 0) {
+            foreach ($promo as $item) {
+                $item->promo_id;
+                $item->user_id;
+            }
+        }
+    }
+
+    /**
+     * getTotal
+     *  Perhitungan nilai Total Pembelian
+     * @param  mixed $promo
+     * @param  mixed $diskon
+     * @param  mixed $sub_total
+     * @return void
+     */
+    public function getTotal($promo, $diskon, $sub_total)
+    {
+        if ($diskon != null && $promo != null) {
+            $total_promo = $sub_total * ($promo / 100);
+            $total_diskon = $sub_total * ($diskon / 100);
+            return $sub_total - $total_promo - $total_diskon;
+        } else if ($diskon != null) {
+            $total_diskon = $sub_total * ($diskon / 100);
+            return $sub_total  - $total_diskon;
+        } else if ($promo != null) {
+            $total_promo = $sub_total * ($promo / 100);
+            return $sub_total - $total_promo;
+        } else {
+            return $sub_total;
+        }
     }
     public function delete($id)
     {
