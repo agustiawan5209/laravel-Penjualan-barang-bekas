@@ -65,7 +65,6 @@ class CartController extends Controller
     public function GetPromo($id_barang)
     {
         $arr = [];
-        $arr_promo = [];
         $barang = Barang::find($id_barang);
         $user_promo = PromoUser::where('user_id', Auth::user()->id)->get();
         foreach ($user_promo as $item) {
@@ -76,9 +75,6 @@ class CartController extends Controller
         }
         $count = count($arr);
         $hasil = [];
-        $promo_kosong = [];
-        $barang_promo = [];
-        $kategori_promo = [];
         for ($i = 0; $i < $count; $i++) {
             $cek = Promo::where('id', $arr[$i])->get();
             foreach ($cek as $item) {
@@ -92,7 +88,8 @@ class CartController extends Controller
                 // $hasil = [$barang_promo, $kategori_promo, $promo_kosong];
             }
         }
-        if ($hasil == null || $hasil == '') {
+        // dd($arr);
+        if ($hasil == null ) {
             $param = 0;
         } else {
             $param = array_sum($hasil);
@@ -129,6 +126,7 @@ class CartController extends Controller
         foreach ($promo_cart as $item) {
             $promo = $item->promo;
         }
+        // dd($potongan);
         return view('livewire.page.payment', [
             'diskon' => $diskon,
             'promo' => $promo,

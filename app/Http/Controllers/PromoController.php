@@ -24,8 +24,8 @@ class PromoController extends Controller
         $max_user = Promo::where('kode_promo', '=', $request->kode_promo)->get();
         // dd($max_user);
         // Cek Max Pengguna User
-        if($max_user->count() > 0){
-            foreach($max_user as $item){
+        if ($max_user->count() > 0) {
+            foreach ($max_user as $item) {
                 $cek_pengguna_promo = PromoUser::where('promo_id', '=', $item->id)->get();
                 if ($cek_pengguna_promo->count() == $item->max_user) {
                     // Jika Pengguna Promo Sama Dengan Besar
@@ -52,7 +52,17 @@ class PromoController extends Controller
                         'user_id' => Auth::user()->id,
                         'promo_id' => $promo->id,
                     ]);
-                    return redirect()->back()->with('message', 'Selamat Menikmati Promo Yang Ada');
+                    $get_promo = Promo::find($promo->id);
+                    if($get_promo->use_user == $get_promo->max_user){
+                        return redirect()->back()->with('message', 'Maaf Kode Promo Salah');
+                    }else{
+
+                        $count = $get_promo->use_user + 1;
+                        Promo::where('id', $promo->id)->update([
+                            'use_user' => $count
+                        ]);
+                        return redirect()->back()->with('message', 'Selamat Menikmati Promo Yang Ada');
+                    }
                 }
             } else {
                 return redirect()->back()->with('message', 'Maaf Kode Promo Salah');

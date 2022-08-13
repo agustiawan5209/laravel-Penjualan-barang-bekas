@@ -77,7 +77,7 @@
                                 <i
                                     class="relative top-0 leading-normal text-orange-500 ni ni-calendar-grid-58 text-size-sm"></i>
                             </div>
-                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Penitipan</span>
+                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Penjualan Penitipan</span>
                         </a>
                     </li>
 

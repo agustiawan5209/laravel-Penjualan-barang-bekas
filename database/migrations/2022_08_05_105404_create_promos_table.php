@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
             $table->string('kode_promo');
-            $table->foreignId('category_id')->nullable();
-            $table->foreignId('barang_id')->nullable();
+            $table->string('category_id',10)->nullable();
+            $table->string('barang_id',10)->nullable();
             $table->integer('max_user')->nullable();
             $table->integer('use_user')->nullable()->default('0');
             $table->bigInteger('promo');
