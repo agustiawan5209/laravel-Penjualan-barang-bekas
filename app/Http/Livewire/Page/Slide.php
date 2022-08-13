@@ -13,7 +13,7 @@ class Slide extends Component
 
     public function render()
     {
-        $slide = SlidePage::paginate(5);
+        $slide = SlidePage::all();
         return view('livewire.page.slide',[
             'slide'=> $slide,
         ]);

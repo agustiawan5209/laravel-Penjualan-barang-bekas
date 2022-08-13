@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Storage;
 class SlideController extends Component
 {
     use WithFileUploads;
-    use WithPagination;
 
     public $slide, $deskripsi, $thumbnail, $addItem = false, $hapusitem = false, $editItem = false;
     // item Foto
     public $updateFoto;
     public function render()
     {
-        return view('livewire.admin.slide-controller');
+        $slidePageData = SlidePage::all();
+        return view('livewire.admin.slide-controller',[
+            'slidePageData'=> $slidePageData
+        ]);
     }
     public function clear()
     {
@@ -36,8 +38,8 @@ class SlideController extends Component
 
         $filename = $this->thumbnail->getClientOriginalName();
         $explode = explode(".", $filename);
-        $randomName = md5($explode[0]) . '.' . $explode[1];
-        $this->thumbnail->storeAs('upload', "slide_".$randomName);
+        $randomName ="slide_". md5($explode[0]) . '.' . $explode[1];
+        $this->thumbnail->storeAs('upload', $randomName);
         $slideModel = SlidePage::create([
             'slide' => $this->slide,
             'deskripsi' => $this->deskripsi,
