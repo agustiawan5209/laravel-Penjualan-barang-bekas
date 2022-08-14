@@ -27,7 +27,7 @@ class PageBarang extends Component
     {
         $barang = Barang::paginate($this->row);
         if ($this->search != null) {
-            $barang = Barang::where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
+            $barang = Barang::where('user_id', Auth::user()->id)->where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
         }
         $this->categoryAll = Category::all();
         return view('livewire.admin.page-barang', [

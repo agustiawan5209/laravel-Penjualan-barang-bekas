@@ -89,7 +89,7 @@ class CartController extends Controller
             }
         }
         // dd($arr);
-        if ($hasil == null ) {
+        if ($hasil == null) {
             $param = 0;
         } else {
             $param = array_sum($hasil);
@@ -205,7 +205,11 @@ class CartController extends Controller
                 $total_price_array[] = $item->sub_total;
                 $cart = $item->barang->id;
                 $potongan = $this->GetPromo($item->barang_id);
-                $item_details[] =  $item->barang->nama_produk . '.' . $item->barang->harga;
+                $item_details[] = [
+                    'id_barang' => $item->barang->id,
+                    'nama_produk' => $item->barang->nama_produk,
+                    'harga_barang' => $item->barang->harga,
+                ];
             }
         }
         $array_sum_total_price = array_sum($total_price_array);
@@ -223,13 +227,13 @@ class CartController extends Controller
             'item_details' => $item_details,
             'potongan' => $potongan,
         ];
-        if($array_sum_total_price == null || $keranjang == null ){
+        if ($array_sum_total_price == null || $keranjang == null) {
             abort(403);
         }
         Session::put('param', $param);
         return  view('page.midtrans.midtrans', [
-            'keranjang'=> $keranjang,
-            'sub_total'=> $sub_total,
+            'keranjang' => $keranjang,
+            'sub_total' => $sub_total,
             'potongan' => $potongan,
             'total_price' => $array_sum_total_price,
         ]);

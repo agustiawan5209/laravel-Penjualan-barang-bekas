@@ -12,12 +12,16 @@ class Penjualan extends Component
     public $ItemID;
     public function render()
     {
-        $transaksi = Payment::paginate($this->row);
+        $transaksi = Payment::where('payment_type', 'BANK')->paginate($this->row);
         if ($this->search != null) {
-            $transaksi = Payment::where('number', 'like', '%' . $this->search . '%')->paginate($this->row);
+            $transaksi = Payment::where('payment_type', 'BANK')->where('number', 'like', '%' . $this->search . '%')->paginate($this->row);
+        }
+        $COD = Payment::where('payment_type', 'COD')->paginate($this->row);
+        if ($this->search != null) {
+            $COD = Payment::where('payment_type', 'COD')->where('number', 'like', '%' . $this->search . '%')->paginate($this->row);
         }
 
-        return view('livewire.admin.penjualan', compact('transaksi'),[
+        return view('livewire.admin.penjualan', compact('transaksi', 'COD'),[
             'transaksi_terbaru' => Payment::orderByDesc('id')->paginate(5),
             'transaksi_tertunda' => Payment::where('payment_status', 'like', '%pending%')->paginate(5),
         ]);

@@ -57,6 +57,18 @@ class PaymentController extends Controller
             $payment_status = "Belum Di Konfirmasi";
             $payment_type = "BANK";
         }
+        // Cek Pemilik Barang
+        $arr = [];
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->get();
+        foreach($cart as $item){
+            $arr[] = $item->barang->user_id;
+        }
+
+
+        for ($i=0; $i < count($item_details); $i++) {
+            $exp = $item_details[$i];
+        }
+        dd($exp);
         $exp = implode(",",$item_details);
         $permitted_chars = '_____0123456789_abcdefghijklmnopqrstuvwxyz_____ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $transaksi_id = substr(str_shuffle($permitted_chars), 0, 7);
@@ -74,6 +86,7 @@ class PaymentController extends Controller
             'item_details' => $exp,
         ]);
     }
+
     public function createOngkir()
     {
 
