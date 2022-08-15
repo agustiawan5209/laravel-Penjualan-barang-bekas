@@ -78,7 +78,6 @@ Route::middleware([
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
     // Akses User
     Route::middleware(['middleware' => 'role:Customer'])->group(function () {
-        Route::get('profile/toko', UpdateTokoInformation::class)->name('profile.toko');
         Route::get('Penitipan', Penitipan::class)->name('User.Penitipan');
         // Detail Pesanan
         Route::get('Pesanan', ProfilePesanan::class)->name('User.pesanan');

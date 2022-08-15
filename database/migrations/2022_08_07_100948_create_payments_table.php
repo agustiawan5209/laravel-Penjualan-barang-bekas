@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('payment_type', 50)->nullable();
             $table->string('pdf_url', 200)->nullable();
             $table->string('transaksi_id')->nullable();
-            $table->string('pemilik_barang')->nullable();
             $table->string('item_details');
             $table->timestamps();
         });

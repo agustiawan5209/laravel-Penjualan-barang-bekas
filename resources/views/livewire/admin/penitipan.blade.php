@@ -1,4 +1,4 @@
-<div class="flex justify-center mx-auto px-10 py-3">
+<div class="flex justify-center mx-auto w-full py-3">
     <div class="bg-white rounded-md shadow-sm">
         <div class="flex-auto px-0 pt-0 py-2">
             <div class="p-0 overflow-x-auto">

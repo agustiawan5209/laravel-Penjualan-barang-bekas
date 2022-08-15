@@ -34,17 +34,4 @@ class Penitipan extends Component
             'kategory' => Category::all(),
         ]);
     }
-    public function DetailModal($id)
-    {
-        $barang = Barang::find($id);
-        $this->itemID = $barang->id;
-        $this->user_name = $barang->user->name;
-        $this->user_email = $barang->user->email;
-        $this->foto = $barang->foto_produk;
-        $this->nama_produk = $barang->nama_produk;
-        $this->harga_produk = $barang->harga;
-        $this->deskripsi_produk = $barang->deskripsi;
-        $this->kategori_produk = $barang->category->kategory;
-        $this->detailItem = true;
-    }
 }
