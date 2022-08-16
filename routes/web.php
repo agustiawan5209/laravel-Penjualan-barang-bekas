@@ -16,6 +16,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
+use App\Http\Livewire\Admin\PagePengiriman;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\Promo\PromoLaris;
 use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
@@ -74,6 +75,9 @@ Route::middleware([
         Route::get('Promo-Kadaluarsa', PromoKadaluarsa::class)->name('Promo-Kadaluarsa');
         Route::get('Promo-TidakTerpakai', PromoTidakTerpakai::class)->name('Promo-TidakTerpakai');
         Route::get('Promo-Terlaris', PromoLaris::class)->name('Promo-Terlaris');
+
+        // Halaman Pengiriman Barang
+        Route::get('Pengiriman Barang', PagePengiriman::class)->name('Pengiriman-Barang');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
