@@ -24,6 +24,7 @@ use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\MetodePembayaran;
 use App\Http\Livewire\User\JualTitip;
 use App\Http\Livewire\User\ProfilePesanan;
+use App\Http\Livewire\User\RequestBarang;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ use App\Http\Livewire\User\ProfilePesanan;
 Route::get('/', function () {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
-    $BarangDiskon = Barang::all();
+    $BarangDiskon = Barang::paginate(10);
     // dd($BarangDiskon->id);
     return view('welcome', [
         'barang' => $BarangDiskon,
@@ -62,7 +63,7 @@ Route::middleware([
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-        Route::get('Penitipan/Barang', Penitipan::class)->name('Admin.Penitipan');
+        Route::get('Penitipan/Barang', RequestBarang::class)->name('Admin.Penitipan');
         Route::get('Penjualan/Barang', Penjualan::class)->name('Admin.Penjualan');
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
@@ -78,11 +79,9 @@ Route::middleware([
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
     // Akses User
     Route::middleware(['middleware' => 'role:Customer'])->group(function () {
-        Route::get('Penitipan', Penitipan::class)->name('User.Penitipan');
+        Route::get('Request/Barang', RequestBarang::class)->name('User.Request');
         // Detail Pesanan
         Route::get('Pesanan', ProfilePesanan::class)->name('User.pesanan');
-        // Jual TITIP Barang
-        Route::get('Jual-titip', JualTitip::class)->name('User.Jual-Titip');
 
         // Akses User
 
@@ -93,8 +92,6 @@ Route::middleware([
         Route::get('Bayar-Sekarang', [CartController::class, 'Kirim'])->name('Kirim-Pembayaran');
         Route::post('Pembayaran', [PaymentController::class, 'receive'])->name('receive');
         // Route::resource('/Jual-Titip', PenitipanController::class);
-
-
         // Page Jual Dan Titip Barang
         Route::get('Barang', function () {
             return view('page.penjualan.penjualan');

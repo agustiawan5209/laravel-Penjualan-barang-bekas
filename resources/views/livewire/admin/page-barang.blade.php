@@ -51,8 +51,6 @@
                                 <x-forms.th>
                                     Harga</x-forms.th>
                                 <x-forms.th>
-                                    Deskripsi</x-forms.th>
-                                <x-forms.th>
                                     Kategori</x-forms.th>
                                 <x-forms.th>Diskon</x-forms.th>
                                 <x-forms.th></x-forms.th>
@@ -62,19 +60,10 @@
                             @foreach ($barang as $item)
                                 <tr>
                                     <x-forms.td>
-                                        <div class="flex px-2 py-1">
-                                            <div>
+                                        <div class="flex justify-center px-2 py-1">
                                                 <img src="{{ asset('upload/' . $item->foto_produk) }}"
-                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
+                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-12 w-12 rounded-xl"
                                                     alt="user1" />
-                                            </div>
-                                            {{-- <div class="flex flex-col justify-center">
-                                                <h6 class="mb-0 leading-normal dark:text-white text-size-sm">John
-                                                    Michael</h6>
-                                                <p
-                                                    class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
-                                                    john@creative-tim.com</p>
-                                            </div> --}}
                                         </div>
                                     </x-forms.td>
                                     <x-forms.td>
@@ -88,11 +77,6 @@
                                         <span
                                             class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
                                             Rp. {{ number_format($item->harga, 0, 2) }}</span>
-                                    </td>
-                                    <td
-                                        class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                        <span
-                                            class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">{{ $item->deskripsi }}</span>
                                     </td>
                                     <td
                                         class="p-2 leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 text-size-sm whitespace-nowrap shadow-transparent">
@@ -137,187 +121,239 @@
 
     {{-- Modal Tambah Data --}}
     @if ($addItem)
-        <div
-            class="w-full md:w-1/3 bg-red-500 absolute right-0 top-10 rounded-l-lg shadow-lg shadow-white transition-all ">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" x-data="{ isUploading: false, progress: 0 }"
-                x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
-                x-on:livewire-upload-error="isUploading = false"
-                x-on:livewire-upload-progress="progress = $event.detail.progress">
-                @csrf
-                <div class="mb-4">
-                    <label for="dropzone-file"
-                        class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
+       <x-jet-dialog-modal wire:model='addItem'>
+        <x-slot name="title">
+        </x-slot>
 
-                        <h2 class="mt-4 text-xl font-medium text-gray-700 tracking-wide">Payment File</h2>
+        <x-slot name="content">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto" x-data="{ isUploading: false, progress: 0 }"
+            x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
+            x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
+            @csrf
+            <div class="mb-4">
+                <label for="dropzone-file"
+                    class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
 
-                        <p class="mt-2 text-gray-500 tracking-wide">Upload or darg & drop your file SVG, PNG, JPG or
-                            GIF. </p>
+                    <h2 class="mt-4 text-xl font-medium text-gray-700 tracking-wide">File</h2>
 
-                        <input id="dropzone-file" wire:model='foto' type="file" class="hidden" />
-                        </section>
-                        @if ($foto)
-                            foto Preview:
-                            <img src="{{ $foto->temporaryUrl() }}">
-                        @endif
-                        @error('foto')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Nama Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model='nama_produk' id="password" type="text" placeholder="******************">
-                    @error('nama_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Harga Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="harga_produk" type="text" placeholder="******************">
-                    @error('harga_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Deskripsi Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="deskripsi_produk" type="text" placeholder="******************">
-                    @error('deskripsi_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Kategori Produk
-                    </label>
-                    <select id="countries" wire:model='kategori_produk'
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @if ($kategory != null)
-                            @foreach ($kategory as $item)
-                                <option value="{{ $item->id }}">{{ $item->kategory }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('kategori_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="flex items-center justify-between">
-                    <button wire:click='create'
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
-                        Tambah
-                    </button>
-                    <button wire:click='closeModal'
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
-                        Close
-                    </button>
-                </div>
-            </form>
-        </div>
-    @endif
-    {{-- modal edit data --}}
-    @if ($editItem)
-        <div
-            class="w-full md:w-1/3 h-[85vh] bg-red-500 absolute right-0 top-10 rounded-l-lg shadow-lg shadow-white transition-all ">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" x-data="{ isUploading: false, progress: 0 }"
-                x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
-                x-on:livewire-upload-error="isUploading = false"
-                x-on:livewire-upload-progress="progress = $event.detail.progress">
-                @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        Foto Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="updateFoto" type="file">
-                    <div x-show="isUploading">
-                        <progress max="100" x-bind:value="progress"></progress>
-                    </div>
+                    <p class="mt-2 text-gray-500 tracking-wide">Upload or darg & drop your file SVG, PNG, JPG or
+                        GIF. </p>
+
+                    <input id="dropzone-file" wire:model='foto' type="file" class="hidden" />
+                    </section>
+                    @if ($foto)
+                        foto Preview:
+                        <img src="{{ $foto->temporaryUrl() }}">
+                    @endif
                     @error('foto')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Nama Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model='nama_produk' id="password" type="text" placeholder="******************">
-                    @error('nama_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Nama Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model='nama_produk' id="password" type="text" placeholder="******************">
+                @error('nama_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Harga Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model="harga_produk" type="text" placeholder="******************">
+                @error('harga_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Stock Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model="stock" type="text" placeholder="******************">
+                @error('stock')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Kategori Produk
+                </label>
+                <select id="countries" wire:model='kategori_produk'
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    @if ($kategory != null)
+                        @foreach ($kategory as $item)
+                            <option value="{{ $item->id }}">{{ $item->kategory }}</option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('kategori_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Deskripsi Produk
+                </label>
+                <textarea id="myeditorinstance"
+                class=" ckeditor shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                wire:model="deskripsi_produk" name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                @error('deskripsi_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button wire:click='create'
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Tambah
+                </button>
+                <button wire:click='closeModal'
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Close
+                </button>
+            </div>
+        </form>
+        </x-slot>
+
+        <x-slot name="footer">
+        </x-slot>
+       </x-jet-dialog-modal>
+    @endif
+    {{-- modal edit data --}}
+    @if ($editItem)
+    <x-jet-dialog-modal wire:model='editItem'>
+        <x-slot name="title">
+        </x-slot>
+
+        <x-slot name="content">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto" x-data="{ isUploading: false, progress: 0 }"
+            x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
+            x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
+            @csrf
+            <div class="mb-4">
+                <label for="dropzone-file"
+                    class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+
+                    <h2 class="mt-4 text-xl font-medium text-gray-700 tracking-wide">File</h2>
+
+                    <p class="mt-2 text-gray-500 tracking-wide">Upload or darg & drop your file SVG, PNG, JPG or
+                        GIF. </p>
+
+                    <input id="dropzone-file" wire:model='foto' type="file" class="hidden" />
+                    </section>
+                    @if ($updateFoto != null)
+                    @if ($updateFoto)
+                    foto produk Preview:
+                    <img src="{{ $updateFoto->temporaryUrl() }}">
+                    @endif
+                    @error('updateFoto')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Harga Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="harga_produk" type="text" placeholder="******************">
-                    @error('harga_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Deskripsi Produk
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="deskripsi_produk" type="text" placeholder="******************">
-                    @error('deskripsi_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Kategori Produk
-                    </label>
-                    <select id="countries" wire:model='kategori_produk'
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @if ($kategory != null)
-                            @foreach ($kategory as $item)
-                                <option value="{{ $item->id }}">{{ $item->kategory }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('kategori_produk')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="flex items-center justify-between">
-                    <button wire:click='EditBarang({{ $itemID }})'
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
-                        Edit
-                    </button>
-                    <button wire:click='closeModal'
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
-                        Close
-                    </button>
-                </div>
-            </form>
-        </div>
+                    @else
+                    <img src="{{asset('upload/'. $foto)}}" width="100" alt="">
+                    @endif
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Nama Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model='nama_produk' id="password" type="text" placeholder="******************">
+                @error('nama_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Harga Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model="harga_produk" type="text" placeholder="******************">
+                @error('harga_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Stock Produk
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    wire:model="stock" type="text" placeholder="******************">
+                @error('stock')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Kategori Produk
+                </label>
+                <select id="countries" wire:model='kategori_produk'
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    @if ($kategory != null)
+                        @foreach ($kategory as $item)
+                            <option value="{{ $item->id }}">{{ $item->kategory }}</option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('kategori_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Deskripsi Produk
+                </label>
+                <textarea id="myeditorinstance"
+                class=" ckeditor shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                wire:model="deskripsi_produk" name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                @error('deskripsi_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button wire:click='edit'
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Simpan
+                </button>
+                <button wire:click='closeModal'
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Close
+                </button>
+            </div>
+        </form>
+        </x-slot>
+
+        <x-slot name="footer">
+        </x-slot>
+       </x-jet-dialog-modal>
     @endif
     @if ($hapusItem)
         <x-jet-dialog-modal wire:model="hapusItem">

@@ -21,7 +21,7 @@ class PageBarang extends Component
     // Modal Item
     public $addItem = false, $editItem = false, $hapusItem = false, $itemID, $kategoriItem = false;
     // item field table barang
-    public $foto, $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto;
+    public $foto, $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto, $stock;
     public $categoryAll;
     public function render()
     {
@@ -79,6 +79,7 @@ class PageBarang extends Component
             'harga' => $this->harga_produk,
             'deskripsi' => $this->deskripsi_produk,
             'categories' => $this->kategori_produk,
+            'stock'=> $this->stock,
         ]);
         if ($barang) {
             session()->flash('message', 'Berhasil Di Tambahkan');
@@ -122,6 +123,7 @@ class PageBarang extends Component
             'nama_produk' => 'required',
             'harga_produk' => 'required',
             'deskripsi_produk' => 'required',
+            'stock' => 'required',
             'kategori_produk' => 'required',
         ]);
 
@@ -132,6 +134,7 @@ class PageBarang extends Component
             'nama_produk' => $this->nama_produk,
             'harga' => $this->harga_produk,
             'deskripsi' => $this->deskripsi_produk,
+            'stock'=> $this->stock,
             'categories' => $this->kategori_produk,
         ]);
         session()->flash('message', $barang ? 'Berhasil Di Update' : 'Gagal Di Update');

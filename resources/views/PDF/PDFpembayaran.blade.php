@@ -33,7 +33,7 @@
 
     .bukti-bayar {
         width: 400px;
-        height: 400px;
+        height: max-content;
         border: 1px solid #0000;
         background-color: #bf01bf;
     }
@@ -89,9 +89,7 @@
         @if ($request->foto != null)
             <h3 class="text-underline">BUKTI PEMBAYARAN</h3>
             <br>
-            <div class="bukti-bayar">
-
-            </div>
+            <img class="bukti-bayar" src="{{public_path('bukti/'.$file)}}" alt="">
         @else
             <h3 class="text-underline">DALAM PROSES</h3>
         @endif

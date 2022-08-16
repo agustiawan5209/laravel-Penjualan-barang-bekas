@@ -1,4 +1,4 @@
-<div class="w-full px-6 py-6 mx-auto" x-data="{active: 0,}">
+<div class="w-full px-6 py-6 mx-auto" x-data="{active: 1,}">
     <!-- content -->
 
     <div
@@ -42,6 +42,8 @@
                                         Status Pembayaran</x-forms.th>
                                     <x-forms.th>
                                         Detail</x-forms.th>
+                                    <x-forms.th>
+                                        Kirim</x-forms.th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,14 +72,21 @@
                                     </x-forms.td>
                                     <x-forms.td>
                                         <span
-                                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{
-                                            $item->payment_status }}</span>
+                                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                            @if ($item->payment_status == 1)
+                                            Pembayaran Belum Dilakukan
+                                            @elseif ($item->payment_status == 2)
+                                            Pembayaran Selesai
+                                            @elseif ($item->payment_status == 3)
+                                            Pembayaran Di Konfirmasi
+                                            @endif
+                                        </span>
                                         <p
                                             class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-xs">
                                             {{ $item->payment_type }}</p>
                                     </x-forms.td>
                                     <x-forms.td>
-                                        <a href="{{ asset('bukti/'.$item->pdf_url) }}" class="px-0">
+                                        <a href="{{ asset('bukti/'.$item->pdf_url) }}" target="_blank" class="px-0">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -87,6 +96,12 @@
                                                 </path>
                                             </svg>
                                         </a>
+                                    </x-forms.td>
+                                    <x-forms.td>
+                                        <span wire:click='OngkirBtn({{$item->transaksi_id}})'
+                                            class="bg-gradient-to-tl from-blue-500 to-blue-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white cursor-pointer">
+                                            Buat Pengiriman
+                                        </span>
                                     </x-forms.td>
                                 </tr>
                                 @endforeach

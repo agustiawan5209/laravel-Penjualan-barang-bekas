@@ -5,7 +5,7 @@
             <x-alert :message="session('message')" />
         @endif
         <livewire:page.slide />
-        @include('page.hero')
+        {{-- @include('page.hero') --}}
     @endif
 
     @include('page.item')

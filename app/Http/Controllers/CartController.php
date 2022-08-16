@@ -108,6 +108,15 @@ class CartController extends Controller
         $promo = null;
         $potongan = [];
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
+        // Melakukan Pengurangan Jumlah Stock
+        foreach ($keranjang as $item) {
+            // Dapatkan Stock Barang
+            $stock_barang = Barang::select('stock')->find($item->barang_id);
+            $barang = Barang::where('id', $item->barang_id)->update([
+                'stock' => $stock_barang->stock - $item->jumlah_barang
+            ]);
+        }
+
         $total_price = Cart::where('user_id', '=', Auth::user()->id)->get();
         $total_price_array = [];
         if ($total_price->count() >  0) {
@@ -184,7 +193,17 @@ class CartController extends Controller
     }
     public function delete($id)
     {
-        $keranjang = Cart::where('id', $id)->where('user_id', '=', Auth::user()->id)->delete();
+
+        $keranjang = Cart::find($id);
+        // Dapatkan Stock Barang
+        $stock_barang = Barang::find($keranjang->barang_id);
+        $hasil = intval($stock_barang->stock) + $keranjang->jumlah_barang;
+        // dd($hasil);
+        Barang::where('id', $keranjang->barang_id)
+            ->update([
+                'stock' => intval($hasil),
+            ]);
+        $keranjang->delete();
         return redirect()->back()->with('message', 'Berhasil Di Hapus');
     }
 
@@ -221,7 +240,7 @@ class CartController extends Controller
         foreach ($promo_cart as $item) {
             $promo = $item->promo;
         }
-        $sub_total = $this->getTotal($promo, $diskon, $array_sum_total_price);
+        $sub_total = $this->getTotal($potongan, $diskon, $array_sum_total_price);
         $param = [
             'sub_total' => $sub_total,
             'item_details' => $item_details,
@@ -230,6 +249,7 @@ class CartController extends Controller
         if ($array_sum_total_price == null || $keranjang == null) {
             abort(403);
         }
+        $potongan = $array_sum_total_price * ($potongan /100);
         Session::put('param', $param);
         return  view('page.midtrans.midtrans', [
             'keranjang' => $keranjang,
