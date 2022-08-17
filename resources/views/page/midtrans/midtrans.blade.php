@@ -56,6 +56,10 @@
                     </div>
                     <div class="text-sm tracking-wide text-gray-500 mt-4 sm:mt-0 sm:ml-4">Selesaikan pengiriman Anda dan
                         rincian pembayaran di bawah ini.</div>
+                    @if (session()->has('message'))
+                    <x-alert :message="session('message')" />
+                    @endif
+
                     <div
                         class="absolute sm:relative sm:top-auto sm:right-auto ml-auto right-4 top-4 text-gray-400 hover:text-gray-800 cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -65,7 +69,22 @@
                         </svg>
                     </div>
                 </div>
-                <form id="payment-form" method="POST" action="{{ route('receive') }}" class="overflow-hidden" enctype="multipart/form-data">
+                <section class=" w-full mb-6">
+                    <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">
+                        Promo
+                    </h2>
+
+                    <form action="{{route('masukan-kode-promo')}}" method="POST" class="grid grid-cols-6 ">
+                        @csrf
+                        <input
+                            class="  col-span-full md:col-span-4 focus:shadow-primary-outline text-size-sm leading-5.6 ease block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+                            name="kode_promo" type='text' placeholder="Masukkan Kode Promo" />
+                        <x-jet-button class="mb-0   md:col-span-2 px-1 py-1" type='submit'>Cek Promo</x-jet-button>
+                    </form>
+
+                </section>
+                <form id="payment-form" method="POST" action="{{ route('receive') }}" class="overflow-hidden"
+                    enctype="multipart/form-data">
                     <input type="hidden" name="sub_total" value="{{ $sub_total }}" required>
                     <div class="rounded-md">
                         @csrf
@@ -73,7 +92,8 @@
                             <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Shipping &
                                 Billing Information</h2>
                             <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600 overflow-hidden">
-                                <label class="flex md:flex-nowrap flex-wrap border-b border-gray-200 h-12 py-3 items-center">
+                                <label
+                                    class="flex md:flex-nowrap flex-wrap border-b border-gray-200 h-12 py-3 items-center">
                                     <span class="text-right px-2">Name</span>
                                     <input name="name" class="focus:outline-none px-3" placeholder="Try Odinsson"
                                         value="{{ Auth::user()->name }}" required>
@@ -198,20 +218,7 @@
                         </section>
                     </div>
                 </form>
-                <section class=" w-full mb-6">
-                    <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">
-                        Promo
-                    </h2>
-                    @if (session()->has('message'))
-    <x-Alert :message="session('message')" />
-@endif
-                    <form action="{{route('masukan-kode-promo')}}" method="POST" class="grid grid-cols-6 ">
-                        @csrf
-                        <input class="  col-span-full md:col-span-4 focus:shadow-primary-outline text-size-sm leading-5.6 ease block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" name="kode_promo" type='text' placeholder="Masukkan Kode Promo"/>
-                        <x-jet-button class="mb-0   md:col-span-2 px-1 py-1" type='submit'>Kode Promo</x-jet-button>
-                    </form>
 
-                </section>
             </div>
             <x-jet-button class="bg-red-500 hover:bg-red-600" type="button" id="pay-button"
                 class="submit-button px-4 py-3 rounded-full focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">

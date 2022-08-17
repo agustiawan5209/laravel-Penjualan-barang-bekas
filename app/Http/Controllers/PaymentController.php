@@ -103,7 +103,7 @@ class PaymentController extends Controller
     public function createOngkir($request, $transaksi_id)
     {
         ongkir::create([
-            'payment_id'=> $transaksi_id,
+            'transaksi_id'=> $transaksi_id,
             'tgl_pengiriman'=> null,
             'harga'=> null,
             'kode_pos'=> $request->kode_pos,

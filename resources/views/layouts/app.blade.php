@@ -138,6 +138,16 @@ plugins: 'a11ychecker advcode casechange export formatpainter image editimage li
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Promo</span>
                     </a>
                 </li>
+                <li class="mt-0.5 w-full">
+                    <a class=" {{ request()->routeIs('Admin.Pengiriman-Barang') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                        href="{{ route('Admin.Pengiriman-Barang') }}">
+                        <div
+                            class="mr-2 flex h-10 w-10  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengiriman</span>
+                    </a>
+                </li>
                 <li class="w-full mt-4">
                     <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-size-xs opacity-60">
                         Account pages</h6>

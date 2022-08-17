@@ -101,9 +101,15 @@
                                         </a>
                                     </x-forms.td>
                                     <x-forms.td>
-                                        <x-jet-button  wire:click='createOngkir({{$item->id}})'>
+                                        @if ($item->ongkir->tgl_pengiriman == null)
+                                        <x-jet-button wire:click='createOngkir({{$item->id}})'>
                                             Buat Pengiriman
                                         </x-jet-button>
+                                        @else
+                                        <x-jet-button class="bg-green-500 hover:bg-green-500 active:bg-green-500" wire:click='detailOngkir({{$item->ongkir->id}})'>
+                                           Detail
+                                        </x-jet-button>
+                                        @endif
 
                                     </x-forms.td>
                                 </tr>
@@ -313,87 +319,118 @@
             </div>
         </div>
     </section>
+    @if ($itemDetail)
+    <x-jet-dialog-modal wire:model='itemDetail'>
+        <x-slot name='title'>
+
+        </x-slot>
+
+        <x-slot name='content'>
+            <div class="bg-white">
+                <div class="border-t border-gray-200">
+                    <dl class="">
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500"> Tanggal Pengiriman</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$tgl_pengiriman}} </dd>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500"> Harga </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$harga}}</dd>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500"> Alamat </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$detail_alamat}}, <br>
+                                {{$kabupaten}}, {{$kode_pos}} </dd>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500"> ID TRANSAKSI </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$transaksi_id}} </dd>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500"> Detail Pesanan </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$item_details}}</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </x-slot>
+        <x-slot name='footer'>
+            <x-jet-danger-button type='button' wire:click="$toggle('itemDetail')" wire:loading.attr='disabled'>Tutup
+            </x-jet-danger-button>
+        </x-slot>
+
+    </x-jet-dialog-modal>
+    @endif
     <x-jet-dialog-modal wire:model='ongkirItem'>
         <x-slot name="title">
         </x-slot>
 
         <x-slot name="content">
-            <form
-                class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto">
                 @csrf
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Nama Produk
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model='item' id="password" type="text"
-                        placeholder="******************">
-                    @error('item')
+                        wire:model='item_details' id="password" type="text" disabled placeholder="******************">
+                    @error('item_details')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        ID Transaksi
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='transaksi_id' id="password" type="text" disabled placeholder="******************">
+                    @error('transaksi_id')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Tgl Pengiriman
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model='tgl_pengiriman' id="password" type="date"
-                        placeholder="******************">
+                        wire:model='tgl_pengiriman' id="password" type="date" placeholder="******************">
                     @error('tgl_pengiriman')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Harga Ongkir
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="harga" type="text"
-                        placeholder="******************">
+                        wire:model="harga" type="text" placeholder="******************">
                     @error('harga')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         detail Alamat
                     </label>
-                    <textarea wire:model="detail_alamat" id="" cols="30" rows="10">
-                {{$kode_pos}} <br>
-                {{$kabupaten}} <br>
+                    <textarea id="" cols="30" rows="10"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">{{$detail_alamat}} ,{{$kode_pos}} ,{{$kabupaten}} ,
              </textarea>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Status
                     </label>
                     <select id="countries" wire:model='status'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">--Pilih Status Pengiriman--</option>
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Terkirim</option>
                     </select>
                     @error('kategori_produk')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password">
-                        Deskripsi Produk
-                    </label>
-                    <textarea id="myeditorinstance"
-                        class=" ckeditor shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="deskripsi_produk" name="editor1" id="editor1"
-                        rows="10" cols="80"></textarea>
-                    @error('deskripsi_produk')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
@@ -417,4 +454,5 @@
             </div>
         </x-slot>
     </x-jet-dialog-modal>
+
 </div>

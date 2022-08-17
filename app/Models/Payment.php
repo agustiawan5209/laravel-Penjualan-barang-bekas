@@ -12,8 +12,8 @@ class Payment extends Model
     protected $hidden = ['payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token'];
     use HasFactory;
 
-    public function transaksi(){
-        return $this->hasOne(Transaksi::class, 'id','transaksi_id');
+    public function ongkir(){
+        return $this->belongsTo(ongkir::class, 'transaksi_id','transaksi_id');
     }
     public function user()
     {

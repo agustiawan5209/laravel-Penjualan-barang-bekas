@@ -77,7 +77,7 @@ Route::middleware([
         Route::get('Promo-Terlaris', PromoLaris::class)->name('Promo-Terlaris');
 
         // Halaman Pengiriman Barang
-        Route::get('Pengiriman Barang', PagePengiriman::class)->name('Pengiriman-Barang');
+        Route::get('Pengiriman Barang', PagePengiriman::class)->name('Admin.Pengiriman-Barang');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');

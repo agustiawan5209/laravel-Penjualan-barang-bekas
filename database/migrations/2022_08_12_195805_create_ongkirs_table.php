@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ongkirs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("payment_id");
+            $table->string('transaksi_id');
             $table->date('tgl_pengiriman')->nullable();
             $table->bigInteger('harga')->nullable();
             $table->string('kode_pos',10);
