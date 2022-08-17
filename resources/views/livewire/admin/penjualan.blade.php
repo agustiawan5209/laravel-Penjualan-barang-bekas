@@ -7,15 +7,18 @@
             <div class="w-full max-w-full px-3 mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
                 <div class="relative ">
                     <ul class="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" nav-pills="" role="tablist">
-                        <li class="z-30 flex-auto text-center" @click="active = 0" :class="active === 0 ? 'bg-white' : ''">
-                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700" nav-link="" href="javascript:;" role="tab" aria-selected="true" active="">
+                        <li class="z-30 flex-auto text-center" @click="active = 0"
+                            :class="active === 0 ? 'bg-white' : ''">
+                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
+                                nav-link="" href="javascript:;" role="tab" aria-selected="true" active="">
                                 <i class="ni ni-app"></i>
                                 <span class="ml-2">COD</span>
-                              </a>
+                            </a>
                         </li>
                         <li class="z-30 flex-auto text-center">
-                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"  @click="active = 1" :class="active === 1 ? 'bg-white' : ''"
-                                nav-link="" href="javascript:;" role="tab" aria-selected="false">
+                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
+                                @click="active = 1" :class="active === 1 ? 'bg-white' : ''" nav-link=""
+                                href="javascript:;" role="tab" aria-selected="false">
                                 <i class="ni ni-email-83"></i>
                                 <span class="ml-2">Transfer</span>
                             </a>
@@ -26,7 +29,7 @@
         </div>
     </div>
     {{-- Transfer --}}
-    <section class="mt-5 w-full relative" x-show="active === 1">
+    <section class="mt-5 w-full relative z-0" x-show="active === 1">
         <div class="flex flex-wrap -mx-3">
             <div class="max-w-full px-3 lg:w-2/3 lg:flex-none bg-white rounded-lg shadow-md">
                 <div class="flex-auto px-0 pt-0 pb-2">
@@ -98,10 +101,10 @@
                                         </a>
                                     </x-forms.td>
                                     <x-forms.td>
-                                        <span wire:click='OngkirBtn({{$item->transaksi_id}})'
-                                            class="bg-gradient-to-tl from-blue-500 to-blue-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white cursor-pointer">
+                                        <x-jet-button  wire:click='createOngkir({{$item->id}})'>
                                             Buat Pengiriman
-                                        </span>
+                                        </x-jet-button>
+
                                     </x-forms.td>
                                 </tr>
                                 @endforeach
@@ -239,7 +242,7 @@
     </section>
     {{-- COD --}}
     <section class="mt-5 w-full relative" x-show="active === 0">
-        <div class="flex flex-wrap -mx-3 w-full" >
+        <div class="flex flex-wrap -mx-3 w-full">
             <div class="w-full px-3 lg:flex-none bg-white rounded-lg shadow-md">
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
@@ -310,5 +313,108 @@
             </div>
         </div>
     </section>
+    <x-jet-dialog-modal wire:model='ongkirItem'>
+        <x-slot name="title">
+        </x-slot>
 
+        <x-slot name="content">
+            <form
+                class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto">
+                @csrf
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        Nama Produk
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='item' id="password" type="text"
+                        placeholder="******************">
+                    @error('item')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        Tgl Pengiriman
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='tgl_pengiriman' id="password" type="date"
+                        placeholder="******************">
+                    @error('tgl_pengiriman')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        Harga Ongkir
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model="harga" type="text"
+                        placeholder="******************">
+                    @error('harga')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        detail Alamat
+                    </label>
+                    <textarea wire:model="detail_alamat" id="" cols="30" rows="10">
+                {{$kode_pos}} <br>
+                {{$kabupaten}} <br>
+             </textarea>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        Status
+                    </label>
+                    <select id="countries" wire:model='status'
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="1">Belum Dikirim</option>
+                        <option value="2">Terkirim</option>
+                    </select>
+                    @error('kategori_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password">
+                        Deskripsi Produk
+                    </label>
+                    <textarea id="myeditorinstance"
+                        class=" ckeditor shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model="deskripsi_produk" name="editor1" id="editor1"
+                        rows="10" cols="80"></textarea>
+                    @error('deskripsi_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+            </form>
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex items-center justify-between">
+                <button wire:click='create'
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Tambah
+                </button>
+                <button wire:click='$toggle("ongkirItem")'
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Close
+                </button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
