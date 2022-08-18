@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\Promo::insert([
             'kode_promo' => 'Promo-121',
             'category_id' => '1',
-            'barang_id' => null,
             'max_user' => '11',
             'use_user' => '0',
-            'promo' => '10',
+            'promo_persen' => '10',
+            'promo_nominal' => null,
             'tgl_mulai' => '2022-08-09',
             'tgl_kadaluarsa' => '2022-08-27',
         ]);

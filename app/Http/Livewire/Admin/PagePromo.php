@@ -15,7 +15,7 @@ class PagePromo extends Component
     public $row = 10;
     public $search = "";
     // field Tabel promo
-    public $kode_promo, $category_id, $barang_id, $promo, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
+    public $kode_promo, $category_id, $promo_nominal, $promo_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -98,27 +98,16 @@ class PagePromo extends Component
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);
-        if ($this->category_id == null) {
-            $promo = Promo::create([
-                'kode_promo' => $this->kode_promo,
-                'barang_id' => $this->barang_id,
-                'max_user' => $this->max_user,
-                'use_user' => $this->use_user,
-                'promo' => $this->promo,
-                'tgl_mulai' => $this->tgl_mulai,
-                'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
-            ]);
-        } else if ($this->barang_id == null) {
-            $promo = Promo::create([
-                'kode_promo' => $this->kode_promo,
-                'category_id' => $this->category_id,
-                'max_user' => $this->max_user,
-                'use_user' => $this->use_user,
-                'promo' => $this->promo,
-                'tgl_mulai' => $this->tgl_mulai,
-                'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
-            ]);
-        }
+        $promo = Promo::create([
+            'kode_promo' => $this->kode_promo,
+            'category_id' => $this->category_id,
+            'max_user' => $this->max_user,
+            'use_user' => $this->use_user,
+            'promo_nominal'=> $this->promo_nominal,
+            'promo_persen' => $this->promo_persen,
+            'tgl_mulai' => $this->tgl_mulai,
+            'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
+        ]);
         session()->flash('message', $promo ? 'Data Promo Berhasil Di Tambah' : 'Data Promo Gagal Di Tambah');
         $this->CloseAllModal();
     }

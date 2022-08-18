@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_vocher');
+            $table->bigInteger('diskon');
+            $table->string('deskripsi');
+            $table->date('tgl_mulai');
+            $table->date('tgl_kadaluarsa');
             $table->timestamps();
         });
     }

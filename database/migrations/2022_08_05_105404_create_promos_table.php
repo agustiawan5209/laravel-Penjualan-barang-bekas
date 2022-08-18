@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('kode_promo');
             $table->string('category_id',10)->nullable();
-            $table->string('barang_id',10)->nullable();
             $table->integer('max_user')->nullable();
             $table->integer('use_user')->nullable()->default('0');
-            $table->bigInteger('promo');
+            $table->bigInteger('promo_persen')->nullable();
+            $table->bigInteger('promo_nominal')->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
             $table->softDeletes();

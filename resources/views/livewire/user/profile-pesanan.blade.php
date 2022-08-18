@@ -94,6 +94,7 @@
                         </tr>
                     </thead>
                     <tbody x-show="active == 0">
+                        @if ($produk != null)
                         @foreach ($produk as $item)
                         <tr>
                             <x-forms.td>
@@ -121,8 +122,10 @@
                             </x-forms.td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     <tbody x-show="active == 3">
+                        @if ($belum_terkirim)
                         @foreach ($belum_terkirim as $item)
                         <tr>
                             <x-forms.td>{{$item->transaksi_id}}</x-forms.td>
@@ -160,8 +163,10 @@
                             </x-forms.td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     <tbody x-show="active == 4">
+                        @if ($diterima != null)
                         @foreach ($diterima as $item)
                         <tr>
                             <x-forms.td>{{$item->transaksi_id}}</x-forms.td>
@@ -225,8 +230,10 @@
                             </x-forms.td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     <tbody x-show="active == 5">
+                        @if ($belum_konfirmasi != null)
                         @foreach ($belum_konfirmasi as $item)
                         <tr>
                             <x-forms.td>
@@ -254,12 +261,14 @@
                             </x-forms.td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     <div class="w-full max-w-full px-3 mt-6 md:flex-none" x-show="active ==2">
                         <div
                             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                             <div class="flex-auto flex-wrap md:flex-col p-4 pt-6">
                                 <ul class="flex flex-col  pl-0 mb-0 rounded-lg">
+                                    @if ($terkirim != null)
                                     @foreach ($terkirim as $item)
                                     <li
                                         class="relative flex flex-wrap md:flex-col p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
@@ -291,7 +300,8 @@
                                                     x-transition:leave="transition ease-in duration-300"
                                                     x-transition:leave-start="opacity-100 scale-100"
                                                     x-transition:leave-end="opacity-0 scale-90"
-                                                    class="absolute translate-x-8 -translate-y-10 text-white bg-gray-700 shadow-md px-4 py-2 rounded-md text-sm">Konfirmasi Pemesanan Dengan Pemilik</span>
+                                                    class="absolute translate-x-8 -translate-y-10 text-white bg-gray-700 shadow-md px-4 py-2 rounded-md text-sm">Konfirmasi
+                                                    Pemesanan Dengan Pemilik</span>
                                                 Pesanan Diterima
                                             </x-jet-button>
                                             @else
@@ -304,6 +314,7 @@
                                         </div>
                                     </li>
                                     @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>

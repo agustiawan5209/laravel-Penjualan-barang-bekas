@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $kode_promo
  * @property string|null $category_id
- * @property string|null $barang_id
  * @property int|null $max_user
  * @property int|null $use_user
  * @property int $promo
@@ -47,8 +46,8 @@ class Promo extends Model
 {
 
     protected $table = 'promos';
-    protected $fillable = ['kode_promo', 'category_id', 'barang_id','max_user','use_user', 'promo', 'tgl_mulai', 'tgl_kadaluarsa'];
-	protected $dates = ['deleted_at'];
+    protected $fillable = ['kode_promo', 'category_id', 'max_user', 'use_user', 'promo', 'promo_persen','deskripsi', 'promo_nominal', 'tgl_mulai', 'tgl_kadaluarsa'];
+    protected $dates = ['deleted_at'];
     use HasFactory;
     use SoftDeletes;
     public function barang()

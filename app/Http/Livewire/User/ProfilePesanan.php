@@ -6,9 +6,11 @@ use App\Models\ongkir;
 use App\Models\Payment as Pembayaran;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ProfilePesanan extends Component
 {
+    use WithFileUploads;
     public $search = "";
     public $row = 7;
     public $min_date , $max_date;
@@ -21,18 +23,32 @@ class ProfilePesanan extends Component
     }
     public function render()
     {
+        $terkirim = '';
+        $diterima = '';
+        $belum_konfirmasi = '';
+        $belum_terkirim = '';
         $produk =  Pembayaran::where('user_id', '=', Auth::user()->id)->get();
-        foreach ($produk as $key => $value) {
-            $belum_terkirim = ongkir::where('status', '=', '1')
-                ->where('transaksi_id', '=', $value->transaksi_id)
-                ->get();
-            $terkirim = ongkir::where('status', '=', '2')
-                ->where('transaksi_id', '=', $value->transaksi_id)
-                ->get();
-            $diterima = ongkir::where('status', '=', '3')
-                ->where('transaksi_id', '=', $value->transaksi_id)
-                ->get();
+        if($produk->count() > 0){
+            foreach ($produk as $key => $value) {
+                $belum_terkirim = ongkir::where('status', '=', '1')
+                    ->where('transaksi_id', '=', $value->transaksi_id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $terkirim = ongkir::where('status', '=', '2')
+                    ->where('transaksi_id', '=', $value->transaksi_id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+                $diterima = ongkir::where('status', '=', '3')
+                    ->where('transaksi_id', '=', $value->transaksi_id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
         }
+        // if($terkirim == null){
+        //     $terkirim = "";
+        // }
+        // dd($terkirim);
         $belum_konfirmasi = Pembayaran::where('user_id', '=', Auth::user()->id)
         ->where('payment_status', '=', '2')->orderBy('id', 'desc')
         ->get();

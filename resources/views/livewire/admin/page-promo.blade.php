@@ -4,28 +4,27 @@
             <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none">
                 <div class="flex flex-wrap -mx-3">
                     <div class="w-full max-w-full px-3 md:w-1/2 md:flex-none">
-                        <div
-                        wire:click='Promo_kadaluarsa_page()'
+                        <div wire:click='Promo_kadaluarsa_page()'
                             class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                             <div
                                 class="p-4 mx-6 mb-0 text-center border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
 
                                 <div
-                                class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-blue-500 to-violet-500 rounded-xl">
-                                <i
-                                    class="relative text-white opacity-100 fas fa-landmark text-size-xl top-31/100"></i>
-                            </div>
+                                    class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-blue-500 to-violet-500 rounded-xl">
+                                    <i
+                                        class="relative text-white opacity-100 fas fa-landmark text-size-xl top-31/100"></i>
+                                </div>
                             </div>
                             {{-- Halaman Tambahan --}}
-                                {{-- End Halaman --}}
-                                <div class="flex-auto p-4 pt-0 text-center cursor-pointer">
-                                    <h6 class="mb-0 text-center dark:text-white">Promo Yang Telah Maksimal Pengguna</h6>
-                                    <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
-                                        Interactive</span>
-                                    <hr
-                                        class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                                    <h5 class="mb-0 dark:text-white">{{ $promo_max }}</h5>
-                                </div>
+                            {{-- End Halaman --}}
+                            <div class="flex-auto p-4 pt-0 text-center cursor-pointer">
+                                <h6 class="mb-0 text-center dark:text-white">Promo Yang Telah Maksimal Pengguna</h6>
+                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
+                                    Interactive</span>
+                                <hr
+                                    class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+                                <h5 class="mb-0 dark:text-white">{{ $promo_max }}</h5>
+                            </div>
                         </div>
                     </div>
                     <div class="w-full max-w-full px-3 mt-6 md:mt-0 md:w-1/2 md:flex-none">
@@ -136,8 +135,7 @@
                                         <x-forms.th>
                                             Kode Promo</x-forms.th>
                                         <x-forms.th>
-                                            Jenis</x-forms.th>
-                                        <x-forms.th>
+                                            Jenis
                                             Promo</x-forms.th>
                                         <x-forms.th>
                                             Tanggal Promo</x-forms.th>
@@ -147,17 +145,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($Datapromo->count() > 0)
                                     @foreach ($Datapromo as $item)
                                     <tr>
                                         <x-.forms.td>{{ $item->kode_promo }}</x-.forms.td>
                                         <x-.forms.td>
-                                            @if ($item->category_id == null)
-                                            {{ $item->barang_id }}
-                                            @elseif($item->barang_id == null)
-                                            {{ $item->category_id }}
+                                            @if ($item->promo_persen == null)
+                                            {{ $item->promo_nominal }}
+                                            @elseif($item->promo_nominal == null)
+                                            {{ $item->promo_persen }}
                                             @endif
                                         </x-.forms.td>
-                                        <x-.forms.td>{{ $item->promo }}</x-.forms.td>
                                         <x-.forms.td>{{ $item->tgl_mulai }}</x-.forms.td>
                                         <x-.forms.td>{{ $item->tgl_kadaluarsa }}</x-.forms.td>
                                         <x-forms.td>
@@ -184,6 +182,7 @@
                                         </x-forms.td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </x-forms.table>
 
@@ -279,10 +278,23 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="promo"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">promo</label>
-                                    <input type="text" wire:model="promo"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                        Nominal</label>
+                                    <input type="text" wire:model="promo_nominal"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('promo')
+                                    @error('promo_nominal')
+                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
+                                <div class="mb-4">
+                                    <label for="promo"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                        Persen</label>
+                                    <input type="text" wire:model="promo_persen"
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                    @error('promo_persen')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -301,24 +313,6 @@
                                         @endif
                                     </select>
                                     @error('category_id')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                <div class="mb-4">
-                                    <label for="barang_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Barang</label>
-                                    <select id="barang" wire:model='barang_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        @if ($barang != null)
-                                        <option value="--">--Pilih--</option>
-                                        @foreach ($barang as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @error('barang_id')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
