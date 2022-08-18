@@ -17,6 +17,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
 use App\Http\Livewire\Admin\PagePengiriman;
+use App\Http\Livewire\Admin\PageVoucher;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\Promo\PromoLaris;
 use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
@@ -68,6 +69,7 @@ Route::middleware([
         Route::get('Penjualan/Barang', Penjualan::class)->name('Admin.Penjualan');
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
+        Route::get('Voucher/Barang', PageVoucher::class)->name('Admin.Voucher');
         Route::get('Slide/Setting', SlideController::class)->name('Admin.Slide');
 
 

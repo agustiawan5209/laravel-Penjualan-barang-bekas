@@ -17,7 +17,6 @@
                     </div>
                     <div class="col-span-2 pt-3">
                         <div class="flex items-center space-x-2 text-sm justify-between">
-                            <span class="text-gray-400">{{ $item->barang->diskon }}</span>
                             <span class="text-pink-400 font-semibold inline-block">Rp.
                                 {{ number_format($item->sub_total, 0, 2) }}</span>
                         </div>
@@ -35,6 +34,17 @@
                     <span>Potongan</span>
                     <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan, 0, 2) }}</span>
                 </div>
+                <div class="flex justify-between py-4 text-gray-600">
+                    <span>Potongan Nominal</span>
+                    <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan_nominal, 0, 2) }}</span>
+                </div>
+                @if ($item->barang->diskon->diskon != null)
+                <div class="flex justify-between py-4 text-gray-600">
+                    <span>Diskon</span>
+                    <span class="font-semibold text-pink-500">Rp. {{ number_format(intval($total_price *
+                        ($item->barang->diskon->diskon / 100)), 0, 2) }}</span>
+                </div>
+                @endif
             </div>
             <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
                 <span>Total</span>
@@ -203,6 +213,22 @@
                                     <p class="mt-2 text-gray-500 tracking-wide">Upload Bukti Transaksi Anda Dalam
                                         Format
                                         jpg, png </p>
+                                    <p class="mt-2 text-gray-500 tracking-wide">
+                                        Kirim pembaaran anda ke
+                                    <table>
+                                        <tr>
+                                            <td>Bank :</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                No. Rek :</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nama</td>
+                                        </tr>
+                                    </table>
+                                    </p>
 
                                     <input id="dropzone-file" name='foto' type="file" class="text" />
 

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\ongkir;
 use App\Models\Payment;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class PagePengiriman extends Component
@@ -16,6 +17,21 @@ class PagePengiriman extends Component
     public $ItemID;
     public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $status, $transaksi_id, $item_details;
     public $user;
+
+    public function mount()
+    {
+        $this->tglPengiriman();
+    }
+    public function tglPengiriman()
+    {
+        $carbon = Carbon::now()->format('Y-m-d');
+        $ongkir = ongkir::all();
+        foreach ($ongkir as $item) {
+            ongkir::where('tgl_pengiriman', '=', $carbon)->update([
+                'status' => '2',
+            ]);
+        }
+    }
     public function render()
     {
         $belum_terkirim = ongkir::where('status', '=', '1')->paginate($this->row);
@@ -95,7 +111,8 @@ class PagePengiriman extends Component
         session()->flash('message', $ongkir ? 'Berhasil Di Update' : 'Gagal Di Update');
         $this->ongkirItem = false;
     }
-    public function deleteModal($id){
+    public function deleteModal($id)
+    {
         $ongkir = ongkir::where('id', '=', $id)->get();
 
         foreach ($ongkir  as $item) {
@@ -105,21 +122,24 @@ class PagePengiriman extends Component
         }
         $this->hapusItem = true;
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $ongkir = ongkir::where('id', '=', $id)->delete();
         session()->flash("message", 'Berhasil DIhapus');
         $this->hapusItem = false;
     }
 
-    public function gantiStatus($id){
+    public function gantiStatus($id)
+    {
         $ongkir = ongkir::where('id', '=', $id)->get();
-        foreach($ongkir as $item){
+        foreach ($ongkir as $item) {
             $this->ItemID = $item->id;
             $this->status = $item->status;
         }
         $this->statusItem = true;
     }
-    public function status($id){
+    public function status($id)
+    {
         $ongkir = ongkir::where('id', '=', $id)->update([
             'status' => $this->status,
         ]);

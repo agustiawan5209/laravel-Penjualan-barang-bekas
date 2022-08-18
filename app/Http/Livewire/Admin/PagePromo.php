@@ -94,7 +94,6 @@ class PagePromo extends Component
     {
         $this->validate([
             'kode_promo' => 'required',
-            'promo' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);

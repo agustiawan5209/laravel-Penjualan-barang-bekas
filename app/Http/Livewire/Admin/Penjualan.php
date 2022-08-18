@@ -73,7 +73,7 @@ class Penjualan extends Component
         ]);
         $this->ongkirItem = false;
         $this->detailOngkir($this->transaksi_id);
-        $this->clearItem();
+        // $this->clearItem();
         session()->flash('message', $ongkir ? 'Data Pengiriman Berhasil Di Lakukan' : 'Pengiriman Gagal Di Tambah');
     }
     public function detailOngkir($transaksi_id){

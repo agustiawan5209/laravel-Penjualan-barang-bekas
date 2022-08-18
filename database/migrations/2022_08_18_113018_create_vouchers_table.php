@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('kode_vocher');
             $table->bigInteger('diskon');
             $table->string('deskripsi');
+            $table->integer('max_user')->nullable();
+            $table->integer('use_user')->nullable()->default('0');
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
             $table->timestamps();
