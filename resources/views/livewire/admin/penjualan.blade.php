@@ -106,8 +106,9 @@
                                             Buat Pengiriman
                                         </x-jet-button>
                                         @else
-                                        <x-jet-button class="bg-green-500 hover:bg-green-500 active:bg-green-500" wire:click='detailOngkir({{$item->ongkir->id}})'>
-                                           Detail
+                                        <x-jet-button class="bg-green-500 hover:bg-green-500 active:bg-green-500"
+                                            wire:click='detailOngkir({{$item->ongkir->id}})'>
+                                            Detail
                                         </x-jet-button>
                                         @endif
 
@@ -167,33 +168,32 @@
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-                        <h6 class="mb-0 dark:text-white">Transaksi Belum Di Bayar</h6>
+                        <h6 class="mb-0 dark:text-white">Pesanan Belum Di Konfirmasi</h6>
                     </div>
                     <div class="flex-auto p-4 pt-6">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                            @foreach ($belum_konfirmasi as $item)
                             <li
                                 class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
                                 <div class="flex flex-col">
-                                    <h6 class="mb-4 leading-normal dark:text-white text-size-sm">Oliver Liam</h6>
-                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">Company Name: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">Viking
-                                            Burrito</span></span>
-                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">Email Address:
+                                    <h6 class="mb-4 leading-normal dark:text-white text-size-sm">{{$item->user->name}}
+                                    </h6>
+                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">Nomor Telepon:
                                         <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">oliver@burrito.com</span></span>
-                                    <span class="leading-tight text-size-xs dark:text-white/80">VAT Number: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">FRB1235476</span></span>
+                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->user->phone_number}}</span></span>
+                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">ID Transaksi:
+                                        <span
+                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->transaksi_id}}</span></span>
+                                    <span class="leading-tight text-size-xs dark:text-white/80">Detail Pesanan: <span
+                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->item_details}}</span></span>
                                 </div>
                                 <div class="ml-auto text-right">
-                                    <a class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-size-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
-                                        href="javascript:;"><i
-                                            class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-orange-600 bg-x-25 bg-clip-text"
-                                            aria-hidden="true"></i>Delete</a>
-                                    <a class="inline-block dark:text-white px-4 py-2.5 mb-0 font-bold text-center align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-normal text-size-sm ease-in bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-slate-700"
-                                        href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700"
-                                            aria-hidden="true"></i>Edit</a>
+                                    <x-jet-secondary-button wire:click='konfirmasi_pesanan({{$item->id}})'>
+                                        Konfirmasi Pesanan
+                                    </x-jet-secondary-button>
                                 </div>
                             </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -319,6 +319,123 @@
             </div>
         </div>
     </section>
+
+    {{-- Tabel Penjualan --}}
+    <div class="max-w-full px-3 bg-white rounded-lg shadow-md">
+        <div class="flex-auto px-0 pt-0 pb-2">
+            <h2 class="font-bold tracking-widest pt-2 text-center text-slate-800 ">
+                Tabel Penjualan
+            </h2>
+            <div class="w-full max-w-full py-4 px-3 flex border-b border-gray-500 rounded-t-md">
+                <ul class="w-full list-none grid grid-cols-2 md:grid-cols-4 justify-between gap-4">
+                    <li class=" col-span-1">
+                        <select name="row" id="row" wire:model='row'
+                        class="">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <x-jet-input type="search" wire:model='search' placeholder="Cari...."></x-jet-input>
+                    </li>
+                    <li class=" md:col-start-3 col-span-1 md:col-span-2 grid grid-cols-2 gap-1">
+                        <div><label for="min_date">Min Date:</label>
+                            <x-jet-input type='date' wire:model='min_date'></x-jet-input></div>
+                        <div>
+                            <label for="max_date">Max Date:</label>
+                        <x-jet-input type='date' wire:model='max_date'></x-jet-input>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-0 overflow-x-auto">
+                <x-forms.table>
+                    <thead class="align-bottom">
+                        <tr>
+                            <x-forms.th>
+                                Pengguna</x-forms.th>
+                            <x-forms.th>
+                                Produk</x-forms.th>
+                            <x-forms.th>
+                                Status Pembayaran</x-forms.th>
+                            <x-forms.th>
+                                Detail</x-forms.th>
+                            <x-forms.th>
+                                Kirim</x-forms.th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($transaksi as $item)
+                        <tr>
+                            <x-forms.td>
+                                <div class="flex px-2 py-1">
+                                    <div>
+                                        <img src="{{ Auth::user()->profile_photo_url }}"
+                                            class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
+                                            alt="user1">
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <h6 class="mb-0 leading-normal dark:text-white text-size-sm">
+                                            {{ $item->user->name }}</h6>
+                                        <p
+                                            class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
+                                            {{ $item->user->email }}</p>
+                                    </div>
+                                </div>
+                            </x-forms.td>
+                            <x-forms.td>
+                                <p
+                                    class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                    Produk</p>
+                            </x-forms.td>
+                            <x-forms.td>
+                                <span
+                                    class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                    @if ($item->payment_status == 1)
+                                    Pembayaran Belum Dilakukan
+                                    @elseif ($item->payment_status == 2)
+                                    Pembayaran Selesai
+                                    @elseif ($item->payment_status == 3)
+                                    Pembayaran Di Konfirmasi
+                                    @endif
+                                </span>
+                                <p class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-xs">
+                                    {{ $item->payment_type }}</p>
+                            </x-forms.td>
+                            <x-forms.td class="text-center px-0 ">
+                                <a href="{{ asset('bukti/'.$item->pdf_url) }}" target="_blank" class="px-0 flex justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </x-forms.td>
+                            <x-forms.td>
+                                @if ($item->ongkir->tgl_pengiriman == null)
+                                <x-jet-button wire:click='createOngkir({{$item->id}})'>
+                                    Buat Pengiriman
+                                </x-jet-button>
+                                @else
+                                <x-jet-button class="bg-green-500 hover:bg-green-500 active:bg-green-500"
+                                    wire:click='detailOngkir({{$item->ongkir->id}})'>
+                                    Detail
+                                </x-jet-button>
+                                @endif
+
+                            </x-forms.td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </x-forms.table>
+
+            </div>
+        </div>
+    </div>
+
     @if ($itemDetail)
     <x-jet-dialog-modal wire:model='itemDetail'>
         <x-slot name='title'>
@@ -454,5 +571,34 @@
             </div>
         </x-slot>
     </x-jet-dialog-modal>
+    <x-jet-confirmation-modal wire:model='konfirmasiItem'>
+        <x-slot name="title">Konfirmasi Pesanan</x-slot>
+        <x-slot name="content">
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500"> Pengguna </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$user_name}} </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500"> ID TRANSAKSI </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {{$transaksi_id}} </dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500"> Detail Pesanan </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$item_details}}</dd>
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <div class="w-full flex justify-around items-center relative px-3 ">
+                <x-jet-secondary-button wire:click='konfirmasi({{$ItemID}})'
+                    class="m-0 w-1/2 uppercase bg-green-500 hover:g-green-600">
+                    Konfirmasi
+                </x-jet-secondary-button>
+                <x-jet-danger-button class="w-1/2 m-0" wire:click="$toggle('konfirmasiItem')"
+                    wire:loading.attr='disabled'>
+                    Batalkan
+                </x-jet-danger-button>
+            </div>
+        </x-slot>
+    </x-jet-confirmation-modal>
 
 </div>

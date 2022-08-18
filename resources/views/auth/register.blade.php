@@ -28,6 +28,13 @@
                         </svg></span></span></div>
                 </div>
                 <div class=""><label class="text-sm font-medium">
+                    <p class="">Phone Number</p>
+                  </label>
+                  <div class="relative mt-1"><input placeholder="Enter Phone Number" name="phone_number" class="w-full p-3 pr-12 text-sm shadow-sm border border-gray-200 rounded-global dark:bg-slate-900 dark:border-gray-700" /><span class="absolute inset-y-0 inline-flex items-center right-4"><span><svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                        </svg></span></span></div>
+                </div>
+                <div class=""><label class="text-sm font-medium">
                     <p class="">Password</p>
                   </label>
                   <div class="relative mt-1"><input placeholder="Enter password" name="password" class="w-full p-3 pr-12 text-sm shadow-sm border border-gray-200 rounded-global dark:bg-slate-900 dark:border-gray-700" /><span class="absolute inset-y-0 inline-flex items-center right-4"><span><svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('kode_pos',10);
             $table->string('kabupaten',20);
             $table->string('detail_alamat',20);
-            $table->enum('status', ['1','2','3','4'])->comment('1= belum dikirim, 2=dikirim, 3=diterima, 4=gagal');
+            $table->enum('status', ['1','2','3','4','5'])->comment('1= belum dikirim, 2=dikirim, 3=konfirmasi admin, 4=konfirmasi user, 5 = Pesanan Diterima');
             $table->timestamps();
         });
     }

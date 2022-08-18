@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use App\Services\Midtrans\CallbackService;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -83,10 +84,14 @@ class PaymentController extends Controller
             $exp = implode(",", $item_details[$i]);
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
+        // Generate Transaksi ID
+        do {
+            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
+        } while (Payment::where("transaksi_id", "=", $transaksi_id)->first());
         // Simpan PDF
         $namPDF = substr(str_shuffle($permitted_chars), 0, 7) . ".pdf";
         Storage::put('bukti/' . $namPDF, $pdf);
+
         Payment::create([
             "user_id" => Auth::user()->id,
             "number" => Auth::user()->name . "_" . $this->generateUniqueNumber(),
@@ -95,6 +100,7 @@ class PaymentController extends Controller
             'payment_type' => $payment_type,
             'transaksi_id' => $transaksi_id,
             'pdf_url' => $namPDF,
+            'tgl_transaksi'=> Carbon::now()->format('Y-m-d'),
             'item_details' => $exp,
         ]);
         $this->createOngkir($request, $transaksi_id);
