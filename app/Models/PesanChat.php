@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\PesanChat
@@ -30,5 +31,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PesanChat extends Model
 {
+    use Notifiable;
     use HasFactory;
+    protected $table = 'pesan_chats';
+    protected $fillable = [
+        'chat_id','from', 'to', 'body',
+    ];
+    public function chatid(){
+        return $this->hasOne(Chatid::class,'id', 'chat_id');
+    }
+    public function Admin(){
+        return $this->hasOne(User::class, 'id', 'from');
+    }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'to');
+    }
 }

@@ -123,4 +123,13 @@ class User extends Authenticatable
     public function promo_user(){
         return $this->hasOne(PromoUser::class, 'user_id', 'id');
     }
+    /**
+     * The channels the user receives notification broadcasts on.
+     *
+     * @return string
+     */
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.'.$this->id;
+    }
 }

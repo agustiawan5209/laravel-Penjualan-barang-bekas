@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\Chatid
@@ -26,5 +27,26 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Chatid extends Model
 {
+    use Notifiable;
     use HasFactory;
+    protected $table = "chatids";
+    protected $fillable = [
+        'user1_id','user2_id'
+    ];
+    /**
+     * The channels the user receives notification broadcasts on.
+     *
+     * @return string
+     */
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.'.$this->id;
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user2_id');
+    }
+    public function pesan(){
+        return $this->hasMany(PesanChat::class, 'chat_id', 'id');
+    }
 }

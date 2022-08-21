@@ -163,6 +163,18 @@ plugins: 'a11ychecker advcode casechange export formatpainter image editimage li
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengiriman</span>
                     </a>
                 </li>
+                <li class="mt-0.5 w-full">
+                    <a class=" {{ request()->routeIs('chat') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                        href="{{ route('chat') }}">
+                        <div
+                            class="mr-2 flex h-10 w-10  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                              </svg>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pesan</span>
+                    </a>
+                </li>
                 <li class="w-full mt-4">
                     <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-size-xs opacity-60">
                         Account pages</h6>

@@ -16,6 +16,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
+use App\Http\Livewire\Admin\PageChat;
 use App\Http\Livewire\Admin\PagePengiriman;
 use App\Http\Livewire\Admin\PageVoucher;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
@@ -80,6 +81,9 @@ Route::middleware([
 
         // Halaman Pengiriman Barang
         Route::get('Pengiriman Barang', PagePengiriman::class)->name('Admin.Pengiriman-Barang');
+
+        // Halaman Chat Admin
+        Route::get('Chat', PageChat::class)->name('chat');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
