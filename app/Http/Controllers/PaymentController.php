@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\ongkir;
 use GuzzleHttp\Client;
 use App\Models\Payment;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
@@ -39,7 +40,7 @@ class PaymentController extends Controller
                 'kode_pos' => 'required',
                 'metode' => 'required',
                 'sub_total' => 'required',
-                'foto'=> 'required',
+                'foto' => 'required',
             ]);
             $param = [
                 'param' => session('param'),
@@ -49,7 +50,7 @@ class PaymentController extends Controller
             // dd($cek_file);
             $pdf = Pdf::loadView('PDF.PDFpembayaran', $param);
             $item_details = session('param');
-            // dd($request);
+            $this->createTransaksi($item_details['item_details']);
             $this->createPayment($request, $item_details['item_details'], $pdf->download()->getOriginalContent());
             Cart::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
@@ -71,7 +72,8 @@ class PaymentController extends Controller
         } else if ($request->metode == "BANK" && $request->foto != null) {
             $random_name = $this->uploadFile($request->foto);
             $payment_status = "2";
-            $payment_type = "BANK";}
+            $payment_type = "BANK";
+        }
         // Cek Pemilik Barang
         $arr = [];
         $cart = Cart::where('user_id', '=', Auth::user()->id)->get();
@@ -100,7 +102,7 @@ class PaymentController extends Controller
             'payment_type' => $payment_type,
             'transaksi_id' => $transaksi_id,
             'pdf_url' => $namPDF,
-            'tgl_transaksi'=> Carbon::now()->format('Y-m-d'),
+            'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
             'item_details' => $exp,
         ]);
         $this->createOngkir($request, $transaksi_id);
@@ -109,14 +111,46 @@ class PaymentController extends Controller
     public function createOngkir($request, $transaksi_id)
     {
         ongkir::create([
-            'transaksi_id'=> $transaksi_id,
-            'tgl_pengiriman'=> null,
-            'harga'=> null,
-            'kode_pos'=> $request->kode_pos,
-            'kabupaten'=> $request->kabupaten,
-            'detail_alamat'=> $request->alamat,
-            'status'=> null,
+            'transaksi_id' => $transaksi_id,
+            'tgl_pengiriman' => null,
+            'harga' => null,
+            'kode_pos' => $request->kode_pos,
+            'kabupaten' => $request->kabupaten,
+            'detail_alamat' => $request->alamat,
+            'status' => null,
         ]);
+    }
+
+    public function createTransaksi($item_details = [])
+    {
+        $count = count($item_details);
+        // dd($item_details[1]);
+        // Ambil Nilai Promo Dari CartController
+        $cart = new CartController;
+        // Ambil Promo Persen
+        $promo_persen = $cart->GetPromo($item_details[0]['id_barang']);
+        // Ambil Promo Nominal
+        $promo_nominal = $cart->GetPromoNominal($item_details[0]['id_barang']);
+
+        // Melakukan Perulanagan Untuk Membuat Field Dalam Tabel Transaksi
+        for ($i = 0; $i < $count; $i++) {
+            // Melakukan Generate Random Number Pada Field ID_transaksi
+            $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            do {
+                $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
+            } while (Transaksi::where("ID_transaksi", "=", $transaksi_id)->first());
+            // dd($item_details[$i]);
+            $promo_persen = $cart->GetPromo($item_details[$i]['id_barang']);
+            $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id_barang']);
+            $potongan =  $promo_persen == 0 || $promo_persen == "" ? $promo_nominal : $item_details[$i]['harga_barang'] * ($promo_persen / 100);
+            Transaksi::create([
+                'ID_transaksi' =>  $transaksi_id,
+                'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
+                'item_details' => implode(',', $item_details[$i]),
+                'potongan' => $potongan,
+                'total' => $item_details[$i]['harga_barang'] - $potongan,
+            ]);
+        }
     }
     public function generateUniqueNumber()
     {

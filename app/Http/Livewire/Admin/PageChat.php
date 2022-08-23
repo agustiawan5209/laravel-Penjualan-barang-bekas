@@ -18,16 +18,16 @@ class PageChat extends Component
         $chat_id = Chatid::all();
 
         // get Image
-        foreach($chat_id as $item){
-            $image = $item->user->profile_photo;
-            $name =
-        }
+        // foreach($chat_id as $item){
+        //     $image = $item->user->profile_photo;
+        //     $name =
+        // }
 
         // dd($image);
         // foreach()
         return view('livewire.admin.page-chat',[
             'chat_id'=> $chat_id,
-            'image'=> $image,
+            // 'image'=> $image,
         ]);
     }
     public function selectChat($id){

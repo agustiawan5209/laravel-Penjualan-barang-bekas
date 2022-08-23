@@ -46,14 +46,10 @@ class Promo extends Model
 {
 
     protected $table = 'promos';
-    protected $fillable = ['kode_promo', 'category_id', 'max_user', 'use_user', 'promo', 'promo_persen','deskripsi', 'promo_nominal', 'tgl_mulai', 'tgl_kadaluarsa'];
+    protected $fillable = ['kode_promo', 'category_id', 'max_user', 'use_user',  'promo_persen','deskripsi', 'promo_nominal', 'tgl_mulai', 'tgl_kadaluarsa'];
     protected $dates = ['deleted_at'];
     use HasFactory;
     use SoftDeletes;
-    public function barang()
-    {
-        return $this->belongsTo(Barang::class, 'barang_id', 'id');
-    }
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');

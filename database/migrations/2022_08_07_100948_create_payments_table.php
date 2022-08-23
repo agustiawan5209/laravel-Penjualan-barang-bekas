@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('pdf_url', 200)->nullable();
             $table->string('transaksi_id')->nullable();
             $table->date('tgl_transaksi');
-            $table->string('item_details');
+            $table->text('item_details');
             $table->timestamps();
         });
     }

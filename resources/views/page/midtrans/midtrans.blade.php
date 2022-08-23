@@ -36,9 +36,10 @@
                 </div>
                 <div class="flex justify-between py-4 text-gray-600">
                     <span>Potongan Nominal</span>
+                    {{-- {{$item->barang->diskon}} --}}
                     <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan_nominal, 0, 2) }}</span>
                 </div>
-                @if ($item->barang->diskon->diskon != null)
+                @if ($item->barang->diskon != '')
                 <div class="flex justify-between py-4 text-gray-600">
                     <span>Diskon</span>
                     <span class="font-semibold text-pink-500">Rp. {{ number_format(intval($total_price *

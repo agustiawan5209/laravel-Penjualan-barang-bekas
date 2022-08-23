@@ -89,7 +89,7 @@ class Pagecheckout extends Component
                             'jumlah_barang' => $this->jumlah,
                             'barang_id' => $this->itemID,
                             'sub_total' => $this->jumlah * $this->harga ,
-                            'pemilik_id' => $this->pemilik_id,
+                            // 'pemilik_id' => $this->pemilik_id,
                             'diskon' => $array_sum_diskon,
                         ]);
                         session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');

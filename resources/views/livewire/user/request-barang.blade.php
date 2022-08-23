@@ -150,6 +150,9 @@
                             @enderror
                             @else
                             <img src="{{asset('upload/'. $foto_produk)}}" alt="">
+                            @error('foto_produk')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                             @endif
 
                     </div>

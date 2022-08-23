@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('ID_transaksi', 50);
             $table->date('tgl_transaksi');
-            $table->string('gross_amount');
+            $table->text('item_details');
+            $table->bigInteger('potongan');
+            $table->string('total');
             $table->timestamps();
         });
     }

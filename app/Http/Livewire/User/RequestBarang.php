@@ -47,9 +47,9 @@ class RequestBarang extends Component
             'deskripsi' => 'required',
             'Alamat' => 'required',
             'categories' => 'required',
-            'harga' => 'required|integer',
+            'harga' => 'required',
         ]);
-        $nama = "";
+        dd($this->foto_produk);
         if ($this->foto_produk != null) {
             $nama = $this->foto_produk->getClientOriginalName();
             $explode = explode(".", $nama);
@@ -57,7 +57,7 @@ class RequestBarang extends Component
             $this->foto_produk->storeAs('upload', $randomName);
         }
         // dd($this->deskripsi);
-        $requestBarang = ModelsRequestBarang::create([
+        ModelsRequestBarang::create([
             'user_id' => $this->user_id,
             'foto_produk' => $randomName,
             'nama_produk' => $this->nama_produk,

@@ -103,7 +103,7 @@ class PagePromo extends Component
             'max_user' => $this->max_user,
             'use_user' => $this->use_user,
             'promo_nominal'=> $this->promo_nominal,
-            'promo_persen' => $this->promo_persen,
+            'promo_persen' => $this->promo_persen  == null ? null : $this->promo_persen,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
@@ -118,10 +118,10 @@ class PagePromo extends Component
         $this->itemID = $promo->id;
         $this->kode_promo = $promo->kode_promo;
         $this->category_id = $promo->category_id;
-        $this->barang_id = $promo->barang_id;
+        $this->promo_nominal = $promo->promo_nominal;
         $this->max_user = $promo->max_user;
         $this->use_user = $promo->use_user;
-        $this->promo = $promo->promo;
+        $this->promo_persen = $promo->promo_persen;
         $this->tgl_mulai = $promo->tgl_mulai;
         $this->tgl_kadaluarsa = $promo->tgl_kadaluarsa;
         $this->editItem = true;
@@ -130,23 +130,20 @@ class PagePromo extends Component
     {
         $this->validate([
             'kode_promo' => 'required',
-            'promo' => 'required',
+            // 'promo' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
             'max_user' => 'required',
         ]);
-        $barang = $this->barang_id == "--" ?  $this->barang_id : null;
-        // dd([
-        //     $this->barang_id,
-        //     $this->category_id
-        // ]);
+        // dd($this->promo_persen);
+
         $promo = Promo::where('id', $id)->update([
             'kode_promo' => $this->kode_promo,
-            'category_id' => $this->category_id == null ? null : $this->category_id,
-            'barang_id' => $this->barang_id == null ? null : $this->barang_id,
+            'category_id' => $this->category_id,
             'max_user' => $this->max_user,
             'use_user' => $this->use_user,
-            'promo' => $this->promo,
+            'promo_nominal'=> $this->promo_nominal  == "" ? null : $this->promo_nominal,
+            'promo_persen' => $this->promo_persen  == "" ? null : $this->promo_persen,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);

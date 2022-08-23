@@ -166,10 +166,10 @@ class CartController extends Controller
         foreach ($diskon_cart as $item) {
             $diskon = $item->diskon;
         }
-        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
-        foreach ($promo_cart as $item) {
-            $promo = $item->promo;
-        }
+        // $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        // foreach ($promo_cart as $item) {
+        //     $promo = $item->promo;
+        // }
         // dd($potongan);
         return view('livewire.page.payment', [
             'diskon' => $diskon,
@@ -223,9 +223,8 @@ class CartController extends Controller
             $total_diskon = $sub_total * ($diskon / 100);
             return $sub_total - $total_promo_persen - $total_diskon;
         } else if ($diskon != null && $promo_nominal != null) {
-            $total_promo_nominal = $sub_total * ($promo_nominal / 100);
             $total_diskon = $sub_total * ($diskon / 100);
-            return $sub_total - $total_promo_nominal - $total_diskon;
+            return $sub_total - $total_diskon - $promo_nominal;
         } else if ($diskon != null) {
             $total_diskon = $sub_total * ($diskon / 100);
             return $sub_total  - $total_diskon;
@@ -233,8 +232,7 @@ class CartController extends Controller
             $total_promo_persen = $sub_total * ($promo_persen / 100);
             return $sub_total - $total_promo_persen;
         } else if ($promo_nominal != null) {
-            $total_promo_nominal = $sub_total * ($promo_nominal / 100);
-            return $sub_total - $total_promo_nominal;
+            return $sub_total - $promo_nominal;
         } else {
             return $sub_total;
         }
@@ -286,10 +284,10 @@ class CartController extends Controller
         foreach ($diskon_cart as $item) {
             $diskon = $item->diskon;
         }
-        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
-        foreach ($promo_cart as $item) {
-            $promo = $item->promo;
-        }
+        // $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        // foreach ($promo_cart as $item) {
+        //     $promo = $item->promo;
+        // }
         $sub_total = $this->getTotal($potongan, $potongan_nominal, $diskon, $array_sum_total_price);
         // dd($sub_total);
         $param = [

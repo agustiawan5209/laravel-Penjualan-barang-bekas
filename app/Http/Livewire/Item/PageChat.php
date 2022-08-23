@@ -39,27 +39,32 @@ class PageChat extends Component
     }
     public function render()
     {
-        $chat_id = Chatid::where('user1_id', '1')->where('user2_id', Auth::user()->id)->first();
-        $pesan = PesanChat::where('chat_id', $chat_id->id)->get();
+        $this->cek_user();
+        if (Auth::check()) {
+            $chat_id = Chatid::where('user1_id', '1')->where('user2_id', Auth::user()->id)->first();
+            $pesan = PesanChat::where('chat_id', $chat_id->id)->get();
+        }
         return view('livewire.item.page-chat', [
             'user1_id' => 'Admin',
             'user2_id' =>  $this->cek_user(),
-            'pesan'=> $pesan,
+            'pesan' => $pesan,
         ]);
     }
 
-    public function sendNotif($from, $to, $body, $pesan){
+    public function sendNotif($from, $to, $body, $pesan)
+    {
         $enrolData = [
             'body' => $body,
-            'type'=> 'chat',
-            'from'=> $from,
+            'type' => 'chat',
+            'from' => $from,
         ];
         $pesan = PesanChat::latest()->first();
-       $pesan->notify(new InvoicePaid($enrolData));
+        $pesan->notify(new InvoicePaid($enrolData));
     }
-    public function load(){
+    public function load()
+    {
         $this->validate([
-            'body'=>"required",
+            'body' => "required",
         ]);
         $user2_name = User::where('id', '=', $this->cek_user())->first();
         $user = $user2_name;
@@ -69,15 +74,14 @@ class PageChat extends Component
         $this->body;
         // Cari Data ChatID Dengan Berdasar User Dan Admin
         $chatID = Chatid::where('user1_id', '1')->where('user2_id', Auth::user()->id)->get();
-        foreach($chatID as $item){
+        foreach ($chatID as $item) {
             $pesan = PesanChat::create([
-                "chat_id"=> $item->id,
-                'from'=> $this->from,
-                'to'=> $this->to,
-                'body'=> $this->body
+                "chat_id" => $item->id,
+                'from' => $this->from,
+                'to' => $this->to,
+                'body' => $this->body
             ]);
         }
         $this->sendNotif($this->from, $this->to, $this->body, $pesan);
-
     }
 }

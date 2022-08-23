@@ -24,10 +24,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTglTransaksi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $item_details_type
+ * @property int $item_details_id
+ * @property int $potongan
+ * @property string $total
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereItemDetailsId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereItemDetailsType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi wherePotongan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTotal($value)
  */
 class Transaksi extends Model
 {
     protected $table = 'transaksis';
-    protected $filable = ['ID_transaksi','tgl_transaksi','gross_amount'];
+    protected $fillable = ['ID_transaksi','tgl_transaksi','item_details', 'potongan', 'total'];
     use HasFactory;
 }
