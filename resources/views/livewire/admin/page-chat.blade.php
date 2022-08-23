@@ -56,7 +56,7 @@
                 </div>
                 <div class="chat-area flex-1 flex flex-col">
                     <div class="flex-3">
-                        <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">Chatting with <b>Mercedes Yemelyan</b>
+                        <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">Chatting Dengan <b>{{$nama_chat}}</b>
                         </h2>
                     </div>
                     <div class="messages flex-1 overflow-auto">

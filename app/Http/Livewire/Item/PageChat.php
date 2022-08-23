@@ -67,7 +67,7 @@ class PageChat extends Component
             'body' => "required",
         ]);
         $user2_name = User::where('id', '=', $this->cek_user())->first();
-        $user = $user2_name;
+        $user = $user2_name->id;
         $admin = User::where('role_id', '=', 'SuperAdmin')->first();
         $this->from = $user;
         $this->to = $admin->id;
@@ -83,5 +83,8 @@ class PageChat extends Component
             ]);
         }
         $this->sendNotif($this->from, $this->to, $this->body, $pesan);
+        $this->body == '';
+        $this->from == '';
+        $this->to == '';
     }
 }

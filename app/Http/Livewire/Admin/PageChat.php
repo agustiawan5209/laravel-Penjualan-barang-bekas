@@ -13,6 +13,7 @@ class PageChat extends Component
     public $message;
     public $id_pemilik;
     public $id_chat;
+    public $nama_chat;
     public function render()
     {
         $chat_id = Chatid::all();
@@ -32,9 +33,20 @@ class PageChat extends Component
     }
     public function selectChat($id){
         $this->pesan = PesanChat::where('chat_id', '=', $id)->get();
-        foreach ($this->pesan as $item ) {
-            $this->id_pemilik = $item->from;
-            $this->id_chat = $item->chat_id;
+        // dd($this->pesan);
+        if($this->pesan->count() > 0){
+            foreach ($this->pesan as $item ) {
+                $this->id_pemilik = $item->from;
+                $this->id_chat = $item->chat_id;
+                $this->nama_chat = $item->user->name;
+            }
+            // dd($this->nama_chat);
+        }else{
+            $chatID = Chatid::find($id);
+            $this->id_pemilik = $chatID->user2_id;
+            $this->id_chat = $chatID->id;
+            $this->nama_chat = $chatID->user->name;
+            // dd($chatID);
         }
     }
     public function loadmessage(){
