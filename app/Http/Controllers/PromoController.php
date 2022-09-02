@@ -42,7 +42,7 @@ class PromoController extends Controller
             $promo = Promo::where('kode_promo', '=', $request->kode_promo)->first();
             if ($promo->count() > 0) {
                 // Mencocokan Kode Promo
-                $promo_user = PromoUser::where('user_id', '=', Auth::user()->id)->get();
+                $promo_user = PromoUser::where('user_id', '=', Auth::user()->id)->where('status', '=', '2')->get();
                 // Jika Gagal
                 if ($promo_user->count() > 0) {
                     return redirect()->back()->with('message', 'Maaf Promo Sudah Terpakai');
@@ -51,6 +51,7 @@ class PromoController extends Controller
                     $promo_user = PromoUser::insert([
                         'user_id' => Auth::user()->id,
                         'promo_id' => $promo->id,
+                        'status'=> '1'
                     ]);
                     $get_promo = Promo::find($promo->id);
                     if($get_promo->use_user == $get_promo->max_user){
