@@ -378,47 +378,12 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Voucher</label>
-                                    <input type="text" wire:model="Voucher"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon Voucher
+                                        </label>
+                                    <input type="text" wire:model="diskon"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('Voucher')
+                                    @error('diskon')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                <div class="mb-4">
-                                    <label for="category_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Category</label>
-                                    <select id="countries" wire:model='category_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        @if ($category != null)
-                                        <option value="">--Pilih--</option>
-                                        @foreach ($category as $item)
-                                        <option value="{{ $item->id }}">{{ $item->kategory }}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @error('category_id')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                <div class="mb-4">
-                                    <label for="barang_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Barang</label>
-                                    <select id="countries" wire:model='barang_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        @if ($barang != null)
-                                        <option value="">--Pilih--</option>
-                                        @foreach ($barang as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @error('barang_id')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -458,9 +423,17 @@
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
+                            <div class="w-full max-w-full px-3 shrink-0  md:flex-0">
+                                <div class="mb-4">
+                                    <label for="tgl_mulai"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
+                                    <textarea type="text" wire:model="deskripsi"
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+                                </div>
+                            </div>
                             <div class="flex flex-wrap justify-center items-center mx-auto">
                                 <div class="w-full px-3 py-2">
-                                    <x-jet-secondary-button wire:click='edit({{$itemID}})'>Edit</x-jet-secondary-button>
+                                    <x-jet-secondary-button wire:click='create()'>Tambah</x-jet-secondary-button>
                                 </div>
                             </div>
                         </div>

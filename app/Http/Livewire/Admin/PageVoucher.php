@@ -124,8 +124,8 @@ class PageVoucher extends Component
         // dd($Voucher);
         $this->itemID = $Voucher->id;
         $this->kode_voucher = $Voucher->kode_voucher;
-        $this->category_id = $Voucher->category_id;
-        $this->barang_id = $Voucher->barang_id;
+        $this->diskon = $Voucher->diskon;
+        $this->deskripsi = $Voucher->deskripsi;
         $this->max_user = $Voucher->max_user;
         $this->use_user = $Voucher->use_user;
         $this->Voucher = $Voucher->Voucher;
