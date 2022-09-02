@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{--
-    <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
     <title>{{ config('APP_NAME', 'Jual') }}</title>
 
@@ -37,8 +36,8 @@
                 <div class="flex items-center"><a href="{{ route('home') }}" class="inline-flex items-center mr-8"><span
                             class="text-2xl text-white">
                             <div style="font-size:inherit;color:inherit;padding:2px"><svg stroke="currentColor"
-                                    fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                    fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em"
+                                    width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z">
                                     </path>
@@ -61,8 +60,8 @@
                         <li class="">
                             <a href="{{ route('User.Request') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                                 </svg>
@@ -84,75 +83,75 @@
                 </div>
                 <ul class=" items-center hidden space-x-8 lg:flex">
                     @if (Route::has('login'))
-                    @auth
-                    <li class="">
-                        <div class="ml-3 relative">
-                            <x-jet-dropdown align="right" width="48">
-                                <x-slot name="trigger">
-                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <button
-                                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                        <img class="h-8 w-8 rounded-full object-cover"
-                                            src="{{ Auth::user()->profile_photo_url }}"
-                                            alt="{{ Auth::user()->name }}" />
-                                    </button>
-                                    @else
-                                    <span class="inline-flex rounded-md">
-                                        <button type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
-                                            {{ Auth::user()->name }}
+                        @auth
+                            <li class="">
+                                <div class="ml-3 relative">
+                                    <x-jet-dropdown align="right" width="48">
+                                        <x-slot name="trigger">
+                                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                                <button
+                                                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                                    <img class="h-8 w-8 rounded-full object-cover"
+                                                        src="{{ Auth::user()->profile_photo_url }}"
+                                                        alt="{{ Auth::user()->name }}" />
+                                                </button>
+                                            @else
+                                                <span class="inline-flex rounded-md">
+                                                    <button type="button"
+                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                                        {{ Auth::user()->name }}
 
-                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </span>
-                                    @endif
-                                </x-slot>
+                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            @endif
+                                        </x-slot>
 
-                                <x-slot name="content">
-                                    <!-- Account Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Account') }}
-                                    </div>
+                                        <x-slot name="content">
+                                            <!-- Account Management -->
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                {{ __('Manage Account') }}
+                                            </div>
 
-                                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                        {{ __('Profile') }}
-                                    </x-jet-dropdown-link>
+                                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                                {{ __('Profile') }}
+                                            </x-jet-dropdown-link>
 
-                                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                        {{ __('API Tokens') }}
-                                    </x-jet-dropdown-link>
-                                    @endif
+                                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                                    {{ __('API Tokens') }}
+                                                </x-jet-dropdown-link>
+                                            @endif
 
-                                    <div class="border-t border-gray-100"></div>
+                                            <div class="border-t border-gray-100"></div>
 
-                                    <!-- Authentication -->
-                                    <form method="POST" action="{{ route('logout') }}" x-data>
-                                        @csrf
+                                            <!-- Authentication -->
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
 
-                                        <x-jet-dropdown-link href="{{ route('logout') }}"
-                                            @click.prevent="$root.submit();">
-                                            {{ __('Log Out') }}
-                                        </x-jet-dropdown-link>
-                                    </form>
-                                </x-slot>
-                            </x-jet-dropdown>
-                        </div>
-                    </li>
-                    @else
-                    <li class=""><a href="{{ route('login') }}"
-                            class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>
-                    </li>
-                    <li class=""><a href="{{ route('register') }}"
-                            class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Daftar</a>
-                    </li>
+                                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                    @click.prevent="$root.submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-jet-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-jet-dropdown>
+                                </div>
+                            </li>
+                        @else
+                            <li class=""><a href="{{ route('login') }}"
+                                    class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>
+                            </li>
+                            <li class=""><a href="{{ route('register') }}"
+                                    class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Daftar</a>
+                            </li>
 
-                    @endauth
+                        @endauth
                     @endif
                 </ul>
 
@@ -174,8 +173,9 @@
                 <ul class="items-center block space-x-1 lg:hidden w-full">
                     <li class="">
                         <div class="items-center block lg:hidden w-full relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-2 top-2 text-gray-600"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 absolute left-2 top-2 text-gray-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
@@ -186,8 +186,8 @@
                     <li class="mt-2">
                         <a href="#"
                             class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                             </svg>
@@ -197,7 +197,8 @@
                     <li class="mt-2"><a href="#"
                             class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                             <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
+                                viewBox="0 0 16 16">
                                 <path fill="#ffff"
                                     d="M14 13.1v-1.1h-9.4l0.6-1.1 9.2-0.9 1.6-6h-12.3l-0.7-3h-3v1h2.2l2.1 8.4-1.3 2.6v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5-0.7-1.5-1.5-1.5h7.5v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5c0-0.7-0.4-1.2-1-1.4zM4 5h10.7l-1.1 4-8.4 0.9-1.2-4.9z">
                                 </path>
@@ -225,23 +226,24 @@
         </div>
     </footer>
     @if (Auth::check())
-    <div x-on:click="ChatPopUp = ! ChatPopUp"
-        class="w-16 h-16 bg-blue-400 rounded-full flex justify-center items-center cursor-pointer fixed right-5 bottom-10 border-2  border-white z-50">
-        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-            </path>
-        </svg>
-    </div>
-    <div x-show="ChatPopUp" class="fixed right-20 bottom-8 flex flex-row-reverse items-end justify-between md:w-1/2 "
-        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -right-80"
-        x-transition:enter-end="opacity-100 right-0" x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="opacity-100 right-0" x-transition:leave-end="opacity-0 -right-80">
-        <div class="z-50 bg-blue-400 rounded-md w-full h-max">
-            <livewire:item.page-chat>
+        <div x-on:click="ChatPopUp = ! ChatPopUp"
+            class="w-16 h-16 bg-blue-400 rounded-full flex justify-center items-center cursor-pointer fixed right-5 bottom-10 border-2  border-white z-50">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                </path>
+            </svg>
         </div>
-    </div>
+        <div x-show="ChatPopUp"
+            class="fixed right-20 bottom-8 flex flex-row-reverse items-end justify-between md:w-1/2 "
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -right-80"
+            x-transition:enter-end="opacity-100 right-0" x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 right-0" x-transition:leave-end="opacity-0 -right-80">
+            <div class="z-50 bg-blue-400 rounded-md w-full h-max">
+                <livewire:item.page-chat>
+            </div>
+        </div>
     @endif
     @stack('modals')
 
