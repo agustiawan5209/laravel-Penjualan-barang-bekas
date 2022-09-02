@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\ongkir;
 use GuzzleHttp\Client;
 use App\Models\Payment;
+use App\Models\PromoUser;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -28,6 +29,12 @@ class PaymentController extends Controller
         }
         $file->storeAs("bukti", $random_name);
         return $random_name;
+    }
+
+    public function GantiStatusPromo(){
+        PromoUser::where('user_id', '=', Auth::user()->id)->update([
+            'status' => '2'
+        ]);
     }
     public function receive(Request $request)
     {
@@ -54,7 +61,7 @@ class PaymentController extends Controller
             $this->createPayment($request, $item_details['item_details'], $pdf->download()->getOriginalContent());
             Cart::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
-
+            $this->GantiStatusPromo();
             return redirect()->route('home')->with('message', 'Dalam Proses Konfirmasi');
         } else {
             return redirect()->route('home');
