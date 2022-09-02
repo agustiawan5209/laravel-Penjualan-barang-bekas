@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_vocher');
+            $table->string('kode_voucher');
             $table->bigInteger('diskon');
             $table->string('deskripsi');
             $table->integer('max_user')->nullable();

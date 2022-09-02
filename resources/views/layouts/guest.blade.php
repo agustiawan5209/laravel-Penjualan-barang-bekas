@@ -84,7 +84,7 @@
                 <ul class=" items-center hidden space-x-8 lg:flex">
                     @if (Route::has('login'))
                         @auth
-                            {{-- <li class="">
+                            <li class="">
                                 <div class="ml-3 relative">
                                     <x-jet-dropdown align="right" width="48">
                                         <x-slot name="trigger">
@@ -142,10 +142,10 @@
                                         </x-slot>
                                     </x-jet-dropdown>
                                 </div>
-                            </li> --}}
-                            <li class=""><a href="{{ route('dashboard') }}"
-                                    class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>
                             </li>
+                            {{-- <li class=""><a href="{{ route('dashboard') }}"
+                                    class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>
+                            </li> --}}
                         @else
                             <li class=""><a href="{{ route('login') }}"
                                     class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-primary">Masuk</a>

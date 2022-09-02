@@ -612,7 +612,7 @@ namespace App\Models{
  * App\Models\Voucher
  *
  * @property int $id
- * @property string $kode_vocher
+ * @property string $kode_voucher
  * @property int $diskon
  * @property string $deskripsi
  * @property int|null $max_user
@@ -621,6 +621,7 @@ namespace App\Models{
  * @property string $tgl_kadaluarsa
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category|null $category
  * @method static \Database\Factories\VoucherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
@@ -629,7 +630,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDeskripsi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDiskon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereKodeVocher($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereKodeVoucher($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereMaxUser($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglKadaluarsa($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglMulai($value)

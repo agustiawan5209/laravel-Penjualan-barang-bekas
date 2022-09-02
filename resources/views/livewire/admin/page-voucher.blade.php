@@ -19,8 +19,8 @@
                             {{-- End Halaman --}}
                             <div class="flex-auto p-4 pt-0 text-center cursor-pointer">
                                 <h6 class="mb-0 text-center dark:text-white">Voucher Yang Telah Maksimal Pengguna</h6>
-                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
-                                    Interactive</span>
+                                {{-- <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
+                                    Interactive</span> --}}
                                 <hr
                                     class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                                 <h5 class="mb-0 dark:text-white">{{ $Voucher_max }}</h5>
@@ -40,8 +40,8 @@
                             </div>
                             <div class="flex-auto p-4 pt-0 text-center">
                                 <h6 class="mb-0 text-center dark:text-white">Voucher Terlaris</h6>
-                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
-                                    Payment</span>
+                                {{-- <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
+                                    Payment</span> --}}
                                 <hr
                                     class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                                 <h5 class="mb-0 dark:text-white">{{ $cek_Voucher_terlaris }}</h5>
@@ -65,8 +65,8 @@
                             </div>
                             <div class="flex-auto p-4 pt-0 text-center">
                                 <h6 class="mb-0 text-center dark:text-white">Voucher Belum Terpakai</h6>
-                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
-                                    Interactive</span>
+                                {{-- <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
+                                    Interactive</span> --}}
                                 <hr
                                     class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                                 <h5 class="mb-0 dark:text-white">{{ $cek_jumlah_pengguna_Voucher }}</h5>
@@ -86,8 +86,8 @@
                             </div>
                             <div class="flex-auto p-4 pt-0 text-center">
                                 <h6 class="mb-0 text-center dark:text-white">Voucher Terlaris</h6>
-                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
-                                    Payment</span>
+                                {{-- <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
+                                    Payment</span> --}}
                                 <hr
                                     class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                                 <h5 class="mb-0 dark:text-white">{{ $cek_Voucher_terlaris }}</h5>
@@ -148,13 +148,9 @@
                                     @if ($DataVoucher->count() > 0)
                                     @foreach ($DataVoucher as $item)
                                     <tr>
-                                        <x-.forms.td>{{ $item->kode_Voucher }}</x-.forms.td>
+                                        <x-.forms.td>{{ $item->kode_voucher }}</x-.forms.td>
                                         <x-.forms.td>
-                                            @if ($item->Voucher_persen == null)
-                                            {{ $item->Voucher_nominal }}
-                                            @elseif($item->Voucher_nominal == null)
-                                            {{ $item->Voucher_persen }}
-                                            @endif
+                                            {{$item->diskon}}
                                         </x-.forms.td>
                                         <x-.forms.td>{{ $item->tgl_mulai }}</x-.forms.td>
                                         <x-.forms.td>{{ $item->tgl_kadaluarsa }}</x-.forms.td>
@@ -216,18 +212,14 @@
                             <h6 class="mb-1 font-semibold leading-normal dark:text-white text-size-sm text-slate-700">
                                 {{ $item->tgl_kadaluarsa }}</h6>
                             <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">{{
-                                $item->kode_Voucher }}</span>
+                                $item->kode_voucher }}</span>
                         </div>
                         <div class="flex items-center leading-normal dark:text-white/80 text-size-sm">
                             {{ $item->Voucher }}
                             <button
                                 class="dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
                                     class="mr-1 fas fa-file-pdf text-size-lg"></i>
-                                @if ($item->category_id == null)
-                                {{ $item->barang_id }}
-                                @elseif($item->barang_id == null)
-                                {{ $item->category_id }}
-                                @endif
+                                {{$item->deskripsi}}
                             </button>
                         </div>
                     </li>
@@ -266,11 +258,11 @@
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
-                                    <label for="kode_Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_Voucher</label>
-                                    <input type="text" wire:model="kode_Voucher"
+                                    <label for="kode_voucher"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_voucher</label>
+                                    <input type="text" wire:model="kode_voucher"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('kode_Voucher')
+                                    @error('kode_voucher')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -278,42 +270,12 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Voucher
-                                        Nominal</label>
-                                    <input type="text" wire:model="Voucher_nominal"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon Voucher
+                                        </label>
+                                    <input type="text" wire:model="diskon"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('Voucher_nominal')
+                                    @error('diskon')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
-                                <div class="mb-4">
-                                    <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Voucher
-                                        Persen</label>
-                                    <input type="text" wire:model="Voucher_persen"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('Voucher_persen')
-                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                <div class="mb-4">
-                                    <label for="category_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Category</label>
-                                    <select id="countries" wire:model='category_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        @if ($category != null)
-                                        <option value="--">--Pilih--</option>
-                                        @foreach ($category as $item)
-                                        <option value="{{ $item->id }}">{{ $item->kategory }}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @error('category_id')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -351,6 +313,14 @@
                                         class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_kadaluarsa</label>
                                     <input type="date" wire:model="tgl_kadaluarsa"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                </div>
+                            </div>
+                            <div class="w-full max-w-full px-3 shrink-0  md:flex-0">
+                                <div class="mb-4">
+                                    <label for="tgl_mulai"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
+                                    <textarea type="text" wire:model="deskripsi"
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap justify-center items-center mx-auto">
@@ -396,11 +366,11 @@
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
-                                    <label for="kode_Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_Voucher</label>
-                                    <input type="text" wire:model="kode_Voucher"
+                                    <label for="kode_voucher"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_voucher</label>
+                                    <input type="text" wire:model="kode_voucher"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                    @error('kode_Voucher')
+                                    @error('kode_voucher')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>

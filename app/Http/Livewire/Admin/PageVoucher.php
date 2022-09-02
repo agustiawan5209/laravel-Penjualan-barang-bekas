@@ -15,7 +15,7 @@ class PageVoucher extends Component
     public $row = 10;
     public $search = "";
     // field Tabel Voucher
-    public $kode_Voucher, $category_id, $Voucher_nominal, $Voucher_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
+    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -44,7 +44,7 @@ class PageVoucher extends Component
             ->paginate($this->row);
         if ($this->search != null) {
             $Voucher = Voucher::whereDate('tgl_kadaluarsa', '>', $date_now)
-                ->where('kode_Voucher', 'like', '%' . $this->search . '%')
+                ->where('kode_voucher', 'like', '%' . $this->search . '%')
                 ->orderBy('id', 'desc')
                 ->paginate($this->row);
         }
@@ -101,17 +101,16 @@ class PageVoucher extends Component
     public function create()
     {
         $this->validate([
-            'kode_Voucher' => 'required',
+            'kode_voucher' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);
         $Voucher = Voucher::create([
-            'kode_Voucher' => $this->kode_Voucher,
-            'category_id' => $this->category_id,
+            'kode_voucher' => $this->kode_voucher,
+            'deskripsi' => $this->deskripsi,
             'max_user' => $this->max_user,
             'use_user' => $this->use_user,
-            'Voucher_nominal' => $this->Voucher_nominal,
-            'Voucher_persen' => $this->Voucher_persen,
+            'diskon' => $this->diskon,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
@@ -124,7 +123,7 @@ class PageVoucher extends Component
         $Voucher = Voucher::find($id);
         // dd($Voucher);
         $this->itemID = $Voucher->id;
-        $this->kode_Voucher = $Voucher->kode_Voucher;
+        $this->kode_voucher = $Voucher->kode_voucher;
         $this->category_id = $Voucher->category_id;
         $this->barang_id = $Voucher->barang_id;
         $this->max_user = $Voucher->max_user;
@@ -137,7 +136,7 @@ class PageVoucher extends Component
     public function edit($id)
     {
         $this->validate([
-            'kode_Voucher' => 'required',
+            'kode_voucher' => 'required',
             'Voucher' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
@@ -149,7 +148,7 @@ class PageVoucher extends Component
         //     $this->category_id
         // ]);
         $Voucher = Voucher::where('id', $id)->update([
-            'kode_Voucher' => $this->kode_Voucher,
+            'kode_voucher' => $this->kode_voucher,
             'category_id' => $this->category_id == null ? null : $this->category_id,
             'barang_id' => $this->barang_id == null ? null : $this->barang_id,
             'max_user' => $this->max_user,
