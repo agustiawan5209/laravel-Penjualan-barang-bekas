@@ -41,14 +41,7 @@ class CartController extends Controller
             }
         }
         $array_sum_total_price = array_sum($total_price_array);
-        $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
-        foreach ($diskon_cart as $item) {
-            $diskon = $item->diskon;
-        }
-        $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
-        foreach ($promo_cart as $item) {
-            $promo = $item->promo;
-        }
+
 
         // dd($potongan);
         return view('livewire.page.payment', [
@@ -58,9 +51,6 @@ class CartController extends Controller
             'snapToken' => $snapToken,
             'payment' => $payment,
             'sub_total' => $array_sum_total_price,
-            'potongan' => $potongan,
-            'potongan_nominal' => $potongan_nominal,
-            'total_price' => $this->getTotal($promo,$potongan_nominal, $diskon, $array_sum_total_price),
         ]);
     }
     public function GetPromo($id_barang)
