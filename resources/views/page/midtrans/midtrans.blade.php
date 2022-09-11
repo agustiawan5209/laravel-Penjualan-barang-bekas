@@ -34,18 +34,6 @@
                     <span>Potongan</span>
                     <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan, 0, 2) }}</span>
                 </div>
-                <div class="flex justify-between py-4 text-gray-600">
-                    <span>Potongan Nominal</span>
-                    {{-- {{$item->barang->diskon}} --}}
-                    <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan_nominal, 0, 2) }}</span>
-                </div>
-                @if ($item->barang->diskon != '')
-                <div class="flex justify-between py-4 text-gray-600">
-                    <span>Diskon</span>
-                    <span class="font-semibold text-pink-500">Rp. {{ number_format(intval($total_price *
-                        ($item->barang->diskon->diskon / 100)), 0, 2) }}</span>
-                </div>
-                @endif
             </div>
             <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
                 <span>Total</span>

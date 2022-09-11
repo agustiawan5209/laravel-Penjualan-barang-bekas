@@ -53,6 +53,12 @@ class CartController extends Controller
             'sub_total' => $array_sum_total_price,
         ]);
     }
+    /**
+     * GetPromo
+     *  Mendapatkan Semua Potongan Yang Ada
+     * @param  mixed $id_barang
+     * @return void
+     */
     public function GetPromo($id_barang)
     {
         $arr = [];
@@ -243,6 +249,12 @@ class CartController extends Controller
         return redirect()->back()->with('message', 'Berhasil Di Hapus');
     }
 
+    /**
+     * Kirim
+     * Mengirim Setiap Dta Yang ada
+     * @param  mixed $request
+     * @return void
+     */
     public function Kirim(Request $request)
     {
         $diskon = null;

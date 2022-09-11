@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
 class ulasan extends Model
 {
     use HasFactory;
-    protected $table = 'ulasan';
+    protected $table = 'ulasans';
     protected $fillable = ['user_id', 'barang_id', 'ket'];
 
     public function user(){

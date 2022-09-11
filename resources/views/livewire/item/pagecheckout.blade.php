@@ -102,7 +102,7 @@
         <div class=" bg-white py-6 sm:py-8 lg:py-12">
             <div class=" max-w-screen-xl px-4 md:px-8 mx-auto">
                 <div class=" grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-                    <div class=" ">
+                    {{-- <div class=" ">
                         <div class=" border rounded-lg p-4">
                             <h2 class=" text-gray-800 text-lg lg:text-xl font-bold mb-3">Customer Reviews</h2>
                             <div class=" flex items-center gap-2 mb-0.5">
@@ -168,8 +168,8 @@
                                 class=" block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 border text-gray-500 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 md:px-8 py-2 md:py-3">Write
                                 a review</a>
                         </div>
-                    </div>
-                    <div class=" lg:col-span-2">
+                    </div> --}}
+                    <div class=" lg:col-span-3">
                         <div class=" border-b pb-4 md:pb-6">
                             <h2 class=" text-gray-800 text-lg lg:text-xl font-bold">Top Ulasan</h2>
                         </div>

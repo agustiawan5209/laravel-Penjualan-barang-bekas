@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_voucher');
             $table->bigInteger('diskon');
+            $table->foreignId('barang_id')->constrained('barang')->onDelete('cascade');
             $table->string('deskripsi');
             $table->integer('max_user')->nullable();
             $table->integer('use_user')->nullable()->default('0');
