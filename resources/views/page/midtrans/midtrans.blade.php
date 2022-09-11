@@ -1,6 +1,8 @@
 <x-guest-layout>
-    <div class="grid grid-cols-3 w-full h-full justify-center items-center shadow-sm">
+    <div class="grid grid-cols-3 w-full h-full justify-center items-start shadow-sm">
+
         <div class=" col-span-full md:col-span-1 bg-white block ">
+            <livewire:voucher-klaim :item="$voucher">
             <h1 class="py-6 border-b-2 text-xl text-gray-600 md:px-8">Ringkasan Pesanan</h1>
             <ul class="py-6 border-b space-y-6 px-8">
                 @if (Auth::check() && $keranjang != null)
@@ -118,7 +120,7 @@
 
                                 <label class="flex border-b border-gray-200 h-12 py-3 items-center">
                                     <span class="text-right px-2">Kabupaten/Kota</span>
-                                    <input name="kabupaten" class="focus:outline-none px-3" value="{{old('kabupaten')}}"
+                                    <input name="kabupaten" class="focus:outline-none px-3" :old="$kabupaten"
                                         placeholder="Kabupate/Kota" required />
                                     @error('kabupaten')
                                     <span
@@ -129,7 +131,7 @@
                                 </label>
                                 <label class="inline-flex w-2/4 border-gray-200 py-3">
                                     <span class="text-right px-2">Kecamatan</span>
-                                    <input name="kecamatan" class="focus:outline-none px-3" value="{{old('kecamatan')}}"
+                                    <input name="kecamatan" class="focus:outline-none px-3" :old="$kecamatan"
                                         placeholder="Kecamatan" required />
                                     @error('kecamatan')
                                     <span
@@ -141,7 +143,7 @@
                                 <label
                                     class="xl:w-1/3 xl:inline-flex items-center flex xl:border-none border-t border-gray-200 py-3">
                                     <span class="text-right px-2 whitespace-nowrap xl:px-0 xl:text-none">Kode Pos</span>
-                                    <input name="kode_pos" class="focus:outline-none px-3" value="{{old('kode_pos')}}"
+                                    <input name="kode_pos" class="focus:outline-none px-3" :old="$kode_pos"
                                         placeholder="90241" required>
                                     @error('kode_pos')
                                     <span

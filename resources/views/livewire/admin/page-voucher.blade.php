@@ -146,38 +146,38 @@
                                 </thead>
                                 <tbody>
                                     @if ($DataVoucher->count() > 0)
-                                    @foreach ($DataVoucher as $item)
-                                    <tr>
-                                        <x-.forms.td>{{ $item->kode_voucher }}</x-.forms.td>
-                                        <x-.forms.td>
-                                            {{$item->diskon}}
-                                        </x-.forms.td>
-                                        <x-.forms.td>{{ $item->tgl_mulai }}</x-.forms.td>
-                                        <x-.forms.td>{{ $item->tgl_kadaluarsa }}</x-.forms.td>
-                                        <x-forms.td>
-                                            <a href="#_" wire:click='editModal({{ $item->id }})'
-                                                class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-green-600 md:mx-0">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                            <a href="#_" wire:click='hapusModal({{ $item->id }})'
-                                                class="inline-block px-2 py-1 text-sm mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </x-forms.td>
-                                    </tr>
-                                    @endforeach
+                                        @foreach ($DataVoucher as $item)
+                                            <tr>
+                                                <x-.forms.td>{{ $item->kode_voucher }}</x-.forms.td>
+                                                <x-.forms.td>
+                                                    {{ $item->diskon }}
+                                                </x-.forms.td>
+                                                <x-.forms.td>{{ $item->tgl_mulai }}</x-.forms.td>
+                                                <x-.forms.td>{{ $item->tgl_kadaluarsa }}</x-.forms.td>
+                                                <x-forms.td>
+                                                    <a href="#_" wire:click='editModal({{ $item->id }})'
+                                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-green-600 md:mx-0">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                            </path>
+                                                        </svg>
+                                                    </a>
+                                                    <a href="#_" wire:click='hapusModal({{ $item->id }})'
+                                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                            </path>
+                                                        </svg>
+                                                    </a>
+                                                </x-forms.td>
+                                            </tr>
+                                        @endforeach
                                     @endif
                                 </tbody>
                             </x-forms.table>
@@ -206,23 +206,24 @@
             <div class="flex-auto p-4 pb-0">
                 <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                     @foreach ($Voucher_hampir_kadaluarsa as $item)
-                    <li
-                        class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-size-inherit rounded-xl">
-                        <div class="flex flex-col">
-                            <h6 class="mb-1 font-semibold leading-normal dark:text-white text-size-sm text-slate-700">
-                                {{ $item->tgl_kadaluarsa }}</h6>
-                            <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">{{
-                                $item->kode_voucher }}</span>
-                        </div>
-                        <div class="flex items-center leading-normal dark:text-white/80 text-size-sm">
-                            {{ $item->Voucher }}
-                            <button
-                                class="dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
-                                    class="mr-1 fas fa-file-pdf text-size-lg"></i>
-                                {{$item->deskripsi}}
-                            </button>
-                        </div>
-                    </li>
+                        <li
+                            class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-size-inherit rounded-xl">
+                            <div class="flex flex-col">
+                                <h6
+                                    class="mb-1 font-semibold leading-normal dark:text-white text-size-sm text-slate-700">
+                                    {{ $item->tgl_kadaluarsa }}</h6>
+                                <span
+                                    class="leading-tight dark:text-white dark:opacity-80 text-size-xs">{{ $item->kode_voucher }}</span>
+                            </div>
+                            <div class="flex items-center leading-normal dark:text-white/80 text-size-sm">
+                                {{ $item->Voucher }}
+                                <button
+                                    class="dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
+                                        class="mr-1 fas fa-file-pdf text-size-lg"></i>
+                                    {{ $item->deskripsi }}
+                                </button>
+                            </div>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -232,10 +233,11 @@
     <x-jet-dialog-modal wire:model="tambahItem" maxWidth='2xl'>
         <x-slot name="title">
             @if (session()->has('message'))
-            <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Message</strong>
-                <span class="block sm:inline">{{ session('message') }}</span>
-            </div>
+                <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Message</strong>
+                    <span class="block sm:inline">{{ session('message') }}</span>
+                </div>
             @endif
         </x-slot>
 
@@ -263,19 +265,40 @@
                                     <input type="text" wire:model="kode_voucher"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('kode_voucher')
-                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon Voucher
-                                        </label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon
+                                        Voucher
+                                    </label>
                                     <input type="text" wire:model="diskon"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('diskon')
-                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
+                                <div class="mb-4 w-full">
+                                    <label for="Voucher"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Barang
+
+                                    </label>
+                                    <select id="countries" wire:model='barang_id'
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        @if ($barang->count() > 0)
+                                            <option value="--">--Pilih--</option>
+                                            @foreach ($barang as $item)
+                                                <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @error('diskon')
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -288,7 +311,7 @@
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </select>
                                     @error('max_user')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -340,10 +363,11 @@
     <x-jet-dialog-modal wire:model="editItem" maxWidth='2xl'>
         <x-slot name="title">
             @if (session()->has('message'))
-            <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Message</strong>
-                <span class="block sm:inline">{{ session('message') }}</span>
-            </div>
+                <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Message</strong>
+                    <span class="block sm:inline">{{ session('message') }}</span>
+                </div>
             @endif
         </x-slot>
 
@@ -371,19 +395,40 @@
                                     <input type="text" wire:model="kode_voucher"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('kode_voucher')
-                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon Voucher
-                                        </label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon
+                                        Voucher
+                                    </label>
                                     <input type="text" wire:model="diskon"
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('diskon')
-                                    <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
+                                <div class="mb-4">
+                                    <label for="Voucher"
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Barang
+
+                                    </label>
+                                    <select id="countries" wire:model='barang_id'
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        @if ($barang->count() > 0)
+                                            <option value="--">--Pilih--</option>
+                                            @foreach ($barang as $item)
+                                                <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @error('diskon')
+                                        <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -396,7 +441,7 @@
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </select>
                                     @error('max_user')
-                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -459,7 +504,8 @@
                 Batalkan
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="hapus({{ $itemID }})" wire:loading.attr="disabled">
+            <x-jet-danger-button class="ml-2" wire:click="hapus({{ $itemID }})"
+                wire:loading.attr="disabled">
                 Hapus
             </x-jet-danger-button>
         </x-slot>

@@ -3,11 +3,13 @@
         @foreach ($voucher as $item)
             <div
                 class="flex justify-between items-center p-2 transition-colors duration-200 border shadow group hover:bg-primary-500 hover:border-primary-500 rounded-global">
-                <span class="transition-colors duration-200 group-hover:text-black">{{$item->deskripsi}} / {{$item->diskon}}%</span>
+                <span class="transition-colors duration-200 group-hover:text-black"> Voucher Pembelian/ 10%</span>
                 <div class="mr-2">
-                    <span>
-                        <x-jet-button>klaim</x-jet-button>
-                    </span>
+                    {{-- <span> --}}
+                        <a href="#_" wire:click='KlaimVoucher({{$item->id}})' class="px-5 py-2.5 font-medium bg-blue-50 hover:bg-blue-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm">
+                            Klaim
+                            </a>
+                    {{-- </span> --}}
                 </div>
             </div>
         @endforeach

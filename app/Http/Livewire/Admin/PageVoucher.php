@@ -15,7 +15,7 @@ class PageVoucher extends Component
     public $row = 10;
     public $search = "";
     // field Tabel Voucher
-    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
+    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user, $barang_id;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -108,6 +108,7 @@ class PageVoucher extends Component
         $Voucher = Voucher::create([
             'kode_voucher' => $this->kode_voucher,
             'deskripsi' => $this->deskripsi,
+            'barang_id'=> $this->barang_id,
             'max_user' => $this->max_user,
             'use_user' => $this->use_user,
             'diskon' => $this->diskon,

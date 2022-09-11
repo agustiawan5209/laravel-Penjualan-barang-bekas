@@ -6,6 +6,8 @@ use App\Models\Cart;
 use App\Models\Promo;
 use App\Models\Barang;
 use App\Models\PromoUser;
+use App\Models\UserVoucher;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -259,6 +261,7 @@ class CartController extends Controller
     {
         $diskon = null;
         $promo = null;
+        $voucher = [];
         $snapToken = '';
         $payment = '';
         $potongan = [];
@@ -270,10 +273,11 @@ class CartController extends Controller
         if ($total_price->count() >  0) {
             foreach ($total_price as $item) {
                 $total_price_array[] = $item->sub_total;
-                $cart = $item->barang->id;
+                $voucher[] = $item->barang->id;
                 $potongan = $this->GetPromo($item->barang_id);
 
                 $potongan_nominal = $this->GetPromoNominal($item->barang_id);
+
                 $item_details[] = [
                     'id_barang' => $item->barang->id,
                     'nama_produk' => $item->barang->nama_produk,
@@ -281,33 +285,49 @@ class CartController extends Controller
                 ];
             }
         }
+        // menghitung Sub Total Dari Nilai Array
         $array_sum_total_price = array_sum($total_price_array);
+
+        // Medapatkan Diskon
         $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
         foreach ($diskon_cart as $item) {
             $diskon = $item->diskon;
         }
-        // $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
-        // foreach ($promo_cart as $item) {
-        //     $promo = $item->promo;
-        // }
-        $sub_total = $this->getTotal($potongan, $potongan_nominal, $diskon, $array_sum_total_price);
+        $sub_total = (int) $this->getTotal($potongan, $potongan_nominal, $diskon, $array_sum_total_price) - $this->voucherPot($array_sum_total_price);
         // dd($sub_total);
         $param = [
             'sub_total' => $sub_total,
             'item_details' => $item_details,
-            'potongan' => $potongan,
+            'potongan' => $potongan + $this->voucherPot($array_sum_total_price),
         ];
         if ($array_sum_total_price == null || $keranjang == null) {
             abort(403);
         }
-        $potongan = $array_sum_total_price * ($potongan / 100);
+        $potongan = $array_sum_total_price * ( (int) $potongan / 100);
+        // Tampilkan Voucher
         Session::put('param', $param);
+        // dd($voucher);
+
         return  view('page.midtrans.midtrans', [
             'keranjang' => $keranjang,
             'sub_total' => $sub_total,
-            'potongan' => $potongan,
+            'potongan' => abs($potongan + $this->voucherPot($array_sum_total_price)),
             'potongan_nominal' => $potongan_nominal,
             'total_price' => $array_sum_total_price,
+            'voucher'=> $voucher,
         ]);
+    }
+    public function voucherPot($total_price){
+        $total = 0;
+        $arr = [];
+       $userv=  UserVoucher::where('user_id', Auth::user()->id)->get();
+        foreach($userv as $user_voucher){
+            $voucher = Voucher::where('id', $user_voucher->id)->first();
+            $arr[] = $voucher->diskon;
+        }
+        $sum = array_sum($arr);
+        $total = $total_price * ($sum / 100);
+        return $total;
+
     }
 }
