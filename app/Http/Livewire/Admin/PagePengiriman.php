@@ -131,11 +131,11 @@ class PagePengiriman extends Component
 
     public function gantiStatus($id)
     {
-        $ongkir = ongkir::where('id', '=', $id)->get();
-        foreach ($ongkir as $item) {
-            $this->ItemID = $item->id;
-            $this->status = $item->status;
-        }
+        $ongkir = ongkir::where('id', '=', $id)->first();
+        // foreach ($ongkir as $item) {
+            $this->ItemID = $ongkir->id;
+            $this->status = $ongkir->status;
+        // }
         $this->statusItem = true;
     }
     public function status($id)

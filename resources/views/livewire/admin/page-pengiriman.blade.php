@@ -469,7 +469,7 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-button wire:click='status({{$item->id}})'>
+            <x-jet-button wire:click='status({{$ItemID}})'>
                 Simpan
             </x-jet-button>
             <x-jet-danger-button wire:click="$toggle('statusItem')" wire:loading.attr='disabled'>

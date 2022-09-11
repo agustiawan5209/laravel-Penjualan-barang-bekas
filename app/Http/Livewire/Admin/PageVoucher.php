@@ -50,7 +50,7 @@ class PageVoucher extends Component
         }
         // Voucher Yang Pengguna sudah Maksimal
 
-        return view('livewire.admin.page-Voucher', [
+        return view('livewire.admin.page-voucher', [
             'category' => Category::all(),
             'barang' => Barang::all(),
             'DataVoucher' => $Voucher,
