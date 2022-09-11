@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\Diskon;
 use Livewire\Component;
 use App\Models\PromoUser;
+use App\Models\ulasan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -33,7 +34,7 @@ class Pagecheckout extends Component
         $deskripsi = '';
         $categories = '';
         $barang = Barang::where('id', '=', $this->itemID)->where('nama_produk', '=', $this->nameID)->get();
-
+        $ulasan = ulasan::where('barang_id', $this->itemID)->get();
         foreach ($barang as $item) {
             $foto_produk = $item->foto_produk;
             $nama_produk = $item->nama_produk;
@@ -53,6 +54,7 @@ class Pagecheckout extends Component
             'nama_produk' => $nama_produk,
             'deskripsi' => $deskripsi,
             'categories' => $categories,
+            'ulasan'=> $ulasan,
         ]);
     }
     public function toCart()

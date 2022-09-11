@@ -34,4 +34,13 @@ use Illuminate\Database\Eloquent\Model;
 class ulasan extends Model
 {
     use HasFactory;
+    protected $table = 'ulasan';
+    protected $fillable = ['user_id', 'barang_id', 'ket'];
+
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function barang(){
+        return $this->hasOne(Barang::class, 'id', 'barang_id');
+    }
 }

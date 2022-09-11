@@ -59,4 +59,7 @@ class Barang extends Model
     public function promo(){
         return $this->hasOne(Promo::class, 'barang_id','id');
     }
+    public function ulasan(){
+        return $this->hasMany(ulasan::class, 'barang_id', 'id');
+    }
 }
