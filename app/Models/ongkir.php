@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Model;
 class ongkir extends Model
 {
     protected $table = 'ongkirs';
-    protected $fillable = ['transaksi_id','tgl_pengiriman','alamat', 'kode_pos', 'kabupaten', 'detail_alamat'];
+    protected $fillable = ['transaksi_id','tgl_pengiriman','alamat', 'kode_pos', 'kabupaten', 'detail_alamat','status'];
     use HasFactory;
 
     public function payment(){
