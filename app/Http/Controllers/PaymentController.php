@@ -119,10 +119,14 @@ class PaymentController extends Controller
 
     public function createOngkir($request, $transaksi_id)
     {
+        $harga = 0;
+        if($request->kabupaten == "Kota Makassar" || $request->kabupaten == "Kabupaten Gowa"){
+            $harga = '12000';
+        }
         ongkir::create([
             'transaksi_id' => $transaksi_id,
             'tgl_pengiriman' => null,
-            'harga' => null,
+            'harga' => $harga,
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
             'detail_alamat' => $request->alamat,
