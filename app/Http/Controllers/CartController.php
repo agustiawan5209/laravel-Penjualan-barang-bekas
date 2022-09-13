@@ -29,6 +29,7 @@ class CartController extends Controller
         $promo = null;
         $potongan = [];
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
+        // $potongan_nominal = 0;
         // Melakukan Pengurangan Jumlah Stock
         foreach ($keranjang as $item) {
             // Dapatkan Stock Barang
