@@ -77,21 +77,19 @@ class Penjualan extends Component
         session()->flash('message', $ongkir ? 'Data Pengiriman Berhasil Di Lakukan' : 'Pengiriman Gagal Di Tambah');
     }
     public function detailOngkir($transaksi_id){
-        $ongkir = ongkir::where('id', '=', $transaksi_id)->get();
+        $ongkir = ongkir::find($transaksi_id);
 
-        foreach($ongkir  as $item){
-            $this->kode_pos = $item->kode_pos;
-            $this->kabupaten = $item->kabupaten;
-            $this->detail_alamat = $item->detail_alamat;
-            $this->transaksi_id = $item->transaksi_id;
-            $this->tgl_pengiriman = $item->tgl_pengiriman;
-            $this->harga = $item->harga;
-            $this->status = $item->status;
-            $payment = Payment::where('transaksi_id', '=', $item->transaksi_id)->get();
+            $this->kode_pos = $ongkir->kode_pos;
+            $this->kabupaten = $ongkir->kabupaten;
+            $this->detail_alamat = $ongkir->detail_alamat;
+            $this->transaksi_id = $ongkir->transaksi_id;
+            $this->tgl_pengiriman = $ongkir->tgl_pengiriman;
+            $this->harga = $ongkir->harga;
+            $this->status = $ongkir->status;
+            $payment = Payment::where('transaksi_id', '=', $ongkir->transaksi_id)->get();
             foreach($payment as $item){
                 $this->item_details = $item->item_details;
             }
-        }
         $this->itemDetail = true;
     }
     public function clearItem(){
