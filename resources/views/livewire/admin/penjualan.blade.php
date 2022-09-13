@@ -23,14 +23,14 @@
                                 <span class="ml-2">Detail</span>
                             </a>
                         </li>
-                        <li class="z-30 flex-auto text-center">
+                        {{-- <li class="z-30 flex-auto text-center">
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
                                 @click="active = 1" :class="active === 1 ? 'bg-white' : ''" nav-link=""
                                 href="javascript:;" role="tab" aria-selected="false">
                                 <i class="ni ni-email-83"></i>
                                 <span class="ml-2">Di Batalkan</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -258,8 +258,8 @@
 
 
     {{-- Tabel Penjualan --}}
-    <div class="max-w-full px-3 bg-white rounded-lg shadow-md">
-        <div class="flex-auto px-0 pt-0 pb-2">
+    <div class="max-w-full px-3 bg-white rounded-lg shadow-md mt-5">
+        <div class="flex-auto px-0 pt-0 py-2">
             <h2 class="font-bold tracking-widest pt-2 text-center text-slate-800 ">
                 Tabel Penjualan
             </h2>

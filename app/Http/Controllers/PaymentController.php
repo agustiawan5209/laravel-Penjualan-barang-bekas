@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Models\Payment;
 use App\Models\PromoUser;
 use App\Models\Transaksi;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
@@ -147,13 +148,20 @@ class PaymentController extends Controller
                 $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
             } while (Transaksi::where("ID_transaksi", "=", $transaksi_id)->first());
             // dd($item_details[$i]);
+            // Hapus VOcuher =
+                Voucher::where('barang_id', '=', $item_details[$i]['id_barang'])->update([
+                    'status'=> '2'
+                ]);
+
+            // end Vocuher
             $promo_persen = $cart->GetPromo($item_details[$i]['id_barang']);
             $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id_barang']);
-            $potongan =  $promo_persen == 0 || $promo_persen == "" ? $promo_nominal : $item_details[$i]['harga_barang'] * ($promo_persen / 100);
+            $potongan =  $promo_persen == 0 || $promo_persen == "" ? $promo_nominal : $item_details[$i]['harga_barang'] * ( (int) $promo_persen / 100);
             Transaksi::create([
                 'ID_transaksi' =>  $transaksi_id,
                 'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
                 'item_details' => implode(',', $item_details[$i]),
+                'barang_id'=> $item_details[$i]['id_barang'],
                 'potongan' => $potongan,
                 'total' => $item_details[$i]['harga_barang'] - $potongan,
             ]);

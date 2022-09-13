@@ -320,7 +320,7 @@ class CartController extends Controller
     public function voucherPot($total_price){
         $total = 0;
         $arr = [];
-       $userv=  UserVoucher::where('user_id', Auth::user()->id)->get();
+       $userv=  UserVoucher::where('user_id', Auth::user()->id)->where('status', '=', '1')->get();
         foreach($userv as $user_voucher){
             $voucher = Voucher::where('id', $user_voucher->id)->first();
             $arr[] = $voucher->diskon;

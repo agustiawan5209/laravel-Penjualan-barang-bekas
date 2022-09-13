@@ -8,10 +8,12 @@ use Livewire\Component;
 
 class RequestBarangAdmin extends Component
 {
-    public $row = 10, $search = '', $alasan, $status = 0;
+    public $row = 10, $search = '', $alasan, $status;
+    public $foto_produk, $updatefoto, $nama_produk, $Alamat, $deskripsi, $categories, $harga, $itemID;
+    public $statusItem = false;
     public function render()
     {
-        $request = RequestBarang::paginate($this->row);
+        $request = RequestBarang::where('status', '=', '1')->paginate($this->row);
         if($this->search != null){
             $request = RequestBarang::where('nama_produk', 'like', '%'. $this->search .'%')
             ->paginate($this->row);
@@ -20,22 +22,35 @@ class RequestBarangAdmin extends Component
             'barang'=> $request,
         ]);
     }
-    public function konfirmasiStatus($id){
-        $request = RequestBarang::find($id);
-        try{
-            if($this->status == 2){
+    public function konfirModal($id){
+        $barang = RequestBarang::find($id);
+        $this->itemID = $barang->id;
+        $this->nama_produk = $barang->nama_produk;
+        $this->foto_produk = $barang->foto_produk;
+        $this->deskripsi = $barang->deskripsi;
+        $this->harga = $barang->harga;
+        $this->Alamat = $barang->Alamat;
+        $this->categories = $barang->categories;
+        $this->statusItem = true;
+
+    }
+    public function konfirmasiStatus($id, $status){
+        // dd($status);
+
+            $msg = '';
+            if($status == 2){
                 $msg = "Berhasil Di konfirmasi";
-            }else if($this->status == 3){
-                $msg = "Request Barang Di Tolak";
+            }else if($status == 3){
+                $msg = "Request Barang Berhasil Di Tolak";
             }
-            $request->update([
-                'status'=> $this->status,
+            // $request->
+            session()->flash('message', $msg);
+            $request = RequestBarang::find($id)->update([
+                'status'=> $status,
                 'alasan'=> $this->alasan,
             ]);
-            session()->flash('message', 'Berhasil Di Konfirmasi');
-        }catch(Exception $e){
-            session()->flash('message', "Error = ". $e->getMessage());
-        }
+            $this->statusItem = false;
+
     }
 
 }

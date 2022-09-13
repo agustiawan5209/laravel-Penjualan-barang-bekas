@@ -25,7 +25,7 @@ class PageBarang extends Component
     public $categoryAll;
     public function render()
     {
-        $barang = Barang::paginate($this->row);
+        $barang = Barang::with('category')->limit(5)->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('user_id', Auth::user()->id)->where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
         }

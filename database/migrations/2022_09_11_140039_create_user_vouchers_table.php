@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('voucher_id')->constrained('vouchers')->onDelete('cascade');
+            $table->enum('status', ['1','2'])->comment('1 = Belum ,2 = Terpakai');
             $table->timestamps();
         });
     }

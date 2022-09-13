@@ -37,24 +37,25 @@ class RequestBarang extends Component
     public function TambahModal()
     {
         $this->addItem = true;
+        // dd("1");
     }
 
     public function Tambah()
     {
         $this->validate([
-            'foto_produk' => "image|max:2040",
+            'updatefoto' => "image|max:2040",
             'nama_produk' => 'required',
             'deskripsi' => 'required',
             'Alamat' => 'required',
             'categories' => 'required',
             'harga' => 'required',
         ]);
-        dd($this->Alamat);
-        if ($this->foto_produk != null) {
-            $nama = $this->foto_produk->getClientOriginalName();
+        // dd($this->Alamat);
+        if ($this->updatefoto != null) {
+            $nama = $this->updatefoto->getClientOriginalName();
             $explode = explode(".", $nama);
             $randomName = md5($explode[0] . "." . $explode[1]);
-            $this->foto_produk->storeAs('upload', $randomName);
+            $this->updatefoto->storeAs('upload', $randomName);
         }
         // dd($this->deskripsi);
         ModelsRequestBarang::create([
@@ -68,6 +69,7 @@ class RequestBarang extends Component
             'status' => "1",
         ]);
         session()->flash("message", 'Berhasil Di Tambah');
+        $this->addItem = false;
     }
     public function editModal($id)
     {

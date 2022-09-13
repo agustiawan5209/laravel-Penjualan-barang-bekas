@@ -42,7 +42,7 @@ class RequestBarang extends Model
 {
     protected $table = "request_barangs";
     protected $fillable = [
-        'user_id','nama_produk','foto_produk','harga','deskripsi','categories','Alamat'
+        'user_id','nama_produk','foto_produk','harga','deskripsi','categories','Alamat', 'status','alasan'
     ];
     protected $hidden = ['user_id'];
     use HasFactory;
