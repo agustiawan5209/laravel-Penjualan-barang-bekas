@@ -27,32 +27,45 @@ class CartController extends Controller
     {
         $diskon = null;
         $promo = null;
-        $snapToken = '';
-        $payment = '';
         $potongan = [];
         $keranjang = Cart::where('user_id', '=', Auth::user()->id)->get();
-        // dd($snapToken);
+        // Melakukan Pengurangan Jumlah Stock
+        foreach ($keranjang as $item) {
+            // Dapatkan Stock Barang
+            $stock_barang = Barang::select('stock')->find($item->barang_id);
+            $barang = Barang::where('id', $item->barang_id)->update([
+                'stock' => $stock_barang->stock - $item->jumlah_barang
+            ]);
+        }
+
         $total_price = Cart::where('user_id', '=', Auth::user()->id)->get();
         $total_price_array = [];
         if ($total_price->count() >  0) {
             foreach ($total_price as $item) {
                 $total_price_array[] = $item->sub_total;
-                $cart = $item->barang->id;
                 $potongan = $this->GetPromo($item->barang_id);
                 $potongan_nominal = $this->GetPromoNominal($item->barang_id);
             }
         }
         $array_sum_total_price = array_sum($total_price_array);
-
-
+        // Cek Diskon dari Cart
+        $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
+        foreach ($diskon_cart as $item) {
+            $diskon = $item->diskon;
+        }
+        // $promo_cart = Cart::whereNotNull('promo')->where('user_id', '=', Auth::user()->id)->get();
+        // foreach ($promo_cart as $item) {
+        //     $promo = $item->promo;
+        // }
         // dd($potongan);
         return view('livewire.page.payment', [
             'diskon' => $diskon,
             'promo' => $promo,
             'keranjang' => $keranjang,
-            'snapToken' => $snapToken,
-            'payment' => $payment,
             'sub_total' => $array_sum_total_price,
+            'potongan' => $potongan,
+            'potongan_nominal' => $potongan_nominal,
+            'total_price' => $this->getTotal($promo,$potongan_nominal, $diskon, $array_sum_total_price),
         ]);
     }
     /**
