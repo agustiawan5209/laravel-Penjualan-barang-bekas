@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
         \App\Models\Category::insert([
-            ['kategory' => 'Elektronik',],
-            ['kategory' => 'Pakaian Pria',],
-            ['kategory' => 'Pakaian Wanita',],
+            ['kategory' => 'Alat Elektronik',],
             ['kategory' => 'Peralatan Rumah Tangga',],
             ['kategory' => 'Komputer Dan Laptop',],
             ['kategory' => 'Alat Tulis Kantor',],
+            ['kategory' => 'Kendaraan'],
+            ['kategory' => 'Hobi & olahraga'],
         ]);
         \App\Models\Barang::insert([
             'user_id' => '1',
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'harga' => '30000',
             'deskripsi' => 'Kemeja Islami',
             'stock' => '1',
-            'categories' => '2',
+            'categories' => '6',
         ]);
         \App\Models\Promo::insert([
             'kode_promo' => 'Promo-121',
