@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('categories',50);
             $table->string('Alamat',100);
             $table->enum('status', ['1','2',3])->comment('1 = Belum  dikonfirmasi, 2 = konfirmasi ,3 = ditolak');
-            $table->longText('alasan');
+            $table->longText('alasan')->nullable();
             $table->timestamps();
         });
     }

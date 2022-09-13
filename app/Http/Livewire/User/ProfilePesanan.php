@@ -35,11 +35,11 @@ class ProfilePesanan extends Component
                     ->orderBy('id', 'desc')
                     ->get();
 
-                $terkirim = ongkir::where('status', '=', '2')
+                $terkirim = ongkir::where('status', '=', '2')->orWhere('status' ,'=', '3')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
                     ->get();
-                $diterima = ongkir::where('status', '=', '3')
+                $diterima = ongkir::where('status', '=', '4')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
                     ->get();
@@ -70,5 +70,11 @@ class ProfilePesanan extends Component
             // ]);
         }
         session()->flash('message', 'Pembayaran Di Batalkan');
+    }
+    public function konfirmasi($id){
+        $payment = ongkir::where("id", $id)->update([
+            'status'=> '4',
+        ]);
+        session()->flash('message', 'Berhasil Di Konfirmasi');
     }
 }

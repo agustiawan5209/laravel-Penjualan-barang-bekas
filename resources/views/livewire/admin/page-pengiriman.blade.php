@@ -252,6 +252,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </span>
                                 @else
@@ -263,6 +265,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </x-jet-secondary-button>
                                 @endif
@@ -281,7 +285,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" wire:click='deleteModal({{$item->id}})'
+                                {{-- <a href="#" wire:click='deleteModal({{$item->id}})'
                                     class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
                                     <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -289,8 +293,8 @@
                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
                                         </path>
                                     </svg>
-                                </a>
-                                <a href="#" wire:click='editModal({{$item->id}})'
+                                </a> --}}
+                                {{-- <a href="#" wire:click='editModal({{$item->id}})'
                                     class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
                                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -298,7 +302,7 @@
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                                         </path>
                                     </svg>
-                                </a>
+                                </a> --}}
                             </x-forms.td>
                         </tr>
                         @endforeach
@@ -415,6 +419,7 @@
                         <option value="">--Pilih Status Pengiriman--</option>
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Terkirim</option>
+                        <option value="3">Pesanan Diterima</option>
                     </select>
                     @error('kategori_produk')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -465,6 +470,7 @@
                     class="">
                     <option value="1">Belum Dikirim</option>
                     <option value="2">Dikirim</option>
+                    <option value="3">Pesanan Diterima</option>
                 </select>
             </div>
         </x-slot>

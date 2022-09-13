@@ -1,4 +1,7 @@
 <div class="bg-white" x-data="{active: 0,}">
+   @if (session()->has('message'))
+     <x-alert :message="session('message')"></x-alert>
+   @endif
     <div
         class="relative flex flex-col flex-auto min-w-0 md:p-4 md:mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
         <div class="flex flex-wrap -mx-3">
@@ -116,9 +119,7 @@
                                 <a href="{{ asset('bukti/'. $item->pdf_url) }}" target="_blank">
                                     <x-jet-button>Detail</x-jet-button>
                                 </a>
-                                <x-jet-danger-button wire:click='batalkanPemesanan({{$item->id}})'>
-                                    Batalkan
-                                </x-jet-danger-button>
+
                             </x-forms.td>
                         </tr>
                         @endforeach
@@ -139,6 +140,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </span>
                                 @else
@@ -150,6 +153,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </x-jet-secondary-button>
                                 @endif
@@ -180,6 +185,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </span>
                                 @else
@@ -191,6 +198,8 @@
                                     Dalam Pengiriman
                                     @elseif ($item->status == 3)
                                     Pembayaran Di Konfirmasi
+                                    @elseif ($item->status == 4)
+                                    Pesanan Diterima
                                     @endif
                                 </x-jet-secondary-button>
                                 @endif
@@ -198,7 +207,7 @@
                             <x-forms.td>{{$item->harga}}</x-forms.td>
                             <x-forms.td>{{$item->tgl_pengiriman}}</x-forms.td>
                             <x-forms.td class=" flex justify-center items-center">
-                                <a href="#" wire:click='detailOngkir({{$item->id}})'
+                                {{-- <a href="#" wire:click='detailOngkir({{$item->id}})'
                                     class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
                                     <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -226,7 +235,10 @@
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                                         </path>
                                     </svg>
-                                </a>
+                                </a> --}}
+                                <x-jet-danger-button wire:click='batalkanPemesanan({{$item->id}})'>
+                                    Kembalikan
+                                </x-jet-danger-button>
                             </x-forms.td>
                         </tr>
                         @endforeach
@@ -290,7 +302,7 @@
                                         <div class="ml-auto text-right" x-data="{tooltip: false,}">
                                             <a class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-size-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
                                                 href="javascript:;">Konfirmasi</a>
-                                            @if ($item->status == 3 || $item->status == 2 )
+                                            @if ( $item->status == 2 )
                                             <x-jet-button @mouseover="tooltip = true" @mouseout="tooltip = false"
                                                 class="md:text-lg tracking-wider !bg-gray-500 hover:bg-gray-500 hover:shadow-none hover:-translate-y-0  text-gray-300 relative">
                                                 <span x-show='tooltip'
@@ -304,10 +316,9 @@
                                                     Pemesanan Dengan Pemilik</span>
                                                 Pesanan Diterima
                                             </x-jet-button>
-                                            @else
-                                            <x-jet-button
+                                            @elseif($item->status == 3)
+                                            <x-jet-button wire:click='konfirmasi({{$item->id}})'
                                                 class="md:text-lg tracking-wider !bg-blue-500 hover:bg-blue-700 hover:shadow-none relative">
-
                                                 Pesanan Diterima
                                             </x-jet-button>
                                             @endif

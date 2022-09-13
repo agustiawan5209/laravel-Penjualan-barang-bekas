@@ -57,17 +57,21 @@
                                     class="w-full rounded-md placeholder:text-gray-600 font-sans pl-8">
                             </div>
                         </li>
-                        <li class="">
-                            <a href="{{ route('User.Request') }}"
+                       @if (Route::has('login'))
+                           @auth
+                           <li class="">
+                            <a href="{{ route('User.pesanan') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                                 </svg>
-                                <span>Request Barang</span>
+                                <span>Pesanan Barang</span>
                             </a>
                         </li>
+                           @endauth
+                       @endif
                         <li class=""><a href="{{ route('page.keranjang') }}"
                                 class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"

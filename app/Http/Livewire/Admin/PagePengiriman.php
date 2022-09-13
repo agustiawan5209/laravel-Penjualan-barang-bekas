@@ -44,7 +44,7 @@ class PagePengiriman extends Component
             $terkirim =  ongkir::where('transaksi_id', 'like', '%' . $this->search . '%')
                 ->where('status', '=', '2')->paginate($this->row);
         }
-        $diterima = ongkir::where('status', '=', '3')->paginate($this->row);
+        $diterima = ongkir::where('status', '=', '4')->paginate($this->row);
         if ($this->search != null) {
             $diterima =  ongkir::where('transaksi_id', 'like', '%' . $this->search . '%')
                 ->where('status', '=', '3')->paginate($this->row);

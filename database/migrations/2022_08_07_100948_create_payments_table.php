@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('transaksi_id')->nullable();
             $table->date('tgl_transaksi');
             $table->text('item_details');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

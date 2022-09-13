@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -43,6 +44,7 @@ class Payment extends Model
 {
     use Notifiable;
     use HasFactory;
+    // use SoftDeletes;
     protected $table = 'payments';
     protected $fillable = ['user_id','number', 'total_price', 'payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token', 'item_details', 'tgl_transaksi'];
     protected $hidden = ['payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token'];

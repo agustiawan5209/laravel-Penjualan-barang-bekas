@@ -49,7 +49,7 @@ class RequestBarang extends Component
             'categories' => 'required',
             'harga' => 'required',
         ]);
-        dd($this->foto_produk);
+        dd($this->Alamat);
         if ($this->foto_produk != null) {
             $nama = $this->foto_produk->getClientOriginalName();
             $explode = explode(".", $nama);

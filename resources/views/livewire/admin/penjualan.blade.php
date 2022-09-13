@@ -1,4 +1,4 @@
-<div class="w-full px-6 py-6 mx-auto" x-data="{active: 1,}">
+<div class="w-full px-6 py-6 mx-auto" x-data="{active: 0,}">
     <!-- content -->
 
     <div
@@ -12,7 +12,7 @@
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
                                 nav-link="" href="javascript:;" role="tab" aria-selected="true" active="">
                                 <i class="ni ni-app"></i>
-                                <span class="ml-2">COD</span>
+                                <span class="ml-2">Tabel</span>
                             </a>
                         </li>
                         <li class="z-30 flex-auto text-center">
@@ -20,7 +20,15 @@
                                 @click="active = 1" :class="active === 1 ? 'bg-white' : ''" nav-link=""
                                 href="javascript:;" role="tab" aria-selected="false">
                                 <i class="ni ni-email-83"></i>
-                                <span class="ml-2">Transfer</span>
+                                <span class="ml-2">Detail</span>
+                            </a>
+                        </li>
+                        <li class="z-30 flex-auto text-center">
+                            <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700"
+                                @click="active = 1" :class="active === 1 ? 'bg-white' : ''" nav-link=""
+                                href="javascript:;" role="tab" aria-selected="false">
+                                <i class="ni ni-email-83"></i>
+                                <span class="ml-2">Di Batalkan</span>
                             </a>
                         </li>
                     </ul>
@@ -247,78 +255,7 @@
         </div>
     </section>
     {{-- COD --}}
-    <section class="mt-5 w-full relative" x-show="active === 0">
-        <div class="flex flex-wrap -mx-3 w-full">
-            <div class="w-full px-3 lg:flex-none bg-white rounded-lg shadow-md">
-                <div class="flex-auto px-0 pt-0 pb-2">
-                    <div class="p-0 overflow-x-auto">
-                        <x-forms.table>
-                            <thead class="align-bottom">
-                                <tr>
-                                    <x-forms.th>
-                                        Pengguna</x-forms.th>
-                                    <x-forms.th>
-                                        Produk</x-forms.th>
-                                    <x-forms.th>
-                                        Status Pembayaran</x-forms.th>
-                                    <x-forms.th>
-                                        Detail</x-forms.th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($COD as $item)
-                                <tr>
-                                    <x-forms.td>
-                                        <div class="flex px-2 py-1">
-                                            <div>
-                                                <img src="{{ Auth::user()->profile_photo_url }}"
-                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
-                                                    alt="user1">
-                                            </div>
-                                            <div class="flex flex-col justify-center">
-                                                <h6 class="mb-0 leading-normal dark:text-white text-size-sm">
-                                                    {{ $item->user->name }}</h6>
-                                                <p
-                                                    class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
-                                                    {{ $item->user->email }}</p>
-                                            </div>
-                                        </div>
-                                    </x-forms.td>
-                                    <x-forms.td>
-                                        <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
-                                            Produk</p>
-                                    </x-forms.td>
-                                    <x-forms.td>
-                                        <span
-                                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{
-                                            $item->payment_status }}</span>
-                                        <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-xs">
-                                            {{ $item->payment_type }}</p>
-                                    </x-forms.td>
-                                    <x-forms.td>
-                                        <a href="{{ asset('bukti/'.$item->pdf_url) }}" class="px-0">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </x-forms.td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </x-forms.table>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     {{-- Tabel Penjualan --}}
     <div class="max-w-full px-3 bg-white rounded-lg shadow-md">

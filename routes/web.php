@@ -22,6 +22,7 @@ use App\Http\Livewire\Admin\PageVoucher;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\Promo\PromoLaris;
 use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
+use App\Http\Livewire\Admin\RequestBarangAdmin;
 use App\Http\Livewire\Admin\SlideController;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\MetodePembayaran;
@@ -84,6 +85,10 @@ Route::middleware([
 
         // Halaman Chat Admin
         Route::get('Chat', PageChat::class)->name('chat');
+
+
+        // Tampilkan Request Barang Admin
+        Route::get("Request/Barang-Admin", RequestBarangAdmin::class)->name('Request-Barang-Admin');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
