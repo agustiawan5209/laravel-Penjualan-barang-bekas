@@ -120,6 +120,7 @@ class PaymentController extends Controller
     public function createOngkir($request, $transaksi_id)
     {
         $harga = 0;
+        $status = 0;
         if($request->kabupaten == "Kota Makassar" || $request->kabupaten == "Kabupaten Gowa"){
             $harga = '12000';
         }
@@ -130,7 +131,7 @@ class PaymentController extends Controller
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
             'detail_alamat' => $request->alamat,
-            'status' => '1',
+            'status' => $status,
         ]);
     }
 
