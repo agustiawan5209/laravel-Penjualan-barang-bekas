@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!-- JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="{{ asset('js/jquery-3.6.0.slim.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <style>
         .flickity-viewport {
             height: 500px !important;
@@ -255,7 +255,7 @@
 
     @livewireScripts
     <!-- AlpineJS Library -->
-    <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>

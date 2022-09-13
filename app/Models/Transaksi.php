@@ -36,6 +36,6 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     protected $table = 'transaksis';
-    protected $fillable = ['ID_transaksi','tgl_transaksi','item_details', 'potongan', 'total'];
+    protected $fillable = ['ID_transaksi','tgl_transaksi','item_details', 'potongan', 'total', 'barang_id'];
     use HasFactory;
 }

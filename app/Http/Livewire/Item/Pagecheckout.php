@@ -34,7 +34,7 @@ class Pagecheckout extends Component
         $deskripsi = '';
         $categories = '';
         $barang = Barang::where('id', '=', $this->itemID)->where('nama_produk', '=', $this->nameID)->get();
-        $ulasan = ulasan::where('barang_id', $this->itemID)->get();
+        $ulasan = ulasan::where('barang_id', $this->itemID)->orderBy('id', 'desc')->get();
         foreach ($barang as $item) {
             $foto_produk = $item->foto_produk;
             $nama_produk = $item->nama_produk;
@@ -125,5 +125,21 @@ class Pagecheckout extends Component
         } else {
             return true;
         }
+    }
+    public $email,$ket;
+    public function createUlasan(){
+        $this->validate([
+            'email'=> ['email', 'required'],
+            'ket'=> ['required'],
+        ]);
+        ulasan::create([
+            'user_id'=> Auth::user()->id,
+            'barang_id'=> $this->itemID,
+            'email'=> $this->email,
+            'ket'=> $this->ket,
+        ]);
+        return redirect()->route('Produk-list', ['id' => $this->itemID, 'name' => $this->nameID]);
+        $this->email = '';
+        $this->ket = '';
     }
 }

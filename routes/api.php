@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Midtrans Payment
 Route::prefix('payment')->group(function(){
     Route::get('Cart/{Payment}', [PaymentController::class, 'receive'])->name('Payment');
+});
+
+Route::controller(APIController::class)->group(function(){
+    Route::get('kota', 'kota')->name('API-kota');
+    Route::get('getKota/{id}', 'getKota')->name('API-get-kota');
+    Route::get('kecamatan/{id}', 'kecamatan')->name('API-kecamatan');
+    Route::get('detailcamata/{id}', 'detail_kecamatan')->name('API-detailcamat');
+    Route::get('desa/{id}', 'desa')->name('API-detailcamat');
 });

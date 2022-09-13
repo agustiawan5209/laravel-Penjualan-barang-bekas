@@ -35,7 +35,7 @@ class ulasan extends Model
 {
     use HasFactory;
     protected $table = 'ulasans';
-    protected $fillable = ['user_id', 'barang_id', 'ket'];
+    protected $fillable = ['user_id','email', 'barang_id', 'ket'];
 
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');

@@ -101,6 +101,7 @@ plugins: 'a11ychecker advcode casechange export formatpainter image editimage li
 
     @livewireScripts
 
+    <script src="main.js"></script>
 </body>
 
 </html>

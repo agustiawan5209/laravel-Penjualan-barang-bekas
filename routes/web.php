@@ -44,11 +44,13 @@ use App\Http\Livewire\User\RequestBarang;
 Route::get('/', function () {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
-    $BarangDiskon = Barang::paginate(10);
+    $BarangDiskon = Barang::all();
+    $barang_terabru = Barang::orderBy('id','desc')->paginate(5);
     // dd($BarangDiskon->id);
     return view('welcome', [
         'barang' => $BarangDiskon,
         'kategory' => Category::all(),
+        'barang_terbaru'=>  $barang_terabru,
     ]);
 })->name('home');
 

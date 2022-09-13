@@ -120,8 +120,10 @@
 
                                 <label class="flex border-b border-gray-200 h-12 py-3 items-center">
                                     <span class="text-right px-2">Kabupaten/Kota</span>
-                                    <input name="kabupaten" class="focus:outline-none px-3" :old="$kabupaten"
-                                        placeholder="Kabupate/Kota" required />
+                                    <select  id="kabupaten" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="-">------</option>
+                                    </select>
+                                    <input type="hidden" name="kabupaten" id="target_kabupaten">
                                     @error('kabupaten')
                                     <span
                                         class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -129,10 +131,12 @@
                                     </span>
                                     @enderror
                                 </label>
-                                <label class="inline-flex w-2/4 border-gray-200 py-3">
+                                <label class="inline-flex w-full border-gray-200 py-3">
                                     <span class="text-right px-2">Kecamatan</span>
-                                    <input name="kecamatan" class="focus:outline-none px-3" :old="$kecamatan"
-                                        placeholder="Kecamatan" required />
+                                    <select  id="kecamatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="-">------</option>
+                                    </select>
+                                    <input type="hidden" name="kecamatan" id="target_kecamatan">
                                     @error('kecamatan')
                                     <span
                                         class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -141,10 +145,10 @@
                                     @enderror
                                 </label>
                                 <label
-                                    class="xl:w-1/3 xl:inline-flex items-center flex xl:border-none border-t border-gray-200 py-3">
+                                    class="inline-flex w-full border-gray-200 py-3">
                                     <span class="text-right px-2 whitespace-nowrap xl:px-0 xl:text-none">Kode Pos</span>
-                                    <input name="kode_pos" class="focus:outline-none px-3" :old="$kode_pos"
-                                        placeholder="90241" required>
+                                    <x-jet-input name="kode_pos" class="focus:outline-none px-3"
+                                        placeholder="90241" required />
                                     @error('kode_pos')
                                     <span
                                         class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">

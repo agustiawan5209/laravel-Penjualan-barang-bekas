@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Models\Payment;
 use App\Models\PromoUser;
 use App\Models\Transaksi;
+use App\Models\UserVoucher;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -149,10 +150,13 @@ class PaymentController extends Controller
             } while (Transaksi::where("ID_transaksi", "=", $transaksi_id)->first());
             // dd($item_details[$i]);
             // Hapus VOcuher =
-                Voucher::where('barang_id', '=', $item_details[$i]['id_barang'])->update([
+              $v =   Voucher::where('barang_id', '=', $item_details[$i]['id_barang'])->first();
+            //   dd($v);
+               if($v != null){
+                UserVoucher::where('voucher_id', $v->id)->update([
                     'status'=> '2'
                 ]);
-
+               }
             // end Vocuher
             $promo_persen = $cart->GetPromo($item_details[$i]['id_barang']);
             $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id_barang']);
@@ -174,19 +178,5 @@ class PaymentController extends Controller
         } while (Payment::where("number", "=", $code)->first());
         return $code;
     }
-    public function api_kota()
-    {
-        $url_kota = "https://dev.farizdotid.com/api/daerahindonesia/kota/7371";
-        $url_kecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=7371";
-        $url_detail_kecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan/7371110";
-        $url_desa = 'https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=7371110';
-        $url_detail_desa = 'https://dev.farizdotid.com/api/daerahindonesia/kelurahan/7371110004';
-        $client = new Client();
-        $api_response = $client->get($url_kota);
-        $http_get_kota = Http::get($url_kota);
-        $http_get_kec = Http::get($url_kecamatan);
-        $http_get_detail_kecamatan = Http::get($url_detail_kecamatan);
-        $http_get_detail_desa = Http::get($url_detail_desa);
-        $http_get_desa = Http::get($url_desa);
-    }
+
 }
