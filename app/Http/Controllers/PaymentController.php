@@ -92,7 +92,7 @@ class PaymentController extends Controller
 
 
         for ($i = 0; $i < count($item_details); $i++) {
-            $exp = implode(",", $item_details[$i]);
+            $exp = implode("/", $item_details[$i]);
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // Generate Transaksi ID
