@@ -39,7 +39,7 @@
     {{-- Transfer --}}
     <section class="mt-5 w-full relative z-0" x-show="active === 1">
         <div class="flex flex-wrap -mx-3">
-            <div class="max-w-full px-3 lg:w-2/3 lg:flex-none bg-white rounded-lg shadow-md">
+            <div class="w-full px-3  bg-white rounded-lg shadow-md">
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
                         <x-forms.table>
@@ -126,46 +126,6 @@
                             </tbody>
                         </x-forms.table>
 
-                    </div>
-                </div>
-            </div>
-            <div class="w-full max-w-full px-3 lg:w-1/3 lg:flex-none">
-                <div
-                    class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                    <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <div class="flex flex-wrap -mx-3">
-                            <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h6 class="mb-0 dark:text-white">Transaksi Tertunda</h6>
-                            </div>
-                            <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                                <button
-                                    class="inline-block px-8 py-2 mb-0 font-bold leading-normal text-center text-blue-500 align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer text-size-xs bg-150 active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 hover:opacity-75">View
-                                    All</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-auto p-4 pb-0">
-                        <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                            @foreach ($transaksi_tertunda as $item)
-                            <li
-                                class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-size-inherit rounded-xl">
-                                <div class="flex flex-col">
-                                    <h6
-                                        class="mb-1 font-semibold leading-normal dark:text-white text-size-sm text-slate-700">
-                                        {{$item->user->name}}</h6>
-                                    <span
-                                        class="leading-tight dark:text-white dark:opacity-80 text-size-xs">#MS-415646</span>
-                                </div>
-                                <div class="flex items-center leading-normal dark:text-white/80 text-size-sm">
-                                    {{$item->total_price}}
-                                    <button
-                                        class="dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
-                                            class="mr-1 fas fa-file-pdf text-size-lg" aria-hidden="true"></i>
-                                        Detail</button>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
                     </div>
                 </div>
             </div>

@@ -267,9 +267,7 @@
                                 <a href="{{ asset('bukti/'. $item->pdf_url) }}" target="_blank">
                                     <x-jet-button>Detail</x-jet-button>
                                 </a>
-                                <x-jet-danger-button wire:click='batalkanPemesanan({{$item->id}})'>
-                                    Batalkan
-                                </x-jet-danger-button>
+
                             </x-forms.td>
                         </tr>
                         @endforeach

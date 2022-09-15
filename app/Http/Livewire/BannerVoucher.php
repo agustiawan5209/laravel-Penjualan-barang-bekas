@@ -24,7 +24,7 @@ class BannerVoucher extends Component
     }
     public function KlaimVoucher($id)
     {
-        UserVoucher::where('id', $id)->update(['status'=> '2']);
+        UserVoucher::where('id', $id)->update(['status'=> '3']);
         return redirect()->route('home')->with('message', 'Selamat Menikmati Voucher');
     }
 
@@ -39,7 +39,7 @@ class BannerVoucher extends Component
         $voucher = UserVoucher::all();
         foreach($voucher as $user_voucher){
             if($carbon_date == $user_voucher->tgl_kadaluarsa && $carbon_hours == $user_voucher->waktu){
-                UserVoucher::where('id', $user_voucher->id)->update(['status','=', '3']);
+                UserVoucher::where('id', $user_voucher->id)->update(['status','=', '4']);
             }
         }
     }

@@ -94,9 +94,9 @@
                                 Billing Information</h2>
                             <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600 overflow-hidden">
                                 <label
-                                    class="flex md:flex-nowrap flex-wrap border-b border-gray-200 h-12 py-3 items-center">
-                                    <span class="text-right px-2">Name</span>
-                                    <input name="name" class="focus:outline-none px-3" placeholder="Try Odinsson"
+                                    class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
+                                    <span class="text-right px-2 col-span-1">Name</span>
+                                    <input name="name" class="focus:outline-none px-3 grid-cols-3" placeholder="Try Odinsson"
                                         value="{{ Auth::user()->name }}" required>
                                     @error('name')
                                     <span
@@ -105,10 +105,10 @@
                                     </span>
                                     @enderror
                                 </label>
-                                <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                    <span class="text-right px-2">Email</span>
+                                <label class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
+                                    <span class="text-right px-2 col-span-1">Email</span>
                                     <input name="email" type="email"
-                                        class="focus:outline-none border-none active:border-none px-3"
+                                        class="focus:outline-none border-none active:border-none px-3 col-span-3"
                                         placeholder="try@example.com" value="{{ Auth::user()->email }}" required />
                                     @error('email')
                                     <span
@@ -118,9 +118,9 @@
                                     @enderror
                                 </label>
 
-                                <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                    <span class="text-right px-2">Kabupaten/Kota</span>
-                                    <select  id="kabupaten" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <label class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
+                                    <span class="text-right px-2 col-span-1">Kabupaten/Kota</span>
+                                    <select  id="kabupaten" class="bg-white ring-0 border border-gray-300 text-gray-900 text-sm  col-span-3">
                                         <option value="-">------</option>
                                     </select>
                                     <input type="hidden" name="kabupaten" id="target_kabupaten">
@@ -131,9 +131,9 @@
                                     </span>
                                     @enderror
                                 </label>
-                                <label class="inline-flex w-full border-gray-200 py-3">
-                                    <span class="text-right px-2">Kecamatan</span>
-                                    <select  id="kecamatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <label class="grid grid-cols-4 w-full border-gray-200 py-3">
+                                    <span class="text-right px-2 col-span-1">Kecamatan</span>
+                                    <select  id="kecamatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm col-span-3">
                                         <option value="-">------</option>
                                     </select>
                                     <input type="hidden" name="kecamatan" id="target_kecamatan">
@@ -145,9 +145,9 @@
                                     @enderror
                                 </label>
                                 <label
-                                    class="inline-flex w-full border-gray-200 py-3">
-                                    <span class="text-right px-2 whitespace-nowrap xl:px-0 xl:text-none">Kode Pos</span>
-                                    <x-jet-input name="kode_pos" class="focus:outline-none px-3"
+                                    class="grid grid-cols-4 w-full border-gray-200">
+                                    <span class="text-right  whitespace-nowrap px-4 col-span-1">Kode Pos</span>
+                                    <x-jet-input name="kode_pos" class="focus:outline-none px-3 col-span-3"
                                         placeholder="90241" required />
                                     @error('kode_pos')
                                     <span
@@ -156,8 +156,8 @@
                                     </span>
                                     @enderror
                                 </label>
-                                <label class="flex  border-b border-gray-200 h-12 py-3 items-center">
-                                    <span class="text-right px-2">Alamat</span>
+                                <label class="grid grid-cols-4  border-b border-gray-200  items-center">
+                                    <span class="text-right px-2 col-span-1">Alamat</span>
                                     {{-- <div>
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.7001638374118!2d119.44694411412765!3d-5.1518720535065174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee2c5b009c7b9%3A0xdd68d36bc04fc8c0!2sUniversitas%20Handayani%20Makassar!5e0!3m2!1sid!2sid!4v1660662492131!5m2!1sid!2sid"
@@ -165,7 +165,7 @@
                                             referrerpolicy="no-referrer-when-downgrade">
                                         </iframe>
                                     </div> --}}
-                                    <input name="alamat" class="focus:outline-none px-3" value="{{old('alamat')}}"
+                                    <x-jet-input name="alamat" type="text" class="focus:outline-none px-3 col-span-3" value="{{old('alamat')}}"
                                         placeholder="Alamat Lengkap" required />
                                     @error('alamat')
                                     <span
