@@ -1,10 +1,7 @@
 <div class="bg-white py-6 sm:py-5">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
         <div class="flex justify-between items-end gap-4 mb-6">
-            <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">Produk</h2><a
-                href="{{ route('page.penjualan') }}"
-                class="inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 border text-gray-500 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 md:px-8 py-2 md:py-3">Show
-                more</a>
+            <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">Produk</h2>
         </div>
         <div class="grid col-span-2 md:grid-cols-7 gap-4 w-full relative box-border p-0 m-0">
             <div class="col-span-1">
