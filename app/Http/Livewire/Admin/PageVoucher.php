@@ -15,7 +15,7 @@ class PageVoucher extends Component
     public $row = 10;
     public $search = "";
     // field Tabel Voucher
-    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user, $barang_id;
+    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $jumlah_pembelian, $jenis_voucher = 0, $use_user, $barang_id;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -35,12 +35,8 @@ class PageVoucher extends Component
         // Melakukan Pengecekan Voucher Kadaluarsa
         $date_kadaluarsa = Carbon::now()->add(10, 'day')->format('Y-m-d');
         $date_now = Carbon::now()->format('Y-m-d');
-        $Voucher_kadaluarsa = Voucher::whereBetween('tgl_kadaluarsa', [$date_now, $date_kadaluarsa])
-            ->orderBy('id', 'desc')
-            ->paginate(7);
         // Mengambil Data dan Pencarian
-        $Voucher = Voucher::whereDate('tgl_kadaluarsa', '>', $date_now)
-            ->orderBy('id', 'desc')
+        $Voucher = Voucher::orderBy('id', 'desc')
             ->paginate($this->row);
         if ($this->search != null) {
             $Voucher = Voucher::whereDate('tgl_kadaluarsa', '>', $date_now)
@@ -54,7 +50,6 @@ class PageVoucher extends Component
             'category' => Category::all(),
             'barang' => Barang::all(),
             'DataVoucher' => $Voucher,
-            'Voucher_hampir_kadaluarsa' => $Voucher_kadaluarsa,
             'cek_jumlah_pengguna_Voucher' => $cek_jumlah_pengguna_Voucher,
             'cek_Voucher_terlaris' => $cek_Voucher_terlaris,
             'Voucher_max' => $this->get_max_Voucher(),
@@ -92,6 +87,7 @@ class PageVoucher extends Component
         $this->tambahItem = false;
         $this->hapusItem = false;
         $this->editItem = false;
+        $this->detailItem = false;
     }
     public function createModal()
     {
@@ -102,18 +98,17 @@ class PageVoucher extends Component
     {
         $this->validate([
             'kode_voucher' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_kadaluarsa' => 'required',
+            'diskon'=> 'required',
+            'jenis_voucher'=> 'required',
         ]);
         $Voucher = Voucher::create([
             'kode_voucher' => $this->kode_voucher,
             'deskripsi' => $this->deskripsi,
             'barang_id'=> $this->barang_id,
-            'max_user' => $this->max_user,
-            'use_user' => $this->use_user,
+            'jenis_voucher' => $this->jenis_voucher,
+            'use_user' => '0',
             'diskon' => $this->diskon,
-            'tgl_mulai' => $this->tgl_mulai,
-            'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
+            'jumlah_pembelian'=>  $this->jumlah_pembelian,
         ]);
         session()->flash('message', $Voucher ? 'Data Voucher Berhasil Di Tambah' : 'Data Voucher Gagal Di Tambah');
         $this->CloseAllModal();
@@ -127,11 +122,9 @@ class PageVoucher extends Component
         $this->kode_voucher = $Voucher->kode_voucher;
         $this->diskon = $Voucher->diskon;
         $this->deskripsi = $Voucher->deskripsi;
-        $this->max_user = $Voucher->max_user;
-        $this->use_user = $Voucher->use_user;
-        $this->Voucher = $Voucher->Voucher;
-        $this->tgl_mulai = $Voucher->tgl_mulai;
-        $this->tgl_kadaluarsa = $Voucher->tgl_kadaluarsa;
+        $this->jenis_voucher = $Voucher->jenis_voucher;
+        $this->barang_id = $Voucher->barang_id;
+        $this->jumlah_pembelian = $Voucher->jumlah_pembelian;
         $this->editItem = true;
     }
     public function edit($id)
@@ -150,13 +143,11 @@ class PageVoucher extends Component
         // ]);
         $Voucher = Voucher::where('id', $id)->update([
             'kode_voucher' => $this->kode_voucher,
-            'category_id' => $this->category_id == null ? null : $this->category_id,
-            'barang_id' => $this->barang_id == null ? null : $this->barang_id,
-            'max_user' => $this->max_user,
-            'use_user' => $this->use_user,
-            'Voucher' => $this->Voucher,
-            'tgl_mulai' => $this->tgl_mulai,
-            'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
+            'deskripsi' => $this->deskripsi,
+            'barang_id'=> $this->barang_id,
+            'jenis_voucher' => $this->jenis_voucher,
+            'diskon' => $this->diskon,
+            'jumlah_pembelian'=>  $this->jumlah_pembelian,
         ]);
 
         session()->flash('message', $Voucher ? "Voucher Berhasil Di Edit" : "Voucher Gagal Di Edit");
@@ -177,21 +168,23 @@ class PageVoucher extends Component
     // End Crud
 
     // Item Page Voucher'
-    public $Voucher_max_page = false;
+    public $detailItem = false;
     public $Voucher_laris_page = false;
     public $Voucher_kadaluarsa_page = false;
-    public function Voucher_max_page()
+    public function detailModal($id)
     {
 
-        $this->Voucher_max_page = true;
+        $Voucher = Voucher::find($id);
+        // dd($Voucher);
+        $this->itemID = $Voucher->id;
+        $this->kode_voucher = $Voucher->kode_voucher;
+        $this->diskon = $Voucher->diskon;
+        $this->deskripsi = $Voucher->deskripsi;
+        $this->jenis_voucher = $Voucher->jenis_voucher;
+        $this->use_user = $Voucher->use_user;
+        $this->barang_id = $Voucher->barang_id != null ? $Voucher->barang->nama_produk : null;
+        $this->jumlah_pembelian = $Voucher->jumlah_pembelian;
+        $this->detailItem = true;
     }
-    public function Voucher_laris_page()
-    {
-        $this->Voucher_max_page = true;
-    }
-    public function Voucher_kadaluarsa_page()
-    {
-        // dd("1");
-        return redirect()->route('Voucher-Kadaluarsa');
-    }
+
 }

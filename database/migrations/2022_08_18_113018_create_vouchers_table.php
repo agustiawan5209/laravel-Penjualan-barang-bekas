@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('kode_voucher');
             $table->bigInteger('diskon');
-            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
+            $table->unsignedBigInteger('barang_id')->nullable();
+            $table->integer('jumlah_pembelian')->default('0')->nullable();
             $table->string('deskripsi');
-            $table->integer('max_user')->nullable();
+            $table->enum('jenis_voucher', ['0','1','2','3'])->default('0')->comment('0 = Tidak Ada, 1 = User Baru, 2 = User Membeli Lebih Dari 3, 3 = Barang ');
             $table->integer('use_user')->nullable()->default('0');
-            $table->date('tgl_mulai');
-            $table->date('tgl_kadaluarsa');
+
             $table->timestamps();
         });
     }
