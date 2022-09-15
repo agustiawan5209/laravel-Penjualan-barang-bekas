@@ -15,7 +15,6 @@ class VoucherKlaim extends Component
     }
     public function render()
     {
-        // dd($this->item);
         $voucher = [];
         for ($i=0; $i < count($this->item); $i++) {
             $voucher[]= Voucher::where('barang_id', $this->item[$i])->first();

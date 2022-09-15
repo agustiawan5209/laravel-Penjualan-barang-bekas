@@ -9,5 +9,12 @@ class UserVoucher extends Model
 {
     use HasFactory;
     protected $table = 'user_vouchers';
-    protected $fillable = ['user_id', 'voucher_id'];
+    protected $fillable = ['user_id', 'voucher_id', 'status', 'tgl_kadaluarsa', 'waktu'];
+
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function voucher(){
+        return $this->hasOne(Voucher::class, 'id', 'voucher_id');
+    }
 }

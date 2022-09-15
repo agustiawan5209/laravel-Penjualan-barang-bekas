@@ -129,13 +129,6 @@ class PageVoucher extends Component
     }
     public function edit($id)
     {
-        $this->validate([
-            'kode_voucher' => 'required',
-            'Voucher' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_kadaluarsa' => 'required',
-            'max_user' => 'required',
-        ]);
         $barang = $this->barang_id == "--" ?  $this->barang_id : null;
         // dd([
         //     $this->barang_id,

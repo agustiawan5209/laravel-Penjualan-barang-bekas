@@ -56,7 +56,9 @@
                                             <tr>
                                                 <x-.forms.td>{{ $item->kode_voucher }}</x-.forms.td>
                                                 <x-.forms.td>
-                                                    @if ($item->jenis_voucher == 1)
+                                                    @if ($item->jenis_voucher == 0)
+                                                    Umum
+                                                    @elseif ($item->jenis_voucher == 1)
                                                         Pengguna Baru
                                                     @elseif ($item->jenis_voucher == 2)
                                                         Jumlah Pembelian
@@ -169,6 +171,7 @@
                                     <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="">--Masukkan Jenis Voucher--</option>
+                                        <option value="0">Umum</option>
                                         <option value="1">Pengguna Baru</option>
                                         <option value="2">Jumlah Pembelian</option>
                                         <option value="3">Pembelian Produk</option>
@@ -298,9 +301,10 @@
                                     <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="">--Masukkan Jenis Voucher--</option>
-                                        <option value="1">Pengguna Baru</option>
-                                        <option value="2">Jumlah Pembelian</option>
-                                        <option value="3">Pembelian Produk</option>
+                                        <option value="0" {{$jenis_voucher == 0 ? 'selected' : ''}}>Umum</option>
+                                        <option value="1" {{$jenis_voucher == 1 ? 'selected' : ''}}>Pengguna Baru</option>
+                                        <option value="2" {{$jenis_voucher == 2 ? 'selected' : ''}}>Jumlah Pembelian</option>
+                                        <option value="3" {{$jenis_voucher == 3 ? 'selected' : ''}}>Pembelian Produk</option>
                                     </select>
                                     @error('jenis_voucher')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
@@ -358,7 +362,7 @@
                             </div>
                             <div class="flex flex-wrap justify-center items-center mx-auto">
                                 <div class="w-full px-3 py-2">
-                                    <x-jet-secondary-button wire:click='create()'>Tambah</x-jet-secondary-button>
+                                    <x-jet-secondary-button wire:click='edit({{$itemID}})'>Simpan</x-jet-secondary-button>
                                 </div>
                             </div>
                         </div>
@@ -405,7 +409,10 @@
                             <div class="flex flex-col">
                                 <h6 class="mb-4 text-sm leading-normal dark:text-white">Kode : {{$kode_voucher}}</h6>
                                 <span class="mb-2 text-xs leading-tight dark:text-white/80">Jenis Vocuher: <span
-                                        class="font-semibold text-slate-700 dark:text-white sm:ml-2">  @if ($jenis_voucher == 1)
+                                        class="font-semibold text-slate-700 dark:text-white sm:ml-2">
+                                        @if ($jenis_voucher == 1)
+                                        Umum
+                                        @elseif ($jenis_voucher == 1)
                                         Pengguna Baru
                                     @elseif ($jenis_voucher == 2)
                                         Jumlah Pembelian
