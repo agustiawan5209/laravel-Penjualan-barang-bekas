@@ -1,5 +1,8 @@
 <x-guest-layout>
-
+    <x-jet-banner></x-jet-banner>
+   @if (Auth::check())
+     <livewire:banner-voucher />
+   @endif
     @if (request()->routeIs('home'))
         @if (session()->has('message'))
             <x-alert :message="session('message')" />

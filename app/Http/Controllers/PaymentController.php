@@ -131,7 +131,7 @@ class PaymentController extends Controller
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
             'detail_alamat' => $request->alamat,
-            'status' => $status,
+            // 'status' => $status,
         ]);
     }
 
@@ -165,6 +165,7 @@ class PaymentController extends Controller
             // end Vocuher
             $promo_persen = $cart->GetPromo($item_details[$i]['id_barang']);
             $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id_barang']);
+            // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
             $potongan =  $promo_persen == 0 || $promo_persen == "" ? $promo_nominal : $item_details[$i]['harga_barang'] * ( (int) $promo_persen / 100);
             Transaksi::create([
                 'ID_transaksi' =>  $transaksi_id,

@@ -29,6 +29,7 @@ class VoucherKlaim extends Component
         UserVoucher::create([
             'user_id'=> Auth::user()->id,
             'voucher_id'=>$voucher->barang_id,
+            'status'=> '3',
         ]);
         return redirect()->route('Kirim-Pembayaran')->with('message', 'Voucher Berhasil Digunakan');;
     }

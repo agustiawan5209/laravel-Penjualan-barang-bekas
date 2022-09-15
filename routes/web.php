@@ -123,10 +123,13 @@ Route::get('/Category/{Category}/{id}', function ($Category, $id, Request $reque
     // $BarangDiskon = Barang::whereHas('category', function (Builder $query) use ($Category) {
     //     $query->where('kategory', 'like', '%' . $Category . '%');
     // })->get();
+    $barang_terabru = Barang::orderBy('id','desc')->paginate(5);
     $BarangDiskon = Barang::where('categories', '=', $id)->get();
     return view('welcome', [
         'barang' => $BarangDiskon,
         'kategory' => Category::all(),
+        'barang_terbaru'=>  $barang_terabru,
+
     ]);
 })->name('Get-Kategory');
 
@@ -134,9 +137,11 @@ Route::get('/Category/{Category}/{id}', function ($Category, $id, Request $reque
 
 // Produk Detail Sebelum Cek out
 Route::get('/produk-list/{id}/{name}', function ($id, $name) {
+    $barang_terabru = Barang::orderBy('id','desc')->paginate(5);
     return view('page.produk-view', [
         'produk_id' => $id,
         'produk_name' => $name,
+        'barang_terbaru'=>  $barang_terabru,
     ]);
 })->name('Produk-list');
 
