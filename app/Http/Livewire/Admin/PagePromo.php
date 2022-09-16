@@ -7,15 +7,17 @@ use App\Models\Barang;
 use Livewire\Component;
 use App\Models\Category;
 use Carbon\Carbon;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class PagePromo extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $row = 10;
     public $search = "";
     // field Tabel promo
-    public $kode_promo, $category_id, $promo_nominal, $promo_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user;
+    public $kode_promo, $category_id, $promo_nominal, $promo_persen, $tgl_mulai, $tgl_kadaluarsa, $max_user, $use_user, $image;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -93,11 +95,18 @@ class PagePromo extends Component
     public function create()
     {
         $this->validate([
+            'image'=> ['required' ,'image|max:2040'],
             'kode_promo' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);
+        $nama = $this->image->getClientOriginalName();
+        $ext = $this->image->getClientOriginalExtension();
+        $namaImage = "Promo-".$nama;
+        $this->image->storeAs('upload', $namaImage);
+
         $promo = Promo::create([
+            'gambar'=> $namaImage,
             'kode_promo' => $this->kode_promo,
             'category_id' => $this->category_id,
             'max_user' => $this->max_user,

@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-dompdf": "^2.0",
+        "ckeditor/ckeditor": "4.*",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.10",
@@ -14,7 +15,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
         "midtrans/midtrans-php": "^2.5",
-        "ckeditor/ckeditor": "4.*"
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
