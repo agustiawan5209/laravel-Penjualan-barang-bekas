@@ -1,7 +1,5 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
-    @if (session()->has('alert'))
-        <x-alert :message="session('alert')" />
-    @endif
+    @include('sweetalert::alert')
     @if ($foto_produk == null && $nama_produk == null && $harga == null && $deskripsi == null && $categories == null)
         {{-- Detail Produk --}}
         Maaf Barang Belum Tersedia

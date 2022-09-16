@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\StatusOngkir;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Penjualan extends Component
 {
@@ -19,6 +20,12 @@ class Penjualan extends Component
         $itemDetail = false,
         $konfirmasiItem = false;
 
+    /**
+     * createOngkir
+     * Membuat Ongkir
+     * @param  mixed $id
+     * @return void
+     */
     public function createOngkir($id)
     {
         $payment = Payment::where('id', '=', $id)->get();
@@ -32,12 +39,20 @@ class Penjualan extends Component
             $this->kode_pos = $item->kode_pos;
             $this->kabupaten = $item->kabupaten;
             $this->detail_alamat = $item->detail_alamat;
-            if ($this->kabupaten == 'Kota Makassar' || $this->kabupaten == 'Kabupaten Gowa') {
+            if ($this->kabupaten == 'Kota Makassar') {
+                $this->harga = '12000';
+            }
+            if ( $this->kabupaten == 'Kabupaten Gowa') {
                 $this->harga = '12000';
             }
         }
         $this->ongkirItem = true;
     }
+    /**
+     * create
+     * Update Status Ongkir
+     * @return void
+     */
     public function create()
     {
         $this->validate([
@@ -73,7 +88,7 @@ class Penjualan extends Component
         $this->ongkirItem = false;
         $this->detailOngkir($ongkir->id);
         // $this->clearItem();
-        session()->flash('message', $ongkir ? 'Data Pengiriman Berhasil Di Lakukan' : 'Pengiriman Gagal Di Tambah');
+        Alert::info('message', $ongkir ? 'Data Pengiriman Berhasil Di Lakukan' : 'Pengiriman Gagal Di Tambah');
     }
     public function detailOngkir($transaksi_id)
     {
@@ -118,7 +133,7 @@ class Penjualan extends Component
         $payment = Payment::where('id', $id)->update([
             'payment_status' => '3',
         ]);
-        session()->flash('message', 'Berhasil Di Konfirmasi');
+        Alert::info('message', 'Berhasil Di Konfirmasi');
         $this->konfirmasiItem = false;
         $this->ItemID = '';
         $this->transaksi_id = '';

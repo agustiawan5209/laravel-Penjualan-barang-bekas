@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Styles -->
     @livewireStyles
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!-- JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <style>
         .flickity-viewport {
@@ -74,24 +75,24 @@
                         @endif
                         <li class=""><a href="{{ route('page.keranjang') }}"
                                 class="font-normal text-xs tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
-                                <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                {{-- <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
                                     viewBox="0 0 16 16">
                                     <path fill="#ffff"
                                         d="M14 13.1v-1.1h-9.4l0.6-1.1 9.2-0.9 1.6-6h-12.3l-0.7-3h-3v1h2.2l2.1 8.4-1.3 2.6v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5-0.7-1.5-1.5-1.5h7.5v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5c0-0.7-0.4-1.2-1-1.4zM4 5h10.7l-1.1 4-8.4 0.9-1.2-4.9z">
                                     </path>
-                                </svg>
+                                </svg> --}}
                                 <span>Keranjang</span></a>
                         </li>
                         <li class=""><a href="{{ route('promo-index') }}"
                                 class="font-normal text-xs tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
-                                <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                {{-- <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
                                     viewBox="0 0 16 16">
                                     <path fill="#ffff"
                                         d="M14 13.1v-1.1h-9.4l0.6-1.1 9.2-0.9 1.6-6h-12.3l-0.7-3h-3v1h2.2l2.1 8.4-1.3 2.6v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5-0.7-1.5-1.5-1.5h7.5v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5c0-0.7-0.4-1.2-1-1.4zM4 5h10.7l-1.1 4-8.4 0.9-1.2-4.9z">
                                     </path>
-                                </svg>
+                                </svg> --}}
                                 <span>Promo/Diskon</span>
                             </a>
                         </li>

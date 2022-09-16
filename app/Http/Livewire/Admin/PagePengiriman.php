@@ -29,9 +29,11 @@ class PagePengiriman extends Component
         $carbon = Carbon::now()->format('Y-m-d');
         $ongkir = ongkir::all();
         foreach ($ongkir as $item) {
+           if($item->status == 1){
             ongkir::where('tgl_pengiriman', '=', $carbon)->update([
                 'status' => '2',
             ]);
+           }
         }
     }
     public function render()
@@ -58,6 +60,12 @@ class PagePengiriman extends Component
         ]);
     }
 
+    /**
+     * detailOngkir
+     * Detail Ongkir
+     * @param  mixed $transaksi_id
+     * @return void
+     */
     public function detailOngkir($transaksi_id)
     {
         $ongkir = ongkir::where('id', '=', $transaksi_id)->get();
@@ -77,6 +85,12 @@ class PagePengiriman extends Component
         }
         $this->itemDetail = true;
     }
+    /**
+     * editModal
+     * Edit Ongkir
+     * @param  mixed $id
+     * @return void
+     */
     public function editModal($id)
     {
         $ongkir = ongkir::where('id', '=', $id)->get();
@@ -98,6 +112,12 @@ class PagePengiriman extends Component
 
     }
 
+    /**
+     * edit
+     * Konfirmasi Tanggal Pengiriman
+     * @param  mixed $id
+     * @return void
+     */
     public function  edit($id)
     {
         $this->validate([

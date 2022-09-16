@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use App\Services\Midtrans\CallbackService;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
@@ -66,9 +67,9 @@ class PaymentController extends Controller
             Cart::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
             $this->GantiStatusPromo();
+            Alert::success('Pemesanan berhasil', 'Mohon Tunggu Proses Konfirmasi');
             return redirect()
-                ->route('home')
-                ->with('message', 'Dalam Proses Konfirmasi');
+                ->route('home');
         } else {
             return redirect()->route('home');
         }

@@ -5,12 +5,13 @@ namespace App\Http\Livewire\Item;
 use App\Models\Cart;
 use App\Models\Barang;
 use App\Models\Diskon;
+use App\Models\ulasan;
 use Livewire\Component;
 use App\Models\PromoUser;
-use App\Models\ulasan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Pagecheckout extends Component
 {
@@ -62,7 +63,7 @@ class Pagecheckout extends Component
         // pengecekan jumlah Barang
         if (Auth::check()) {
             if ($this->jumlah < 1) {
-                session()->flash('message', 'Maaf Jumlah Barang Mohon Di Isi');
+               Alert::warning('message', 'Maaf Jumlah Barang Mohon Di Isi');
             } else {
                 // Cek Apakah Barang Ada Atau Tidak
                 $Cek_Cart = Cart::where('user_id', '=', Auth::user()->id)->where('barang_id', '=', $this->itemID)->get();
@@ -81,10 +82,10 @@ class Pagecheckout extends Component
 
                 // JIka barang adalah milik user yang ada
                 if ($user_cek->count() > 0) {
-                    session()->flash('alert', 'Maaf Gagal Respon');
+                   Alert::warning('alert', 'Maaf Gagal Respon');
                 } else {
                     if ($Cek_Cart->count() > 0) {
-                        session()->flash('message', $Cek_Cart ? 'Maaf Sudah Di Masukkan Ke Keranjang' : 'Barang Belum Di Masukkan Ke Keranjang');
+                       Alert::warning('message', $Cek_Cart ? 'Maaf Sudah Di Masukkan Ke Keranjang' : 'Barang Belum Di Masukkan Ke Keranjang');
                     } else {
                         $cart = Cart::create([
                             'user_id' => Auth::user()->id,
@@ -94,13 +95,13 @@ class Pagecheckout extends Component
                             // 'pemilik_id' => $this->pemilik_id,
                             'diskon' => $array_sum_diskon,
                         ]);
-                        session()->flash('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
+                       Alert::info('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
                         return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);
                     }
                 }
             }
         } else {
-            session()->flash('message', 'Maaf Silahkan Login');
+           Alert::error('message', 'Maaf Silahkan Login');
         }
     }
     public function Hitung($id)

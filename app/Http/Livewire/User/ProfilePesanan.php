@@ -8,6 +8,7 @@ use App\Models\StatusOngkir;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment as Pembayaran;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfilePesanan extends Component
 {
@@ -64,7 +65,7 @@ class ProfilePesanan extends Component
     }
     public function batalkanPemesanan($id){
 
-        session()->flash('message', 'Pembayaran Di Batalkan');
+       Alert::error('message', 'Pembayaran Di Batalkan');
     }
     public function konfirmasi($id){
         $payment = ongkir::where("id", $id)->first();
@@ -75,7 +76,7 @@ class ProfilePesanan extends Component
             'ongkir_id' => $payment->id,
             'ket' => "Pesanan Diterima User",
         ]);
-        session()->flash('message', 'Berhasil Di Konfirmasi');
+       Alert::success('message', 'Berhasil Di Konfirmasi');
     }
     public $statusItem = false;
     public $post;

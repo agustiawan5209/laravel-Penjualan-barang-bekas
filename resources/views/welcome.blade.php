@@ -3,10 +3,9 @@
    @if (Auth::check())
      <livewire:banner-voucher />
    @endif
+   @include('sweetalert::alert')
     @if (request()->routeIs('home'))
-        @if (session()->has('message'))
-            <x-alert :message="session('message')" />
-        @endif
+
         <livewire:page.slide />
         {{-- @include('page.hero') --}}
     @endif
