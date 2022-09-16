@@ -1,7 +1,5 @@
 <div class="bg-white" x-data="{active: 0,}">
-   @if (session()->has('message'))
-     <x-alert :message="session('message')"></x-alert>
-   @endif
+   @include('sweetalert::alert')
     <div
         class="relative flex flex-col flex-auto min-w-0 md:p-4 md:mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
         <div class="flex flex-wrap -mx-3">

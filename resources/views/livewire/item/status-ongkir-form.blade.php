@@ -1,4 +1,4 @@
-<div class="w-full px-5">
+<div class="w-full px-5 overflow-auto">
     <div class="flex flex-wrap items-center justify-between">
         <h1 class="text-xl sm:text-3xl font-bold text-gray-800 dark:text-gray-50">Proses Pengiriman</h1>
         <span>
@@ -10,7 +10,7 @@
             </svg>
         </span>
     </div>
-    <div class="border-l-2 mt-10">
+    <div class="border-l-2 mt-10 ">
         @foreach ((object) $status as $item)
             <div
                 class="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center pl-12 pr-2 sm:pl-0 sm:pr-0 px-3 py-2 text-white rounded mb-5 flex-col md:flex-row space-y-5 md:space-y-0">

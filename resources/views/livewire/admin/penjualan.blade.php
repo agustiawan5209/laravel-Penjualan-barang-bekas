@@ -1,5 +1,6 @@
 <div class="w-full px-6 py-6 mx-auto" x-data="{active: 0,}">
     <!-- content -->
+    @include('sweetalert::alert')
 
     <div
         class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
@@ -329,6 +330,10 @@
                              </x-forms.td>
                          </tr>
                          @endforeach
+                         @else
+                         <tr>
+                            <x-forms.td colspan='5' class="text-2xl font-bold">Maaf Penjualan Kosong</x-forms.td>
+                         </tr>
                        @endif
                     </tbody>
                 </x-forms.table>
@@ -490,7 +495,7 @@
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium text-gray-500"> Bukti Pembayaran </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <a href="{{ asset('bukti/'.$item->pdf_url) }}" target="_blank" class="px-0 text-blue-600 flex justify-center">
+                    <a href="{{ asset('bukti/'.$bukti_bayar) }}" target="_blank" class="px-0 text-blue-600 flex justify-center">
                         Detail Pembayaran
                     </a>
                 </dd>
