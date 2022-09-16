@@ -18,40 +18,7 @@ class Penjualan extends Component
     public $ongkirItem = false,
         $itemDetail = false,
         $konfirmasiItem = false;
-    public function render()
-    {
-        $transaksi = Payment::where('payment_status', '=', '3')
-            ->where('payment_type', 'BANK')
-            ->paginate($this->row);
-        if ($this->search != null) {
-            $transaksi = Payment::where('payment_status', '=', '3')
-                ->where('payment_type', 'BANK')
-                ->where('number', 'like', '%' . $this->search . '%')
-                ->paginate($this->row);
-        }
-        if ($this->min_date != null && $this->max_date != null) {
-            $transaksi = Payment::where('payment_status', '=', '3')
-                ->where('payment_type', 'BANK')
-                ->whereBetween('tgl_transaksi', [$this->min_date, $this->max_date])
-                ->paginate($this->row);
-        }
-        // COD
-        $COD = Payment::where('payment_type', 'COD')->paginate($this->row);
-        if ($this->search != null) {
-            $COD = Payment::where('payment_type', 'COD')
-                ->where('number', 'like', '%' . $this->search . '%')
-                ->paginate($this->row);
-        }
-        // Cek Status Ongkir
-        $belum_konfirmasi = Payment::where('payment_status', '=', '2')
-            ->orderBy('id', 'desc')
-            ->get();
-        return view('livewire.admin.penjualan', compact('transaksi', 'COD'), [
-            'transaksi_terbaru' => Payment::orderByDesc('id')->paginate(5),
-            'transaksi_tertunda' => Payment::where('payment_status', 'like', '%pending%')->paginate(5),
-            'belum_konfirmasi' => $belum_konfirmasi,
-        ]);
-    }
+
     public function createOngkir($id)
     {
         $payment = Payment::where('id', '=', $id)->get();
@@ -110,14 +77,14 @@ class Penjualan extends Component
     }
     public function detailOngkir($transaksi_id)
     {
-        $ongkir = ongkir::find($transaksi_id);
-        $this->kode_pos = $ongkir->kode_pos;
+        $ongkir = ongkir::where('id',$transaksi_id)->first();
         $this->kabupaten = $ongkir->kabupaten;
         $this->detail_alamat = $ongkir->detail_alamat;
         $this->transaksi_id = $ongkir->transaksi_id;
         $this->tgl_pengiriman = $ongkir->tgl_pengiriman;
         $this->harga = $ongkir->harga;
         $this->status = $ongkir->status;
+        $this->kode_pos = $ongkir->kode_pos;
         $payment = Payment::where('transaksi_id', '=', $ongkir->transaksi_id)->get();
         foreach ($payment as $item) {
             $this->item_details = $item->item_details;
@@ -157,5 +124,39 @@ class Penjualan extends Component
         $this->transaksi_id = '';
         $this->user_name = '';
         $this->item_details = '';
+    }
+    public function render()
+    {
+        $transaksi = Payment::where('payment_status', '=', '3')
+            ->where('payment_type', 'BANK')
+            ->paginate($this->row);
+        if ($this->search != null) {
+            $transaksi = Payment::where('payment_status', '=', '3')
+                ->where('payment_type', 'BANK')
+                ->where('number', 'like', '%' . $this->search . '%')
+                ->paginate($this->row);
+        }
+        if ($this->min_date != null && $this->max_date != null) {
+            $transaksi = Payment::where('payment_status', '=', '3')
+                ->where('payment_type', 'BANK')
+                ->whereBetween('tgl_transaksi', [$this->min_date, $this->max_date])
+                ->paginate($this->row);
+        }
+        // COD
+        $COD = Payment::where('payment_type', 'COD')->paginate($this->row);
+        if ($this->search != null) {
+            $COD = Payment::where('payment_type', 'COD')
+                ->where('number', 'like', '%' . $this->search . '%')
+                ->paginate($this->row);
+        }
+        // Cek Status Ongkir
+        $belum_konfirmasi = Payment::where('payment_status', '=', '2')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('livewire.admin.penjualan', compact('transaksi', 'COD'), [
+            'transaksi_terbaru' => Payment::orderByDesc('id')->paginate(5),
+            'transaksi_tertunda' => Payment::where('payment_status', 'like', '%pending%')->paginate(5),
+            'belum_konfirmasi' => $belum_konfirmasi,
+        ]);
     }
 }

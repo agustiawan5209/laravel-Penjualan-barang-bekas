@@ -182,7 +182,7 @@
                         @foreach ($diterima as $item)
                         <tr>
                             <x-forms.td>{{$item->transaksi_id}}</x-forms.td>
-                            <x-forms.td class="flex justify-center items-center">
+                            <x-forms.td class="flex justify-center items-center" wire:click='statusongkir({{$item->id}})'>
                                 @if ($item->status == 3)
                                 <span
                                     class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">

@@ -152,13 +152,13 @@ class PagePengiriman extends Component
             'status' => $this->status,
         ]);
         $msg = $this->ket;
-        if ($this->ket != null) {
+        if ($this->ket == null) {
             if ($this->status == 1) {
                 $msg = 'Belum Terkirim';
             } elseif ($this->status == 2) {
                 $msg = 'Dalam Pengiriman';
             } elseif ($this->status == 3) {
-                $msg = 'Pembayaran Di Konfirmasi';
+                $msg = 'Pesanan Diterima Oleh Pembeli';
             }
         }
         StatusOngkir::create([

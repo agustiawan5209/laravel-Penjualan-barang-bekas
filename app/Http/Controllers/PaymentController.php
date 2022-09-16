@@ -134,7 +134,7 @@ class PaymentController extends Controller
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
             'detail_alamat' => $request->alamat,
-            'status' => $status,
+            // 'status' => $status,
         ]);
     }
 
