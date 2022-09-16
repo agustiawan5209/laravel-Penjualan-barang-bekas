@@ -17,12 +17,12 @@ class Dashboard extends Component
         $total_penjualan_bulan_ini = 0;
         $carbon = Carbon::now()->parse();
         $arr = $carbon->toArray();
-        $transaksi = Transaksi::whereMonth('created_at', $arr['month'])->get();
+        $transaksi = Transaksi::whereMonth('created_at', $arr['month'])->where('status', '=', '0')->get();
         // dd($transaksi);
         // $this->notify();
         $potongan = Transaksi::whereMonth('created_at', '09')->where('status', '=','0')->sum('potongan');
         $total = Transaksi::whereMonth('created_at', '09')->where('status', '=','0')->sum('total');
-        $total_penjualan_bulan_ini = $potongan + $total;
+        $total_penjualan_bulan_ini =  $total - $potongan;
         return view('livewire.admin.dashboard', [
             'total_penjualan_bulan_ini'=> $total_penjualan_bulan_ini,
             'pesan' => PesanChat::latest()->first(),

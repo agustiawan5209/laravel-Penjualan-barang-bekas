@@ -16,8 +16,11 @@ class PagePengembalianAdmin extends Component
     public function render()
     {
         $pengembalian = Pengembalian::orderBy('id', 'desc')->get();
+        $pengembalian_user = Pengembalian::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        // dd($pengembalian_user);
         return view('livewire.admin.page-pengembalian-admin',[
             'pengembalian'=> $pengembalian,
+            'pengembalian_user'=> $pengembalian_user,
         ]);
     }
     public function StatusModal($id){

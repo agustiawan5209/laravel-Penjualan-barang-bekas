@@ -67,6 +67,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    Route::get('Pengembalian-Barang', PagePengembalianAdmin::class)->name('Admin.Pengembalian-barang');
+
     //Akses Admin
     Route::middleware(['middleware' =>  'role:Admin'])->group(function () {
         Route::get('/dashboard', function () {
@@ -96,7 +98,6 @@ Route::middleware([
         Route::get("Request/Barang-Admin", RequestBarangAdmin::class)->name('Request-Barang-Admin');
 
         // Tampilan Pengembalian Barang
-        Route::get('Pengembalian-Barang', PagePengembalianAdmin::class)->name('Admin.Pengembalian-barang');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');

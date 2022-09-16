@@ -9,7 +9,7 @@ class Pengembalian extends Model
 {
     use HasFactory;
     protected $table = 'pengembalians';
-    protected $fillable = ['transaksi_id','alasan','gambar','status', 'kondisi_lain', 'kondisi'];
+    protected $fillable = ['user_id','transaksi_id','alasan','gambar','status', 'kondisi_lain', 'kondisi','admin_ket'];
     protected $hidden = ['status'];
 
     public function transaksi(){
