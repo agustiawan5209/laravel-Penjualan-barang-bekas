@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
 use App\Models\Promo;
 use App\Models\Barang;
 use Livewire\Component;
 use App\Models\Category;
-use Carbon\Carbon;
-use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use RealRashid\SweetAlert\Facades\Alert;
+// use Alert;
 
 class PagePromo extends Component
 {
@@ -116,7 +118,7 @@ class PagePromo extends Component
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
-        session()->flash('message', $promo ? 'Data Promo Berhasil Di Tambah' : 'Data Promo Gagal Di Tambah');
+        Alert::info('Info', 'Berhasil');
         $this->CloseAllModal();
     }
     public function editModal($id)
@@ -157,7 +159,7 @@ class PagePromo extends Component
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
 
-        session()->flash('message', $promo ? "Promo Berhasil Di Edit" : "Promo Gagal Di Edit");
+        Alert::info('Info', 'Berhasil');
         $this->CloseAllModal();
     }
     public function hapusModal($id)
@@ -169,7 +171,7 @@ class PagePromo extends Component
     public function hapus($id)
     {
         $promo = Promo::find($id)->delete();
-        session()->flash('message', $promo ? "Promo Berhasil Di Hapus" : "Promo Gagal Di Hapus");
+        Alert::info('Info', 'Berhasil');
         $this->CloseAllModal();
     }
     // End Crud

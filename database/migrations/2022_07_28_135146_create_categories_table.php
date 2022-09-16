@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('kategory',50 );
             $table->timestamps();
         });
+        Schema::table('barangs', function (Blueprint $table) {
+            $table->foreignId('categories')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
+
+        });
     }
 
     /**

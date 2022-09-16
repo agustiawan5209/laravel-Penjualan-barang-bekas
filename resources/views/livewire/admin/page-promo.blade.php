@@ -1,4 +1,5 @@
 <div class="flex flex-wrap -mx-3">
+    @include('sweetalert::alert')
     <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
         <div class="flex flex-wrap -mx-3">
             <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none">

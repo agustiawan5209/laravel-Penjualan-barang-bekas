@@ -22,7 +22,7 @@
 
     <!-- Styles -->
     @livewireStyles
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     <script src="{{ asset('js/jquery-3.6.0.slim.min.js') }}"></script>
     <!-- plugin for charts  -->
     <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>

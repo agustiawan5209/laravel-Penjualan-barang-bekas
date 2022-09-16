@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('harga');
             $table->longText('deskripsi');
             $table->string('stock', 200)->nullable();
-            $table->string('categories');
             $table->timestamps();
         });
     }

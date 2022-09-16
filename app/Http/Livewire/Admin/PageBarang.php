@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Barang;
-use App\Models\Category;
 use App\Models\Diskon;
+use Livewire\Component;
+use App\Models\Category;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\WithPagination;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageBarang extends Component
 {
@@ -82,7 +83,7 @@ class PageBarang extends Component
             'stock'=> $this->stock,
         ]);
         if ($barang) {
-            session()->flash('message', 'Berhasil Di Tambahkan');
+            Alert::info('Info', 'Berhasil');
             $this->addItem = false;
             $this->alert = true;
         }
@@ -137,7 +138,7 @@ class PageBarang extends Component
             'stock'=> $this->stock,
             'categories' => $this->kategori_produk,
         ]);
-        session()->flash('message', $barang ? 'Berhasil Di Update' : 'Gagal Di Update');
+        Alert::info('Info', 'Berhasil');
         $this->editItem = false;
         $this->alert = true;
     }
@@ -151,7 +152,7 @@ class PageBarang extends Component
     {
         $barang = Barang::find($id);
         $hapus = $barang->delete();
-        session()->flash('message', $hapus ? 'Data Berhasil Di Hapus' : 'Data Barang Gagal Di Hapus');
+        Alert::info('Info', 'Berhasil');
         $this->hapusItem = false;
         $this->itemID = null;
         $this->alert = true;
@@ -170,13 +171,13 @@ class PageBarang extends Component
             'nama_kategory' => 'required',
         ]);
         $data = Category::create($valid);
-        session()->flash('message', $data ? 'Berhasil Di Tambah' : 'Gagal Di Tambah');
+        Alert::info('Info', 'Berhasil');
         $this->nama_kategory = '';
     }
     public function HapusKategori($id)
     {
         $data = Category::find($id)->delete();
-        session()->flash('message', $data ? 'Berhasil Di Hapus' : 'Gagal Di Hapus');
+        Alert::info('Info', 'Berhasil');
     }
 
     // Diskon
@@ -216,7 +217,7 @@ class PageBarang extends Component
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
         $this->diskonItem = false;
-        session()->flash('message', $diskon ? 'Diskon Produk ' . $this->nama_produk . ' Berhasil Ditambah' : 'Gagal Di Tambah');
+        Alert::info('Info', 'Berhasil');
 
     }
     public function Promo(){
