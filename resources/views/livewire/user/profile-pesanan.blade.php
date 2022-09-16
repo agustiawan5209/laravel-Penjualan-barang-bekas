@@ -84,7 +84,7 @@
                                 Status Pengiriman
                             </x-forms.td>
                             <x-forms.td>
-                                Harga Pengiriman
+                                Detail
                             </x-forms.td>
                             <x-forms.td>
                                 Tanggal Pengiriman
