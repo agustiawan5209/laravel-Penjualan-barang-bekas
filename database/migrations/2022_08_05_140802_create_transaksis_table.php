@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('barang_id');
             $table->bigInteger('potongan');
             $table->string('total');
+            $table->enum('status', ['0','1'])->default('0')->comment('0 = Diterima, 1 = Dikembalikan');
             $table->timestamps();
         });
     }

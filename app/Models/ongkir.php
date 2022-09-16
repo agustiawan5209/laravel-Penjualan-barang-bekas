@@ -48,4 +48,7 @@ class ongkir extends Model
     {
         return $this->hasOne(User::class , 'id', 'user_id');
     }
+    public function statusOngkir(){
+        return $this->hasMany(StatusOngkir::class, 'ongkir_id', 'id');
+    }
 }
