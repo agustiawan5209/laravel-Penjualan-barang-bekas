@@ -15,7 +15,6 @@ class PromoController extends Controller
         $this->middleware('auth');
         $this->cekKadaluarsaPromo();
     }
-
     public function CekPromoUser(Request $request)
     {
         $this->cekKadaluarsaPromo();

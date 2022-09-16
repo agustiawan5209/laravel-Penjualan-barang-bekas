@@ -211,7 +211,11 @@
                                 </x-jet-secondary-button>
                                 @endif
                             </x-forms.td>
-                            <x-forms.td>{{$item->harga}}</x-forms.td>
+                            <x-forms.td class="text-center">
+                                <a href="{{route('User.Detail-Pesanan', ['item'=> $item->transaksi_id])}}">
+                                    <x-jet-secondary-button class="px-1 py-2 bg-green-500 hover:bg-green-600 ">Detail Pesanan</x-jet-secondary-button>
+                                </a>
+                            </x-forms.td>
                             <x-forms.td>{{$item->tgl_pengiriman}}</x-forms.td>
                             <x-forms.td class=" flex justify-center items-center">
                                 {{-- <a href="#" wire:click='detailOngkir({{$item->id}})'
@@ -243,9 +247,7 @@
                                         </path>
                                     </svg>
                                 </a> --}}
-                                <x-jet-danger-button wire:click='batalkanPemesanan({{$item->id}})'>
-                                    Kembalikan
-                                </x-jet-danger-button>
+                                Pesanan Telah Diterima
                             </x-forms.td>
                         </tr>
                         @endforeach

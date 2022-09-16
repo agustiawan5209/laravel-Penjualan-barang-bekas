@@ -12,8 +12,8 @@
                             <div>
                                 <p
                                     class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
-                                    Penjualan hari Ini</p>
-                                <h5 class="mb-2 font-bold dark:text-white">$53,000</h5>
+                                    Penjualan Bulan Ini</p>
+                                <h5 class="mb-2 font-bold dark:text-white">Rp. {{number_format($total_penjualan_bulan_ini,0,2)}}</h5>
                                 <p class="mb-0 dark:text-white dark:opacity-60">
                                     <span class="font-bold leading-normal text-size-sm text-emerald-500">+55%</span>
                                     since yesterday

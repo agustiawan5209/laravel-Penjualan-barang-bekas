@@ -8,6 +8,6 @@ class PagePromoHome extends Component
 {
     public function render()
     {
-        return view('livewire.page.page-promo-home');
+        return view('livewire.page.page-promo-home')->layout('layouts.guest');
     }
 }

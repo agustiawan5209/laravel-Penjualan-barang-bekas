@@ -26,6 +26,8 @@ use App\Http\Livewire\Admin\RequestBarangAdmin;
 use App\Http\Livewire\Admin\SlideController;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\MetodePembayaran;
+use App\Http\Livewire\Page\PagePromoHome;
+use App\Http\Livewire\User\DetailPesanan;
 use App\Http\Livewire\User\JualTitip;
 use App\Http\Livewire\User\ProfilePesanan;
 use App\Http\Livewire\User\RequestBarang;
@@ -99,6 +101,7 @@ Route::middleware([
         Route::get('Request/Barang', RequestBarang::class)->name('User.Request');
         // Detail Pesanan
         Route::get('Pesanan', ProfilePesanan::class)->name('User.pesanan');
+        Route::get('Detail-Pesanan/{item}', DetailPesanan::class)->name('User.Detail-Pesanan');
 
         // Akses User
 
@@ -115,6 +118,8 @@ Route::middleware([
         })->name('page.penjualan');
     });
 });
+
+Route::get('Promo', PagePromoHome::class)->name('promo-index');
 Route::post('Kode/Promo', [PromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
 // Route List kategori
 Route::get('/Category/{Category}/{id}', function ($Category, $id, Request $request) {

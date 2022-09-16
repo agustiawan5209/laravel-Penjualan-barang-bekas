@@ -57,23 +57,23 @@
                                     class="w-full rounded-md placeholder:text-gray-600 font-sans pl-8">
                             </div>
                         </li>
-                       @if (Route::has('login'))
-                           @auth
-                           <li class="">
-                            <a href="{{ route('User.pesanan') }}"
-                                class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                                </svg>
-                                <span>Pesanan Barang</span>
-                            </a>
-                        </li>
-                           @endauth
-                       @endif
+                        @if (Route::has('login'))
+                            @auth
+                                <li class="">
+                                    <a href="{{ route('User.pesanan') }}"
+                                        class="font-normal text-xs tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                                        </svg>
+                                        <span>Pesanan Barang</span>
+                                    </a>
+                                </li>
+                            @endauth
+                        @endif
                         <li class=""><a href="{{ route('page.keranjang') }}"
-                                class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
+                                class="font-normal text-xs tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
                                 <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
                                     viewBox="0 0 16 16">
@@ -81,7 +81,20 @@
                                         d="M14 13.1v-1.1h-9.4l0.6-1.1 9.2-0.9 1.6-6h-12.3l-0.7-3h-3v1h2.2l2.1 8.4-1.3 2.6v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5-0.7-1.5-1.5-1.5h7.5v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5c0-0.7-0.4-1.2-1-1.4zM4 5h10.7l-1.1 4-8.4 0.9-1.2-4.9z">
                                     </path>
                                 </svg>
-                                <span>Keranjang</span></a></li>
+                                <span>Keranjang</span></a>
+                        </li>
+                        <li class=""><a href="{{ route('promo-index') }}"
+                                class="font-normal text-xs tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 flex">
+                                <svg version="1.1" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
+                                    viewBox="0 0 16 16">
+                                    <path fill="#ffff"
+                                        d="M14 13.1v-1.1h-9.4l0.6-1.1 9.2-0.9 1.6-6h-12.3l-0.7-3h-3v1h2.2l2.1 8.4-1.3 2.6v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5-0.7-1.5-1.5-1.5h7.5v1.5c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5c0-0.7-0.4-1.2-1-1.4zM4 5h10.7l-1.1 4-8.4 0.9-1.2-4.9z">
+                                    </path>
+                                </svg>
+                                <span>Promo/Diskon</span>
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
@@ -180,8 +193,9 @@
                 <ul class="items-center block space-x-1 lg:hidden w-full">
                     <li class="">
                         <div class="items-center block lg:hidden w-full relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-2 top-2 text-gray-600"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 absolute left-2 top-2 text-gray-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
@@ -255,7 +269,7 @@
 
     @livewireScripts
     <!-- AlpineJS Library -->
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

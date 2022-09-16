@@ -225,29 +225,16 @@ class CartController extends Controller
      */
     public function getTotal($promo_persen, $promo_nominal, $diskon, $sub_total)
     {
-        if ($diskon != null && $promo_persen != null && $promo_nominal != null) {
-            $total_promo_persen = $sub_total * ($promo_persen / 100);
+        // dd([$promo_persen, $promo_nominal, $diskon, $sub_total]);
+        $total_diskon = 0;
+        $total_promo_persen = 0;
+       if ($diskon != null) {
             $total_diskon = $sub_total * ($diskon / 100);
-            $total_promo_nominal = $sub_total - $promo_nominal;
-            return $sub_total - $total_promo_persen - $total_diskon - $total_promo_nominal;
-        } else if ($diskon != null && $promo_persen != null) {
-            $total_promo_persen = $sub_total * ($promo_persen / 100);
-            $total_diskon = $sub_total * ($diskon / 100);
-            return $sub_total - $total_promo_persen - $total_diskon;
-        } else if ($diskon != null && $promo_nominal != null) {
-            $total_diskon = $sub_total * ($diskon / 100);
-            return $sub_total - $total_diskon - $promo_nominal;
-        } else if ($diskon != null) {
-            $total_diskon = $sub_total * ($diskon / 100);
-            return $sub_total  - $total_diskon;
-        } else if ($promo_persen != null) {
-            $total_promo_persen = $sub_total * ($promo_persen / 100);
-            return $sub_total - $total_promo_persen;
-        } else if ($promo_nominal != null) {
-            return $sub_total - $promo_nominal;
-        } else {
-            return $sub_total;
         }
+        if ($promo_persen != null) {
+            $total_promo_persen = $sub_total * ($promo_persen / 100);
+        }
+        return $sub_total - $total_diskon - $total_promo_persen - $promo_nominal;
     }
     public function delete($id)
     {
@@ -296,6 +283,7 @@ class CartController extends Controller
                     'id_barang' => $item->barang->id,
                     'nama_produk' => $item->barang->nama_produk,
                     'harga_barang' => $item->barang->harga,
+                    'jumlah'=> $item->jumlah_barang,
                 ];
             }
         }
@@ -305,10 +293,13 @@ class CartController extends Controller
         // Medapatkan Diskon
         $diskon_cart = Cart::whereNotNull('diskon')->where('user_id', '=', Auth::user()->id)->get();
         foreach ($diskon_cart as $item) {
-            $diskon = $item->diskon;
+            $diskon[] = $item->diskon;
         }
-        $sub_total = (int) $this->getTotal($potongan, $potongan_nominal, $diskon, $array_sum_total_price) - $this->voucherPot($array_sum_total_price);
+        // dd(array_sum($diskon));
+        $sub_total = (int) $this->getTotal($potongan, $potongan_nominal, array_sum($diskon), $array_sum_total_price) - $this->voucherPot($array_sum_total_price);
         // dd($sub_total);
+        // Total Diskon
+        $total_diskon =  $array_sum_total_price * (array_sum($diskon) / 100);
         $param = [
             'sub_total' => $sub_total,
             'item_details' => $item_details,
@@ -325,7 +316,7 @@ class CartController extends Controller
         return  view('page.midtrans.midtrans', [
             'keranjang' => $keranjang,
             'sub_total' => $sub_total,
-            'potongan' => abs($potongan + $this->voucherPot($array_sum_total_price)),
+            'potongan' => abs($potongan + $this->voucherPot($array_sum_total_price) + $total_diskon),
             'potongan_nominal' => $potongan_nominal,
             'total_price' => $array_sum_total_price,
             'voucher'=> $voucher,

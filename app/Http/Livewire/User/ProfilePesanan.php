@@ -63,13 +63,7 @@ class ProfilePesanan extends Component
         ]);
     }
     public function batalkanPemesanan($id){
-        $ongkir = Pembayaran::where('id', '=', $id)->get();
-        // dd($ongkir);
-        foreach($ongkir as $item){
-            // $payment = Pembayaran::where('transaksi_id', '=', $item->transaksi_id)->update([
-            //     'payment_status'=> '1',
-            // ]);
-        }
+
         session()->flash('message', 'Pembayaran Di Batalkan');
     }
     public function konfirmasi($id){
