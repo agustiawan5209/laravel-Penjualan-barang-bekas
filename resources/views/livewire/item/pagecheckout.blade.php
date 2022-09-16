@@ -5,9 +5,7 @@
         Maaf Barang Belum Tersedia
     @else
         <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
-            @if (session()->has('message'))
-                <x-alert :message="session('message')" />
-            @endif
+
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-4">
                     <div class="bg-gray-100 rounded-lg overflow-hidden relative"><img alt="No alt"

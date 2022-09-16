@@ -1,4 +1,5 @@
 <div>
+    @include('sweetalert::alert')
     @if (count($voucher) > 0)
     <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
         <div class="max-w-lg space-y-3 sm:mx-auto lg:max-w-xl">

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @include('sweetalert::alert')
     <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
             <div class="flex justify-center mx-auto">

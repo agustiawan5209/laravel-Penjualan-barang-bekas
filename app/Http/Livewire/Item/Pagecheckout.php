@@ -95,7 +95,7 @@ class Pagecheckout extends Component
                             // 'pemilik_id' => $this->pemilik_id,
                             'diskon' => $array_sum_diskon,
                         ]);
-                       Alert::info('message', $cart ? 'Berhasil Di Masukkan Ke Keranjang' : 'Gagal Di Masukkan Ke Keranjang');
+                       Alert::info('info', 'Berhasil Di Masukkan Ke Keranjang');
                         return redirect()->route('page.keranjang.create', ['Barang' => $this->itemID, 'id' => Str::random(10)]);
                     }
                 }

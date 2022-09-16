@@ -11,6 +11,7 @@ use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -249,7 +250,8 @@ class CartController extends Controller
                 'stock' => intval($hasil),
             ]);
         $keranjang->delete();
-        return redirect()->back()->with('message', 'Berhasil Di Hapus');
+        Alert::warning('Info', 'Berhasil Di Hapus');
+        return redirect()->back();
     }
 
     /**

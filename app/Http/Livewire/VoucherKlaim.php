@@ -6,6 +6,7 @@ use App\Models\UserVoucher;
 use App\Models\Voucher;
 use Auth;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VoucherKlaim extends Component
 {
@@ -29,8 +30,10 @@ class VoucherKlaim extends Component
         UserVoucher::create([
             'user_id'=> Auth::user()->id,
             'voucher_id'=>$voucher->barang_id,
-            'status'=> '3',
+            'status'=> '3
+            ',
         ]);
-        return redirect()->route('Kirim-Pembayaran')->with('message', 'Voucher Berhasil Digunakan');;
+        Alert::info('Info',"Selamat Menikmati Diskonnya");
+        return redirect()->route('Kirim-Pembayaran');
     }
 }
