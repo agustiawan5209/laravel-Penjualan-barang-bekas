@@ -139,6 +139,21 @@
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Request Barang User</span>
                     </a>
                 </li>
+                <li class="mt-0.5 w-full">
+                    <a class=" {{ request()->routeIs('Admin.Pengembalian-barang') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                        href="{{ route('Admin.Pengembalian-barang') }}">
+                        <div
+                            class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            <svg class="w-full h-full text-blue-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengembalian barang</span>
+                    </a>
+                </li>
                 <li class="w-full mt-4">
                     <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-size-xs opacity-60">
                         Account pages</h6>
