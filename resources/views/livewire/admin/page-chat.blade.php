@@ -35,11 +35,6 @@
                             <div class="flex-1 px-2">
                                 <div class="truncate w-32"><span class="text-gray-800 font-bold">{{$item->user->name}}</span>
                                 </div>
-                                <div><small class="text-gray-600">
-                                        @foreach ($item->pesan as $item)
-                                        {{$item->body}}
-                                        @endforeach
-                                    </small></div>
                             </div>
                             {{-- <div class="flex-2 text-right">
                                 <div><small class="text-gray-500">15 April</small></div>

@@ -14,10 +14,11 @@
         class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
 
     <div class="items-center block w-auto max-h-screen  grow basis-full">
+
         @can('Manage-Admin')
             <ul class="flex flex-col pl-0 mb-0">
                 <li class="mt-0.5 w-full">
-                    <a class="{{ request()->routeIs('dashboard') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class="{{ request()->routeIs('dashboard') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('dashboard') }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -26,21 +27,75 @@
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
                     </a>
                 </li>
-
-                {{-- <li class="mt-0.5 w-full">
-            <a class=" {{ request()->routeIs('Admin.Penitipan') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
-                href="{{ route('Admin.Penitipan') }}">
-                <div
-                    class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                    <i
-                        class="relative top-0 leading-normal text-orange-500 ni ni-calendar-grid-58 text-size-sm"></i>
-                </div>
-                <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Penjualan Penitipan</span>
-            </a>
-        </li> --}}
-
+                <li class="mt-0.5 w-full"x-data="{Master: false}" >
+                    <a class="{{ request()->routeIs('Admin.Barang') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }} relative"
+                        href="#" x-on:click="Master = ! Master">
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="relative top-0 leading-normal text-blue-500 ni ni-tv-2 text-size-sm"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Master Data</span>
+                    </a>
+                    <ul class=" list-none hover:list-disc bg-blue-500 text-white" x-show="Master" x-transition>
+                        <li class="mt-0.5 w-full">
+                            <a class=" {{ request()->routeIs('Admin.Barang') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white underline transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                                href="{{ route('Admin.Barang') }}">
+                                <div
+                                    class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                    <i class="relative top-0 leading-normal text-white text-size-sm ni ni-app"></i>
+                                </div>
+                                <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengelolaan data
+                                    Barang</span>
+                            </a>
+                        </li>
+                        <li class="mt-0.5 w-full">
+                            <a class=" {{ request()->routeIs('Admin.Promo') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white underline transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                                href="{{ route('Admin.Promo') }}">
+                                <div
+                                    class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                    <svg class=" w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path>
+                                </svg>
+                                </div>
+                                <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Promo</span>
+                            </a>
+                        </li>
+                        <li class="mt-0.5 w-full">
+                            <a class=" {{ request()->routeIs('Admin.Voucher') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white underline transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                                href="{{ route('Admin.Voucher') }}">
+                                <div
+                                    class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                    <svg class=" w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Voucher</span>
+                            </a>
+                        </li>
+                        <li class="mt-0.5 w-full">
+                            <a class=" {{ request()->routeIs('chat') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white underline transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                                href="{{ route('chat') }}">
+                                <div
+                                    class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                    </svg>
+                                </div>
+                                <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pesan</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Penjualan') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('Admin.Penjualan') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white underline transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('Admin.Penjualan') }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
@@ -50,49 +105,10 @@
                     </a>
                 </li>
 
+
+
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Barang') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
-                        href="{{ route('Admin.Barang') }}">
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 leading-normal text-cyan-500 text-size-sm ni ni-app"></i>
-                        </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengelolaan data
-                            Barang</span>
-                    </a>
-                </li>
-                <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Promo') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
-                        href="{{ route('Admin.Promo') }}">
-                        <div
-                            class="mr-2 flex h-8 w-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <svg class="w5 h5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                </path>
-                            </svg>
-                        </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Promo</span>
-                    </a>
-                </li>
-                <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Voucher') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
-                        href="{{ route('Admin.Voucher') }}">
-                        <div
-                            class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <svg class=" w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                </path>
-                            </svg>
-                        </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Voucher</span>
-                    </a>
-                </li>
-                <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Pengiriman-Barang') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('Admin.Pengiriman-Barang') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('Admin.Pengiriman-Barang') }}">
                         <div
                             class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -107,22 +123,9 @@
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pengiriman</span>
                     </a>
                 </li>
+
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('chat') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
-                        href="{{ route('chat') }}">
-                        <div
-                            class="mr-2 flex h-8  items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                            </svg>
-                        </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Pesan</span>
-                    </a>
-                </li>
-                <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Request-Barang-Admin') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('Request-Barang-Admin') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('Request-Barang-Admin') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -143,7 +146,7 @@
 
                 <li class="mt-0.5 w-full">
                     <form
-                        class=" py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm  my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                        class=" py-2.7 bg-blue-500/13  text-size-sm  my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
                         action="{{ route('logout') }}" method="POST">
                         @csrf
                         <div
@@ -154,7 +157,7 @@
                     </form>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Metode_pembayaran') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('Metode_pembayaran') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('Metode_pembayaran') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -169,7 +172,7 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('Admin.Slide') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('Admin.Slide') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('Admin.Slide') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -189,7 +192,7 @@
         @can('Manage-Customer')
             <ul class="flex flex-col pl-0 mb-0">
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('home') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('home') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('home') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -204,7 +207,7 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('User.pesanan') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('User.pesanan') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('User.pesanan') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -219,7 +222,7 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('User.Request') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('User.Request') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('User.Request') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -241,7 +244,7 @@
 
                 <li class="mt-0.5 w-full">
                     <form
-                        class=" py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm  my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                        class=" py-2.7 bg-blue-500/13  text-size-sm  my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
                         action="{{ route('logout') }}" method="POST">
                         @csrf
                         <div
@@ -252,7 +255,7 @@
                     </form>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a class=" {{ request()->routeIs('profile.show') ? 'py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : 'dark:text-white dark:opacity-80 py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
+                    <a class=" {{ request()->routeIs('profile.show') ? 'py-2.7 bg-blue-500/13  text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors' : ' py-2.7 text-size-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors' }}"
                         href="{{ route('profile.show') }}">
                         <div
                             class="mr-2 flex h-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">

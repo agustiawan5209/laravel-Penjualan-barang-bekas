@@ -112,7 +112,7 @@
                             @endforeach
                         </tbody>
                     </x-forms.table>
-
+                    {{$barang->links('pagination::tailwind')}}
                 </div>
             </div>
         </div>

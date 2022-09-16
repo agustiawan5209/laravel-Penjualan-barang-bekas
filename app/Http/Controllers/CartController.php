@@ -79,7 +79,7 @@ class CartController extends Controller
     {
         $arr = [];
         $barang = Barang::find($id_barang);
-        $user_promo = PromoUser::where('user_id', Auth::user()->id)->get();
+        $user_promo = PromoUser::where('user_id', Auth::user()->id)->where('status', '=','1')->get();
         foreach ($user_promo as $item) {
             $promo = Promo::where('id', $item->promo_id)->get();
             foreach ($promo as $data) {

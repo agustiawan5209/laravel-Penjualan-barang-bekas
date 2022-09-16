@@ -460,27 +460,37 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
-    <x-jet-confirmation-modal wire:model='statusItem'>
+    <x-jet-dialog-modal wire:model='statusItem'>
         <x-slot name="title">
             Konfirmasi Status?
         </x-slot>
-        <x-slot name="content" class="w-full flex justify-center items-center">
-            <div class="w-full h-max px-4 py-2 flex">
-                <select wire:model='status'
-                    class="">
-                    <option value="1">Belum Dikirim</option>
-                    <option value="2">Dikirim</option>
-                    <option value="3">Pesanan Diterima</option>
-                </select>
-            </div>
+        <x-slot name="content" class="w-full">
+            @include('livewire.item.status-ongkir-form' , ['status'=> $post])
+            @if ($status != 4)
+                <div class="w-full h-max px-4 py-2 ">
+                    <x-jet-label for='ket'>Ganti Status Pengiriman</x-jet-label>
+                    <select wire:model='status'
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                        <option value="1">Belum Dikirim</option>
+                        <option value="2">Dikirim</option>
+                        <option value="3">Pesanan Diterima</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <x-jet-label for='ket'>Keterangan</x-jet-label>
+                    <x-jet-input wire:model="ket"/>
+                </div>
+            @endif
         </x-slot>
         <x-slot name="footer">
-            <x-jet-button wire:click='status({{$ItemID}})'>
-                Simpan
-            </x-jet-button>
+            @if ($status !=4)
+                <x-jet-button wire:click='status({{$ItemID}})'>
+                    Simpan
+                </x-jet-button>
+            @endif
             <x-jet-danger-button wire:click="$toggle('statusItem')" wire:loading.attr='disabled'>
-                Batalkan
+                Tutup
             </x-jet-danger-button>
         </x-slot>
-    </x-jet-confirmation-modal>
+    </x-jet-dialog-modal>
 </div>

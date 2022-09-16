@@ -60,8 +60,9 @@ class PaymentController extends Controller
             // dd($cek_file);
             $pdf = Pdf::loadView('PDF.PDFpembayaran', $param);
             $item_details = session('param');
-            $this->createTransaksi($item_details['item_details']);
-            $this->createPayment($request, $item_details['item_details'], $pdf->download()->getOriginalContent());
+            $transaksi_id = $this->transaksi_id();
+            $this->createTransaksi($item_details['item_details'], $transaksi_id);
+            $this->createPayment($request, $item_details['item_details'], $pdf->download()->getOriginalContent(), $transaksi_id);
             Cart::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
             $this->GantiStatusPromo();
@@ -73,7 +74,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function createPayment($request, $item_details, $pdf)
+    public function createPayment($request, $item_details, $pdf, $transaksi_id)
     {
         $payment_status = '';
         $payment_type = '';
@@ -97,9 +98,7 @@ class PaymentController extends Controller
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // Generate Transaksi ID
-        do {
-            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
-        } while (Payment::where('transaksi_id', '=', $transaksi_id)->first());
+
         $ID_Transkasi = $transaksi_id;
         // Simpan PDF
         $namPDF = substr(str_shuffle($permitted_chars), 0, 7) . '.pdf';
@@ -135,11 +134,11 @@ class PaymentController extends Controller
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
             'detail_alamat' => $request->alamat,
-            // 'status' => $status,
+            'status' => $status,
         ]);
     }
 
-    public function createTransaksi($item_details = [])
+    public function createTransaksi($item_details = [], $transaksi_id)
     {
         $count = count($item_details);
         // dd($item_details[1]);
@@ -150,10 +149,7 @@ class PaymentController extends Controller
         // Ambil Promo Nominal
         $promo_nominal = $cart->GetPromoNominal($item_details[0]['id_barang']);
         // Melakukan Generate Random Number Pada Field ID_transaksi
-        $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        do {
-            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 20);
-        } while (Transaksi::where('ID_transaksi', '=', $transaksi_id)->first());
+
         // Melakukan Perulanagan Untuk Membuat Field Dalam Tabel Transaksi
         for ($i = 0; $i < $count; $i++) {
             // dd($item_details[$i]);
@@ -190,5 +186,12 @@ class PaymentController extends Controller
             $code = random_int(1111, 9999);
         } while (Payment::where('number', '=', $code)->first());
         return $code;
+    }
+    public function transaksi_id(){
+        $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        do {
+            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 8);
+        } while (Payment::where('transaksi_id', '=', $transaksi_id)->first());
+        return $transaksi_id;
     }
 }
