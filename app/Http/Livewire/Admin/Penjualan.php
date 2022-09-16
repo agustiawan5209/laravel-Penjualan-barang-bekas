@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\ongkir;
 use App\Models\Payment;
+use App\Models\StatusOngkir;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class Penjualan extends Component
     public $search = '';
     public $row = 7;
     public $min_date, $max_date;
-    public $ItemID;
+    public $ItemID, $ket;
     public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $status, $transaksi_id, $user_name, $item_details;
     public $ongkirItem = false,
         $itemDetail = false,
@@ -64,6 +65,9 @@ class Penjualan extends Component
             $this->kode_pos = $item->kode_pos;
             $this->kabupaten = $item->kabupaten;
             $this->detail_alamat = $item->detail_alamat;
+            if ($this->kabupaten == 'Kota Makassar' || $this->kabupaten == 'Kabupaten Gowa') {
+                $this->harga = '12000';
+            }
         }
         $this->ongkirItem = true;
     }
@@ -74,14 +78,31 @@ class Penjualan extends Component
             'harga' => 'required',
             'status' => 'required',
         ]);
-        if ($this->status == null) {
+        if ($this->status == 0) {
             $this->status = '2';
         }
-        $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->update([
+        $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->first();
+        $ongkir->update([
             'tgl_pengiriman' => $this->tgl_pengiriman,
             'harga' => $this->harga,
             'status' => $this->status,
         ]);
+        $msg = $this->ket;
+        if ($this->ket != null) {
+            if ($this->status == 1) {
+                $msg = 'Belum Terkirim';
+            } elseif ($this->status == 2) {
+                $msg = 'Dalam Pengiriman';
+            } elseif ($this->status == 3) {
+                $msg = 'Pembayaran Di Konfirmasi';
+            }
+        }
+
+        StatusOngkir::create([
+            'ongkir_id' => $ongkir->id,
+            'ket' => $msg,
+        ]);
+
         $this->ongkirItem = false;
         $this->detailOngkir($this->transaksi_id);
         // $this->clearItem();
@@ -114,6 +135,7 @@ class Penjualan extends Component
         $this->harga = '';
         $this->status = '';
     }
+    public $bukti_bayar;
     public function konfirmasi_pesanan($id)
     {
         $payment = Payment::find($id);
@@ -121,6 +143,7 @@ class Penjualan extends Component
         $this->transaksi_id = $payment->transaksi_id;
         $this->user_name = $payment->user->name;
         $this->item_details = $payment->item_details;
+        $this->bukti_bayar = $payment->pdf_url;
         $this->konfirmasiItem = true;
     }
     public function konfirmasi($id)

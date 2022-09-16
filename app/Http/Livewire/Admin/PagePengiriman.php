@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
 use App\Models\ongkir;
 use App\Models\Payment;
-use Carbon\Carbon;
 use Livewire\Component;
+use App\Models\StatusOngkir;
 
 class PagePengiriman extends Component
 {
@@ -17,6 +18,7 @@ class PagePengiriman extends Component
     public $ItemID;
     public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $status, $transaksi_id, $item_details;
     public $user;
+    public $ket, $post;
 
     public function mount()
     {
@@ -93,7 +95,7 @@ class PagePengiriman extends Component
                 $this->item_details = $item->item_details;
             }
         }
-        $this->ongkirItem = true;
+
     }
 
     public function  edit($id)
@@ -120,6 +122,7 @@ class PagePengiriman extends Component
             $this->ItemID = $item->id;
             $this->transaksi_id = $item->transaksi_id;
         }
+
         $this->hapusItem = true;
     }
     public function delete($id)
@@ -136,12 +139,31 @@ class PagePengiriman extends Component
             $this->ItemID = $ongkir->id;
             $this->status = $ongkir->status;
         // }
+        $this->post = StatusOngkir::where('ongkir_id', '=', $this->ItemID)->get();
+
+        // dd($this->post);
         $this->statusItem = true;
+
     }
     public function status($id)
     {
-        $ongkir = ongkir::where('id', '=', $id)->update([
+        $ongkir = ongkir::where('id', '=', $id)->first();
+        $ongkir->update([
             'status' => $this->status,
+        ]);
+        $msg = $this->ket;
+        if ($this->ket != null) {
+            if ($this->status == 1) {
+                $msg = 'Belum Terkirim';
+            } elseif ($this->status == 2) {
+                $msg = 'Dalam Pengiriman';
+            } elseif ($this->status == 3) {
+                $msg = 'Pembayaran Di Konfirmasi';
+            }
+        }
+        StatusOngkir::create([
+            'ongkir_id' => $ongkir->id,
+            'ket' => $msg,
         ]);
         session()->flash('message', $ongkir ? 'Berhasil Di Update' : 'Gagal Di Update');
         $this->statusItem = false;

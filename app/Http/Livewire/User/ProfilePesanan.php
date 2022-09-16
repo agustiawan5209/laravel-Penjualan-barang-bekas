@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\ongkir;
-use App\Models\Payment as Pembayaran;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\StatusOngkir;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Payment as Pembayaran;
 
 class ProfilePesanan extends Component
 {
@@ -15,7 +16,7 @@ class ProfilePesanan extends Component
     public $row = 7;
     public $min_date , $max_date;
     public $ItemID;
-    public $tgl_pengiriman, $harga, $kode_pos,$kabupaten,$detail_alamat,$status,$transaksi_id, $user_name,$item_details;
+    public $tgl_pengiriman, $harga, $kode_pos,$kabupaten,$detail_alamat,$status,$transaksi_id, $user_name,$item_details, $Ongkir_id;
     public $ongkirItem = false, $itemDetail = false, $konfirmasiItem = false;
     public function mount()
     {
@@ -63,7 +64,7 @@ class ProfilePesanan extends Component
     }
     public function batalkanPemesanan($id){
         $ongkir = Pembayaran::where('id', '=', $id)->get();
-        dd($ongkir);
+        // dd($ongkir);
         foreach($ongkir as $item){
             // $payment = Pembayaran::where('transaksi_id', '=', $item->transaksi_id)->update([
             //     'payment_status'=> '1',
@@ -72,9 +73,23 @@ class ProfilePesanan extends Component
         session()->flash('message', 'Pembayaran Di Batalkan');
     }
     public function konfirmasi($id){
-        $payment = ongkir::where("id", $id)->update([
+        $payment = ongkir::where("id", $id)->first();
+        $payment->update([
             'status'=> '4',
         ]);
+        StatusOngkir::create([
+            'ongkir_id' => $payment->id,
+            'ket' => "Pesanan Diterima User",
+        ]);
         session()->flash('message', 'Berhasil Di Konfirmasi');
+    }
+    public $statusItem = false;
+    public $post;
+    public function statusongkir($id){
+        $payment = Pembayaran::find($id);
+        // dd($payment);
+        $ongkir = ongkir::where('transaksi_id','=', $payment->transaksi_id)->first();
+        $this->post =   StatusOngkir::where('ongkir_id', '=', $ongkir->id)->get();
+        $this->statusItem = true;
     }
 }

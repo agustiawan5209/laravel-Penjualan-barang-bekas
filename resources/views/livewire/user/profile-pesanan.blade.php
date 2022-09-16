@@ -72,10 +72,10 @@
                                 Detail Pesanan
                             </x-forms.td>
                             <x-forms.td>
-                                Total Harga
+                                Total
                             </x-forms.td>
                             <x-forms.td>
-                                Detail
+                                Aksi
                             </x-forms.td>
                         </tr>
                         <tr class=" capitalize bg-gray-100 rounded-t-md" x-show=" active == 3 || active == 4">
@@ -113,12 +113,13 @@
                                 {{ $item->item_details }}
                             </x-forms.td>
                             <x-forms.td>
-                                {{ $item->total_price }}
+                                Rp. {{number_format( $item->total_price,0,2) }}
                             </x-forms.td>
                             <x-forms.td class="flex justify-around items-center">
                                 <a href="{{ asset('bukti/'. $item->pdf_url) }}" target="_blank">
                                     <x-jet-button>Detail</x-jet-button>
                                 </a>
+                                <x-jet-button wire:click='statusongkir({{$item->id}})'>Status</x-jet-button>
 
                             </x-forms.td>
                         </tr>
@@ -161,10 +162,16 @@
                             </x-forms.td>
                             <x-forms.td>{{$item->harga}}</x-forms.td>
                             <x-forms.td>{{$item->tgl_pengiriman}}</x-forms.td>
-                            <x-forms.td class=" flex justify-center items-center">
+                            {{-- <x-forms.td class=" flex justify-center items-center">
                                 <x-jet-danger-button>
                                     Batalkan
                                 </x-jet-danger-button>
+                            </x-forms.td> --}}
+                            <x-forms.td class="flex justify-around items-center">
+                                <a href="{{ asset('bukti/'. $item->pdf_url) }}" target="_blank">
+                                    <x-jet-button>Detail</x-jet-button>
+                                </a>
+
                             </x-forms.td>
                         </tr>
                         @endforeach
@@ -261,7 +268,7 @@
                                 {{ $item->item_details }}
                             </x-forms.td>
                             <x-forms.td>
-                                {{ $item->total_price }}
+                                {{"Rp. ". number_format( $item->total_price,0,2) }}
                             </x-forms.td>
                             <x-forms.td class="flex justify-around items-center">
                                 <a href="{{ asset('bukti/'. $item->pdf_url) }}" target="_blank">
@@ -371,5 +378,14 @@
             </x-jet-danger-button>
         </x-slot>
 
+    </x-jet-dialog-modal>
+    <x-jet-dialog-modal wire:model="statusItem">
+        <x-slot name="title"></x-slot>
+        <x-slot name="content">
+           @include('livewire.item.status-ongkir-form' , ['status'=> $post])
+        </x-slot>
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="$toggle('statusItem')" wire:loading.attr='disabled'>Tutup</x-jet-danger-button>
+        </x-slot>
     </x-jet-dialog-modal>
 </div>
