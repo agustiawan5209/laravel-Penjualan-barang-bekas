@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
+            $table->string('thumbnail', 100)->nullable()->comment('Thumbnail Untuk Pemasangan Iklan');
             $table->string('kode_promo');
             $table->string('category_id',10)->nullable();
             $table->integer('max_user')->nullable();

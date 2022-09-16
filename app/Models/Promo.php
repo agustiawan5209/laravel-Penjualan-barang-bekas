@@ -46,7 +46,7 @@ class Promo extends Model
 {
 
     protected $table = 'promos';
-    protected $fillable = ['kode_promo', 'category_id', 'max_user', 'use_user',  'promo_persen','deskripsi', 'promo_nominal', 'tgl_mulai', 'tgl_kadaluarsa'];
+    protected $fillable = ['thumbnail','kode_promo', 'category_id', 'max_user', 'use_user',  'promo_persen','deskripsi', 'promo_nominal', 'tgl_mulai', 'tgl_kadaluarsa'];
     protected $dates = ['deleted_at'];
     use HasFactory;
     use SoftDeletes;
