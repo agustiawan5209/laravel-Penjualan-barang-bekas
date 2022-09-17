@@ -7,6 +7,7 @@ use App\Models\SlidePage;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SlideController extends Component
 {
@@ -46,7 +47,7 @@ class SlideController extends Component
             'thumbnail' => $randomName,
         ]);
         $this->clear();
-        session()->flash('message', $slideModel ? 'Slide Berhasil Di Tambah' : 'Slide Gagal Di Tambah');
+        Alert::info('message', $slideModel ? 'Slide Berhasil Di Tambah' : 'Slide Gagal Di Tambah');
     }
 
     public function editModal($id)
@@ -79,12 +80,13 @@ class SlideController extends Component
             'thumbnail' => $randomize,
         ]);
         $this->clear();
-        session()->flash('message', $slideModel ? 'Slide Berhasil Di Edit' : 'Slide Gagal Di Edit');
+        Alert::info('message', $slideModel ? 'Slide Berhasil Di Edit' : 'Slide Gagal Di Edit');
     }
 
     public function hapus($id){
-        $this->clear();
+        // dd('1');
         $slideModel = SlidePage::find($id)->delete();
-        session()->flash('message', $slideModel ? 'Slide Berhasil Di Hapus' : 'Slide Gagal Di Hapus');
+        Alert::info('message', $slideModel ? 'Slide Berhasil Di Hapus' : 'Slide Gagal Di Hapus');
+        $this->clear();
     }
 }

@@ -22,8 +22,7 @@
 
     <!-- Styles -->
     @livewireStyles
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    <script src="{{ asset('js/jquery-3.6.0.slim.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <!-- plugin for charts  -->
     <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
     <!-- plugin for scrollbar  -->
@@ -31,6 +30,7 @@
     <!-- main script file  -->
     <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
 
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!-- JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -94,14 +94,20 @@ plugins: 'a11ychecker advcode casechange export formatpainter image editimage li
             {{ $slot }}
 
         </div>
+
         <!-- end cards -->
     </main>
 
     @stack('modals')
 
     @livewireScripts
-
-    <script src="main.js"></script>
+    <footer class="py-5 pb-0 bg-blue-500 relative mt-[100px] md:mt-[200px]">
+        <div class="flex justify-end">
+            <p class="pb-5 pt-5 text-xs text-white border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
+                chaibuilder.com</p>
+        </div>
+    </footer>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 // use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Notification;
 
 class UserController extends Controller
 {
@@ -42,8 +46,12 @@ class UserController extends Controller
         // dd($request);
         if (Auth::user()->role_id == 'SuperAdmin') {
             return redirect()->route('dashboard');
-            abort_if(Auth::user()->role_id == "Customer", 404);
+            abort_if(Auth::user()->role_id == 'Customer', 404);
         }
-        return redirect()->route('home')->banner('Selamat Datang '. Auth::user()->name  .'.');
+        return redirect()
+            ->route('home')
+            ->banner('Selamat Datang ' . Auth::user()->name . '.');
     }
+
+
 }

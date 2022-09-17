@@ -1,6 +1,62 @@
 <main>
     <!-- card1 -->
+    <section class=" min-w-full flex">
+        @foreach ($user->unreadNotifications as $Item => $notification )
+            @if ($notification->data['type'] == 'User Regis')
+                <div
+                    class="mx-2  w-1/2  my-3 flex flex-row items-center justify-between bg-gray-50 shadow-lg p-3 text-sm leading-none font-medium rounded-xl whitespace-no-wrap">
+                    <div class="inline-flex items-center text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        {{ $notification->data['body'] }}
+                    </div>
+                    <div class="text-blue-700 cursor-pointer hover:text-blue-800">
+                        <a wire:click="notify({{$user->id}}, '1')"
+                            class="flex-shrink-0 inline-flex item-center justify-center border-l-2 border-t-2 border-blue-700 p-1 leading-none rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+        @foreach ($payment->unreadNotifications as $Item => $notification )
+            @if ($notification->data['type'] == 'payment')
+            <div
+            class="mx-2  w-sm my-3 flex flex-row items-center justify-between bg-gray-50 shadow-lg p-3 text-sm leading-none font-medium rounded-xl whitespace-no-wrap">
+            <div class="inline-flex items-center text-blue-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd" />
+                </svg>
+                {{ $notification->data['body'] }}
+            </div>
+            <div class="text-blue-700 cursor-pointer hover:text-blue-800">
+                <a wire:click="notify({{$payment->id}}, '2')"
+                    class="flex-shrink-0 inline-flex item-center justify-center border-l-2 border-t-2 border-blue-700 p-1 leading-none rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+            @endif
+        @endforeach
 
+    </section>
     <div class="flex flex-wrap">
 
         <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
@@ -13,11 +69,12 @@
                                 <p
                                     class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
                                     Penjualan Bulan Ini</p>
-                                <h5 class="mb-2 font-bold dark:text-white">Rp. {{number_format($total_penjualan_bulan_ini,0,2)}}</h5>
-                                <p class="mb-0 dark:text-white dark:opacity-60">
+                                <h5 class="mb-2 font-bold dark:text-white">Rp.
+                                    {{ number_format($total_penjualan_bulan_ini, 0, 2) }}</h5>
+                                {{-- <p class="mb-0 dark:text-white dark:opacity-60">
                                     <span class="font-bold leading-normal text-size-sm text-emerald-500">+55%</span>
                                     since yesterday
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
@@ -43,10 +100,10 @@
                                     class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
                                     Pengguna Hari Ini</p>
                                 <h5 class="mb-2 font-bold dark:text-white">2,300</h5>
-                                <p class="mb-0 dark:text-white dark:opacity-60">
+                                {{-- <p class="mb-0 dark:text-white dark:opacity-60">
                                     <span class="font-bold leading-normal text-size-sm text-emerald-500">+3%</span>
                                     since last week
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
@@ -70,12 +127,12 @@
                             <div>
                                 <p
                                     class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
-                                    Pengguna Terbaru</p>
-                                <h5 class="mb-2 font-bold dark:text-white">+3,462</h5>
-                                <p class="mb-0 dark:text-white dark:opacity-60">
+                                    Jumlah Pengguna</p>
+                                <h5 class="mb-2 font-bold dark:text-white">{{$jumlah_user}}</h5>
+                                {{-- <p class="mb-0 dark:text-white dark:opacity-60">
                                     <span class="font-bold leading-normal text-red-600 text-size-sm">-2%</span>
                                     since last quarter
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
@@ -99,12 +156,12 @@
                             <div>
                                 <p
                                     class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
-                                    Penjualan Bulan Ini</p>
-                                <h5 class="mb-2 font-bold dark:text-white">$103,430</h5>
-                                <p class="mb-0 dark:text-white dark:opacity-60">
+                                    Penjualan Tahun Ini</p>
+                                <h5 class="mb-2 font-bold dark:text-white">Rp. {{number_format($total_penjualan_tahun_ini,0,3)}}</h5>
+                                {{-- <p class="mb-0 dark:text-white dark:opacity-60">
                                     <span class="font-bold leading-normal text-size-sm text-emerald-500">+5%</span>
                                     than last month
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
@@ -119,14 +176,14 @@
         </div>
     </div>
     <div class="flex flex-wrap mt-6 -mx-3">
-        <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+        <div class="w-full max-w-full px-3 mt-0 ">
             <div
                 class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                 <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">
-                    <h6 class="capitalize dark:text-white">Sales overview</h6>
+                    <h6 class="capitalize dark:text-white">Penjualan Tahun Ini</h6>
                     <p class="mb-0 leading-normal dark:text-white dark:opacity-60 text-size-sm">
                         <i class="fa fa-arrow-up text-emerald-500" aria-hidden="true"></i>
-                        <span class="font-semibold">4% more</span> in 2021
+                        {{date('Y')}}
                     </p>
                 </div>
                 <div class="flex-auto p-4">
@@ -137,225 +194,166 @@
                 </div>
             </div>
         </div>
-
-        <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
-            <div slider="" class="relative w-full h-full overflow-hidden rounded-2xl">
-                <!-- slide 1 -->
-                <div slide="" class="absolute w-full h-full transition-all duration-500"
-                    style="transform: translateX(0%);">
-                    <img class="object-cover h-full" src="../assets/img/carousel-1.jpg" alt="carousel image">
-                    <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
-                        <div
-                            class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
-                            <i class="top-0.75 text-size-xxs relative text-slate-700 ni ni-camera-compact"></i>
-                        </div>
-                        <h5 class="mb-1 text-white">Get started with Argon</h5>
-                        <p class="dark:opacity-80">There’s nothing I really wanted to do in life that I wasn’t able to
-                            get
-                            good at.</p>
-                    </div>
-                </div>
-
-                <!-- slide 2 -->
-                <div slide="" class="absolute w-full h-full transition-all duration-500"
-                    style="transform: translateX(100%);">
-                    <img class="object-cover h-full" src="../assets/img/carousel-2.jpg" alt="carousel image">
-                    <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
-                        <div
-                            class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
-                            <i class="top-0.75 text-size-xxs relative text-slate-700 ni ni-bulb-61"></i>
-                        </div>
-                        <h5 class="mb-1 text-white">Faster way to create web pages</h5>
-                        <p class="dark:opacity-80">That’s my skill. I’m not really specifically talented at anything
-                            except
-                            for the ability to learn.</p>
-                    </div>
-                </div>
-
-                <!-- slide 3 -->
-                <div slide="" class="absolute w-full h-full transition-all duration-500"
-                    style="transform: translateX(200%);">
-                    <img class="object-cover h-full" src="../assets/img/carousel-3.jpg" alt="carousel image">
-                    <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
-                        <div
-                            class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
-                            <i class="top-0.75 text-size-xxs relative text-slate-700 ni ni-trophy"></i>
-                        </div>
-                        <h5 class="mb-1 text-white">Share with us your design tips!</h5>
-                        <p class="dark:opacity-80">Don’t be afraid to be wrong because you can’t learn anything from a
-                            compliment.</p>
-                    </div>
-                </div>
-
-                <!-- Control buttons -->
-                <button btn-next=""
-                    class="absolute z-10 w-10 h-10 p-2 text-white border-none opacity-50 cursor-pointer text-size-lg hover:opacity-100 far fa-chevron-right active:scale-110 top-6 right-4"
-                    aria-hidden="true"></button>
-                <button btn-prev=""
-                    class="absolute z-10 w-10 h-10 p-2 text-white border-none opacity-50 cursor-pointer text-size-lg hover:opacity-100 far fa-chevron-left active:scale-110 top-6 right-16"
-                    aria-hidden="true"></button>
-            </div>
-        </div>
     </div>
-    <script>
+    <input type="hidden" id="Penjualan" class="hidden" value="{{route('API-Data-Penjualan')}}">
+    <script src="{{asset('js/charts.js')}}"></script>
+    {{-- <script>
         // chart 1
 
-if (document.querySelector("#chart-bars")) {
+        if (document.querySelector("#chart-bars")) {
 
-var ctx = document.getElementById("chart-bars").getContext("2d");
+            var ctx = document.getElementById("chart-bars").getContext("2d");
 
-new Chart(ctx, {
-type: "bar",
-data: {
-  labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [
-    {
-      label: "Sales",
-      tension: 0.4,
-      borderWidth: 0,
-      borderRadius: 4,
-      borderSkipped: false,
-      backgroundColor: "#fff",
-      data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-      maxBarThickness: 6,
-    },
-  ],
-},
-options: {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  interaction: {
-    intersect: false,
-    mode: "index",
-  },
-  scales: {
-    y: {
-      grid: {
-        drawBorder: false,
-        display: false,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-      ticks: {
-        suggestedMin: 0,
-        suggestedMax: 600,
-        beginAtZero: true,
-        padding: 15,
-        font: {
-          size: 14,
-          family: "Open Sans",
-          style: "normal",
-          lineHeight: 2,
-        },
-        color: "#fff",
-      },
-    },
-    x: {
-      grid: {
-        drawBorder: false,
-        display: false,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-      ticks: {
-        display: false,
-      },
-    },
-  },
-},
-});
-}
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Sales",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        borderRadius: 4,
+                        borderSkipped: false,
+                        backgroundColor: "#fff",
+                        data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+                        maxBarThickness: 6,
+                    }, ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: "index",
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 600,
+                                beginAtZero: true,
+                                padding: 15,
+                                font: {
+                                    size: 14,
+                                    family: "Open Sans",
+                                    style: "normal",
+                                    lineHeight: 2,
+                                },
+                                color: "#fff",
+                            },
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                display: false,
+                            },
+                        },
+                    },
+                },
+            });
+        }
 
-// chart 2
+        // chart 2
 
-if(document.querySelector("#chart-line")){
+        if (document.querySelector("#chart-line")) {
 
-var ctx1 = document.getElementById("chart-line").getContext("2d");
+            var ctx1 = document.getElementById("chart-line").getContext("2d");
 
-var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+            var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
-gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-new Chart(ctx1, {
-type: "line",
-data: {
-  labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [{
-    label: "Penjualan Produk",
-    tension: 0.4,
-    borderWidth: 0,
-    pointRadius: 0,
-    borderColor: "#5e72e4",
-    backgroundColor: gradientStroke1,
-    borderWidth: 3,
-    fill: true,
-    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-    maxBarThickness: 6
+            gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+            gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+            gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+            new Chart(ctx1, {
+                type: "line",
+                data: {
+                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Penjualan Produk",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        pointRadius: 0,
+                        borderColor: "#5e72e4",
+                        backgroundColor: gradientStroke1,
+                        borderWidth: 3,
+                        fill: true,
+                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                        maxBarThickness: 6
 
-  }],
-},
-options: {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    }
-  },
-  interaction: {
-    intersect: false,
-    mode: 'index',
-  },
-  scales: {
-    y: {
-      grid: {
-        drawBorder: false,
-        display: true,
-        drawOnChartArea: true,
-        drawTicks: false,
-        borderDash: [5, 5]
-      },
-      ticks: {
-        display: true,
-        padding: 10,
-        color: '#fbfbfb',
-        font: {
-          size: 11,
-          family: "Open Sans",
-          style: 'normal',
-          lineHeight: 2
-        },
-      }
-    },
-    x: {
-      grid: {
-        drawBorder: false,
-        display: false,
-        drawOnChartArea: false,
-        drawTicks: false,
-        borderDash: [5, 5]
-      },
-      ticks: {
-        display: true,
-        color: '#ccc',
-        padding: 20,
-        font: {
-          size: 11,
-          family: "Open Sans",
-          style: 'normal',
-          lineHeight: 2
-        },
-      }
-    },
-  },
-},
-});
-}
-    </script>
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                display: true,
+                                padding: 10,
+                                color: '#fbfbfb',
+                                font: {
+                                    size: 11,
+                                    family: "Open Sans",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                display: true,
+                                color: '#ccc',
+                                padding: 20,
+                                font: {
+                                    size: 11,
+                                    family: "Open Sans",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                    },
+                },
+            });
+        }
+    </script> --}}
 </main>

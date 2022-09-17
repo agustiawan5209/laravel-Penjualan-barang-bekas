@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\ongkir;
 use GuzzleHttp\Client;
 use App\Models\Payment;
+use App\Models\Voucher;
 use App\Models\PromoUser;
 use App\Models\Transaksi;
 use App\Models\UserVoucher;
-use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use App\Services\Midtrans\CallbackService;
-use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\Midtrans\CallbackService;
+use Notification;
 
 class PaymentController extends Controller
 {
@@ -68,6 +70,7 @@ class PaymentController extends Controller
             session()->forget('param');
             $this->GantiStatusPromo();
             Alert::success('Pemesanan berhasil', 'Mohon Tunggu Proses Konfirmasi');
+
             return redirect()
                 ->route('home');
         } else {
@@ -105,7 +108,7 @@ class PaymentController extends Controller
         $namPDF = substr(str_shuffle($permitted_chars), 0, 7) . '.pdf';
         Storage::put('bukti/' . $namPDF, $pdf);
 
-        Payment::create([
+       $payemnt =  Payment::create([
             'user_id' => Auth::user()->id,
             'number' => Auth::user()->name . '_' . $this->generateUniqueNumber(),
             'total_price' => $request->sub_total,
@@ -116,6 +119,11 @@ class PaymentController extends Controller
             'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
             'item_details' => $exp,
         ]);
+        Notification::send($payemnt,new InvoicePaid([
+            'type'=> 'payment',
+            'body'=> Auth::user()->name . " Baru Saja Melakukan Pembayaran",
+            'from'=> 'User='. Auth::user()->id,
+        ]));
         $this->createOngkir($request, $ID_Transkasi);
     }
 

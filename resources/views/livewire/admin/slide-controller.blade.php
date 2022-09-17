@@ -1,7 +1,5 @@
 <div>
-    @if (session()->has('message'))
-    <x-alert :message="session('message')" />
-    @endif
+    @include('sweetalert::alert')
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" x-data="{ isUploading: false, progress: 0 }"
         x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
         x-on:livewire-upload-error="isUploading = false"
@@ -61,6 +59,33 @@
         </div>
     </form>
     @if ($slidePageData->count() > 0)
-    <livewire:page.slide />
+    <x-forms.table>
+        <thead class="align-bottom">
+            <tr>
+                <x-forms.th>
+                    Gambar Side</x-forms.th>
+                    <x-forms.th>
+                        Nama Slide</x-forms.th>
+                <x-forms.th>
+                    Deskripsi Produk</x-forms.th>
+
+                <x-forms.th>
+                    Aksi</x-forms.th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($slidePageData as $slidepage)
+            <x-forms.td>
+               <img src="{{asset('upload/'. $slidepage->thumbnail)}}" width="100" alt="" srcset=""></x-forms.td>
+                <x-forms.td>
+                    {{$slidepage->slide}}</x-forms.td>
+            <x-forms.td>
+                {{$slidepage->deskripsi}}</x-forms.td>
+            <x-forms.td>
+                <x-jet-danger-button wire:click="hapus({{$slidepage->id}})">Hapus</x-jet-danger-button></x-forms.td>
+            @endforeach
+        </tbody>
+    </x-forms.table>
     @endif
 </div>

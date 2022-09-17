@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,5 @@ Route::controller(APIController::class)->group(function(){
     Route::get('detailcamata/{id}', 'detail_kecamatan')->name('API-detailcamat');
     Route::get('desa/{id}', 'desa')->name('API-detailcamat');
 });
+Route::get('Data-Penjualan', [APIController::class, 'DataPenjualan'])->name('API-Data-Penjualan');
+

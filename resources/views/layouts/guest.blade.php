@@ -236,14 +236,43 @@
         {{ $slot }}
     </main>
 
-    <footer class="shadow-lg">
-        <div class="pt-5">
-            <div class="px-4 mx-auto max-w-7xl md:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 lg:gap-8 mb-16">
-                </div>
-                <div class="text-gray-400 text-sm text-center border-t py-8">© 2021 - Present Chai Builder. All rights
-                    reserved.</div>
+    <footer class="py-5 pb-0 bg-gradient-to-t bg-gray-800 text-white">
+        <div
+            class="max-w-7xl mx-auto flex flex-col gap-y-8 py-5 px-5 sm:flex-row sm:justify-around sm:px-0 lg:gap-x-10">
+            <div class="sm:basis-1/5">
+                <h1 class="font-black text-3xl text-white ">Logo</h1>
+                <p class="text-base tracking-normal text-white mt-3  2xl:tracking-wide">profile</p>
             </div>
+            <div class="">
+                <h4 class="font-bold text-lg text-white ">Services</h4><a
+                    class="block mt-3 text-sm " href="#">Chai </a><a
+                    class="block mt-3 text-sm " href="#">Generator</a>
+            </div>
+            <div class="">
+                <h4 class="font-bold text-lg text-white ">Blog</h4><a
+                    class="block mt-3 text-sm " href="#">Tailwind CSS v3 </a><a
+                    class="block mt-3 text-sm " href="#">Chai Builder</a><a
+                    class="block mt-3 text-sm " href="#">How to code?</a><a
+                    class="block mt-3 text-sm " href="#">Master Remix.run</a>
+            </div>
+            <div class="">
+                <h4 class="font-bold text-lg text-white ">Links</h4><a
+                    class="block mt-3 text-sm " href="#">Privacy Policy</a><a
+                    class="block mt-3 text-sm " href="#">Terms and conditions</a><a
+                    class="block mt-3 text-sm " href="#">Return Policy</a><a
+                    class="block mt-3 text-sm " href="#">All eCourses</a>
+            </div>
+            <div class="">
+                <h4 class="font-bold text-lg text-white ">Social </h4><a
+                    class="block mt-3 text-sm " href="#">Twitter</a><a
+                    class="block mt-3 text-sm " href="#">Facebook</a><a
+                    class="block mt-3 text-sm " href="#">LinkedIn</a><a
+                    class="block mt-3 text-sm " href="#">Google+</a>
+            </div>
+        </div>
+        <div class="">
+            <p class="pb-5 pt-5 text-xs text-gray-400 border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
+                chaibuilder.com</p>
         </div>
     </footer>
     @if (Auth::check())
@@ -269,6 +298,7 @@
     @stack('modals')
 
     @livewireScripts
+
     <!-- AlpineJS Library -->
     <script src="{{ asset('js/main.js') }}"></script>
 </body>

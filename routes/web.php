@@ -61,7 +61,6 @@ Route::get('/', function () {
 // Cek User
 Route::get('/cek', [UserController::class, 'authenticate']);
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
