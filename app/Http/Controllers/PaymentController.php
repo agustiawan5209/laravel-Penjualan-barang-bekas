@@ -221,7 +221,9 @@ class PaymentController extends Controller
             ]);
         }
         // Hapus Voucher Yang Memiliki Status 3
-        UserVoucher::where('status', '=', '3')->update([
+        UserVoucher::where('status', '=', '3')
+        ->where('user_id', Auth::user()->id)
+        ->update([
             'status' => '4',
         ]);
     }
