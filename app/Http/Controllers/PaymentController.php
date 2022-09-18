@@ -36,12 +36,25 @@ class PaymentController extends Controller
         return $random_name;
     }
 
+    /**
+     * GantiStatusPromo
+     * Mengganti Status Dari Promo Yang Tersedia
+     * @return void
+     */
     public function GantiStatusPromo()
     {
         PromoUser::where('user_id', '=', Auth::user()->id)->update([
             'status' => '2',
         ]);
     }
+    /**
+     * receive
+     * Melakukan Pengiriman data Ke Pembayaran
+     * Dan
+     * Melakukan Pemotongan Total
+     * @param  mixed $request
+     * @return void
+     */
     public function receive(Request $request)
     {
         // dd(session('param'));
@@ -78,6 +91,15 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * createPayment
+     * Menginput Kedalam Tabel Pembayran
+     * @param  mixed $request
+     * @param  mixed $item_details
+     * @param  mixed $pdf
+     * @param  mixed $transaksi_id
+     * @return void
+     */
     public function createPayment($request, $item_details, $pdf, $transaksi_id)
     {
         $payment_status = '';
@@ -127,6 +149,13 @@ class PaymentController extends Controller
         $this->createOngkir($request, $ID_Transkasi);
     }
 
+    /**
+     * createOngkir
+     * Membuat Ongkir
+     * @param  mixed $request
+     * @param  mixed $ID_Transkasi
+     * @return void
+     */
     public function createOngkir($request, $ID_Transkasi)
     {
 
@@ -147,6 +176,13 @@ class PaymentController extends Controller
         ]);
     }
 
+    /**
+     * createTransaksi
+     * Membuat Transaksi Dengan Jumlah Yang Sama Dengan Jumlah Item
+     * @param  mixed $item_details
+     * @param  mixed $transaksi_id
+     * @return void
+     */
     public function createTransaksi($item_details = [], $transaksi_id)
     {
         $count = count($item_details);
@@ -189,13 +225,12 @@ class PaymentController extends Controller
             'status' => '4',
         ]);
     }
-    public function generateUniqueNumber()
-    {
-        do {
-            $code = random_int(1111, 9999);
-        } while (Payment::where('number', '=', $code)->first());
-        return $code;
-    }
+
+    /**
+     * transaksi_id
+     * Membuat ID Transaksi
+     * @return void
+     */
     public function transaksi_id(){
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         do {
