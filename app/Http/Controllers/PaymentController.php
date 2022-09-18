@@ -227,7 +227,13 @@ class PaymentController extends Controller
             'status' => '4',
         ]);
     }
-
+    public function generateUniqueNumber(){
+        $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        do {
+            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 5);
+        } while (Payment::where('transaksi_id', '=', $transaksi_id)->first());
+        return $transaksi_id;
+    }
     /**
      * transaksi_id
      * Membuat ID Transaksi
