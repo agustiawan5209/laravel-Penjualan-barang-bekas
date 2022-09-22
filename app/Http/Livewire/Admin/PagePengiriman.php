@@ -53,6 +53,7 @@ class PagePengiriman extends Component
             $diterima =  ongkir::where('transaksi_id', 'like', '%' . $this->search . '%')
                 ->where('status', '=', '3')->paginate($this->row);
         }
+        // dd($belum_terkirim);
         return view('livewire.admin.page-pengiriman', [
             'terkirim' => $terkirim,
             'belum_terkirim' => $belum_terkirim,
@@ -121,7 +122,7 @@ class PagePengiriman extends Component
     public function  edit($id)
     {
         $this->validate([
-            'tgl_pengiriman' => 'required|date',
+            'tgl_pengiriman' => 'required',
             'harga' => "required",
             'status' => "required",
         ]);

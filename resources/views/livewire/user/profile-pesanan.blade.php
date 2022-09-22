@@ -1,4 +1,4 @@
-<div class="bg-white" x-data="{active: 0,}">
+<div class="bg-white" x-data="{active: 1,}">
    @include('sweetalert::alert')
     <div
         class="relative flex flex-col flex-auto min-w-0 md:p-4 md:mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
@@ -6,14 +6,14 @@
             <div class="w-full max-w-full px-3 mt-4 sm:my-auto sm:mr-0 ">
                 <div class="relative">
                     <ul class="relative flex flex-nowrap md:flex-wrap p-1 md:list-none bg-gray-50 rounded-xl">
-                        <li class="z-30 flex-auto text-center" @click="active = 0"
+                        {{-- <li class="z-30 flex-auto text-center" @click="active = 0"
                             :class="active === 0 ? 'bg-white shadow-md rounded-md' : ''">
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700 text-xs md:text-base"
                                 href="javascript:;" :class="active === 0 ? 'bg-white shadow-md rounded-md' : ''">
                                 <i class="ni hidden md:block ni-app"></i>
                                 <span class="ml-2">Pesanan</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="z-30 flex-auto text-center"
                             :class="active === 2 ? 'bg-white shadow-md rounded-md' : ''">
                             <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700 text-xs md:text-base "
@@ -56,13 +56,13 @@
             <div class=" w-full rounded-md shadow-sm ">
                 <x-forms.table>
                     <thead>
-                        <tr class=" capitalize bg-gray-100 rounded-t-md" x-show="active == 0 || active == 5">
+                        <tr class=" capitalize bg-gray-100 rounded-t-md" x-show="active == 5">
                             <x-forms.td>
                                 kode Pesanan
                             </x-forms.td>
-                            <x-forms.td>
+                            {{-- <x-forms.td>
                                 Status Pembayaran
-                            </x-forms.td>
+                            </x-forms.td> --}}
                             <x-forms.td>
                                 Type Pembayaran
                             </x-forms.td>
@@ -101,9 +101,9 @@
                             <x-forms.td>
                                 {{ $item->transaksi_id }}
                             </x-forms.td>
-                            <x-forms.td>
+                            {{-- <x-forms.td>
                                 {{ $item->payment_status }}
-                            </x-forms.td>
+                            </x-forms.td> --}}
                             <x-forms.td>
                                 {{ $item->payment_type }}
                             </x-forms.td>
@@ -131,7 +131,7 @@
                             <x-forms.td>{{$item->transaksi_id}}</x-forms.td>
                             <x-forms.td class="flex justify-center items-center">
                                 @if ($item->status == 3)
-                                <span
+                                <span wire:click='statusongkir({{$item->id}})'
                                     class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
                                     @if ($item->status == 1)
                                     Belum Terkirim
@@ -144,7 +144,7 @@
                                     @endif
                                 </span>
                                 @else
-                                <x-jet-secondary-button
+                                <x-jet-secondary-button  wire:click='statusongkir({{$item->id}})'
                                     class="bg-gradient-to-tl cursor-pointer from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
                                     @if ($item->status == 1)
                                     Belum Terkirim
@@ -258,9 +258,9 @@
                             <x-forms.td>
                                 {{ $item->transaksi_id }}
                             </x-forms.td>
-                            <x-forms.td>
+                            {{-- <x-forms.td>
                                 {{ $item->payment_status }}
-                            </x-forms.td>
+                            </x-forms.td> --}}
                             <x-forms.td>
                                 {{ $item->payment_type }}
                             </x-forms.td>

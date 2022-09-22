@@ -84,7 +84,7 @@ class ProfilePesanan extends Component
         $payment = Pembayaran::find($id);
         // dd($payment);
         $ongkir = ongkir::where('transaksi_id','=', $payment->transaksi_id)->first();
-        $this->post =   StatusOngkir::where('ongkir_id', '=', $ongkir->id)->get();
+        $this->post =   StatusOngkir::where('ongkir_id', '=', $id)->get();
         $this->statusItem = true;
     }
 }
