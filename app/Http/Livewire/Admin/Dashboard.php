@@ -36,9 +36,9 @@ class Dashboard extends Component
         $total_penjualan_tahun_ini = $total - $potongan;
         return view('livewire.admin.dashboard', [
             'total_penjualan_bulan_ini'=> $total_penjualan_bulan_ini,
-            'pesan' => PesanChat::latest()->first(),
-            'user' => User::latest()->first(),
-            'payment' => Payment::latest()->first(),
+            'pesan' => PesanChat::all(),
+            'user' => User::all(),
+            'payment' => Payment::all(),
             'jumlah_user'=> $jumlah_user,
             'total_penjualan_tahun_ini'=> $total_penjualan_bulan_ini,
         ]);

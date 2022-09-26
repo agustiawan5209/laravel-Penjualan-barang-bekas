@@ -8,11 +8,10 @@
     {{-- <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
     <title>{{ config('APP_NAME', 'Jual') }}</title>
-<link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.aa739a47.css') }}">
     <!-- Styles -->
     @livewireStyles
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -22,6 +21,7 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
     <style>
         .flickity-viewport {
             height: 500px !important;
@@ -244,30 +244,26 @@
                 <p class="text-base tracking-normal text-white mt-3  2xl:tracking-wide">profile</p>
             </div>
             <div class="">
-                <h4 class="font-bold text-lg text-white ">Services</h4><a
-                    class="block mt-3 text-sm " href="#">Chai </a><a
-                    class="block mt-3 text-sm " href="#">Generator</a>
+                <h4 class="font-bold text-lg text-white ">Services</h4><a class="block mt-3 text-sm "
+                    href="#">Chai </a><a class="block mt-3 text-sm " href="#">Generator</a>
             </div>
             <div class="">
-                <h4 class="font-bold text-lg text-white ">Blog</h4><a
-                    class="block mt-3 text-sm " href="#">Tailwind CSS v3 </a><a
-                    class="block mt-3 text-sm " href="#">Chai Builder</a><a
-                    class="block mt-3 text-sm " href="#">How to code?</a><a
+                <h4 class="font-bold text-lg text-white ">Blog</h4><a class="block mt-3 text-sm "
+                    href="#">Tailwind CSS v3 </a><a class="block mt-3 text-sm " href="#">Chai
+                    Builder</a><a class="block mt-3 text-sm " href="#">How to code?</a><a
                     class="block mt-3 text-sm " href="#">Master Remix.run</a>
             </div>
             <div class="">
-                <h4 class="font-bold text-lg text-white ">Links</h4><a
-                    class="block mt-3 text-sm " href="#">Privacy Policy</a><a
-                    class="block mt-3 text-sm " href="#">Terms and conditions</a><a
-                    class="block mt-3 text-sm " href="#">Return Policy</a><a
+                <h4 class="font-bold text-lg text-white ">Links</h4><a class="block mt-3 text-sm "
+                    href="#">Privacy Policy</a><a class="block mt-3 text-sm " href="#">Terms and
+                    conditions</a><a class="block mt-3 text-sm " href="#">Return Policy</a><a
                     class="block mt-3 text-sm " href="#">All eCourses</a>
             </div>
             <div class="">
-                <h4 class="font-bold text-lg text-white ">Social </h4><a
-                    class="block mt-3 text-sm " href="#">Twitter</a><a
-                    class="block mt-3 text-sm " href="#">Facebook</a><a
-                    class="block mt-3 text-sm " href="#">LinkedIn</a><a
-                    class="block mt-3 text-sm " href="#">Google+</a>
+                <h4 class="font-bold text-lg text-white ">Social </h4><a class="block mt-3 text-sm "
+                    href="#">Twitter</a><a class="block mt-3 text-sm " href="#">Facebook</a><a
+                    class="block mt-3 text-sm " href="#">LinkedIn</a><a class="block mt-3 text-sm "
+                    href="#">Google+</a>
             </div>
         </div>
         <div class="">
