@@ -7,6 +7,7 @@
             <x-forms.table>
                 <thead class="align-bottom">
                     <tr>
+                        <x-forms.th>Pengguna</x-forms.th>
                         <x-forms.th>
                             Foto Produk</x-forms.th>
                         <x-forms.th>
@@ -25,6 +26,7 @@
                     @can ('Manage-Admin', User::class)
                         @foreach ($pengembalian as $item)
                             <tr>
+                                <x-forms.td>{{$item->user->name}}</x-forms.td>
                                 <x-forms.td>
                                     <div class="flex justify-center px-2 py-1">
                                         <img src="{{ asset('upload/' . $item->gambar) }}"
@@ -92,6 +94,7 @@
                     @can ('Manage-Customer')
                         @foreach ($pengembalian_user as $item)
                             <tr>
+                                <x-forms.td>{{$item->user->name}}</x-forms.td>
                                 <x-forms.td>
                                     <div class="flex justify-center px-2 py-1">
                                         <img src="{{ asset('upload/' . $item->gambar) }}"
@@ -178,32 +181,32 @@
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500"> Kondisi </dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        @if ($item->kondisi == 1)
+                                        @if ($kondisi == 1)
                                             <option value="1">Barang Tidak Sama</option>
-                                        @elseif ($item->kondisi == 2)
+                                        @elseif ($kondisi == 2)
                                             <option value="2">Barang Rusak/Pecah</option>
-                                        @elseif ($item->kondisi == 3)
+                                        @elseif ($kondisi == 3)
                                             <option value="3">Pembungkus Paket Sobek/Rusak</option>
-                                        @elseif ($item->kondisi == 4)
+                                        @elseif ($kondisi == 4)
                                             <option value="4">Paket Salah Kirim</option>
-                                        @elseif ($item->kondisi == 5)
-                                            <option value="5">{{ $item->kondisi_lain }}</option>
+                                        @elseif ($kondisi == 5)
+                                            <option value="5">{{ $kondisi_lain }}</option>
                                         @endif
                                     </dd>
                                 </div>
                                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500"> Status Pengembalian </dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        @if ($item->kondisi == 1)
+                                        @if ($kondisi == 1)
                                             Barang Tidak Sama
-                                        @elseif ($item->kondisi == 2)
+                                        @elseif ($kondisi == 2)
                                             Barang Rusak/Pecah
-                                        @elseif ($item->kondisi == 3)
+                                        @elseif ($kondisi == 3)
                                             Pembungkus Paket Sobek/Rusak
-                                        @elseif ($item->kondisi == 4)
+                                        @elseif ($kondisi == 4)
                                             Paket Salah Kirim
-                                        @elseif ($item->kondisi == 5)
-                                            {{ $item->kondisi_lain }}
+                                        @elseif ($kondisi == 5)
+                                            {{ $kondisi_lain }}
                                         @endif
                                     </dd>
                                 </div>

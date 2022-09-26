@@ -15,4 +15,7 @@ class Pengembalian extends Model
     public function transaksi(){
         return $this->hasOne(Transaksi::class, 'id', 'transaksi_id');
     }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

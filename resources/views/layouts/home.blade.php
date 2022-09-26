@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
     <!-- Styles -->
     @livewireStyles

@@ -122,7 +122,7 @@ class PagePengiriman extends Component
     public function  edit($id)
     {
         $this->validate([
-            'tgl_pengiriman' => 'required',
+            'tgl_pengiriman' => 'required|date',
             'harga' => "required",
             'status' => "required",
         ]);

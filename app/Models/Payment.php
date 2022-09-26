@@ -51,7 +51,7 @@ class Payment extends Model
 
 
     public function ongkir(){
-        return $this->belongsTo(ongkir::class, 'transaksi_id','transaksi_id');
+        return $this->hasOne(ongkir::class, 'transaksi_id','transaksi_id');
     }
     public function user()
     {

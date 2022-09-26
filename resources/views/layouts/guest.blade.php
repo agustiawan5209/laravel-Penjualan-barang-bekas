@@ -8,8 +8,8 @@
     {{-- <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
     <title>{{ config('APP_NAME', 'Jual') }}</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+<link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <!-- Styles -->
     @livewireStyles
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>

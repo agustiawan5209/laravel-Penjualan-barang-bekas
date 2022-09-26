@@ -222,14 +222,15 @@
                 <x-forms.table>
                     <thead>
                         <tr class=" capitalize bg-gray-100 rounded-t-md">
+                            <x-forms.td>No</x-forms.td>
                             <x-forms.td>
-                                kode Pesanan
+                                Pengguna
                             </x-forms.td>
                             <x-forms.td>
-                                Status Pengiriman
+                                Pesanan
                             </x-forms.td>
                             <x-forms.td>
-                                Harga Pengiriman
+                               Status
                             </x-forms.td>
                             <x-forms.td>
                                 Tanggal Pengiriman
@@ -241,70 +242,58 @@
                     </thead>
                     <tbody>
                         @foreach ($diterima as $item)
-                        <tr>
-                            <x-forms.td>{{$item->transaksi_id}}</x-forms.td>
-                            <x-forms.td class="flex justify-center items-center">
-                                @if ($item->status == 3)
-                                <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-                                    @if ($item->status == 1)
-                                    Belum Terkirim
-                                    @elseif ($item->status == 2)
-                                    Dalam Pengiriman
-                                    @elseif ($item->status == 3)
-                                    Pembayaran Di Konfirmasi
-                                    @elseif ($item->status == 4)
-                                    Pesanan Diterima
+                        {{-- @dd($item) --}}
+                        @if ($item->status == 5 || $item->status ==4)
+                            <tr>
+
+                                <x-forms.td>{{$loop->iteration}}</x-forms.td>
+                                <x-forms.td>{{$item->payment->user->name}} <br> {{$item->payment->user->email}} </x-forms.td>
+                                <x-forms.td>{{$item->payment->item_details}}</x-forms.td>
+                                <x-forms.td class="flex justify-center items-center">
+                                    @if ($item->status == 3)
+                                    <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                        @if ($item->status == 1)
+                                        Belum Terkirim
+                                        @elseif ($item->status == 2)
+                                        Dalam Pengiriman
+                                        @elseif ($item->status == 3)
+                                        Pembayaran Di Konfirmasi
+                                        @elseif ($item->status == 4)
+                                        Pesanan Diterima
+                                        @endif
+                                    </span>
+                                    @else
+                                    <x-jet-secondary-button wire:click='gantiStatus({{$item->id}})'
+                                        class="bg-gradient-to-tl cursor-pointer from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                        @if ($item->status == 1)
+                                        Belum Terkirim
+                                        @elseif ($item->status == 2)
+                                        Dalam Pengiriman
+                                        @elseif ($item->status == 3)
+                                        Pembayaran Di Konfirmasi
+                                        @elseif ($item->status == 4)
+                                        Pesanan Diterima
+                                        @endif
+                                    </x-jet-secondary-button>
                                     @endif
-                                </span>
-                                @else
-                                <x-jet-secondary-button wire:click='gantiStatus({{$item->id}})'
-                                    class="bg-gradient-to-tl cursor-pointer from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-                                    @if ($item->status == 1)
-                                    Belum Terkirim
-                                    @elseif ($item->status == 2)
-                                    Dalam Pengiriman
-                                    @elseif ($item->status == 3)
-                                    Pembayaran Di Konfirmasi
-                                    @elseif ($item->status == 4)
-                                    Pesanan Diterima
-                                    @endif
-                                </x-jet-secondary-button>
-                                @endif
-                            </x-forms.td>
-                            <x-forms.td>{{$item->harga}}</x-forms.td>
-                            <x-forms.td>{{$item->tgl_pengiriman}}</x-forms.td>
-                            <x-forms.td class=" flex justify-center items-center">
-                                <a href="#" wire:click='detailOngkir({{$item->id}})'
-                                    class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
-                                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                {{-- <a href="#" wire:click='deleteModal({{$item->id}})'
-                                    class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
-                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                        </path>
-                                    </svg>
-                                </a> --}}
-                                {{-- <a href="#" wire:click='editModal({{$item->id}})'
-                                    class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                        </path>
-                                    </svg>
-                                </a> --}}
-                            </x-forms.td>
-                        </tr>
+                                </x-forms.td>
+                                {{-- <x-forms.td>{{$item->harga}}</x-forms.td> --}}
+                                <x-forms.td>{{$item->tgl_pengiriman}}</x-forms.td>
+                                <x-forms.td class=" flex justify-center items-center">
+                                    <a href="#" wire:click='detailOngkir({{$item->id}})'
+                                        class=" p-1 rounded-full shadow shadow-black box-border relative flex bg-transparent">
+                                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </x-forms.td>
+                            </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </x-forms.table>
