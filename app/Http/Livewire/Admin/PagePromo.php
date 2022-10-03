@@ -92,6 +92,7 @@ class PagePromo extends Component
     public function createModal()
     {
         $this->tambahItem = true;
+        // dd($this->tambahItem);
     }
     // Crud
     public function create()

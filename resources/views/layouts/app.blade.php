@@ -16,38 +16,19 @@
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/argon-dashboard-tailwind.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- Popper -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
     <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    @vite(['resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
-    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-    <!-- plugin for charts  -->
-    <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
-    <!-- plugin for scrollbar  -->
-    <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
-    <!-- main script file  -->
-    <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
+
 
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!-- JavaScript -->
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-    {{-- <script src="https://cdn.tiny.cloud/1/dj3i9h2ptxr6d9e3bn6tp7wbmxh4cvyik72z4ncfyf4b0t9i/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-selector: 'textarea', // Replace this CSS selector to match the placeholder element for TinyMCE
-plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-  toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
-  toolbar_mode: 'floating',
-  tinycomments_mode: 'embedded',
-  tinycomments_author: 'Author name',
-});
-    </script> --}}
+
 </head>
 
 <body
@@ -99,16 +80,24 @@ plugins: 'a11ychecker advcode casechange export formatpainter image editimage li
         <!-- end cards -->
     </main>
 
-    @stack('modals')
 
-    @livewireScripts
     <footer class="py-5 pb-0 bg-blue-500 relative mt-[100px] md:mt-[200px]">
         <div class="flex justify-end">
             <p class="pb-5 pt-5 text-xs text-white border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
                 chaibuilder.com</p>
         </div>
     </footer>
+    @stack('modals')
+
+    @livewireScripts
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    <!-- plugin for charts  -->
+    <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
+    <!-- plugin for scrollbar  -->
+    <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
+    <!-- main script file  -->
+    <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
 </body>
 
 </html>
