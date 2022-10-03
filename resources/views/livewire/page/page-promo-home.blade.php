@@ -1,6 +1,6 @@
 <div>
     <section>
-        <div class="grid grid-cols-3 px-5 py-12 mx-auto lg:px-20 space-y-5">
+        <div class="grid grid-cols-3 gap-4 px-5 py-12 mx-auto lg:px-20 space-y-5">
             @foreach ($promo as $promo)
                 <div
                     class="flex flex-wrap items-end justify-start w-full  duration-500 ease-in-out transform bg-white border-2 hover:border-4 border-indigo-200 hover:border-indigo-600 rounded-lg shadow-md hover:shadow-2xl transition-transform hover:scale-95 group">
@@ -29,9 +29,8 @@
                             </h1>
                             <button
                                 class="w-full px-4 py-2 mx-auto mt-3 text-indigo-800 border border-indigo-700 rounded-full text-md hover:bg-indigo-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 focus:border-gray-700 focus:bg-indigo-800 hover:text-gray-200">
-                                Buy Now
+                              Tanggal  Kadaluarsa : {{$promo->tgl_kadaluarsa}}
                             </button>
-                            <p class="mx-auto mt-4 text-sm text-indigo-800 text-center ">$3.99/mo when you renew</p>
                         </div>
                     </div>
                 </div>
