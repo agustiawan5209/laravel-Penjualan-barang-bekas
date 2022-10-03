@@ -3,44 +3,45 @@
 
         <div class=" col-span-full md:col-span-1 bg-white block ">
             <livewire:voucher-klaim :item="$voucher">
-            <h1 class="py-6 border-b-2 text-xl text-gray-600 md:px-8">Ringkasan Pesanan</h1>
-            <ul class="py-6 border-b space-y-6 px-8">
-                @if (Auth::check() && $keranjang != null)
-                @foreach ($keranjang as $item)
-                <li class="grid grid-cols-6 gap-2 border-b-1">
-                    <div class="col-span-1 self-center">
-                        <img src="{{ asset('upload/' . $item->barang->foto_produk) }}" alt="Product"
-                            class="rounded w-full">
+                <h1 class="py-6 border-b-2 text-xl text-gray-600 md:px-8">Ringkasan Pesanan</h1>
+                <ul class="py-6 border-b space-y-6 px-8">
+                    @if (Auth::check() && $keranjang != null)
+                        @foreach ($keranjang as $item)
+                            <li class="grid grid-cols-6 gap-2 border-b-1">
+                                <div class="col-span-1 self-center">
+                                    <img src="{{ asset('upload/' . $item->barang->foto_produk) }}" alt="Product"
+                                        class="rounded w-full">
+                                </div>
+                                <div class="flex flex-col col-span-3 pt-2">
+                                    <span
+                                        class="text-gray-600 text-md font-semi-bold">{{ $item->barang->produk }}</span>
+                                    <span
+                                        class="text-gray-400 text-sm inline-block pt-2">{{ $item->barang->category->kategory }}</span>
+                                </div>
+                                <div class="col-span-2 pt-3">
+                                    <div class="flex items-center space-x-2 text-sm justify-between">
+                                        <span class="text-pink-400 font-semibold inline-block">Rp.
+                                            {{ number_format($item->sub_total, 0, 2) }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    @endif
+                </ul>
+                <div class="px-8 border-b">
+                    <div class="flex justify-between py-4 text-gray-600">
+                        <span>Subtotal</span>
+                        <span class="font-semibold text-pink-500">Rp. {{ number_format($total_price, 0, 2) }}</span>
                     </div>
-                    <div class="flex flex-col col-span-3 pt-2">
-                        <span class="text-gray-600 text-md font-semi-bold">{{ $item->barang->produk }}</span>
-                        <span class="text-gray-400 text-sm inline-block pt-2">{{ $item->barang->category->kategory
-                            }}</span>
+                    <div class="flex justify-between py-4 text-gray-600">
+                        <span>Potongan</span>
+                        <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan, 0, 2) }}</span>
                     </div>
-                    <div class="col-span-2 pt-3">
-                        <div class="flex items-center space-x-2 text-sm justify-between">
-                            <span class="text-pink-400 font-semibold inline-block">Rp.
-                                {{ number_format($item->sub_total, 0, 2) }}</span>
-                        </div>
-                    </div>
-                </li>
-                @endforeach
-                @endif
-            </ul>
-            <div class="px-8 border-b">
-                <div class="flex justify-between py-4 text-gray-600">
-                    <span>Subtotal</span>
-                    <span class="font-semibold text-pink-500">Rp. {{ number_format($total_price, 0, 2) }}</span>
                 </div>
-                <div class="flex justify-between py-4 text-gray-600">
-                    <span>Potongan</span>
-                    <span class="font-semibold text-pink-500">Rp. {{ number_format($potongan, 0, 2) }}</span>
+                <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
+                    <span>Total</span>
+                    <span>Rp. {{ number_format($sub_total, 0, 2) }}</span>
                 </div>
-            </div>
-            <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
-                <span>Total</span>
-                <span>Rp. {{ number_format($sub_total, 0, 2) }}</span>
-            </div>
         </div>
         <div class=" grid grid-cols-3 col-span-2">
             <div class=" col-span-3 bg-indigo-50  md:px-12">
@@ -58,7 +59,7 @@
                     <div class="text-sm tracking-wide text-gray-500 mt-4 sm:mt-0 sm:ml-4">Selesaikan pengiriman Anda dan
                         rincian pembayaran di bawah ini.</div>
                     @if (session()->has('message'))
-                    <x-alert :message="session('message')" />
+                        <x-alert :message="session('message')" />
                     @endif
 
                     <div
@@ -75,7 +76,7 @@
                         Promo
                     </h2>
 
-                    <form action="{{route('masukan-kode-promo')}}" method="POST" class="grid grid-cols-6 ">
+                    <form action="{{ route('masukan-kode-promo') }}" method="POST" class="grid grid-cols-6 ">
                         @csrf
                         <input
                             class="  col-span-full md:col-span-4 focus:shadow-primary-outline text-size-sm leading-5.6 ease block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
@@ -93,16 +94,15 @@
                             <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Shipping &
                                 Billing Information</h2>
                             <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600 overflow-hidden">
-                                <label
-                                    class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
+                                <label class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
                                     <span class="text-right px-2 col-span-1">Name</span>
-                                    <input name="name" class="focus:outline-none px-3 grid-cols-3" placeholder="Try Odinsson"
-                                        value="{{ Auth::user()->name }}" required>
+                                    <input name="name" class="focus:outline-none px-3 grid-cols-3"
+                                        placeholder="Try Odinsson" value="{{ Auth::user()->name }}" required>
                                     @error('name')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
                                 <label class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
@@ -111,49 +111,50 @@
                                         class="focus:outline-none border-none active:border-none px-3 col-span-3"
                                         placeholder="try@example.com" value="{{ Auth::user()->email }}" required />
                                     @error('email')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
 
                                 <label class="grid grid-cols-4 border-b border-gray-200 h-12 py-3 items-center">
                                     <span class="text-right px-2 col-span-1">Kabupaten/Kota</span>
-                                    <select  id="kabupaten" class="bg-white ring-0 border border-gray-300 text-gray-900 text-sm  col-span-3">
+                                    <select id="kabupaten"
+                                        class="bg-white ring-0 border border-gray-300 text-gray-900 text-sm  col-span-3">
                                         <option value="-">------</option>
                                     </select>
                                     <input type="hidden" name="kabupaten" id="target_kabupaten">
                                     @error('kabupaten')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
                                 <label class="grid grid-cols-4 w-full border-gray-200 py-3">
                                     <span class="text-right px-2 col-span-1">Kecamatan</span>
-                                    <select  id="kecamatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm col-span-3">
+                                    <select id="kecamatan"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm col-span-3">
                                         <option value="-">------</option>
                                     </select>
                                     <input type="hidden" name="kecamatan" id="target_kecamatan">
                                     @error('kecamatan')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
-                                <label
-                                    class="grid grid-cols-4 w-full border-gray-200">
+                                <label class="grid grid-cols-4 w-full border-gray-200">
                                     <span class="text-right  whitespace-nowrap px-4 col-span-1">Kode Pos</span>
                                     <x-jet-input name="kode_pos" class="focus:outline-none px-3 col-span-3"
                                         placeholder="90241" required />
                                     @error('kode_pos')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
                                 <label class="grid grid-cols-4  border-b border-gray-200  items-center">
@@ -165,13 +166,14 @@
                                             referrerpolicy="no-referrer-when-downgrade">
                                         </iframe>
                                     </div> --}}
-                                    <x-jet-input name="alamat" type="text" class="focus:outline-none px-3 col-span-3" value="{{old('alamat')}}"
+                                    <x-jet-input name="alamat" type="text"
+                                        class="focus:outline-none px-3 col-span-3" value="{{ old('alamat') }}"
                                         placeholder="Alamat Lengkap" required />
                                     @error('alamat')
-                                    <span
-                                        class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                        Invalid {{ $message }}
-                                    </span>
+                                        <span
+                                            class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                            Invalid {{ $message }}
+                                        </span>
                                     @enderror
                                 </label>
                             </fieldset>
@@ -196,8 +198,8 @@
                             <div class="mb-4" x-show="Payment">
                                 <label for="dropzone-file"
                                     class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                     </svg>
@@ -252,5 +254,66 @@
         payButton.addEventListener("click", function() {
             $("#payment-form").submit();
         })
+        $(document).ready(function() {
+            // console.log()
+            $.get("api/kota",
+                function(data, textStatus, jqXHR) {
+                    if (textStatus == 'success') {
+                        var hasil = JSON.parse(data)
+                        for (let i = 0; i < hasil['kota_kabupaten'].length; i++) {
+                            const element = hasil[i];
+                            var option = "<option value='" + hasil['kota_kabupaten'][i]['id'] + "'>" + hasil[
+                                'kota_kabupaten'][i]['nama'] + "</option>"
+                            $("#kabupaten").append(option)
+
+                        }
+                    }
+                },
+            );
+            $("#kabupaten").change(function() {
+                $.get("api/getKota/" + this.value,
+                    function(data, textStatus, jqXHR) {
+                        if (textStatus == 'success') {
+                            var hasil = JSON.parse(data)
+                            const element = hasil;
+                            $('#target_kabupaten').val(hasil['nama'])
+
+                        }
+
+                    },
+                );
+
+                $.get("api/kecamatan/" + this.value,
+                    function(data, textStatus, jqXHR) {
+                        if (textStatus == 'success') {
+                            var hasil = JSON.parse(data)
+                            for (let i = 0; i < hasil['kecamatan'].length; i++) {
+                                const element = hasil[i];
+                                var option = "<option value='" + hasil['kecamatan'][i]['id'] + "'>" +
+                                    hasil['kecamatan'][i]['nama'] + "</option>"
+                                $("#kecamatan").append(option)
+                            }
+                        }
+                    },
+                );
+            })
+            $("#kecamatan").change(function() {
+                $.get("api/detailcamata/" + this.value,
+                    function(data, textStatus, jqXHR) {
+                        console.log(textStatus)
+                        if (textStatus == 'success') {
+                            var hasil = JSON.parse(data)
+                            console.log(hasil)
+                            const element = hasil;
+                            $('#target_kecamatan').val(hasil['nama'])
+
+                        }
+
+                    },
+                );
+
+            })
+
+        });
     </script>
 </x-guest-layout>
