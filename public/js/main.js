@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // console.log()
-    $.get("https://gribs.oraclesip.my.id/api/kota",
+    $.get("/api/kota",
         function(data, textStatus, jqXHR) {
             if (textStatus == 'success') {
                 var hasil = JSON.parse(data)
@@ -14,7 +14,7 @@ $(document).ready(function() {
         },
     );
     $("#kabupaten").change(function() {
-        $.get("https://gribs.oraclesip.my.id/api/getKota/" + this.value,
+        $.get("/api/getKota/" + this.value,
             function(data, textStatus, jqXHR) {
                 if (textStatus == 'success') {
                     var hasil = JSON.parse(data)
@@ -26,7 +26,7 @@ $(document).ready(function() {
             },
         );
 
-        $.get("https://gribs.oraclesip.my.id/api/kecamatan/" + this.value,
+        $.get("/api/kecamatan/" + this.value,
             function(data, textStatus, jqXHR) {
                 if (textStatus == 'success') {
                     var hasil = JSON.parse(data)
@@ -40,7 +40,7 @@ $(document).ready(function() {
         );
     })
     $("#kecamatan").change(function() {
-        $.get("https://gribs.oraclesip.my.id/api/detailcamata/" + this.value,
+        $.get("/api/detailcamata/" + this.value,
             function(data, textStatus, jqXHR) {
                 console.log(textStatus)
                 if (textStatus == 'success') {

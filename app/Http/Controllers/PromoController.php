@@ -41,7 +41,7 @@ class PromoController extends Controller
             $promo = Promo::where('kode_promo', '=', $request->kode_promo)->first();
             if ($promo->count() > 0) {
                 // Mencocokan Kode Promo
-                $promo_user = PromoUser::where('user_id', '=', Auth::user()->id)->where('status', '=', '2')->get();
+                $promo_user = PromoUser::where('user_id', '=', Auth::user()->id)->where('promo_id', '=', $promo->id)->where('status', '=', '2')->get();
                 // Jika Gagal
                 if ($promo_user->count() > 0) {
                     return redirect()->back()->with('message', 'Maaf Promo Sudah Terpakai');
