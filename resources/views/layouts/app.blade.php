@@ -17,8 +17,8 @@
     <link href="{{ asset('css/argon-dashboard-tailwind.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- Popper -->
     <!-- Main Styling -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.aa739a47.css') }}">
+    {{-- <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script> --}}
     @vite(['resources/js/app.js'])
 
     <!-- Styles -->
@@ -26,7 +26,7 @@
 
 
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> --}}
     <!-- JavaScript -->
 
 </head>
@@ -81,12 +81,13 @@
     </main>
 
 
-    <footer class="py-5 pb-0 bg-blue-500 relative mt-[100px] md:mt-[200px]">
+    <footer class="py-5 pb-0 relative bg-blue-500 mt-[100px] md:mt-[200px]">
         <div class="flex justify-end">
             <p class="pb-5 pt-5 text-xs text-white border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
                 chaibuilder.com</p>
         </div>
     </footer>
+
     @stack('modals')
 
     @livewireScripts

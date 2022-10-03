@@ -3,11 +3,12 @@
 namespace App\Http\Livewire\Admin;
 
 use Carbon\Carbon;
-use App\Models\Voucher;
 use App\Models\Barang;
+use App\Models\Voucher;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageVoucher extends Component
 {
@@ -15,7 +16,7 @@ class PageVoucher extends Component
     public $row = 10;
     public $search = "";
     // field Tabel Voucher
-    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $jumlah_pembelian, $jenis_voucher = 0, $use_user, $barang_id;
+    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $jumlah_pembelian, $jenis_voucher = 5, $use_user, $barang_id;
     //item Modal dan Item ID
     public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
 
@@ -91,6 +92,7 @@ class PageVoucher extends Component
     }
     public function createModal()
     {
+        // dd("1");
         $this->tambahItem = true;
     }
     // Crud
@@ -105,12 +107,12 @@ class PageVoucher extends Component
             'kode_voucher' => $this->kode_voucher,
             'deskripsi' => $this->deskripsi,
             'barang_id'=> $this->barang_id,
-            'jenis_voucher' => $this->jenis_voucher,
+            'jenis_voucher' => $this->jenis_voucher == "" ? "0" : $this->jenis_voucher,
             'use_user' => '0',
             'diskon' => $this->diskon,
             'jumlah_pembelian'=>  $this->jumlah_pembelian,
         ]);
-        session()->flash('message', $Voucher ? 'Data Voucher Berhasil Di Tambah' : 'Data Voucher Gagal Di Tambah');
+        Alert::success('message', $Voucher ? 'Data Voucher Berhasil Di Tambah' : 'Data Voucher Gagal Di Tambah');
         $this->CloseAllModal();
     }
     public function editModal($id)
@@ -143,7 +145,7 @@ class PageVoucher extends Component
             'jumlah_pembelian'=>  $this->jumlah_pembelian,
         ]);
 
-        session()->flash('message', $Voucher ? "Voucher Berhasil Di Edit" : "Voucher Gagal Di Edit");
+        Alert::success('message', $Voucher ? "Voucher Berhasil Di Edit" : "Voucher Gagal Di Edit");
         $this->CloseAllModal();
     }
     public function hapusModal($id)
@@ -155,7 +157,7 @@ class PageVoucher extends Component
     public function hapus($id)
     {
         $Voucher = Voucher::find($id)->delete();
-        session()->flash('message', $Voucher ? "Voucher Berhasil Di Hapus" : "Voucher Gagal Di Hapus");
+        Alert::success('message', $Voucher ? "Voucher Berhasil Di Hapus" : "Voucher Gagal Di Hapus");
         $this->CloseAllModal();
     }
     // End Crud
