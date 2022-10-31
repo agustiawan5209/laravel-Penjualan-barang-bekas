@@ -17,8 +17,8 @@
     <link href="{{ asset('css/argon-dashboard-tailwind.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- Popper -->
     <!-- Main Styling -->
-    <link rel="stylesheet" href="{{ asset('build/assets/app.aa739a47.css') }}">
-    {{-- <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script> --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app.35f4d675.css') }}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @vite(['resources/js/app.js'])
 
     <!-- Styles -->

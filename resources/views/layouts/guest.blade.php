@@ -8,7 +8,7 @@
     {{-- <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
     <title>{{ config('APP_NAME', 'Jual') }}</title>
-    <link rel="stylesheet" href="{{ asset('build/assets/app.aa739a47.css') }}">
+
     <!-- Styles -->
     @livewireStyles
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
@@ -21,7 +21,9 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.35f4d675.css') }}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    @vite(['resources/js/app.js'])
     <style>
         .flickity-viewport {
             height: 500px !important;
