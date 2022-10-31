@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Promo;
 use App\Models\PromoUser;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PromoController extends Controller
 {
@@ -35,6 +36,9 @@ class PromoController extends Controller
                     $cek_pengguna = true;
                 }
             }
+        }else{
+            Alert::error('message', 'Promo Tidak Ada');
+            return redirect()->back();
         }
         // Cek Promo
         if ($cek_pengguna == true) {
