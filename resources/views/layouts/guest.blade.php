@@ -22,7 +22,6 @@
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('build/assets/app.35f4d675.css') }}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @vite(['resources/js/app.js'])
     <style>
         .flickity-viewport {
@@ -299,6 +298,8 @@
 
     <!-- AlpineJS Library -->
     <script src="{{ asset('js/main.js') }}"></script>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+
 </body>
 
 </html>

@@ -7,7 +7,6 @@
 
     <title>Laravel</title>
     <link rel="stylesheet" href="{{asset('build/assets/app.aa739a47.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
     <!-- Styles -->
     @livewireStyles
@@ -264,6 +263,8 @@
     </footer>
     <!-- AlpineJS Library -->
     <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+
 </body>
 
 </html>
