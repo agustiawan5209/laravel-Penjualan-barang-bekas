@@ -99,6 +99,7 @@ class PageBarang extends Component
         $this->harga_produk = $barang->harga;
         $this->deskripsi_produk = $barang->deskripsi;
         $this->kategori_produk = $barang->categories;
+        $this->stock = $barang->stock;
         $this->editItem = true;
     }
 
@@ -170,7 +171,9 @@ class PageBarang extends Component
         $valid = $this->validate([
             'nama_kategory' => 'required',
         ]);
-        $data = Category::create($valid);
+        $data = Category::create([
+            'kategory'=> $this->nama_kategory,
+        ]);
         Alert::info('Info', 'Berhasil');
         $this->nama_kategory = '';
     }
@@ -190,6 +193,7 @@ class PageBarang extends Component
         $this->itemID = $barang->id;
         $diskon = Diskon::where('barang_id', '=', $barang->id)->get();
         foreach($diskon as $item){
+            $this->itemID = $item->id;
             $this->nama_produk = $item->barang_id;
             $this->jumlah_diskon = $item->diskon;
             $this->tgl_kadaluarsa = $item->tgl_kadaluarsa;
@@ -219,6 +223,11 @@ class PageBarang extends Component
         $this->diskonItem = false;
         Alert::info('Info', 'Berhasil');
 
+    }
+    public function hapusDiskon($id){
+        Diskon::find($id)->delete();
+        $this->diskonItem = false;
+        Alert::success('Diskon', 'Dihapus');
     }
     public function Promo(){
         return redirect()->route('Admin.Promo');
