@@ -301,6 +301,7 @@
                             <tbody class="  pl-0 mb-0 rounded-lg">
                                 @if ($terkirim != null)
                                 @foreach ($terkirim as $item)
+                                @if ($item->payment->user_id == Auth::user()->id)
                                 <tr>
                                     <td class="border text-sm text-center ">{{$item->payment->user->name}}</td>
                                     <td class="border text-sm text-center ">{{$item->transaksi_id}}</td>
@@ -331,6 +332,7 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                                 @endif
                             </tbody>
