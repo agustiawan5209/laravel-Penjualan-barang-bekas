@@ -110,6 +110,7 @@ class PagePengiriman extends Component
                 $this->item_details = $item->item_details;
             }
         }
+        $this->ongkirItem = true;
 
     }
 
