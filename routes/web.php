@@ -47,7 +47,7 @@ use App\Http\Livewire\User\RequestBarang;
 Route::get('/', function () {
     // Mendapatkan Data Barang Dan Diskon
     $diskon = Diskon::all();
-    $BarangDiskon = Barang::all();
+    $BarangDiskon = Barang::orderBy('stock', 'desc')->get();
     $barang_terabru = Barang::orderBy('id','desc')->paginate(5);
     // dd($BarangDiskon->id);
     return view('welcome', [
