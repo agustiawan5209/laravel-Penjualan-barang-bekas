@@ -283,13 +283,13 @@
                     <div class="w-full max-w-full px-3 mt-6 md:flex-none" x-show="active ==2">
                         <div
                             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                            <div class="flex-auto flex-wrap md:flex-col p-4 pt-6">
-                                <ul class="flex flex-col  pl-0 mb-0 rounded-lg">
+                            <table class="flex-auto flex-wrap md:flex-col p-4 pt-6">
+                                <tr class="flex flex-col  pl-0 mb-0 rounded-lg">
                                     @if ($terkirim != null)
                                     @foreach ($terkirim as $item)
-                                    <li
+                                    <tr
                                         class="relative flex flex-wrap md:flex-col p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
-                                        <div class="flex flex-col">
+                                        <td class="flex flex-col">
                                             <h6 class="mb-4 leading-normal dark:text-white text-size-sm">Pengguna :
                                                 {{$item->payment->user->name}}
                                             </h6>
@@ -303,8 +303,11 @@
                                                 Pengiriman:
                                                 <span
                                                     class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->tgl_pengiriman}}</span></span>
-                                        </div>
-                                        <div class="ml-auto text-right" x-data="{tooltip: false,}">
+                                            <span class="leading-tight text-size-xs dark:text-white/80">Harga Ongkir
+                                                <span
+                                                    class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->harga}}</span></span>
+                                        </td>
+                                        <td class="ml-auto text-right" x-data="{tooltip: false,}">
                                             <a class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-size-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
                                                 href="javascript:;">Konfirmasi</a>
                                             @if ( $item->status == 2 )
@@ -327,12 +330,12 @@
                                                 Pesanan Diterima
                                             </x-jet-button>
                                             @endif
-                                        </div>
-                                    </li>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                     @endif
-                                </ul>
-                            </div>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </x-forms.table>

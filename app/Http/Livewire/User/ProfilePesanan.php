@@ -35,15 +35,24 @@ class ProfilePesanan extends Component
                 $belum_terkirim = ongkir::where('status', '=', '1')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
+                    ->whereHas('payment', function($query){
+                        return $query->where('user_id', '=', Auth::user()->id);
+                    })
                     ->get();
 
                 $terkirim = ongkir::where('status', '=', '2')->orWhere('status' ,'=', '3')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
+                    ->whereHas('payment', function($query){
+                        return $query->where('user_id', '=', Auth::user()->id);
+                    })
                     ->get();
                 $diterima = ongkir::where('status', '=', '4')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
+                    ->whereHas('payment', function($query){
+                        return $query->where('user_id', '=', Auth::user()->id);
+                    })
                     ->get();
             }
         }
