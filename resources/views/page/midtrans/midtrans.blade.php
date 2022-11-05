@@ -256,7 +256,7 @@
         })
         $(document).ready(function() {
             // console.log()
-            $.get("api/kota",
+            $.get("/api/kota",
                 function(data, textStatus, jqXHR) {
                     if (textStatus == 'success') {
                         var hasil = JSON.parse(data)
@@ -271,7 +271,7 @@
                 },
             );
             $("#kabupaten").change(function() {
-                $.get("api/getKota/" + this.value,
+                $.get("/api/getKota/" + this.value,
                     function(data, textStatus, jqXHR) {
                         if (textStatus == 'success') {
                             var hasil = JSON.parse(data)
@@ -283,7 +283,7 @@
                     },
                 );
 
-                $.get("api/kecamatan/" + this.value,
+                $.get("/api/kecamatan/" + this.value,
                     function(data, textStatus, jqXHR) {
                         if (textStatus == 'success') {
                             var hasil = JSON.parse(data)
@@ -298,7 +298,7 @@
                 );
             })
             $("#kecamatan").change(function() {
-                $.get("api/detailcamata/" + this.value,
+                $.get("/api/detailcamata/" + this.value,
                     function(data, textStatus, jqXHR) {
                         console.log(textStatus)
                         if (textStatus == 'success') {

@@ -280,65 +280,63 @@
                         @endforeach
                         @endif
                     </tbody>
-                    <div class="w-full max-w-full px-3 mt-6 md:flex-none" x-show="active ==2">
-                        <div
-                            class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                            <table class="flex-auto flex-wrap md:flex-col p-4 pt-6">
-                                <tr class="flex flex-col  pl-0 mb-0 rounded-lg">
-                                    @if ($terkirim != null)
-                                    @foreach ($terkirim as $item)
-                                    <tr
-                                        class="relative flex flex-wrap md:flex-col p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
-                                        <td class="flex flex-col">
-                                            <h6 class="mb-4 leading-normal dark:text-white text-size-sm">Pengguna :
-                                                {{$item->payment->user->name}}
-                                            </h6>
-                                            <span class="mb-2 leading-tight text-size-xs dark:text-white/80">No Resi:
-                                                <span
-                                                    class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->transaksi_id}}</span></span>
-                                            <span class="mb-2 leading-tight text-size-xs dark:text-white/80">Detail
-                                                Pesanan: <span
-                                                    class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->payment->item_details}}</span></span>
-                                            <span class="leading-tight text-size-xs dark:text-white/80">Tanggal
-                                                Pengiriman:
-                                                <span
-                                                    class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->tgl_pengiriman}}</span></span>
-                                            <span class="leading-tight text-size-xs dark:text-white/80">Harga Ongkir
-                                                <span
-                                                    class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->harga}}</span></span>
-                                        </td>
-                                        <td class="ml-auto text-right" x-data="{tooltip: false,}">
-                                            <a class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-size-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
-                                                href="javascript:;">Konfirmasi</a>
-                                            @if ( $item->status == 2 )
-                                            <x-jet-button @mouseover="tooltip = true" @mouseout="tooltip = false"
-                                                class="md:text-lg tracking-wider !bg-gray-500 hover:bg-gray-500 hover:shadow-none hover:-translate-y-0  text-gray-300 relative">
-                                                <span x-show='tooltip'
-                                                    x-transition:enter="transition ease-out duration-300"
-                                                    x-transition:enter-start="opacity-0 scale-90"
-                                                    x-transition:enter-end="opacity-100 scale-100"
-                                                    x-transition:leave="transition ease-in duration-300"
-                                                    x-transition:leave-start="opacity-100 scale-100"
-                                                    x-transition:leave-end="opacity-0 scale-90"
-                                                    class="absolute translate-x-8 -translate-y-10 text-white bg-gray-700 shadow-md px-4 py-2 rounded-md text-sm">Konfirmasi
-                                                    Pemesanan Dengan Pemilik</span>
-                                                Pesanan Diterima
-                                            </x-jet-button>
-                                            @elseif($item->status == 3)
-                                            <x-jet-button wire:click='konfirmasi({{$item->id}})'
-                                                class="md:text-lg tracking-wider !bg-blue-500 hover:bg-blue-700 hover:shadow-none relative">
-                                                Pesanan Diterima
-                                            </x-jet-button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @endif
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+
                 </x-forms.table>
+                <div class="w-full max-w-full px-3  md:flex-none" x-show="active ==2">
+                    <div
+                        class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                        <table class="p-4  table">
+                            <thead>
+                                <tr>
+                                    <th class="border text-sm text-center font-semibold">
+                                        Pengguna
+                                    </th>
+                                    <th class="border text-sm text-center font-semibold">No Resi</th>
+                                    <th class="border text-sm text-center font-semibold">Detail Pesanan</th>
+                                    <th class="border text-sm text-center font-semibold">Tanggal Pegiriman</th>
+                                    <th class="border text-sm text-center font-semibold">Harga Pengiriman</th>
+                                    <th class="border text-sm text-center font-semibold">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="  pl-0 mb-0 rounded-lg">
+                                @if ($terkirim != null)
+                                @foreach ($terkirim as $item)
+                                <tr>
+                                    <td class="border text-sm text-center ">{{$item->payment->user->name}}</td>
+                                    <td class="border text-sm text-center ">{{$item->transaksi_id}}</td>
+                                    <td class="border text-sm text-center ">{{$item->payment->item_details}}</td>
+                                    <td class="border text-sm text-center ">{{$item->tgl_pengiriman}}</td>
+                                    <td class="border text-sm text-center ">Rp. {{number_format($item->harga,0,2)}}</td>
+                                    <td class="ml-auto text-center border" x-data="{tooltip: false,}">
+
+                                        @if ( $item->status == 2 )
+                                        <x-jet-button @mouseover="tooltip = true" @mouseout="tooltip = false"
+                                            class="md:text-lg tracking-wider !bg-gray-500 hover:bg-gray-500 hover:shadow-none hover:-translate-y-0  text-gray-300 relative">
+                                            <span x-show='tooltip'
+                                                x-transition:enter="transition ease-out duration-300"
+                                                x-transition:enter-start="opacity-0 scale-90"
+                                                x-transition:enter-end="opacity-100 scale-100"
+                                                x-transition:leave="transition ease-in duration-300"
+                                                x-transition:leave-start="opacity-100 scale-100"
+                                                x-transition:leave-end="opacity-0 scale-90"
+                                                class="absolute translate-x-8 -translate-y-10 text-white bg-gray-700 shadow-md px-4 py-2 rounded-md text-sm">Konfirmasi
+                                                Pemesanan Dengan Pemilik</span>
+                                            Pesanan Diterima
+                                        </x-jet-button>
+                                        @elseif($item->status == 3)
+                                        <x-jet-button wire:click='konfirmasi({{$item->id}})'
+                                            class="md:text-lg tracking-wider !bg-blue-500 hover:bg-blue-700 hover:shadow-none relative">
+                                            Pesanan Diterima
+                                        </x-jet-button>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
