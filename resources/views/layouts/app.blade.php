@@ -98,7 +98,6 @@
     <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
     <!-- main script file  -->
     <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.0') }}" async></script>
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 </body>
 
