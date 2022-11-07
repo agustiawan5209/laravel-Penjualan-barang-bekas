@@ -237,7 +237,7 @@
         {{ $slot }}
     </main>
 
-    <footer class="py-5 pb-0 bg-gradient-to-t bg-gray-800 text-white">
+    <footer class="py-5 pb-0 bg-gradient-to-t bg-gray-800 text-white ">
         <div
             class="max-w-7xl mx-auto flex flex-col gap-y-8 py-5 px-5 sm:flex-row sm:justify-around sm:px-0 lg:gap-x-10">
             <div class="sm:basis-1/5">

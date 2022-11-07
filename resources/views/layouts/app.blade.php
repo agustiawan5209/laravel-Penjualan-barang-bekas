@@ -77,15 +77,16 @@
         </div>
 
         <!-- end cards -->
+        <footer class="py-5 pb-0 relative bg-blue-500 mt-[100px] md:mt-[200px]">
+            <div class="flex justify-end">
+                <p class="pb-5 pt-5 text-xs text-white border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
+                    chaibuilder.com</p>
+            </div>
+        </footer>
     </main>
 
 
-    <footer class="py-5 pb-0 relative bg-blue-500 mt-[100px] md:mt-[200px]">
-        <div class="flex justify-end">
-            <p class="pb-5 pt-5 text-xs text-white border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
-                chaibuilder.com</p>
-        </div>
-    </footer>
+
 
     @stack('modals')
 
