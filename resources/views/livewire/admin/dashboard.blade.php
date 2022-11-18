@@ -201,7 +201,7 @@
     </div>
     <input type="hidden" id="Penjualan" class="hidden" value="{{route('API-Data-Penjualan')}}">
     <script src="{{asset('js/charts.js')}}"></script>
-    {{-- <script>
+    <script>
         // chart 1
 
         if (document.querySelector("#chart-bars")) {
@@ -359,5 +359,5 @@
                 },
             });
         }
-    </script> --}}
+    </script>
 </main>
