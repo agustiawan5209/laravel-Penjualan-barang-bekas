@@ -19,6 +19,7 @@
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{ asset('build/assets/app.35f4d675.css') }}">
     @vite(['resources/js/app.js'])
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
 
     <!-- Styles -->
     @livewireStyles
@@ -92,7 +93,6 @@
 
     @livewireScripts
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <!-- plugin for charts  -->
     <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
     <!-- plugin for scrollbar  -->
