@@ -11,10 +11,10 @@ class LaporanController extends Controller
 {
     public function laporanPenjualan(Request $request)
     {
-        if ($request->tgl_awal == null && $request->tgl_akhir == null) {
+        if ($request->start == null && $request->end == null) {
             $transaksi = Transaksi::all();
         } else {
-            $transaksi = Transaksi::whereBetween('tgl_transaksi', [$request->tgl_awal, $request->tgl_akhir])->get();
+            $transaksi = Transaksi::whereBetween('tgl_transaksi', [$request->start, $request->end])->get();
         }
         $pdf = Pdf::loadView('PDF.penjualan', ['data' => $transaksi]);
         return $pdf->stream('Penjualan.pdf');
