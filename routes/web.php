@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\PromoController;
 use App\Http\Livewire\Admin\PageChat;
@@ -26,6 +27,7 @@ use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
 use App\Http\Livewire\Admin\RequestBarangAdmin;
 use App\Http\Livewire\Admin\SlideController;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
+use App\Http\Livewire\Laporan\Penjualan as LaporanPenjualan;
 use App\Http\Livewire\MetodePembayaran;
 use App\Http\Livewire\Page\PagePromoHome;
 use App\Http\Livewire\User\DetailPesanan;
@@ -97,6 +99,10 @@ Route::middleware([
         Route::get("Request/Barang-Admin", RequestBarangAdmin::class)->name('Request-Barang-Admin');
 
         // Tampilan Pengembalian Barang
+
+        // Laporan Penjualan
+        Route::get('Laporan/Penjualan', LaporanPenjualan::class)->name('laporan-Penjualan');
+        Route::get('PDF/Laporan/Penjualan', [LaporanController::class, 'laporanPenjualan'])->name('PDF-Laporan-Penjualan');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
