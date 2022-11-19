@@ -9,12 +9,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
-    public function laporanPenjualan(Request $request){
-        $transaksi = Transaksi::all();
-        if($request->tgl_awal != null && $request->tgl_akhir != null){
-            $transaksi = Transaksi::whereBetween('tgl_transaksi' ,[$request->tgl_awal, $request->tgl_akhir])->get();
+    public function laporanPenjualan(Request $request)
+    {
+        if ($request->tgl_awal == null && $request->tgl_akhir == null) {
+            $transaksi = Transaksi::all();
+        } else {
+            $transaksi = Transaksi::whereBetween('tgl_transaksi', [$request->tgl_awal, $request->tgl_akhir])->get();
         }
-        $pdf = Pdf::loadView('PDF.penjualan', [ 'data'=> $transaksi]);
+        $pdf = Pdf::loadView('PDF.penjualan', ['data' => $transaksi]);
         return $pdf->stream('Penjualan.pdf');
     }
 }
