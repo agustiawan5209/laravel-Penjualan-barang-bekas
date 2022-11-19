@@ -24,7 +24,7 @@
     <!-- Styles -->
     @livewireStyles
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> --}}
     <!-- JavaScript -->
@@ -93,8 +93,6 @@
 
     @livewireScripts
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- plugin for charts  -->
-    <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
     <!-- plugin for scrollbar  -->
     <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
     <!-- main script file  -->
