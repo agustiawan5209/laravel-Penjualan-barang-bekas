@@ -67,8 +67,21 @@
                                 <div class=""><a href="#"
                                         class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{ $item->nama_produk }}</a>
                                     <div class="flex items-end gap-2">
-                                        <span class="text-gray-800 lg:text-lg font-bold">Rp.
-                                            {{ isset($item->diskon->diskon) ? number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) : number_format($item->harga, 0, 2) }}</span>
+                                        <span class="text-gray-800 lg:text-lg font-bold">
+                                            @if (isset($item->diskon) == null)
+                                                {{ number_format($item->harga, 0, 2) }}
+                                            @else
+                                                <div class="flex flex-col">
+                                                    <span>
+                                                        Rp.
+                                                        {{ number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) }}
+                                                    </span>
+                                                    <span class="line-through text-red-500 text-xs">
+                                                        Rp. {{ number_format($item->harga, 0, 2) }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </span>
 
                                         <span class="text-red-500 line-through mb-0.5">Stock Habis</span>
                                     </div>
