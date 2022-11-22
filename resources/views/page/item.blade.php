@@ -20,18 +20,40 @@
                 @if ($barang != null)
                     @foreach ($barang as $item)
                         @if ($item->stock > 0)
-                            <div class="wow fadeInTop">
+                            <div class="wow fadeInTop shadow-md pb-3 px-4">
                                 <a href="{{ route('Produk-list', ['id' => $item->id, 'name' => $item->nama_produk]) }}"
                                     class="group h-60 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                                         alt="No alt" src="{{ asset('upload/' . $item->foto_produk) }}"
                                         class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /><span
                                         class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">{{ isset($item->diskon->diskon) ? 'Diskon ' . $item->diskon->diskon . '%' : '' }}</span></a>
-                                <div class=""><a href="#"
-                                        class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{ $item->nama_produk }}</a>
-                                    <div class="flex items-end gap-2"><span
-                                            class="text-gray-800 lg:text-lg font-bold">Rp.
-                                            {{ isset($item->diskon->diskon) ? number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) : number_format($item->harga, 0, 2) }}</span><span
-                                            class="text-red-500 mb-0.5 underline">{{ isset($item->diskon->diskon) ? number_format(($item->diskon->diskon / 100) * $item->harga, 0, 2) : '' }}</span>
+                                <div class="px-4"><a href="#"
+                                        class="text-gray-500 hover:gray-800 lg:text-2xl transition duration-100 mb-1 underline">{{ $item->nama_produk }}</a>
+                                    <div class="flex items-end gap-2 ">
+                                        <span class="text-gray-800 lg:text-lg font-bold flex items-center">
+                                            {{-- Diskon Ada --}}
+                                            @if (isset($item->diskon) == null)
+                                                {{ number_format($item->harga, 0, 2) }}
+                                            @else
+                                                <div class="flex flex-col">
+                                                    <span>
+                                                        Rp.
+                                                        {{ number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) }}
+                                                    </span>
+                                                    <span class="line-through text-red-500 text-xs">
+                                                        Rp. {{ number_format($item->harga, 0, 2) }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </span>
+                                        <span class="text-red-500  mb-0.5">
+                                            <table>
+                                                <tr>
+                                                    <td>stock </td>
+                                                    <td>: {{ $item->stock }}</td>
+                                                </tr>
+                                            </table>
+                                        </span>
+
                                     </div>
                                 </div>
                             </div>
@@ -44,10 +66,12 @@
                                         class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">{{ isset($item->diskon->diskon) ? 'Diskon ' . $item->diskon->diskon . '%' : '' }}</span></a>
                                 <div class=""><a href="#"
                                         class="text-gray-500 hover:gray-800 lg:text-lg transition duration-100 mb-1">{{ $item->nama_produk }}</a>
-                                    <div class="flex items-end gap-2"><span
-                                            class="text-gray-800 lg:text-lg font-bold">Rp.
-                                            {{ isset($item->diskon->diskon) ? number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) : number_format($item->harga, 0, 2) }}</span><span
-                                            class="text-red-500 line-through mb-0.5">Stock Habis</span></div>
+                                    <div class="flex items-end gap-2">
+                                        <span class="text-gray-800 lg:text-lg font-bold">Rp.
+                                            {{ isset($item->diskon->diskon) ? number_format($item->harga - ($item->diskon->diskon / 100) * $item->harga, 0, 2) : number_format($item->harga, 0, 2) }}</span>
+
+                                        <span class="text-red-500 line-through mb-0.5">Stock Habis</span>
+                                    </div>
                                 </div>
                             </div>
                         @endif
