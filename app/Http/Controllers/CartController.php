@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Promo;
 use App\Models\Barang;
+use App\Models\MetodePembayaran;
 use App\Models\PromoUser;
 use App\Models\UserVoucher;
 use App\Models\Voucher;
@@ -314,7 +315,7 @@ class CartController extends Controller
         // Tampilkan Voucher
         Session::put('param', $param);
         // dd($voucher);
-
+        $bank = MetodePembayaran::all();
         return  view('page.midtrans.midtrans', [
             'keranjang' => $keranjang,
             'sub_total' => $sub_total,
@@ -322,6 +323,7 @@ class CartController extends Controller
             'potongan_nominal' => $potongan_nominal,
             'total_price' => $array_sum_total_price,
             'voucher'=> $voucher,
+            'bank'=> $bank
         ]);
     }
     public function voucherPot($total_price){

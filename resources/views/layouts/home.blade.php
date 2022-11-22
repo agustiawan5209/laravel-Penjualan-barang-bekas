@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    <link rel="stylesheet" href="{{asset('build/assets/app.6eebe4a3.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.c2cfa30b.css')}}">
 
     <!-- Styles -->
     @livewireStyles

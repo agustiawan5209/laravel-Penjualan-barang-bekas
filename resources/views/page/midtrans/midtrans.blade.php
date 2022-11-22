@@ -181,21 +181,42 @@
                         </section>
 
                     </div>
-                    <div class="rounded-md" x-data="{ Payment: true, }">
+                    <div class="rounded-md" >
                         <section>
-                            <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Metode
-                                Pembayaran
-                            </h2>
-                            <div
-                                class="flex items-center bg-white pl-4 rounded border border-gray-200 dark:border-gray-700">
-                                <input id="bordered-checkbox-1" @click="Payment = ! Payment" type="checkbox"
-                                    value="BANK" name="metode"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="metode-1"
-                                    class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Bayar
-                                    Bank</label>
-                            </div>
-                            <div class="mb-4" x-show="Payment">
+                            @foreach ($bank as $item)
+                                <div class="" x-data="{ Payment: false, }">
+                                    <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Metode
+                                        Pembayaran
+                                    </h2>
+                                    <div
+                                        class="flex items-center bg-white pl-4 rounded border border-gray-200 dark:border-gray-700">
+                                        <input id="bordered-checkbox-1" @click="Payment = ! Payment" type="checkbox"
+                                            value="BANK" name="metode"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="metode-1"
+                                            class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">{{$item->bank}}</label>
+
+                                    </div>
+                                    <div class="mb-2 bg-white px-4" x-show="Payment">
+                                        <p class="mt-2  text-gray-500 tracking-wide">
+                                            Kirim pembaaran anda ke
+                                        <table>
+                                            <tr>
+                                                <td>Bank : {{ $item->bank }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    No. Rek : {{ $item->no_rekening }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Nama : {{ $item->pemilik }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            @endforeach
+                            <div class="mb-4">
                                 <label for="dropzone-file"
                                     class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500"
@@ -210,21 +231,6 @@
                                     <p class="mt-2 text-gray-500 tracking-wide">Upload Bukti Transaksi Anda Dalam
                                         Format
                                         jpg, png </p>
-                                    <p class="mt-2 text-gray-500 tracking-wide">
-                                        Kirim pembaaran anda ke
-                                    <table>
-                                        <tr>
-                                            <td>Bank :</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                No. Rek :</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Nama</td>
-                                        </tr>
-                                    </table>
                                     </p>
 
                                     <input id="dropzone-file" name='foto' type="file" class="text" />
