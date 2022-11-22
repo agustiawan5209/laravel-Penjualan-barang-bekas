@@ -15,7 +15,7 @@
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
-
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!-- JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -28,6 +28,10 @@
             height: 500px !important;
         }
     </style>
+     <script src="{{ asset('js/wow.min.js') }}"></script>
+     <script>
+     new WOW().init();
+     </script>
 </head>
 
 <body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"
@@ -237,7 +241,7 @@
         {{ $slot }}
     </main>
 
-    <footer class="py-5 pb-0 bg-gradient-to-t bg-gray-800 text-white ">
+    <footer class="py-5 pb-0 bg-gradient-to-t bg-gray-800 text-white wow fadeIn">
         <div
             class="max-w-7xl mx-auto flex flex-col gap-y-8 py-5 px-5 sm:flex-row sm:justify-around sm:px-0 lg:gap-x-10">
             <div class="sm:basis-1/5">
