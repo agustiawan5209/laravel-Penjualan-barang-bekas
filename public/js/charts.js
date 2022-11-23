@@ -18,9 +18,9 @@ if (document.querySelector("#chart-line")) {
                 const monthNames = ["January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December"
                 ];
-               for (let i = 1; i < 13; i++) {
-                hasil.push(nilai[i])
-               }
+                for (let i = 1; i < 13; i++) {
+                    hasil.push(nilai[i])
+                }
                 new Chart(ctx1, {
                     type: "bar",
                     data: {

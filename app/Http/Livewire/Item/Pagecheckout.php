@@ -113,7 +113,7 @@ class Pagecheckout extends Component
     }
     public function kurang($id)
     {
-        if ($this->cekStock($id) == false) {
+        if ($this->cekStock($id)) {
             $this->jumlah--;
             $this->sub_total = 'Rp. ' . number_format($this->jumlah * $this->harga - $this->diskon, 0, 2);
         }
