@@ -20,7 +20,7 @@
                 @if ($barang != null)
                     @foreach ($barang as $item)
                         @if ($item->stock > 0)
-                            <div class="wow fadeInUp shadow-md pb-3 px-4" data-wow-dalay="20{{ $item->id }}ms" data-wow-duration="500s">
+                            <div class="wow fadeInUp shadow-md pb-3 px-4" data-wow-delay="20{{ $item->id }}ms" data-wow-duration="500ms">
                                 <a href="{{ route('Produk-list', ['id' => $item->id, 'name' => $item->nama_produk]) }}"
                                     class="group h-60 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                                         alt="No alt" src="{{ asset('upload/' . $item->foto_produk) }}"
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         @else
-                            <div class="bg-gray-300">
+                            <div class="bg-gray-300 wow fadeInDown" data-wow-delay="500ms">
                                 <a
                                     class="group h-60 block bg-gray-100 overflow-hidden relative mb-2 rounded-global lg:mb-3"><img
                                         alt="No alt" src="{{ asset('upload/' . $item->foto_produk) }}"
