@@ -6,7 +6,7 @@
     @else
         <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-8 wow fadeIn">
                 <div class="space-y-4">
                     <div class="bg-gray-100 rounded-lg overflow-hidden relative"><img alt="No alt"
                             src="{{ asset('upload/' . $foto_produk) }}"
@@ -14,7 +14,7 @@
                             class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span>
                     </div>
                 </div>
-                <div class="md:py-8">
+                <div class="md:py-8 wow fadeIn">
                     <div class="mb-2 md:mb-3"><span class="inline-block text-gray-500 mb-0.5">Barang Bekas</span>
                         <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">{{ $nama_produk }}</h2>
                     </div>
