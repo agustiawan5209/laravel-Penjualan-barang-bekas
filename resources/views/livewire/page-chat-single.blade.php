@@ -60,7 +60,7 @@
                         @if ($item->from != 1)
                         <div class="message mb-4 flex">
                             <div class="flex-1 px-2">
-                                <div class="inline-block bg-gray-300 rounded-none p-2 px-6 text-gray-700">
+                                <div class="inline-block bg-gray-300 rounded-md p-2 px-6 text-gray-700">
                                     <span>
                                     {!! $item->body !!}
                                     </span>
@@ -72,7 +72,7 @@
                         @if ($item->from == 1)
                         <div class="message me mb-4 flex text-right">
                             <div class="flex-1 px-2">
-                                <div class="inline-block bg-blue-600 rounded-none p-2 px-6 text-white">
+                                <div class="inline-block bg-blue-600 rounded-md p-2 px-6 text-white">
                                     <span>
                                     {!! $item->body !!}
                                     </span>
@@ -101,9 +101,8 @@
                                 </span>
                             </div>
                             <div class="flex-1">
-                                <textarea wire:model="message"
-                                    class="w-full block outline-none py-4 px-4 bg-transparent" rows="1"
-                                    placeholder="Type a message..." autofocus></textarea>
+                                <textarea wire:model="message" id="editor" rows="1"
+                                    placeholder="Type a message..." autofocus>{{ $message }}</textarea>
                             </div>
                             <div class="flex-2 w-32 p-2 flex content-center items-center">
                                 <div class="flex-1">

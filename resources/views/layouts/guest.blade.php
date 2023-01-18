@@ -21,17 +21,17 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app.c2cfa30b.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.b856226e.css') }}">
     @vite(['resources/js/app.js'])
     <style>
         .flickity-viewport {
             height: 500px !important;
         }
     </style>
-     <script src="{{ asset('js/wow.min.js') }}"></script>
-     <script>
-     new WOW().init();
-     </script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
 <body class="font-body antialiased text-[#000000] bg-[#fcfcfc] dark:text-[#ffffff] dark:bg-[#031022]"
@@ -245,35 +245,28 @@
         <div
             class="max-w-7xl mx-auto flex flex-col gap-y-8 py-5 px-5 sm:flex-row sm:justify-around sm:px-0 lg:gap-x-10">
             <div class="sm:basis-1/5">
-                <h1 class="font-black text-3xl text-white ">Logo</h1>
-                <p class="text-base tracking-normal text-white mt-3  2xl:tracking-wide">profile</p>
+                <h1 class="font-black text-3xl text-white ">GRIBS</h1>
+            </div>
+            <div class="w-96">
+                <h4 class="font-bold text-lg text-white ">Profile</h4><a class="block mt-3 text-sm " href="#">
+                    Galeri Barang Bekas (Gribs) merupakan bisnis jasa titip, dan jual beli barang bekas, Yang Menjual
+                    Barang Barang bekas Seperti Alat Elektronik, Alat Musik, Mebel dan lain lain, Gribs terletak dijalan
+                    Meranti No.208, Paropo, Kota Makassar. Usaha ini dirintis sejak 2004.
+                </a>
             </div>
             <div class="">
-                <h4 class="font-bold text-lg text-white ">Services</h4><a class="block mt-3 text-sm "
-                    href="#">Chai </a><a class="block mt-3 text-sm " href="#">Generator</a>
-            </div>
-            <div class="">
-                <h4 class="font-bold text-lg text-white ">Blog</h4><a class="block mt-3 text-sm "
-                    href="#">Tailwind CSS v3 </a><a class="block mt-3 text-sm " href="#">Chai
-                    Builder</a><a class="block mt-3 text-sm " href="#">How to code?</a><a
-                    class="block mt-3 text-sm " href="#">Master Remix.run</a>
-            </div>
-            <div class="">
-                <h4 class="font-bold text-lg text-white ">Links</h4><a class="block mt-3 text-sm "
-                    href="#">Privacy Policy</a><a class="block mt-3 text-sm " href="#">Terms and
-                    conditions</a><a class="block mt-3 text-sm " href="#">Return Policy</a><a
-                    class="block mt-3 text-sm " href="#">All eCourses</a>
-            </div>
-            <div class="">
-                <h4 class="font-bold text-lg text-white ">Social </h4><a class="block mt-3 text-sm "
-                    href="#">Twitter</a><a class="block mt-3 text-sm " href="#">Facebook</a><a
-                    class="block mt-3 text-sm " href="#">LinkedIn</a><a class="block mt-3 text-sm "
-                    href="#">Google+</a>
+                <h4 class="font-bold text-lg text-white ">Akun Sosmed</h4>
+                <a class="block mt-3 text-sm "
+                    href="#">wa : 081242788789
+                </a>
+                <a class="block mt-3 text-sm "
+                    href="#">fb : https://www.facebook.com/bank.joe.963 </a>
             </div>
         </div>
+
         <div class="">
             <p class="pb-5 pt-5 text-xs text-gray-400 border-t max-w-7xl mx-auto px-5 sm:px-8">Copyright @ 2022,
-                chaibuilder.com</p>
+                gribs</p>
         </div>
     </footer>
     @if (Auth::check())
@@ -302,7 +295,7 @@
 
     <!-- AlpineJS Library -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
 
 </body>
 

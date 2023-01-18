@@ -57,13 +57,6 @@
                                                     class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
                                                     alt="user1" />
                                             </div>
-                                            {{-- <div class="flex flex-col justify-center">
-                                      <h6 class="mb-0 leading-normal dark:text-white text-size-sm">John
-                                          Michael</h6>
-                                      <p
-                                          class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
-                                          john@creative-tim.com</p>
-                                  </div> --}}
                                         </div>
                                     </x-forms.td>
                                     <x-forms.td>
@@ -261,5 +254,5 @@
             </x-jet-confirmation-modal>
         @endif
     </div>
-    {{-- Modal Detail Produk Pengguna --}}
+
 </div>

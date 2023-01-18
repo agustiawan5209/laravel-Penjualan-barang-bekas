@@ -17,8 +17,8 @@
     <link href="{{ asset('css/argon-dashboard-tailwind.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- Popper -->
     <!-- Main Styling -->
-    <link rel="stylesheet" href="{{ asset('build/assets/app.c2cfa30b.css') }}">
-    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.b856226e.css') }}">
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
 
     <!-- Styles -->
@@ -28,6 +28,8 @@
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> --}}
     <!-- JavaScript -->
+    <script src="../../node_modules/@types/ckeditor__ckeditor5-build-classic/build/cdkeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
 
 </head>
 
@@ -92,6 +94,16 @@
     @stack('modals')
 
     @livewireScripts
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: ['|'],
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- plugin for scrollbar  -->
     <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>

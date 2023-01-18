@@ -30,6 +30,7 @@ use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\Laporan\Penjualan as LaporanPenjualan;
 use App\Http\Livewire\MetodePembayaran;
 use App\Http\Livewire\Page\PagePromoHome;
+use App\Http\Livewire\PageChatSingle;
 use App\Http\Livewire\User\DetailPesanan;
 use App\Http\Livewire\User\JualTitip;
 use App\Http\Livewire\User\ProfilePesanan;
@@ -93,6 +94,7 @@ Route::middleware([
 
         // Halaman Chat Admin
         Route::get('Chat', PageChat::class)->name('chat');
+        Route::get('Chat/{id_chat}', PageChatSingle::class)->name('chat-single');
 
 
         // Tampilkan Request Barang Admin

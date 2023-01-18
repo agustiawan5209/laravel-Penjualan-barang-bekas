@@ -17,6 +17,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "ckeditor4": "^4.19.1"
+        "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+        "ckeditor4": "^4.20.1"
     }
 }

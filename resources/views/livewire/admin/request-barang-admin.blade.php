@@ -35,6 +35,9 @@
                                 Harga</x-forms.th>
                             <x-forms.th>
                                 Kategori</x-forms.th>
+
+                            <x-forms.th>
+                                Chat</x-forms.th>
                             <x-forms.th>Konfirmasi</x-forms.th>
                         </tr>
                     </thead>
@@ -75,6 +78,13 @@
                                             class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
                                             Rp. {{ number_format($item->harga, 0, 2) }}</span>
                                     </td>
+
+                                    <td>
+                                        <a href="#_" wire:click='chatUser({{ $item->id }})'
+                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
+                                           Hubungi Penjual
+                                        </a>
+                                    </td>
                                     <td
                                         class="p-2 leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 text-size-sm whitespace-nowrap shadow-transparent">
                                         <span
@@ -91,9 +101,9 @@
                         @endif
                     </tbody>
                 </x-forms.table>
-
             </div>
         </div>
+
     </div>
     {{-- Modal Detail Produk Pengguna --}}
     <x-jet-dialog-modal wire:model="statusItem">
