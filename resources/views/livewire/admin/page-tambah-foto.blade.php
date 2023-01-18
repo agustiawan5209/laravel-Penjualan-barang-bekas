@@ -14,8 +14,8 @@
                     </td>
                     <td class="border px-3 py-2">
                         <div class="flex items-center">
-                            <input id="link-checkbox" type="radio" wire:click='default_foto({{ $item->id }})' value="{{ $key }}"
-                                {{ $item->default == 'yes' ? 'checked' : '' }}
+                            <input id="link-checkbox" type="radio" wire:click='default_foto({{ $item->id }})'
+                                value="{{ $key }}" {{ $item->default == 'yes' ? 'checked' : '' }}
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="link-checkbox"
                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jadikan
@@ -38,7 +38,9 @@
         <x-jet-dialog-modal wire:model='itemAdd'>
             <x-slot name='title'>Tambah Foto</x-slot>
             <x-slot name='content'>
-                <div class="mb-4">
+                <form class="mb-4" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+                    x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+                    x-on:livewire-upload-progress="progress = $event.detail.progress">
                     <label for="dropzone-file"
                         class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
@@ -53,6 +55,9 @@
 
                         <input id="dropzone-file" wire:model='foto_barang' type="file" class="hidden" />
                         </section>
+                        <div x-show="isUploading">
+                            <progress max="100" x-bind:value="progress"></progress>
+                        </div>
                         @if ($foto_barang)
                             foto_barang Preview:
                             <img src="{{ $foto_barang->temporaryUrl() }}">
@@ -60,7 +65,7 @@
                         @error('foto_barang')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
-                </div>
+                </form>
             </x-slot>
             <x-slot name='footer'>
                 <x-jet-button type='button' wire:click='tambahFoto'>Simpan</x-jet-button>
