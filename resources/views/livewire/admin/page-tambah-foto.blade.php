@@ -1,6 +1,10 @@
 <div>
 
     <div class="overflow-auto md:px-5 bg-white py-10">
+        <a href="{{ route('Admin.Barang') }}">
+            <x-jet-danger-button type='button'>Kembali
+            </x-jet-danger-button>
+        </a>
         <table class="table w-full border">
             @foreach ($fotoBarang as $key => $item)
                 <tr>

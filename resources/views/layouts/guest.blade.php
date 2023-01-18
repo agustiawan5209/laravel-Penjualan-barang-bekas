@@ -22,7 +22,7 @@
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('build/assets/app.b856226e.css') }}">
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js' ,'resources/css/app.css'])
     <style>
         .flickity-viewport {
             height: 500px !important;

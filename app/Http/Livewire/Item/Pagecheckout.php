@@ -36,8 +36,9 @@ class Pagecheckout extends Component
         $categories = '';
         $barang = Barang::where('id', '=', $this->itemID)->where('nama_produk', '=', $this->nameID)->get();
         $ulasan = ulasan::where('barang_id', $this->itemID)->orderBy('id', 'desc')->get();
+
         foreach ($barang as $item) {
-            $foto_produk = $item->foto_produk;
+            $foto_produk = $item->fotobarang;
             $nama_produk = $item->nama_produk;
             $this->harga = $item->harga;
             $deskripsi = $item->deskripsi;

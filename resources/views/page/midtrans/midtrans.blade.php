@@ -9,8 +9,12 @@
                         @foreach ($keranjang as $item)
                             <li class="grid grid-cols-6 gap-2 border-b-1">
                                 <div class="col-span-1 self-center">
-                                    <img src="{{ asset('upload/' . $item->barang->foto_produk) }}" alt="Product"
-                                        class="rounded w-full">
+                                   @foreach ($item->barang->fotobarang as $val)
+                                     @if ($val->default == 'yes')
+                                        <img src="{{ asset('upload/' . $val->foto) }}" alt="barang Bekas"
+                                            class="rounded w-full">
+                                     @endif
+                                   @endforeach
                                 </div>
                                 <div class="flex flex-col col-span-3 pt-2">
                                     <span

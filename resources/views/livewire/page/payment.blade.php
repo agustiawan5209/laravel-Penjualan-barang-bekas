@@ -15,9 +15,15 @@
                         @foreach ($keranjang as $item)
                             <div class="flex flex-wrap gap-4 lg:gap-6 sm:py-2.5">
                                 <div class="sm:-my-2.5"><a href="#"
-                                        class="group w-24 sm:w-40 h-40 sm:h-56 block bg-gray-100 rounded-lg overflow-hidden relative"><img
-                                            alt="No alt" src="{{ asset('upload/' . $item->barang->foto_produk) }}"
-                                            class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " /></a>
+                                        class="group w-24 sm:w-40 h-40 sm:h-56 block bg-gray-100 rounded-lg overflow-hidden relative">
+                                        @foreach ($item->barang->fotobarang as $val)
+                                            @if ($val->default == 'yes')
+                                                <img alt="No alt" src="{{ asset('upload/' . $val->foto) }}"
+                                                    class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200 " />
+                                            @endif
+                                        @endforeach
+
+                                    </a>
                                 </div>
                                 <div class="flex flex-col justify-between flex-1">
                                     <div class=""><a href="#"
@@ -108,7 +114,7 @@
                                         class="text-gray-500 text-sm">including VAT</span></span></div>
                         </div>
                     </div>
-                    <a href="{{route("Kirim-Pembayaran")}}">
+                    <a href="{{ route('Kirim-Pembayaran') }}">
                         <x-jet-button class="bg-blue-500" id="pay-button">Bayar Sekarang</x-jet-button>
                     </a>
                 </div>
