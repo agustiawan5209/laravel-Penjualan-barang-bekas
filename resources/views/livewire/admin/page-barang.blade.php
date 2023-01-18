@@ -65,9 +65,7 @@
                                     <tr>
                                         <x-forms.td>
                                             <div class="flex justify-center px-2 py-1">
-                                                <img src="{{ asset('upload/' . $item->foto_produk) }}"
-                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-12 w-12 rounded-xl"
-                                                    alt="user1" />
+                                                <a href="{{ route('Admin.Barang-Foto', ['id'=> $item->id]) }}" class="text-blue-500 hover:text-blue-500">Foto Barang</a>
                                             </div>
                                         </x-forms.td>
                                         <x-forms.td>
@@ -268,16 +266,14 @@
 
                                 <h2 class="mt-4 text-xl font-medium text-gray-700 tracking-wide">File</h2>
 
-                                <p class="mt-2 text-gray-500 tracking-wide">Upload or darg & drop your file SVG, PNG,
-                                    JPG or
-                                    GIF. </p>
+                                <p class="mt-2 text-gray-500 tracking-wide">Upload Foto Barang </p>
 
                                 <input id="dropzone-file" wire:model='foto' type="file" class="hidden" />
                                 </section>
                                 @if ($updateFoto != null)
                                     @if ($updateFoto)
                                         foto produk Preview:
-                                        <img src="{{ $updateFoto->temporaryUrl() }}">
+                                        <img src="{{ $foto->temporaryUrl() }}">
                                     @endif
                                     @error('updateFoto')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>

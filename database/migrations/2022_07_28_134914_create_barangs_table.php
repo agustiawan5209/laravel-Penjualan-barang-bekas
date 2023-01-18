@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('foto_produk', 100);
             $table->string('nama_produk', 50);
             $table->integer('harga');
             $table->longText('deskripsi');

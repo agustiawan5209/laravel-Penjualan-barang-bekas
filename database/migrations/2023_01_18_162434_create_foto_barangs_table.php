@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('foto_barangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
+            $table->string('foto', 200);
+            $table->enum('default', ['yes', 'no'])->default('no');
+            $table->enum('jenis', ['1', '2'])->default('1');
             $table->timestamps();
         });
     }

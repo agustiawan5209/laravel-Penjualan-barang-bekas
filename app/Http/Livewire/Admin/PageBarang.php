@@ -69,7 +69,8 @@ class PageBarang extends Component
         ]);
         $filename = $this->foto->getClientOriginalName();
         $explod = explode('.', $filename);
-        $randomize = md5($filename) . '.' . $explod[1];
+        $randomize = $this->nama_produk . '.' .  $this->foto->getClientOriginalName();
+        // dd($randomize);
         $this->foto->storeAs('upload', $randomize);
         // dd($randomize);
         // melakukan return foto
@@ -116,7 +117,7 @@ class PageBarang extends Component
             }
             $filename = $this->updateFoto->getClientOriginalName();
             $explod = explode('.', $filename);
-            $randomize = md5($filename) . '.' . $explod[1];
+            $randomize = $this->nama_produk . '.' .  $this->foto->getClientOriginalName();
             $this->updateFoto->storeAs('upload', $randomize);
         }
 

@@ -20,6 +20,7 @@ use App\Http\Controllers\PromoController;
 use App\Http\Livewire\Admin\PageChat;
 use App\Http\Livewire\Admin\PagePengembalianAdmin;
 use App\Http\Livewire\Admin\PagePengiriman;
+use App\Http\Livewire\Admin\PageTambahFoto;
 use App\Http\Livewire\Admin\PageVoucher;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\Promo\PromoLaris;
@@ -79,6 +80,7 @@ Route::middleware([
         Route::get('Penitipan/Barang', RequestBarang::class)->name('Admin.Penitipan');
         Route::get('Penjualan/Barang', Penjualan::class)->name('Admin.Penjualan');
         Route::get('Pengelolaan/Barang', PageBarang::class)->name('Admin.Barang');
+        Route::get('Pengelolaan/Foto-Barang/{id}', PageTambahFoto::class)->name('Admin.Barang-Foto');
         Route::get('Promo/Barang', PagePromo::class)->name('Admin.Promo');
         Route::get('Voucher/Barang', PageVoucher::class)->name('Admin.Voucher');
         Route::get('Slide/Setting', SlideController::class)->name('Admin.Slide');
