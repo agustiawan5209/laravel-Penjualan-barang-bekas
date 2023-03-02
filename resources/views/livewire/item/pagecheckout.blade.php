@@ -12,7 +12,7 @@
                         @foreach ($foto_produk as $item)
                             @if ($item->default == 'yes')
                                 <img alt="Barang Bekas" src="{{ asset('upload/' . $item->foto) }}"
-                                    class="w-full h-full object-cover object-center " alt="barang bekas"/>
+                                    class="w-full h-full object-cover object-center " height="400" alt="barang bekas"/>
                             @endif
                         @endforeach
                         <span
