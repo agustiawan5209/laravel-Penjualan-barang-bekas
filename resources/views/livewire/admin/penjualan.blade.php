@@ -46,7 +46,7 @@
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-                        <h6 class="mb-0 dark:text-white">Pesanan Belum Di Konfirmasi</h6>
+                        <h6 class="mb-0 dark:text-black">Pesanan Belum Di Konfirmasi</h6>
                     </div>
                     <div class="flex-auto p-4 pt-6">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
@@ -54,16 +54,16 @@
                             <li
                                 class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
                                 <div class="flex flex-col">
-                                    <h6 class="mb-4 leading-normal dark:text-white text-size-sm">{{$item->user->name}}
+                                    <h6 class="mb-4 leading-normal dark:text-black text-size-sm">{{$item->user->name}}
                                     </h6>
-                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">Nomor Telepon:
+                                    <span class="mb-2 leading-tight text-size-xs dark:text-black/80">Nomor Telepon:
                                         <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->user->phone_number}}</span></span>
-                                    <span class="mb-2 leading-tight text-size-xs dark:text-white/80">ID Transaksi:
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$item->user->phone_number}}</span></span>
+                                    <span class="mb-2 leading-tight text-size-xs dark:text-black/80">ID Transaksi:
                                         <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->transaksi_id}}</span></span>
-                                    <span class="leading-tight text-size-xs dark:text-white/80">Detail Pesanan: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$item->item_details}}</span></span>
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$item->transaksi_id}}</span></span>
+                                    <span class="leading-tight text-size-xs dark:text-black/80">Detail Pesanan: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$item->item_details}}</span></span>
                                 </div>
                                 <div class="ml-auto text-right">
                                     <x-jet-secondary-button wire:click='konfirmasi_pesanan({{$item->id}})'>
@@ -82,17 +82,17 @@
                     <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
                         <div class="flex flex-wrap -mx-3">
                             <div class="max-w-full px-3 md:w-1/2 md:flex-none">
-                                <h6 class="mb-0 dark:text-white">Transaksi Terbaru</h6>
+                                <h6 class="mb-0 dark:text-black">Transaksi Terbaru</h6>
                             </div>
                             <div
-                                class="flex items-center justify-end max-w-full px-3 dark:text-white/80 md:w-1/2 md:flex-none">
+                                class="flex items-center justify-end max-w-full px-3 dark:text-black/80 md:w-1/2 md:flex-none">
                                 <i class="mr-2 far fa-calendar-alt" aria-hidden="true"></i>
                                 <small>{{date('Y-m-d')}}</small>
                             </div>
                         </div>
                     </div>
                     <div class="flex-auto p-4 pt-6">
-                        <h6 class="mb-4 font-bold leading-tight uppercase dark:text-white text-size-xs text-slate-500">
+                        <h6 class="mb-4 font-bold leading-tight uppercase dark:text-black text-size-xs text-slate-500">
                             Newest</h6>
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             @foreach ($transaksi_terbaru as $item)
@@ -103,11 +103,11 @@
                                         class="leading-pro ease-in text-size-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-red-600 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-600 transition-all hover:opacity-75"><i
                                             class="fas fa-arrow-down text-size-3xs" aria-hidden="true"></i></button>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 leading-normal dark:text-white text-size-sm text-slate-700">
+                                        <h6 class="mb-1 leading-normal dark:text-black text-size-sm text-slate-700">
                                             {{$item->user->name}}
                                         </h6>
                                         <span
-                                            class="leading-tight text-size-xs dark:text-white/80">{{$item->user->email}}
+                                            class="leading-tight text-size-xs dark:text-black/80">{{$item->user->email}}
                                         </span>
                                     </div>
                                 </div>
@@ -183,17 +183,17 @@
                                              alt="user1">
                                      </div>
                                      <div class="flex flex-col justify-center">
-                                         <h6 class="mb-0 leading-normal dark:text-white text-size-sm">
+                                         <h6 class="mb-0 leading-normal dark:text-black text-size-sm">
                                              {{ $item->user->name }}</h6>
                                          <p
-                                             class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
+                                             class="mb-0 leading-tight dark:text-black dark:opacity-80 text-size-xs text-slate-400">
                                              {{ $item->user->email }}</p>
                                      </div>
                                  </div>
                              </x-forms.td>
                              <x-forms.td>
                                  <p
-                                     class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                     class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                      Produk</p>
                              </x-forms.td>
                              <x-forms.td>
@@ -207,7 +207,7 @@
                                      Pembayaran Di Konfirmasi
                                      @endif
                                  </span>
-                                 <p class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-xs">
+                                 <p class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-xs">
                                      {{ $item->payment_type }}</p>
                              </x-forms.td>
                              <x-forms.td class="text-center px-0 ">
@@ -355,7 +355,7 @@
                         Status
                     </label>
                     <select id="countries" wire:model='status'
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">--Pilih Status Pengiriman--</option>
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Terkirim</option>

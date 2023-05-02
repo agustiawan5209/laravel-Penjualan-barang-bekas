@@ -1,7 +1,7 @@
 <div class="py-10">
     <div class="container mx-auto px-4">
         <div class="md:w-5/6 md:mx-auto md:max-w-2xl ">
-            <h1 class="text-black text-3xl text-center font-bold dark:text-white sm:text-4xl">Blog</h1>
+            <h1 class="text-black text-3xl text-center font-bold dark:text-black sm:text-4xl">Blog</h1>
             <p class="text-center text-lg mt-2">It is a long established fact that a reader will be distracted by
                 the readable content of a page when looking at its layout</p>
         </div>
@@ -20,7 +20,7 @@
                             <p class="uppercase text-sm">John Doe</p>
                         </div>
                         <h1
-                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-white xl:text-xl 2xl:text-2xl">
+                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-black xl:text-xl 2xl:text-2xl">
                             The best free stock photos, royalty free images </h1><a href="#"
                             class="flex items-center gap-x-1.5">Read more<span class="order-last">
                                 <div style="font-size:inherit;color:inherit;padding:2px"><svg
@@ -48,7 +48,7 @@
                             <p class="uppercase text-sm">John Doe</p>
                         </div>
                         <h1
-                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-white xl:text-xl 2xl:text-2xl">
+                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-black xl:text-xl 2xl:text-2xl">
                             The best free stock photos, royalty free images </h1><a href="#"
                             class="flex items-center gap-x-1.5">Read more<span class="order-last">
                                 <div style="font-size:inherit;color:inherit;padding:2px"><svg
@@ -76,7 +76,7 @@
                             <p class="uppercase text-sm">John Doe</p>
                         </div>
                         <h1
-                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-white xl:text-xl 2xl:text-2xl">
+                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-black xl:text-xl 2xl:text-2xl">
                             The best free stock photos, royalty free images </h1><a href="#"
                             class="flex items-center gap-x-1.5">Read more<span class="order-last">
                                 <div style="font-size:inherit;color:inherit;padding:2px"><svg
@@ -104,7 +104,7 @@
                             <p class="uppercase text-sm">John Doe</p>
                         </div>
                         <h1
-                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-white xl:text-xl 2xl:text-2xl">
+                            class="text-xl font-semibold text-black mb-4 mt-2 dark:text-black xl:text-xl 2xl:text-2xl">
                             The best free stock photos, royalty free images </h1><a href="#"
                             class="flex items-center gap-x-1.5">Read more<span class="order-last">
                                 <div style="font-size:inherit;color:inherit;padding:2px"><svg

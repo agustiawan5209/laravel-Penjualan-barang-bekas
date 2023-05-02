@@ -70,14 +70,14 @@
                                         </x-forms.td>
                                         <x-forms.td>
                                             <p
-                                                class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                                class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                                 {{ $item->nama_produk }}</p>
                                         </x-forms.td>
 
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
+                                                class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
                                                 Rp. {{ number_format($item->harga, 0, 2) }}</span>
                                         </td>
                                         <td
@@ -200,7 +200,7 @@
                                 Kategori Produk
                             </label>
                             <select id="countries" wire:model='kategori_produk'
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @if ($kategory->count() > 0)
                                     @foreach ($kategory as $item)
                                         <option value="{{ $item->id }}">{{ $item->kategory }}</option>
@@ -321,7 +321,7 @@
                                 Kategori Produk
                             </label>
                             <select id="countries" wire:model='kategori_produk'
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @if ($kategory->count() > 0)
                                     @foreach ($kategory as $item)
                                         <option value="{{ $item->id }}">{{ $item->kategory }}</option>
@@ -416,7 +416,7 @@
                     <div
                         class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                         <div class="p-4 pb-0 rounded-t-4">
-                            <h6 class="mb-0 dark:text-white">Categories</h6>
+                            <h6 class="mb-0 dark:text-black">Categories</h6>
                         </div>
                         <div class="flex-auto p-4">
                             <ul class="flex flex-col pl-0 mb-0 rounded-lg">
@@ -429,13 +429,13 @@
                                             </div>
                                             <div class="flex flex-col">
                                                 <h6
-                                                    class="mb-1 leading-normal text-size-sm text-slate-700 dark:text-white">
+                                                    class="mb-1 leading-normal text-size-sm text-slate-700 dark:text-black">
                                                     {{ $item->kategory }}</h6>
                                             </div>
                                         </div>
                                         <div class="flex">
                                             <button
-                                                class="group ease-in leading-pro text-size-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white"
+                                                class="group ease-in leading-pro text-size-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-black"
                                                 wire:click='HapusKategori({{ $item->id }})'>
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -500,37 +500,37 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="username"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Nama
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Nama
                                         Produk</label>
                                     <input type="text" name="username" wire:model='nama_produk'
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="email"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Jumlah
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Jumlah
                                         Diskon</label>
                                     <input type="text" wire:model="jumlah_diskon"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Tanggal Mulai"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Tanggal
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Tanggal
                                         Mulai</label>
                                     <input type="date" wire:model="tgl_mulai"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Tanggal Kadaluarsa"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Tanggal
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Tanggal
                                         Kadaluarsa</label>
                                     <input type="date" wire:model="tgl_kadaluarsa"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                         </div>

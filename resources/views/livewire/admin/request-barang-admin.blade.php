@@ -47,7 +47,7 @@
                                 <tr>
                                     <x-forms.td>
                                         <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                            class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                             {{ $item->user->name }}</p>
                                     </x-forms.td>
                                     <x-forms.td>
@@ -58,24 +58,24 @@
                                                     alt="user1" />
                                             </div>
                                             {{-- <div class="flex flex-col justify-center">
-                                      <h6 class="mb-0 leading-normal dark:text-white text-size-sm">John
+                                      <h6 class="mb-0 leading-normal dark:text-black text-size-sm">John
                                           Michael</h6>
                                       <p
-                                          class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
+                                          class="mb-0 leading-tight dark:text-black dark:opacity-80 text-size-xs text-slate-400">
                                           john@creative-tim.com</p>
                                   </div> --}}
                                         </div>
                                     </x-forms.td>
                                     <x-forms.td>
                                         <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                            class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                             {{ $item->nama_produk }}</p>
                                     </x-forms.td>
 
                                     <td
                                         class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                         <span
-                                            class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
+                                            class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
                                             Rp. {{ number_format($item->harga, 0, 2) }}</span>
                                     </td>
 
@@ -126,9 +126,9 @@
                                         </div>
                                         <div class="ml-6">
                                             <p
-                                                class="mb-0 font-semibold leading-tight dark:text-white text-xs dark:opacity-60">
+                                                class="mb-0 font-semibold leading-tight dark:text-black text-xs dark:opacity-60">
                                                 Nama:</p>
-                                            <h6 class="mb-0 leading-normal text-sm dark:text-white">{{ $nama_produk }}
+                                            <h6 class="mb-0 leading-normal text-sm dark:text-black">{{ $nama_produk }}
                                             </h6>
                                         </div>
                                     </div>
@@ -137,9 +137,9 @@
                                     class="p-2 align-middle bg-transparent border-b whitespace-nowrap dark:border-white/40">
                                     <div class="text-center">
                                         <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white text-xs dark:opacity-60">
+                                            class="mb-0 font-semibold leading-tight dark:text-black text-xs dark:opacity-60">
                                             Deskripsi:</p>
-                                        <h6 class="mb-0 leading-normal text-sm dark:text-white">{{ $deskripsi }}</h6>
+                                        <h6 class="mb-0 leading-normal text-sm dark:text-black">{{ $deskripsi }}</h6>
                                     </div>
                                 </td>
                             </tr>
@@ -148,9 +148,9 @@
                                     class="p-2 align-middle bg-transparent border-b whitespace-nowrap dark:border-white/40">
                                     <div class="text-center">
                                         <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white text-xs dark:opacity-60">
+                                            class="mb-0 font-semibold leading-tight dark:text-black text-xs dark:opacity-60">
                                             Harga:</p>
-                                        <h6 class="mb-0 leading-normal text-sm dark:text-white">
+                                        <h6 class="mb-0 leading-normal text-sm dark:text-black">
                                             {{ number_format($harga, 0, 2) }}</h6>
                                     </div>
                                 </td>
@@ -158,9 +158,9 @@
                                     class="p-2 leading-normal align-middle bg-transparent border-b text-sm whitespace-nowrap dark:border-white/40">
                                     <div class="flex-1 text-center">
                                         <p
-                                            class="mb-0 font-semibold leading-tight dark:text-white text-xs dark:opacity-60">
+                                            class="mb-0 font-semibold leading-tight dark:text-black text-xs dark:opacity-60">
                                             Alamat:</p>
-                                        <h6 class="mb-0 leading-normal text-sm dark:text-white">{{ $Alamat }}
+                                        <h6 class="mb-0 leading-normal text-sm dark:text-black">{{ $Alamat }}
                                         </h6>
                                     </div>
                                 </td>
@@ -185,11 +185,11 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
                                 <div class="mb-4">
                                     <label for="about me"
-                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Tolak
+                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Tolak
                                         Barang</label>
                                     <input type="text" wire:model='alasan'
                                         value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Alasan....">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Alasan....">
                                 </div>
                                 <x-jet-button wire:click='konfirmasiStatus({{$itemID}}, 3)'>Simpan</x-jet-button>
                             </div>
@@ -200,10 +200,10 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
                                 <div class="mb-4">
                                     <label for="about me"
-                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Terima Request</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Terima Request</label>
                                     <input type="text"  wire:model='alasan'
                                         value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Masukkan Detail">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Masukkan Detail">
 
                                 </div>
                                 <x-jet-button wire:click='konfirmasiStatus({{$itemID}} , 2)'>Simpan</x-jet-button>

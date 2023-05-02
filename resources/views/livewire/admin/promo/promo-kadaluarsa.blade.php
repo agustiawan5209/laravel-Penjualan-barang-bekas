@@ -93,23 +93,23 @@
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                         <div class="flex items-center">
-                            <p class="mb-0 dark:text-white/80">Edit Profile</p>
+                            <p class="mb-0 dark:text-black/80">Edit Profile</p>
                             <button type="button" wire:click='CloseAllModal'
                                 class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                         </div>
                     </div>
                     <form class="flex-auto p-6">
                         @csrf
-                        <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">User
+                        <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">User
                             Information
                         </p>
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="kode_promo"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_promo</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">kode_promo</label>
                                     <input type="text" wire:model="kode_promo"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('kode_promo')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -118,9 +118,9 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="promo"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">promo</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">promo</label>
                                     <input type="text" wire:model="promo"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('promo')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -129,9 +129,9 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="category_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Category</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Category</label>
                                     <select id="countries" wire:model='category_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @if ($category != null)
                                         <option value="">--Pilih--</option>
                                         @foreach ($category as $item)
@@ -147,9 +147,9 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="barang_id"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Barang</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Barang</label>
                                     <select id="countries" wire:model='barang_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @if ($barang != null)
                                         <option value="">--Pilih--</option>
                                         @foreach ($barang as $item)
@@ -165,10 +165,10 @@
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="max_user"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Maximal
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Maximal
                                         Pengguna</label>
                                     <input type="text" wire:model="max_user"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </select>
                                     @error('max_user')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -179,23 +179,23 @@
                         <hr
                             class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
 
-                        <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Tanggal Muat
+                        <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Tanggal Muat
                         </p>
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="tgl_mulai"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_mulai</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_mulai</label>
                                     <input type="date" wire:model="tgl_mulai"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                             <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="tgl_kadaluarsa"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_kadaluarsa</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_kadaluarsa</label>
                                     <input type="date" wire:model="tgl_kadaluarsa"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                             <div class="flex flex-wrap justify-center items-center mx-auto">

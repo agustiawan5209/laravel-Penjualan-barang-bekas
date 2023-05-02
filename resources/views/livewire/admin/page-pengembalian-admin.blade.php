@@ -36,14 +36,14 @@
                                 </x-forms.td>
                                 <x-forms.td>
                                     <p
-                                        class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                        class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                         {{ $item->alasan }}</p>
                                 </x-forms.td>
 
                                 <td
                                     class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                     <span
-                                        class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
+                                        class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
                                         Rp. {{ number_format($item->transaksi->total, 0, 2) }}</span>
                                 </td>
                                 <td
@@ -104,14 +104,14 @@
                                 </x-forms.td>
                                 <x-forms.td>
                                     <p
-                                        class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                                        class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                         {{ $item->alasan }}</p>
                                 </x-forms.td>
 
                                 <td
                                     class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                     <span
-                                        class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
+                                        class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
                                         Rp. {{ number_format($item->transaksi->total, 0, 2) }}</span>
                                 </td>
                                 <td

@@ -16,7 +16,7 @@ function stickyNav() {
     navbar.classList.add("sticky", "top-[1%]", "backdrop-saturate-200", "dark:bg-slate-850/80", "dark:shadow-dark-blur", "backdrop-blur-2xl", "bg-[hsla(0,0%,100%,0.8)]", "shadow-blur", "z-110");
     white_elements.forEach(element => {
       element.classList.remove("text-white")
-      element.classList.add("dark:text-white")
+      element.classList.add("dark:text-black")
     });
     white_bg_elements.forEach(element => {
       element.classList.remove("bg-white")
@@ -31,7 +31,7 @@ function stickyNav() {
     navbar.classList.remove("sticky", "top-[1%]", "backdrop-saturate-200", "dark:bg-slate-850/80", "dark:shadow-dark-blur", "backdrop-blur-2xl", "bg-[hsla(0,0%,100%,0.8)]", "shadow-blur", "z-110");
     white_elements.forEach(element => {
       element.classList.add("text-white")
-      element.classList.remove("dark:text-white")
+      element.classList.remove("dark:text-black")
     });
     white_bg_elements.forEach(element => {
       element.classList.add("bg-white")

@@ -20,12 +20,12 @@
                                 {{-- Halaman Tambahan --}}
                                 {{-- End Halaman --}}
                                 <div class="flex-auto p-4 pt-0 text-center cursor-pointer">
-                                    <h6 class="mb-0 text-center dark:text-white">Promo Yang Telah Maksimal Pengguna</h6>
-                                    <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
+                                    <h6 class="mb-0 text-center dark:text-black">Promo Yang Telah Maksimal Pengguna</h6>
+                                    <span class="leading-tight dark:text-black dark:opacity-80 text-size-xs">Belong
                                         Interactive</span>
                                     <hr
                                         class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                                    <h5 class="mb-0 dark:text-white">{{ $promo_max }}</h5>
+                                    <h5 class="mb-0 dark:text-black">{{ $promo_max }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -41,12 +41,12 @@
                                     </div>
                                 </div>
                                 <div class="flex-auto p-4 pt-0 text-center">
-                                    <h6 class="mb-0 text-center dark:text-white">Promo Terlaris</h6>
-                                    <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
+                                    <h6 class="mb-0 text-center dark:text-black">Promo Terlaris</h6>
+                                    <span class="leading-tight dark:text-black dark:opacity-80 text-size-xs">Freelance
                                         Payment</span>
                                     <hr
                                         class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                                    <h5 class="mb-0 dark:text-white">{{ $cek_promo_terlaris }}</h5>
+                                    <h5 class="mb-0 dark:text-black">{{ $cek_promo_terlaris }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -66,12 +66,12 @@
                                     </div>
                                 </div>
                                 <div class="flex-auto p-4 pt-0 text-center">
-                                    <h6 class="mb-0 text-center dark:text-white">Promo Belum Terpakai</h6>
-                                    <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Belong
+                                    <h6 class="mb-0 text-center dark:text-black">Promo Belum Terpakai</h6>
+                                    <span class="leading-tight dark:text-black dark:opacity-80 text-size-xs">Belong
                                         Interactive</span>
                                     <hr
                                         class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                                    <h5 class="mb-0 dark:text-white">{{ $cek_jumlah_pengguna_promo }}</h5>
+                                    <h5 class="mb-0 dark:text-black">{{ $cek_jumlah_pengguna_promo }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -87,12 +87,12 @@
                                     </div>
                                 </div>
                                 <div class="flex-auto p-4 pt-0 text-center">
-                                    <h6 class="mb-0 text-center dark:text-white">Promo Terlaris</h6>
-                                    <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">Freelance
+                                    <h6 class="mb-0 text-center dark:text-black">Promo Terlaris</h6>
+                                    <span class="leading-tight dark:text-black dark:opacity-80 text-size-xs">Freelance
                                         Payment</span>
                                     <hr
                                         class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                                    <h5 class="mb-0 dark:text-white">{{ $cek_promo_terlaris }}</h5>
+                                    <h5 class="mb-0 dark:text-black">{{ $cek_promo_terlaris }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                             <div class="flex flex-wrap -mx-3">
                                 <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                    <h6 class="mb-0 dark:text-white">Tabel Promo</h6>
+                                    <h6 class="mb-0 dark:text-black">Tabel Promo</h6>
                                 </div>
                                 <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                     <a class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-size-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"
@@ -200,7 +200,7 @@
                 <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <div class="flex flex-wrap -mx-3">
                         <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                            <h6 class="mb-0 dark:text-white">Promo Yang Hampir Habis</h6>
+                            <h6 class="mb-0 dark:text-black">Promo Yang Hampir Habis</h6>
                         </div>
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <button
@@ -215,15 +215,15 @@
                         <li
                             class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-size-inherit rounded-xl">
                             <div class="flex flex-col">
-                                <h6 class="mb-1 font-semibold leading-normal dark:text-white text-size-sm text-slate-700">
+                                <h6 class="mb-1 font-semibold leading-normal dark:text-black text-size-sm text-slate-700">
                                     {{ $item->tgl_kadaluarsa }}</h6>
-                                <span class="leading-tight dark:text-white dark:opacity-80 text-size-xs">{{
+                                <span class="leading-tight dark:text-black dark:opacity-80 text-size-xs">{{
                                     $item->kode_promo }}</span>
                             </div>
-                            <div class="flex items-center leading-normal dark:text-white/80 text-size-sm">
+                            <div class="flex items-center leading-normal dark:text-black/80 text-size-sm">
                                 {{ $item->promo }}
                                 <button
-                                    class="dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
+                                    class="dark:text-black inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-size-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700"><i
                                         class="mr-1 fas fa-file-pdf text-size-lg"></i>
                                     @if ($item->category_id == null)
                                     {{ $item->barang_id }}
@@ -255,7 +255,7 @@
                         class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                             <div class="flex items-center">
-                                <p class="mb-0 dark:text-white/80">Tambah Profile</p>
+                                <p class="mb-0 dark:text-black/80">Tambah Profile</p>
                                 <button type="button" wire:click='CloseAllModal'
                                     class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                             </div>
@@ -293,9 +293,9 @@
 
                                 <div class="mb-4">
                                     <label for="kode_promo"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_promo</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">kode_promo</label>
                                     <input type="text" wire:model="kode_promo"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('kode_promo')
                                     <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -306,10 +306,10 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="promo"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Promo
                                             Nominal</label>
                                         <input type="text" wire:model="promo_nominal"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('promo_nominal')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -318,10 +318,10 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="promo"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Promo
                                             Persen</label>
                                         <input type="text" wire:model="promo_persen"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('promo_persen')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -330,9 +330,9 @@
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="category_id"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Category</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Category</label>
                                         <select id="countries" wire:model='category_id'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             @if ($category != null)
                                             <option value="--">--Pilih--</option>
                                             @foreach ($category as $item)
@@ -348,10 +348,10 @@
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="max_user"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Maximal
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Maximal
                                             Pengguna</label>
                                         <input type="text" wire:model="max_user"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         </select>
                                         @error('max_user')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -362,23 +362,23 @@
                             <hr
                                 class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
 
-                            <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Tanggal Muat
+                            <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Tanggal Muat
                             </p>
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="tgl_mulai"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_mulai</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_mulai</label>
                                         <input type="date" wire:model="tgl_mulai"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </div>
                                 </div>
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="tgl_kadaluarsa"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_kadaluarsa</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_kadaluarsa</label>
                                         <input type="date" wire:model="tgl_kadaluarsa"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap justify-center items-center mx-auto">
@@ -411,23 +411,23 @@
                         class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                             <div class="flex items-center">
-                                <p class="mb-0 dark:text-white/80">Edit Profile</p>
+                                <p class="mb-0 dark:text-black/80">Edit Profile</p>
                                 <button type="button" wire:click='CloseAllModal'
                                     class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                             </div>
                         </div>
                         <form class="flex-auto p-6">
                             @csrf
-                            <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">User
+                            <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">User
                                 Information
                             </p>
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="kode_promo"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">kode_promo</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">kode_promo</label>
                                         <input type="text" wire:model="kode_promo"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('kode_promo')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -436,10 +436,10 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="promo"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Promo
                                             Nominal</label>
                                         <input type="text" wire:model="promo_nominal"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('promo_nominal')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -448,10 +448,10 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="promo"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Promo
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Promo
                                             Persen</label>
                                         <input type="text" wire:model="promo_persen"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('promo_persen')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -460,9 +460,9 @@
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="category_id"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Category</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Category</label>
                                         <select id="countries" wire:model='category_id'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             @if ($category != null)
                                             <option value="--">--Pilih--</option>
                                             @foreach ($category as $item)
@@ -478,10 +478,10 @@
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="max_user"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Maximal
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Maximal
                                             Pengguna</label>
                                         <input type="text" wire:model="max_user"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         </select>
                                         @error('max_user')
                                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -492,23 +492,23 @@
                             <hr
                                 class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
 
-                            <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Tanggal Muat
+                            <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Tanggal Muat
                             </p>
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="tgl_mulai"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_mulai</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_mulai</label>
                                         <input type="date" wire:model="tgl_mulai"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </div>
                                 </div>
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="tgl_kadaluarsa"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">tgl_kadaluarsa</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">tgl_kadaluarsa</label>
                                         <input type="date" wire:model="tgl_kadaluarsa"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap justify-center items-center mx-auto">

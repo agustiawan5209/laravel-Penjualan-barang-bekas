@@ -11,10 +11,10 @@
                                 <div class="flex-none w-2/3 max-w-full px-3">
                                     <div>
                                         <p
-                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
+                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">
                                             Total penjualan Produk</p>
-                                        <h5 class="mb-2 font-bold dark:text-white">$53,000</h5>
-                                        <p class="mb-0 dark:text-white dark:opacity-60">
+                                        <h5 class="mb-2 font-bold dark:text-black">$53,000</h5>
+                                        <p class="mb-0 dark:text-black dark:opacity-60">
                                             <span
                                                 class="font-bold leading-normal text-size-sm text-emerald-500">+55%</span>
                                             since yesterday
@@ -41,10 +41,10 @@
                                 <div class="flex-none w-2/3 max-w-full px-3">
                                     <div>
                                         <p
-                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
+                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">
                                             Whislist</p>
-                                        <h5 class="mb-2 font-bold dark:text-white">2,300</h5>
-                                        <p class="mb-0 dark:text-white dark:opacity-60">
+                                        <h5 class="mb-2 font-bold dark:text-black">2,300</h5>
+                                        <p class="mb-0 dark:text-black dark:opacity-60">
                                             <span
                                                 class="font-bold leading-normal text-size-sm text-emerald-500">+3%</span>
                                             since last week
@@ -71,10 +71,10 @@
                                 <div class="flex-none w-2/3 max-w-full px-3">
                                     <div>
                                         <p
-                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
+                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">
                                             Pembelian</p>
-                                        <h5 class="mb-2 font-bold dark:text-white">+3,462</h5>
-                                        <p class="mb-0 dark:text-white dark:opacity-60">
+                                        <h5 class="mb-2 font-bold dark:text-black">+3,462</h5>
+                                        <p class="mb-0 dark:text-black dark:opacity-60">
                                             <span class="font-bold leading-normal text-red-600 text-size-sm">-2%</span>
                                             since last quarter
                                         </p>
@@ -100,10 +100,10 @@
                                 <div class="flex-none w-2/3 max-w-full px-3">
                                     <div>
                                         <p
-                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">
+                                            class="mb-0 font-sans font-semibold leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">
                                             Dalam Keranjang</p>
-                                        <h5 class="mb-2 font-bold dark:text-white">{{ $jumlah_keranjang }}</h5>
-                                        <p class="mb-0 dark:text-white dark:opacity-60">
+                                        <h5 class="mb-2 font-bold dark:text-black">{{ $jumlah_keranjang }}</h5>
+                                        <p class="mb-0 dark:text-black dark:opacity-60">
                                             <span
                                                 class="font-bold leading-normal text-size-sm text-emerald-500">+5%</span>
                                             than last month

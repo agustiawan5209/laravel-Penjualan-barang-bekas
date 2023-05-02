@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+        "@googlemaps/js-api-loader": "^1.15.1",
         "ckeditor4": "^4.20.1"
     }
 }

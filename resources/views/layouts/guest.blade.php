@@ -234,7 +234,6 @@
             </div>
         </div>
     </div>
-    </div>
 
     {{-- Content --}}
     <main>
@@ -256,11 +255,9 @@
             </div>
             <div class="">
                 <h4 class="font-bold text-lg text-white ">Akun Sosmed</h4>
-                <a class="block mt-3 text-sm "
-                    href="#">wa : 081242788789
+                <a class="block mt-3 text-sm " href="#">wa : 081242788789
                 </a>
-                <a class="block mt-3 text-sm "
-                    href="#">fb : https://www.facebook.com/bank.joe.963 </a>
+                <a class="block mt-3 text-sm " href="#">fb : https://www.facebook.com/bank.joe.963 </a>
             </div>
         </div>
 
@@ -295,7 +292,6 @@
 
     <!-- AlpineJS Library -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <script defer src="{{ asset('build/assets/app.ab93cf8a.js') }}"></script>
 
 </body>
 

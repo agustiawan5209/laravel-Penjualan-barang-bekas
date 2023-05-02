@@ -63,40 +63,40 @@
                             <div class="w-full max-w-full px-3 flex-1-0">
                                 <div class="flex justify-center">
                                     <div class="grid text-center">
-                                        <span class="font-bold dark:text-white text-size-lg">22</span>
+                                        <span class="font-bold dark:text-black text-size-lg">22</span>
                                         <span
-                                            class="leading-normal dark:text-white text-size-sm opacity-80">Friends</span>
+                                            class="leading-normal dark:text-black text-size-sm opacity-80">Friends</span>
                                     </div>
                                     <div class="grid mx-6 text-center">
-                                        <span class="font-bold dark:text-white text-size-lg">10</span>
+                                        <span class="font-bold dark:text-black text-size-lg">10</span>
                                         <span
-                                            class="leading-normal dark:text-white text-size-sm opacity-80">Photos</span>
+                                            class="leading-normal dark:text-black text-size-sm opacity-80">Photos</span>
                                     </div>
                                     <div class="grid text-center">
-                                        <span class="font-bold dark:text-white text-size-lg">89</span>
+                                        <span class="font-bold dark:text-black text-size-lg">89</span>
                                         <span
-                                            class="leading-normal dark:text-white text-size-sm opacity-80">Comments</span>
+                                            class="leading-normal dark:text-black text-size-sm opacity-80">Comments</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-6 text-center">
-                            <h5 class="dark:text-white ">
+                            <h5 class="dark:text-black ">
                                 Mark Davis
                                 <span class="font-light">, 35</span>
                             </h5>
                             <div
-                                class="mb-2 font-semibold leading-relaxed text-size-base dark:text-white/80 text-slate-700">
-                                <i class="mr-2 dark:text-white ni ni-pin-3"></i>
+                                class="mb-2 font-semibold leading-relaxed text-size-base dark:text-black/80 text-slate-700">
+                                <i class="mr-2 dark:text-black ni ni-pin-3"></i>
                                 Bucharest, Romania
                             </div>
                             <div
-                                class="mt-6 mb-2 font-semibold leading-relaxed text-size-base dark:text-white/80 text-slate-700">
-                                <i class="mr-2 dark:text-white ni ni-briefcase-24"></i>
+                                class="mt-6 mb-2 font-semibold leading-relaxed text-size-base dark:text-black/80 text-slate-700">
+                                <i class="mr-2 dark:text-black ni ni-briefcase-24"></i>
                                 Solution Manager - Creative Tim Officer
                             </div>
-                            <div class="dark:text-white/80">
-                                <i class="mr-2 dark:text-white ni ni-hat-3"></i>
+                            <div class="dark:text-black/80">
+                                <i class="mr-2 dark:text-black ni ni-hat-3"></i>
                                 University of Computer Science
                             </div>
                         </div>

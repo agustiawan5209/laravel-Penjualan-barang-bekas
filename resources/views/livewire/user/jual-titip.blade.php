@@ -45,29 +45,29 @@
                                         alt="user1" />
                                 </div>
                                 {{-- <div class="flex flex-col justify-center">
-                                    <h6 class="mb-0 leading-normal dark:text-white text-size-sm">John
+                                    <h6 class="mb-0 leading-normal dark:text-black text-size-sm">John
                                         Michael</h6>
                                     <p
-                                        class="mb-0 leading-tight dark:text-white dark:opacity-80 text-size-xs text-slate-400">
+                                        class="mb-0 leading-tight dark:text-black dark:opacity-80 text-size-xs text-slate-400">
                                         john@creative-tim.com</p>
                                 </div> --}}
                             </div>
                         </x-forms.td>
                         <x-forms.td>
-                            <p class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-80 text-size-xs">
+                            <p class="mb-0 font-semibold leading-tight dark:text-black dark:opacity-80 text-size-xs">
                                 {{ $item->nama_produk }}</p>
                         </x-forms.td>
 
                         <td
                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                             <span
-                                class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">
+                                class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
                                 Rp. {{ number_format($item->harga, 0, 2) }}</span>
                         </td>
                         <td
                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                             <span
-                                class="font-semibold leading-tight text-size-xs dark:text-white dark:opacity-80 text-slate-400">{{ $item->deskripsi }}</span>
+                                class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">{{ $item->deskripsi }}</span>
                         </td>
                         <td
                             class="p-2 leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 text-size-sm whitespace-nowrap shadow-transparent">
@@ -189,7 +189,7 @@
                     Kategori Produk
                 </label>
                 <select id="countries" wire:model='kategori_produk'
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @if ($kategory != null)
                         @foreach ($kategory as $item)
                             <option value="{{ $item->id }}">{{ $item->kategory }}</option>
@@ -297,7 +297,7 @@
                     Kategori Produk
                 </label>
                 <select id="countries" wire:model='kategori_produk'
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @if ($kategory != null)
                         @foreach ($kategory as $item)
                             <option value="{{ $item->id }}">{{ $item->kategory }}</option>

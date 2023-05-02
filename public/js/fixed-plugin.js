@@ -204,7 +204,7 @@ if (navbar) {
     if (this.checked) {
       white_elements.forEach(element => {
         element.classList.remove("text-white")
-        element.classList.add("dark:text-white")
+        element.classList.add("dark:text-black")
       });
       white_bg_elements.forEach(element => {
         element.classList.remove("bg-white")
@@ -238,7 +238,7 @@ if (navbar) {
       navbar.classList.remove("z-110");
       white_elements.forEach(element => {
         element.classList.add("text-white")
-        element.classList.remove("dark:text-white")
+        element.classList.remove("dark:text-black")
       });
       white_bg_elements.forEach(element => {
         element.classList.add("bg-white")

@@ -18,8 +18,8 @@
     <!-- Popper -->
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{ asset('build/assets/app.78ddf4cb.css') }}">
-    @vite(['resources/js/app.js'])
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    @vite(['resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
@@ -30,6 +30,8 @@
     <!-- JavaScript -->
     {{-- <script src="../../node_modules/@types/ckeditor__ckeditor5-build-classic/build/cdkeditor.js"></script> --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+
 
 </head>
 

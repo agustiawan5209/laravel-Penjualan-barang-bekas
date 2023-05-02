@@ -9,7 +9,7 @@
                         <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                             <div class="flex flex-wrap -mx-3">
                                 <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                    <h6 class="mb-0 dark:text-white">Tabel Voucher</h6>
+                                    <h6 class="mb-0 dark:text-black">Tabel Voucher</h6>
                                 </div>
                                 <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                     <a class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-size-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"
@@ -131,7 +131,7 @@
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                         <div class="flex items-center">
-                            <p class="mb-0 dark:text-white/80">Tambah Voucher</p>
+                            <p class="mb-0 dark:text-black/80">Tambah Voucher</p>
                             <button type="button" wire:click='CloseAllModal'
                                 class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                         </div>
@@ -142,10 +142,10 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="kode_voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kode
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Kode
                                         Voucher</label>
                                     <input type="text" wire:model="kode_voucher"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('kode_voucher')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -154,11 +154,11 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Diskon
                                         Voucher
                                     </label>
                                     <input type="text" wire:model="diskon"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('diskon')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -167,12 +167,12 @@
                             <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                 <div class="mb-4 w-full">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Jenis
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Jenis
                                         Voucher
 
                                     </label>
                                     <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="5">--Masukkan Jenis Voucher--</option>
                                         <option value="0">Umum</option>
                                         <option value="1">Pengguna Baru</option>
@@ -188,11 +188,11 @@
                                 x-show="jenisVoucher == 2">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Masukkan
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Masukkan
                                         Jumlah Pembelian Produk
                                     </label>
                                     <input type="text" wire:model="jumlah_pembelian"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('diskon')
                                         <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                     @enderror
@@ -202,11 +202,11 @@
                                 x-show="jenisVoucher == 3">
                                 <div class="mb-4">
                                     <label for="Voucher"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Pilih
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Pilih
                                         Produk
                                     </label>
                                     <select id="countries" wire:model='barang_id'
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="0">--Pilih Produk--</option>
                                         @foreach ($barang as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
@@ -218,16 +218,16 @@
                         <hr
                             class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
 
-                        <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Masukkan
+                        <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Masukkan
                             Deskripsi Voucher
                         </p>
                         <div class="flex flex-wrap -mx-3">
                             <div class="w-full max-w-full px-3 shrink-0  md:flex-0">
                                 <div class="mb-4">
                                     <label for="tgl_mulai"
-                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
+                                        class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Deskripsi</label>
                                     <textarea type="text" wire:model="deskripsi"
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap justify-center items-center mx-auto">
@@ -262,7 +262,7 @@
                         class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                             <div class="flex items-center">
-                                <p class="mb-0 dark:text-white/80">Edit Voucher</p>
+                                <p class="mb-0 dark:text-black/80">Edit Voucher</p>
                                 <button type="button" wire:click='CloseAllModal'
                                     class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                             </div>
@@ -273,10 +273,10 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="kode_voucher"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kode
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Kode
                                             Voucher</label>
                                         <input type="text" wire:model="kode_voucher"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('kode_voucher')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -285,11 +285,11 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
                                         <label for="Voucher"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Diskon
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Diskon
                                             Voucher
                                         </label>
                                         <input type="text" wire:model="diskon"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('diskon')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -298,12 +298,12 @@
                                 <div class="w-full max-w-full px-3 flex shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4 w-full">
                                         <label for="Voucher"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Jenis
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Jenis
                                             Voucher
 
                                         </label>
                                         <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value="">--Masukkan Jenis Voucher--</option>
                                             <option value="0" {{$jenis_voucher == 0 ? 'selected' : ''}}>Umum</option>
                                             <option value="1" {{$jenis_voucher == 1 ? 'selected' : ''}}>Pengguna Baru</option>
@@ -319,11 +319,11 @@
                                     x-show="jenisVoucher == 2">
                                     <div class="mb-4">
                                         <label for="Voucher"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Masukkan
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Masukkan
                                             Jumlah Pembelian Produk
                                         </label>
                                         <input type="text" wire:model="jumlah_pembelian"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                         @error('jumlah_pembelian')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -333,11 +333,11 @@
                                     x-show="jenisVoucher == 3">
                                     <div class="mb-4">
                                         <label for="Voucher"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Pilih
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Pilih
                                             Produk
                                         </label>
                                         <select id="countries" wire:model='barang_id'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value="0">--Pilih Produk--</option>
                                             @foreach ($barang as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
@@ -352,16 +352,16 @@
                             <hr
                                 class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent ">
 
-                            <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-size-sm">Masukkan
+                            <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Masukkan
                                 Deskripsi Voucher
                             </p>
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 shrink-0  md:flex-0">
                                     <div class="mb-4">
                                         <label for="tgl_mulai"
-                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Deskripsi</label>
                                         <textarea type="text" wire:model="deskripsi"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap justify-center items-center mx-auto">
@@ -404,16 +404,16 @@
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
-                        <h6 class="mb-0 dark:text-white">Detail Voucher</h6>
+                        <h6 class="mb-0 dark:text-black">Detail Voucher</h6>
                     </div>
                     <div class="flex-auto p-4 pt-6">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             <li
                                 class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
                                 <div class="flex flex-col">
-                                    <h6 class="mb-4 text-sm leading-normal dark:text-white">Kode : {{$kode_voucher}}</h6>
-                                    <span class="mb-2 text-xs leading-tight dark:text-white/80">Jenis Vocuher: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">
+                                    <h6 class="mb-4 text-sm leading-normal dark:text-black">Kode : {{$kode_voucher}}</h6>
+                                    <span class="mb-2 text-xs leading-tight dark:text-black/80">Jenis Vocuher: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">
                                             @if ($jenis_voucher == 1)
                                             Umum
                                             @elseif ($jenis_voucher == 1)
@@ -424,18 +424,18 @@
                                             Pembelian Produk
                                         @endif</span></span>
 
-                                    <span class="mb-2 text-xs leading-tight dark:text-white/80">Jumlah Pengguna: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$use_user}}</span></span>
+                                    <span class="mb-2 text-xs leading-tight dark:text-black/80">Jumlah Pengguna: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$use_user}}</span></span>
                                             @if ($jenis_voucher == 1)
                                         @elseif ($jenis_voucher == 2)
-                                        <span class="text-xs leading-tight dark:text-white/80">Jumlah Pembelian: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$jumlah_pembelian}}</span></span>
+                                        <span class="text-xs leading-tight dark:text-black/80">Jumlah Pembelian: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$jumlah_pembelian}}</span></span>
                                         @elseif ($jenis_voucher == 3)
-                                        <span class="text-xs leading-tight dark:text-white/80">Produk: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$barang_id}}</span></span>
+                                        <span class="text-xs leading-tight dark:text-black/80">Produk: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$barang_id}}</span></span>
                                         @endif
-                                        <span class="text-xs leading-tight dark:text-white/80">Deskripsi: <span
-                                            class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$deskripsi}}</span></span>
+                                        <span class="text-xs leading-tight dark:text-black/80">Deskripsi: <span
+                                            class="font-semibold text-slate-700 dark:text-black sm:ml-2">{{$deskripsi}}</span></span>
 
                                 </div>
                             </li>

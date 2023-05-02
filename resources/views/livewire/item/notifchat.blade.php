@@ -6,7 +6,7 @@
                 <i class="fas fa-search"></i>
             </span>
             <input type="text"
-                class="pl-9 text-size-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                class="pl-9 text-size-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-black bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                 placeholder="Type here..." />
         </div>
     </div>
@@ -63,10 +63,10 @@
                                         class="inline-flex items-center justify-center mr-4 text-white text-size-sm h-9 w-9 max-w-none rounded-xl" />
                                 </div>
                                 <div class="flex flex-col justify-center">
-                                    <h6 class="mb-1 font-normal leading-normal dark:text-white text-size-sm">
+                                    <h6 class="mb-1 font-normal leading-normal dark:text-black text-size-sm">
                                         <span class="font-semibold">New message</span> from {{$item->data['from']}}
                                     </h6>
-                                    <p class="mb-0 leading-tight text-size-xs text-slate-400 dark:text-white/80">
+                                    <p class="mb-0 leading-tight text-size-xs text-slate-400 dark:text-black/80">
                                         <i class="mr-1 fa fa-clock"></i>
                                         {{$item->created_at}}
                                     </p>

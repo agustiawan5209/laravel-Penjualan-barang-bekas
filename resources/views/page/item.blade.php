@@ -5,7 +5,7 @@
         </div>
         <div class="grid col-span-2 md:grid-cols-7 gap-4 w-full relative box-border p-0 m-0">
             <div class="col-span-1">
-                <ul class=" wow fadeInLeft w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                <ul class=" wow fadeInLeft w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-black"
                     data-wow-duration="1s">
                     @foreach ($kategory as $item)
                         <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600"><a
