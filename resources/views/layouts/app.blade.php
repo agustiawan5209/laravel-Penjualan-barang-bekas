@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+
     <!-- Nucleo Icons -->
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -19,7 +21,6 @@
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{ asset('build/assets/app.78ddf4cb.css') }}">
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-    @vite(['resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles

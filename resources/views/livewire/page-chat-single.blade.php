@@ -12,7 +12,7 @@
                             class="outline-none py-2 block w-full bg-transparent border-b-2 border-gray-200"
                             placeholder="Search">
                     </div>
-                    <div class="flex-1 h-full overflow-auto px-2 border">
+                    <div class="flex-1 h-max overflow-auto px-2 border">
                         @foreach ($chat_id as $item)
                         <div class="entry cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md"
                             wire:click='selectChat({{$item->id}})'>
@@ -88,20 +88,14 @@
 
                     </div>
                     @if ($pesan != null)
-                    <div class="flex-2 pt-4 pb-10">
+                    <div class="flex-2 pt-4">
                         <div class="write bg-white shadow flex rounded-lg">
                             <div class="flex-3 flex content-center items-center text-center p-4 pr-0">
-                                <span class="block text-center text-gray-400 hover:text-gray-800">
-                                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        stroke="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
-                                        <path
-                                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                </span>
+
                             </div>
                             <div class="flex-1">
-                                <textarea wire:model="message" id="editor" rows="1"
+                                <textarea wire:model="message" id="editor" rows="1" width='400' height="100"
+                                class="w-full block outline-none py-4 px-4 bg-transparent border border-r-2"
                                     placeholder="Type a message..." autofocus>{{ $message }}</textarea>
                             </div>
                             <div class="flex-2 w-32 p-2 flex content-center items-center">

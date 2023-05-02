@@ -101,8 +101,8 @@
                                 </span>
                             </div>
                             <div class="flex-1">
-                                <textarea wire:model="message"
-                                    class="w-full block outline-none py-4 px-4 bg-transparent" rows="1"
+                                <textarea wire:model="message" id="editor" width='400' height="100"
+                                    class="w-full block outline-none py-4 px-4 bg-transparent border border-r-2"
                                     placeholder="Type a message..." autofocus></textarea>
                             </div>
                             <div class="flex-2 w-32 p-2 flex content-center items-center">

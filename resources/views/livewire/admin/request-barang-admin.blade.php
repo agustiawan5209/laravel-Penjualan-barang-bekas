@@ -57,13 +57,6 @@
                                                     class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
                                                     alt="user1" />
                                             </div>
-                                            {{-- <div class="flex flex-col justify-center">
-                                      <h6 class="mb-0 leading-normal dark:text-black text-size-sm">John
-                                          Michael</h6>
-                                      <p
-                                          class="mb-0 leading-tight dark:text-black dark:opacity-80 text-size-xs text-slate-400">
-                                          john@creative-tim.com</p>
-                                  </div> --}}
                                         </div>
                                     </x-forms.td>
                                     <x-forms.td>
@@ -72,29 +65,34 @@
                                             {{ $item->nama_produk }}</p>
                                     </x-forms.td>
 
-                                    <td
-                                        class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <x-forms.td
+                                        class="p-2 text-center align-middle bg-transparent  whitespace-nowrap shadow-transparent">
                                         <span
-                                            class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
+                                            class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-800">
                                             Rp. {{ number_format($item->harga, 0, 2) }}</span>
-                                    </td>
+                                    </x-forms.td>
 
-                                    <td>
+                                    <x-forms.td
+                                        class="p-2 leading-normal text-center align-middle bg-transparent  text-size-sm whitespace-nowrap shadow-transparent">
+                                        <span
+                                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{ $item->categories }}</span>
+                                    </x-forms.td>
+
+                                    <x-forms.td>
                                         <a href="#_" wire:click='chatUser({{ $item->id }})'
                                             class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
                                            Hubungi Penjual
                                         </a>
-                                    </td>
-                                    <td
-                                        class="p-2 leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 text-size-sm whitespace-nowrap shadow-transparent">
-                                        <span
-                                            class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{ $item->categories }}</span>
-                                    </td>
+                                    </x-forms.td>
                                     <x-forms.td>
-                                        <a href="#_" wire:click='konfirModal({{ $item->id }})'
-                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
-                                            Konfirmasi
-                                        </a>
+                                       @if ($item->status ==1)
+                                         <a href="#_" wire:click='konfirModal({{ $item->id }})'
+                                             class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
+                                             Konfirmasi
+                                         </a>
+                                       @else
+                                         <span>Telah Dikonfirmasi</span>
+                                       @endif
                                     </x-forms.td>
                                 </tr>
                             @endforeach
@@ -168,6 +166,12 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mb-2">
+                    <div class="flex items-center justify-between w-full p-3 border-t border-gray-300">
+
+
+                    </div>
+                </div>
                 <div class="border-black/12.5 rounded-t-2xl p-6 text-center pt-0 pb-6 lg:pt-2 lg:pb-4"
                     x-data="{ request: 0, }">
                     <div class="flex justify-between">
@@ -204,7 +208,13 @@
                                     <input type="text"  wire:model='alasan'
                                         value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
                                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Masukkan Detail">
-
+                                </div>
+                                <div class="mb-4">
+                                    <label for="about me"
+                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Jumlah Komisi</label>
+                                    <input type="number"  wire:model='komisi'
+                                        value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
+                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" placeholder="Masukkan Jumlah Komisi Penjual">
                                 </div>
                                 <x-jet-button wire:click='konfirmasiStatus({{$itemID}} , 2)'>Simpan</x-jet-button>
 

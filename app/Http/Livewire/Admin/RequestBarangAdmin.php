@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class RequestBarangAdmin extends Component
 {
     public $row = 10, $search = '', $alasan, $status;
-    public $foto_produk, $updatefoto, $nama_produk, $Alamat, $deskripsi, $categories, $harga, $itemID;
+    public $foto_produk, $updatefoto, $nama_produk, $Alamat, $deskripsi, $categories, $harga, $itemID, $komisi;
     public $statusItem = false;
 
     // Chat
@@ -21,7 +21,7 @@ class RequestBarangAdmin extends Component
 
     public function render()
     {
-        $request = RequestBarang::where('status', '=', '1')->paginate($this->row);
+        $request = RequestBarang::paginate($this->row);
         if ($this->search != null) {
             $request = RequestBarang::where('nama_produk', 'like', '%' . $this->search . '%')
                 ->paginate($this->row);
@@ -45,7 +45,9 @@ class RequestBarangAdmin extends Component
     public function konfirmasiStatus($id, $status)
     {
         // dd($status);
-
+        $this->validate([
+            'komisi'=> 'numeric|nullable'
+        ]);
         $msg = '';
         if ($status == 2) {
             $msg = "Berhasil Di konfirmasi";
@@ -57,6 +59,7 @@ class RequestBarangAdmin extends Component
         $request = RequestBarang::find($id)->update([
             'status' => $status,
             'alasan' => $this->alasan,
+            'komisi'=> $this->komisi,
         ]);
         $this->statusItem = false;
     }

@@ -36,8 +36,11 @@
                                 Nama Produk</x-forms.th>
                             <x-forms.th>
                                 Harga</x-forms.th>
+
                             <x-forms.th>
                                 Jenis Request Produk</x-forms.th>
+                            <x-forms.th>
+                                Status</x-forms.th>
                             <x-forms.th></x-forms.th>
                         </tr>
                     </thead>
@@ -54,7 +57,7 @@
                                         <div class="flex px-2 py-1">
                                             <div>
                                                 <img src="{{ asset('upload/' . $item->foto_produk) }}"
-                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-size-sm h-9 w-9 rounded-xl"
+                                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-sm h-9 w-9 rounded-xl"
                                                     alt="user1" />
                                             </div>
                                         </div>
@@ -68,13 +71,33 @@
                                     <x-forms.td
                                         class="p-2 text-center align-middle bg-transparent whitespace-nowrap shadow-transparent">
                                         <span
-                                            class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-400">
+                                            class="font-semibold leading-tight text-size-xs dark:text-black dark:opacity-80 text-slate-800">
                                             Rp. {{ number_format($item->harga, 0, 2) }}</span>
                                     </x-forms.td>
                                     <x-forms.td
-                                        class="p-2 leading-normal text-center align-middle bg-transparent text-size-sm whitespace-nowrap shadow-transparent">
+                                        class="p-2 leading-normal text-center align-middle bg-transparent text-sm whitespace-nowrap shadow-transparent">
                                         <span
                                             class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-3.6-em text-size-xs-em rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">{{ $item->categories }}</span>
+                                    </x-forms.td>
+                                    <x-forms.td
+                                        class="p-2 leading-normal text-center align-middle bg-transparent text-sm whitespace-nowrap shadow-transparent">
+
+                                        @if ($item->status == 1)
+                                            <span
+                                                class="bg-gradient-to-tl from-blue-500 to-blue-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                Belum Di Konfirmasi
+                                            </span>
+                                        @elseif($item->status == 2)
+                                            <span
+                                                class="bg-gradient-to-tl from-green-500 to-green-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                Diterima
+                                            </span>
+                                        @elseif($item->status == 3)
+                                            <span
+                                                class="bg-gradient-to-tl from-red-500 to-red-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                Ditolak
+                                            </span>
+                                        @endif
                                     </x-forms.td>
                                     <x-forms.td>
                                         <a href="#_" wire:click='deleteModal({{ $item->id }})'
@@ -156,7 +179,8 @@
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                wire:model='nama_produk' id="password" type="text" placeholder="******************">
+                                wire:model='nama_produk' id="password" type="text"
+                                placeholder="******************">
                             @error('nama_produk')
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
