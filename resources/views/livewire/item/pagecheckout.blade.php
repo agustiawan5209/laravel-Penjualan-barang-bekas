@@ -9,19 +9,15 @@
             <div class="grid md:grid-cols-2 gap-8 wow fadeIn">
                 <div class="space-y-4 flex flex-col">
                     <div class="bg-gray-100 rounded-lg overflow-hidden relative">
-                        @foreach ($foto_produk as $item)
-                            @if ($item->default == 'yes')
-                                <img alt="Barang Bekas" src="{{ asset('upload/' . $item->foto) }}"
-                                    class="w-full object-cover object-center h-96" hei alt="barang bekas"/>
-                            @endif
-                        @endforeach
+                        <img alt="Barang Bekas" src="{{ asset('upload/' . $itemFoto) }}"
+                            class="w-full object-cover object-center h-96" alt="{{ $itemFoto }}"/>
                         <span
                             class="bg-red-500 text-white text-sm tracking-wider uppercase rounded-br-lg absolute left-0 top-0 px-3 py-1.5">sale</span>
                     </div>
                     <div class="grid grid-cols-4">
                         @foreach ($foto_produk as $item)
-                            <img alt="Barang Bekas" src="{{ asset('upload/' . $item->foto) }}"
-                                class="w-full h-full object-cover object-center " alt="barang bekas"/>
+                            <img alt="Barang Bekas" src="{{ asset('upload/' . $item->foto) }}" wire:click='gantiFoto({{ $item->id }})'
+                                class="w-full h-full object-cover object-center cursor-pointer " alt="barang bekas"/>
                     @endforeach
                     </div>
                 </div>

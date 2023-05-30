@@ -8,6 +8,7 @@ use App\Models\Diskon;
 use App\Models\ulasan;
 use Livewire\Component;
 use App\Models\PromoUser;
+use App\Models\FotoBarang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -22,10 +23,19 @@ class Pagecheckout extends Component
     public $harga;
     public $diskon;
     public $pemilik_id;
+    public $itemFoto = null;
     public function mount($itemID, $nameID)
     {
         $this->itemID = $itemID;
         $this->nameID = $nameID;
+        $foto = FotoBarang::where('barang_id', $this->itemID)->where('default', 'yes')->first();
+        $this->itemFoto = $foto->foto;
+    }
+    public function gantiFoto($id){
+        $barang = Barang::find($this->itemID);
+        $fotobarang = FotoBarang::find($id);
+        $this->itemFoto = $fotobarang->foto;
+        // dd($itemFoto);
     }
     public function render()
     {
@@ -46,6 +56,8 @@ class Pagecheckout extends Component
             $this->diskon = isset($item->diskon->diskon) ? $item->diskon->diskon : 0;
             $this->pemilik_id = $item->user_id;
         }
+        $foto = FotoBarang::where('barang_id', $this->itemID)->where('default', 'yes')->first();
+        // dd()
         // Hitung Diskon
         $this->diskon = ($this->diskon / 100) *  $this->harga;
         // $data = [;
