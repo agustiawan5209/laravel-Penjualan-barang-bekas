@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\Diskon;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\FotoBarang;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +70,7 @@ class PageBarang extends Component
         ]);
         $filename = $this->foto->getClientOriginalName();
         $explod = explode('.', $filename);
-        $randomize = $this->nama_produk . '.' .  $this->foto->getClientOriginalName();
+        $randomize = md5($this->nama_produk) . '.' .  $this->foto->getClientOriginalName();
         // dd($randomize);
         $this->foto->storeAs('upload', $randomize);
         // dd($randomize);
@@ -83,6 +84,7 @@ class PageBarang extends Component
             'categories' => $this->kategori_produk,
             'stock'=> $this->stock,
         ]);
+
         if ($barang) {
             Alert::info('Info', 'Berhasil');
             $this->addItem = false;

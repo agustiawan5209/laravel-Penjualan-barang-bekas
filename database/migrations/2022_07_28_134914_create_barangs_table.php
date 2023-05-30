@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('harga');
             $table->longText('deskripsi');
             $table->string('stock', 200)->nullable();
+            $table->string('request_barang_id', 50)->nullable();
             $table->timestamps();
         });
     }

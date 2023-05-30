@@ -19,4 +19,8 @@ class LaporanController extends Controller
         $pdf = Pdf::loadView('PDF.penjualan', ['data' => $transaksi]);
         return $pdf->stream('Penjualan.pdf');
     }
+
+    public function laporanTitip(){
+
+    }
 }

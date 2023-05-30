@@ -84,18 +84,23 @@
 
                                         @if ($item->status == 1)
                                             <span
-                                                class="bg-gradient-to-tl from-blue-500 to-blue-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                class="bg-gradient-to-tl from-blue-500 to-blue-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-black dark:text-white">
                                                 Belum Di Konfirmasi
                                             </span>
                                         @elseif($item->status == 2)
                                             <span
-                                                class="bg-gradient-to-tl from-green-500 to-green-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                class="bg-gradient-to-tl from-green-500 to-green-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-black dark:text-white">
                                                 Diterima
                                             </span>
                                         @elseif($item->status == 3)
                                             <span
-                                                class="bg-gradient-to-tl from-red-500 to-red-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
+                                                class="bg-gradient-to-tl from-red-500 to-red-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-black dark:text-white">
                                                 Ditolak
+                                            </span>
+                                        @elseif($item->status == 4)
+                                            <span
+                                                class="bg-gradient-to-tl from-red-500 to-red-400 px-3.6-em text-xs rounded-1.8 py-2.2-em inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-black dark:text-white">
+                                                Diterima
                                             </span>
                                         @endif
                                     </x-forms.td>
@@ -117,6 +122,14 @@
                                                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                                                 </path>
                                             </svg>
+                                        </a>
+                                        <a href="{{ route('User.DetailRequest', ['id'=> $item->id]) }}"
+                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-green-600 md:mx-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              </svg>
+
                                         </a>
                                     </x-forms.td>
                                 </tr>

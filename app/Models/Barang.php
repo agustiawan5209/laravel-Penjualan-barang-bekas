@@ -41,8 +41,8 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     protected $table = 'barangs';
-    protected $fillable = ['user_id', 'foto_produk', 'nama_produk', 'harga', 'deskripsi', 'stock', 'categories'];
-    protected $hidden = ['user_id', 'foto_produk', 'harga', 'categories'];
+    protected $fillable = ['user_id', 'foto_produk', 'nama_produk', 'harga', 'deskripsi', 'stock', 'categories', 'request_barang_id'];
+    protected $hidden = ['user_id', 'foto_produk', 'harga', 'categories', 'request_barang_id'];
     use HasFactory;
 
     public function category()
@@ -64,5 +64,9 @@ class Barang extends Model
     }
     public function fotobarang(){
         return $this->hasMany(FotoBarang::class, 'barang_id', 'id');
+    }
+
+    public function requestbarang(){
+        return $this->hasOne(RequestBarang::class, 'id','request_barang_id');
     }
 }

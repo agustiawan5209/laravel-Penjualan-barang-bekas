@@ -4,38 +4,39 @@ use App\Models\Barang;
 use App\Models\Diskon;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Livewire\Admin\PageChat;
+use App\Http\Livewire\PageChatSingle;
+use App\Http\Livewire\User\JualTitip;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\Penitipan;
 use App\Http\Livewire\Admin\Penjualan;
 use App\Http\Livewire\Admin\PageBarang;
+use App\Http\Livewire\MetodePembayaran;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use Illuminate\Database\Eloquent\Builder;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\PenitipanController;
+use App\Http\Livewire\Admin\PageVoucher;
 use App\Http\Controllers\PromoController;
-use App\Http\Livewire\Admin\PageChat;
-use App\Http\Livewire\Admin\PagePengembalianAdmin;
+use App\Http\Livewire\Page\PagePromoHome;
+use App\Http\Livewire\User\DetailPesanan;
+use App\Http\Livewire\User\RequestBarang;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Livewire\User\ProfilePesanan;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\Admin\PagePengiriman;
 use App\Http\Livewire\Admin\PageTambahFoto;
-use App\Http\Livewire\Admin\PageVoucher;
-use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
-use App\Http\Livewire\Admin\Promo\PromoLaris;
-use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
-use App\Http\Livewire\Admin\RequestBarangAdmin;
+use App\Http\Controllers\CustomerController;
 use App\Http\Livewire\Admin\SlideController;
+use App\Http\Controllers\PenitipanController;
+use App\Http\Livewire\Admin\Promo\PromoLaris;
+use App\Http\Livewire\Admin\RequestBarangAdmin;
+use App\Http\Livewire\User\DetailRequestBarang;
+use App\Http\Livewire\Admin\PagePengembalianAdmin;
+use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
+use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
 use App\Http\Livewire\Laporan\Penjualan as LaporanPenjualan;
-use App\Http\Livewire\MetodePembayaran;
-use App\Http\Livewire\Page\PagePromoHome;
-use App\Http\Livewire\PageChatSingle;
-use App\Http\Livewire\User\DetailPesanan;
-use App\Http\Livewire\User\JualTitip;
-use App\Http\Livewire\User\ProfilePesanan;
-use App\Http\Livewire\User\RequestBarang;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +114,7 @@ Route::middleware([
     // Akses User
     Route::middleware(['middleware' => 'role:Customer'])->group(function () {
         Route::get('Request/Barang', RequestBarang::class)->name('User.Request');
+        Route::get('request/barang/{id}', DetailRequestBarang::class)->name('User.DetailRequest');
         // Detail Pesanan
         Route::get('Pesanan', ProfilePesanan::class)->name('User.pesanan');
         Route::get('Detail-Pesanan/{item}', DetailPesanan::class)->name('User.Detail-Pesanan');
