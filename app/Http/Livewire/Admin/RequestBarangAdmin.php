@@ -156,6 +156,8 @@ class RequestBarangAdmin extends Component
             'categories' => $this->categories,
             'stock'=> '10',
             'request_barang_id'=> $id,
+            'jenis_request'=> $requestBarang->categories,
+            'komisi'=> $requestBarang->komisi,
         ]);
         FotoBarang::create([
             'barang_id' => $barang->id,

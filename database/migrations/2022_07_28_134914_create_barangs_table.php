@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('deskripsi');
             $table->string('stock', 200)->nullable();
             $table->string('request_barang_id', 50)->nullable();
+            $table->string('jenis_request', 50)->nullable();
             $table->timestamps();
         });
     }

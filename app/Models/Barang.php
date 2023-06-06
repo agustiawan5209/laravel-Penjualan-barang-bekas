@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     protected $table = 'barangs';
-    protected $fillable = ['user_id', 'foto_produk', 'nama_produk', 'harga', 'deskripsi', 'stock', 'categories', 'request_barang_id'];
+    protected $fillable = ['user_id', 'foto_produk', 'nama_produk', 'harga', 'deskripsi', 'stock', 'categories', 'request_barang_id', 'jenis_request'];
     protected $hidden = ['user_id', 'foto_produk', 'harga', 'categories', 'request_barang_id'];
     use HasFactory;
 

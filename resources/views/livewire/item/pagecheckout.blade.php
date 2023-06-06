@@ -71,7 +71,7 @@
                                 class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 text-sm font-semibold select-none transition duration-100 ">Delete</button>
                         </div>
                         <div class="pt-3 sm:pt-2 ml-4 md:ml-8 lg:ml-16">
-                            <x-jet-input type="text" class="block text-gray-800 md:text-lg font-bold"
+                            <x-jet-input type="text" class="hidden text-gray-800 md:text-lg font-bold ho"
                                 wire:model='sub_total' id='subTotal' disabled />
                         </div>
                     </div>

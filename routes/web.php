@@ -36,7 +36,9 @@ use App\Http\Livewire\Admin\PagePengembalianAdmin;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
+use App\Http\Livewire\Laporan\LaporanTitipPage;
 use App\Http\Livewire\Laporan\Penjualan as LaporanPenjualan;
+use App\Http\Livewire\User\LaporanRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,7 +109,9 @@ Route::middleware([
 
         // Laporan Penjualan
         Route::get('Laporan/Penjualan', LaporanPenjualan::class)->name('laporan-Penjualan');
+        Route::get('Laporan/Titip/Barang', LaporanTitipPage::class)->name('Laporan.titipbarang');
         Route::get('PDF/Laporan/Penjualan', [LaporanController::class, 'laporanPenjualan'])->name('PDF-Laporan-Penjualan');
+        Route::get('PDF/Laporan/Titip', [LaporanController::class, 'laporanTitip'])->name('PDF-Laporan-Titip');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
@@ -129,6 +133,8 @@ Route::middleware([
         Route::post('Pembayaran', [PaymentController::class, 'receive'])->name('receive');
         // Route::resource('/Jual-Titip', PenitipanController::class);
         // Page Jual Dan Titip Barang
+
+        Route::get('LaporanPenjualan', LaporanRequest::class)->name('User.LaporanRequest');
         Route::get('Barang', function () {
             return view('page.penjualan.penjualan');
         })->name('page.penjualan');

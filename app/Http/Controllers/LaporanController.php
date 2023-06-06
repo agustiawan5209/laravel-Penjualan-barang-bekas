@@ -20,7 +20,15 @@ class LaporanController extends Controller
         return $pdf->stream('Penjualan.pdf');
     }
 
-    public function laporanTitip(){
-
+    public function laporanTitip(Request $request){
+        if ($request->start == null && $request->end == null) {
+            $transaksi = Transaksi::all();
+        } else {
+            $transaksi = Transaksi::whereBetween('tgl_transaksi', [$request->start, $request->end])
+            ->where('jenis_request', "Titip")
+            ->get();
+        }
+        $pdf = Pdf::loadView('PDF.penjualan', ['data' => $transaksi]);
+        return $pdf->stream('Penjualan.pdf');
     }
 }

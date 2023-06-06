@@ -11,12 +11,14 @@ class Penjualan extends Component
     public $tgl_awal, $tgl_akhir;
     public function render()
     {
-        $transaksi = Transaksi::all();
-        if($this->tgl_awal != null && $this->tgl_akhir != null){
-            $transaksi = Transaksi::whereBetween('tgl_transaksi' ,[$this->tgl_awal, $this->tgl_akhir])->get();
+        $transaksi = Transaksi::whereNull('jenis_request')->get();
+        if ($this->tgl_awal != null && $this->tgl_akhir != null) {
+            $transaksi = Transaksi::whereBetween('tgl_transaksi', [$this->tgl_awal, $this->tgl_akhir])
+                ->whereNull('jenis_request')
+                ->get();
         }
         return view('livewire.laporan.penjualan', [
-            'transaksi'=> $transaksi
+            'transaksi' => $transaksi
         ]);
     }
 }

@@ -20,7 +20,7 @@
                                 Foto Produk</x-forms.th>
                             <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">
                                 <img src="{{ asset('upload/' . $barang->foto_produk) }}"
-                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-sm h-9 w-9 rounded-xl"
+                                    class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-in-out text-sm h-96 w-96 object-cover rounded-xl"
                                     alt="user1" />
                             </x-forms.th>
 
@@ -89,7 +89,7 @@
                             <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Jumlah Komisi
                             </x-forms.th>
                             <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">
-                                {{ $barang->komisi }}</x-forms.th>
+                               Rp. {{ number_format($barang->komisi,0,2) }}</x-forms.th>
                         </tr>
                     </thead>
                 </x-forms.table>
