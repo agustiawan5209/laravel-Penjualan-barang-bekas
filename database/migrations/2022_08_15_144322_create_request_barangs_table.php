@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('status', ['1','2','3','4'])->comment('1 = Belum  dikonfirmasi, 2 = konfirmasi ,3 = ditolak,4 =Selesai');
             $table->longText('alasan')->nullable();
             $table->integer('komisi')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

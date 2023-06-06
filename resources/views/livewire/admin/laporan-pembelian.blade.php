@@ -1,7 +1,4 @@
 <div>
-    {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-</div>
-<div>
     @include('sweetalert::alert')
 
 
@@ -38,9 +35,9 @@
             </div>
             <div class="flex justify-between w-full px-4 py-2">
                 <div class="text-lg font-bold">
-                    Laporan Penitipan
+                    Laporan Pembelian
                 </div>
-                <a href="{{ route('PDF-Laporan-Titip', ['start' => $tgl_awal, 'end' => $tgl_akhir]) }}"
+                <a href="{{ route('PDF-Laporan-Penjualan', ['start' => $tgl_awal, 'end' => $tgl_akhir]) }}"
                     class="px-2 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -62,41 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($transaksi->count() > 0)
-                            @foreach ($transaksi as $transaksi)
-                                <x-forms.tr >
-                                    <x-forms.td>{{ $loop->iteration }}</x-forms.td>
-                                    <x-forms.td>{{ $transaksi->payment->user->name }}</x-forms.td>
-                                    <x-forms.td>{{ $transaksi->payment->user->email }}</x-forms.td>
-                                    {{-- <x-forms.td>{{ $transaksi->nama }}</x-forms.td> --}}
-                                    <x-forms.td>{{ $transaksi->tgl_transaksi }}</x-forms.td>
-                                    <x-forms.td>
-                                       @php
-                                           $exp = explode(',',$transaksi->item_details);
-                                       @endphp
-                                       <ul>
-                                        <li>Barang : {{$exp[1]}}</li>
-                                        <li>Jumlah : {{$exp[0]}}</li>
-                                       </ul>
-                                    </x-forms.td>
-                                    <x-forms.td>Rp. {{ number_format($transaksi->total, 0, 2) }}</x-forms.td>
-                                    @php
-                                        $total_price[] = $transaksi->total;
-                                    @endphp
-                                </x-forms.tr>
-                            @endforeach
-                            <x-forms.tr>
-                                <x-forms.td colspan="5">Total Penjualan</x-forms.td>
-                                <x-forms.td colspan="2">Rp. {{ number_format(array_sum($total_price), 0, 2) }}
-                                </x-forms.td>
-                            </x-forms.tr>
-                        @else
-                            <x-forms.tr>
-                                <x-forms.td colspan="8">
-                                    Kosong
-                                </x-forms.td>
-                            </x-forms.tr>
-                        @endif
+
                     </tbody>
                 </x-forms.table>
             </div>

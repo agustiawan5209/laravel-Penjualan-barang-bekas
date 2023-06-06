@@ -29,6 +29,7 @@ use App\Http\Livewire\Admin\PageTambahFoto;
 use App\Http\Controllers\CustomerController;
 use App\Http\Livewire\Admin\SlideController;
 use App\Http\Controllers\PenitipanController;
+use App\Http\Livewire\Admin\LaporanPembelian;
 use App\Http\Livewire\Admin\Promo\PromoLaris;
 use App\Http\Livewire\Admin\RequestBarangAdmin;
 use App\Http\Livewire\User\DetailRequestBarang;
@@ -110,6 +111,9 @@ Route::middleware([
         // Laporan Penjualan
         Route::get('Laporan/Penjualan', LaporanPenjualan::class)->name('laporan-Penjualan');
         Route::get('Laporan/Titip/Barang', LaporanTitipPage::class)->name('Laporan.titipbarang');
+        Route::get('Laporan/Pembelian', LaporanPembelian::class)->name('Laporan.Pembelian');
+
+        // PDF
         Route::get('PDF/Laporan/Penjualan', [LaporanController::class, 'laporanPenjualan'])->name('PDF-Laporan-Penjualan');
         Route::get('PDF/Laporan/Titip', [LaporanController::class, 'laporanTitip'])->name('PDF-Laporan-Titip');
     });

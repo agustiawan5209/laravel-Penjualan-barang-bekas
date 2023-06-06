@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\RequestBarang
@@ -40,12 +41,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RequestBarang extends Model
 {
+    use HasFactory;
+    use SoftDeletes;
     protected $table = "request_barangs";
     protected $fillable = [
         'user_id','nama_produk','foto_produk','harga','deskripsi','categories','Alamat', 'status','alasan', 'komisi'
     ];
     protected $hidden = ['user_id'];
-    use HasFactory;
 
     /**
      * user
