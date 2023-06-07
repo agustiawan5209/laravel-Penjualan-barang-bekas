@@ -37,7 +37,7 @@
                 <div class="text-lg font-bold">
                     Laporan Pembelian
                 </div>
-                <a href="{{ route('PDF-Laporan-Penjualan', ['start' => $tgl_awal, 'end' => $tgl_akhir]) }}"
+                <a href="{{ route('PDF-Laporan-Pembelian', ['start' => $tgl_awal, 'end' => $tgl_akhir]) }}"
                     class="px-2 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -51,15 +51,24 @@
                     <thead class="">
                         <tr class="text-xs p-1">
                             <x-forms.th>No.</x-forms.th>
-                            <x-forms.th>Pengguna</x-forms.th>
-                            <x-forms.th>Email</x-forms.th>
-                            <x-forms.th>Tanggal Pembelian</x-forms.th>
-                            <x-forms.th>Pesanan</x-forms.th>
+                            <x-forms.th>ID Transaksi</x-forms.th>
+                            <x-forms.th>Nama Produk</x-forms.th>
+                            <x-forms.th>Jumlah Pembelian</x-forms.th>
+                            <x-forms.th>Harga</x-forms.th>
                             <x-forms.th>Total</x-forms.th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($pembelian as $key =>$item)
+                        <tr>
+                            <x-forms.td>{{ $key+1 }}</x-forms.td>
+                            <x-forms.td>{{ $item->kode_transaksi }}</x-forms.td>
+                            <x-forms.td>{{ $item->barang->nama_produk }}</x-forms.td>
+                            <x-forms.td>{{ $item->jumlah }}</x-forms.td>
+                            <x-forms.td>{{ $item->barang->harga }}</x-forms.td>
+                            <x-forms.td>{{ $item->subtotal }}</x-forms.td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </x-forms.table>
             </div>

@@ -121,6 +121,7 @@ Route::middleware([
         // PDF
         Route::get('PDF/Laporan/Penjualan', [LaporanController::class, 'laporanPenjualan'])->name('PDF-Laporan-Penjualan');
         Route::get('PDF/Laporan/Titip', [LaporanController::class, 'laporanTitip'])->name('PDF-Laporan-Titip');
+        Route::get('PDF/Laporan/Pembelian', [LaporanController::class, 'laporanPembelian'])->name('PDF-Laporan-Pembelian');
     });
     // Metode Pembayaran
     Route::get('Metode-Pembayaran', MetodePembayaran::class)->name('Metode_pembayaran');
