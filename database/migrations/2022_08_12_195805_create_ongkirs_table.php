@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('transaksi_id');
             $table->date('tgl_pengiriman')->nullable();
-            $table->bigInteger('harga')->nullable();
+            $table->string('harga')->nullable();
             $table->string('kode_pos',10);
             $table->string('kabupaten',20);
             $table->string('detail_alamat',20);
