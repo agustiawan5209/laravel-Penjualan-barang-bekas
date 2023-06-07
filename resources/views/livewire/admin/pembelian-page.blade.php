@@ -4,16 +4,16 @@
     <div class="flex-none w-full max-w-full px-3">
         <div
             class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex">
-                <a href="{{ route('Request-Barang-Admin') }}" class="bg-blue-400 px-4 text-white py-2 rounded-md">Request Barang</a>
-                <a href="{{ route('Pembelian-Form') }}" class="bg-blue-400 px-4 text-white py-2 rounded-md">Form Pembelian Barang</a>
+            <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex gap-4">
+                <a href="{{ route('Request-Barang-Admin') }}" class="bg-blue-400 px-2 md:px-4 text-white py-2 rounded-md">Request Barang <span class="text-white bg-red-500 rounded-xl text-xs px-2 ">{{ $data['request'] }}</span></a>
+                <a href="{{ route('Pembelian-Form') }}" class="bg-blue-400 px-2 md:px-4 text-white py-2 rounded-md">Form Pembelian Barang</a>
             </div>
             <div class="flex-auto px-0 pt-0 pb-2">
                 <div class="p-0 overflow-x-auto">
                     <div class="px-3 block sm:flex sm:justify-between">
                         <div class=" p-3">
                             <select name="row" wire:model='row'
-                                class=" w-20 px-2 border-none ring-none active:ring-0 rounded-md text-gray-400 text-base">
+                                class=" w-20 px-2 border ring-none active:ring-0 rounded-md text-gray-400 text-base">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
@@ -30,6 +30,8 @@
                         <thead class="align-bottom">
                             <tr>
                                 <x-forms.th>
+                                    Bukti Transaksi</x-forms.th>
+                                <x-forms.th>
                                     Kode Transaksi</x-forms.th>
                                 <x-forms.th>
                                     Nama Produk</x-forms.th>
@@ -43,6 +45,9 @@
                         <tbody>
                             @foreach ($pembelian as $item)
                                 <tr>
+                                    <x-forms.td>
+                                       <a href="{{ $item->bukti_transaksi }}">File</a>
+                                    </x-forms.td>
                                     <x-forms.td>
                                        {{$item->kode_transaksi}}
                                     </x-forms.td>
@@ -97,7 +102,7 @@
     @if ($hapusItem)
         <x-jet-dialog-modal wire:model="hapusItem">
             <x-slot name="title">
-                Hapus Data Barang {{ $itemID }}
+                Hapus Data Pembelian
             </x-slot>
 
             <x-slot name="content">
@@ -109,7 +114,7 @@
                     Batalkan
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-2" wire:click="HapusBarang({{ $itemID }})"
+                <x-jet-danger-button class="ml-2" wire:click="Hapus({{ $itemId }})"
                     wire:loading.attr="disabled">
                     Hapus
                 </x-jet-danger-button>

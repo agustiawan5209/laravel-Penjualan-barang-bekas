@@ -86,6 +86,7 @@ class PembelianRequest extends Component
             'categories' => $this->kategori_produk,
             'stock' => $this->jumlah,
         ]);
+
         $name = md5($this->bukti_transaksi->getClientOriginalName());
         $this->bukti_transaksi->storeAs('upload', $name);
 
@@ -104,8 +105,13 @@ class PembelianRequest extends Component
             'default' => 'yes',
             'jenis' => '1',
         ]);
+        $reqBarang = RequestBarang::find($this->itemId);
+        $reqBarang->update(['status', '3']);
 
 
        return redirect()->route('Pembelian-Index')->with('success', 'Berhasil');
     }
+
+
+
 }
