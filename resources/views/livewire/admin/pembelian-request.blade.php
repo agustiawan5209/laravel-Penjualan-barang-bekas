@@ -1,4 +1,5 @@
 <div>
+    @include('sweetalert::alert')
     <div class="flex flex-col md:flex-row items-start justify-center gap-4 overflow-x-auto ">
         <form class="bg-white shadow-md rounded px-4 pt-6 pb-8 mb-4 overflow-y-auto col-span-1 max-w-md" x-data="{ isUploading: false, progress: 0 }"
             x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
@@ -17,7 +18,7 @@
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Nama Produk
+                    Nama Produk {{ $status }}
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -124,6 +125,17 @@
                         class="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline border-none"
                         wire:model='sub_total' id="password" type="text" placeholder="******************" disabled>
                     @error('sub_total')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Alasan Pembelian
+                    </label>
+                    <textarea id="myeditorinstance"
+                        class=" ckeditor shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model="alasan" name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                    @error('alasan')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>

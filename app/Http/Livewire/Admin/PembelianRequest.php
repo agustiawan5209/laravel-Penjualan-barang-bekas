@@ -12,14 +12,14 @@ use Livewire\WithFileUploads;
 use App\Models\MetodePembayaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Console\View\Components\Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PembelianRequest extends Component
 {
     use WithFileUploads;
     public $itemId, $requestVar = false;
     public $bukti_transaksi, $kode_transaksi, $sub_total, $status, $foto, $user_id;
-    public $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto, $stok,$jumlah = 1;
+    public $nama_produk, $harga_produk, $deskripsi_produk, $kategori_produk, $updateFoto, $stok, $jumlah = 1, $alasan;
 
     public function mount()
     {
@@ -33,24 +33,27 @@ class PembelianRequest extends Component
             $this->deskripsi_produk = $reqBarang->deskripsi;
             $this->stok = $reqBarang->stok;
             $this->user_id = $reqBarang->user_id;
+            $this->status = $reqBarang->status;
         }
     }
     public function render()
     {
 
-        return view('livewire.admin.pembelian-request',[
-            'kategory'=> Category::all(),
-            'metodebayar'=> MetodePembayaran::where('user_id', $this->user_id)->get(),
+        return view('livewire.admin.pembelian-request', [
+            'kategory' => Category::all(),
+            'metodebayar' => MetodePembayaran::where('user_id', $this->user_id)->get(),
         ]);
     }
 
-    public function hitungTotal(){
-        if($this->jumlah >= $this->stok){
+    public function hitungTotal()
+    {
+        if ($this->jumlah >= $this->stok) {
             $this->jumlah = $this->stok;
         }
         $this->sub_total = intval($this->harga_produk) * intval($this->jumlah);
     }
-    public function transaksi_id(){
+    public function transaksi_id()
+    {
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         do {
             $transaksi_id = substr(str_shuffle($permitted_chars), 0, 8);
@@ -59,59 +62,59 @@ class PembelianRequest extends Component
     }
     public function create()
     {
-        $valid = $this->validate([
-            // 'foto' => 'image|max:2040',
-            'nama_produk' => 'required',
-            'harga_produk' => 'required',
-            'deskripsi_produk' => 'required',
-            'kategori_produk' => 'required',
-            'stok' => 'required',
-            'bukti_transaksi'=> 'image|max:2040',
-            'jumlah'=> 'required|numeric',
-            'sub_total'=> 'required|numeric',
-        ]);
-        $randomize = null;
-        if ($this->requestVar) {
-            $randomize = $this->foto;
+        try {
+            $valid = $this->validate([
+                // 'foto' => 'image|max:2040',
+                'nama_produk' => 'required',
+                'harga_produk' => 'required',
+                'deskripsi_produk' => 'required',
+                'kategori_produk' => 'required',
+                'stok' => 'required',
+                'bukti_transaksi' => 'image|max:2040',
+                'jumlah' => 'required|numeric',
+                'sub_total' => 'required|numeric',
+            ]);
+            $randomize = null;
+            if ($this->requestVar) {
+                $randomize = $this->foto;
+            }
+
+
+            // melakukan return foto
+            $barang = Barang::create([
+                'user_id' => Auth::user()->id,
+                'foto_produk' => $randomize,
+                'nama_produk' => $this->nama_produk,
+                'harga' => $this->harga_produk,
+                'deskripsi' => $this->deskripsi_produk,
+                'categories' => $this->kategori_produk,
+                'stock' => $this->jumlah,
+            ]);
+
+            $name = md5($this->bukti_transaksi->getClientOriginalName());
+            $this->bukti_transaksi->storeAs('upload', $name);
+
+            $pembelian = Pembelian::create([
+                'bukti_transaksi' => $name,
+                'barang_id' => $barang->id,
+                'request_id' => $this->itemId,
+                'kode_transaksi' => $this->transaksi_id(),
+                'subtotal' => $this->sub_total,
+                'jumlah' => $this->jumlah,
+                'status' => '1',
+            ]);
+            FotoBarang::create([
+                'barang_id' => $barang->id,
+                'foto' => $randomize,
+                'default' => 'yes',
+                'jenis' => '1',
+            ]);
+            $reqBarang = RequestBarang::find($this->itemId);
+            $reqBarang->update(['status' => 4, 'alasan'=> $this->alasan]);
+            Alert::info('success', "berhasil");
+            return redirect()->route('Pembelian-Index')->with('success', 'Berhasil');
+        } catch (\Exception $e) {
+            return redirect()->route('Pembelian-Index')->with('error', $e->getMessage());
         }
-
-
-        // melakukan return foto
-        $barang = Barang::create([
-            'user_id' => Auth::user()->id,
-            'foto_produk' => $randomize,
-            'nama_produk' => $this->nama_produk,
-            'harga' => $this->harga_produk,
-            'deskripsi' => $this->deskripsi_produk,
-            'categories' => $this->kategori_produk,
-            'stock' => $this->jumlah,
-        ]);
-
-        $name = md5($this->bukti_transaksi->getClientOriginalName());
-        $this->bukti_transaksi->storeAs('upload', $name);
-
-        $pembelian = Pembelian::create([
-            'bukti_transaksi'=> $name,
-            'barang_id'=> $barang->id,
-            'request_id'=> $this->itemId,
-            'kode_transaksi'=> $this->transaksi_id(),
-            'subtotal'=> $this->sub_total,
-            'jumlah'=> $this->jumlah,
-            'status'=> '1',
-        ]);
-        FotoBarang::create([
-            'barang_id' => $barang->id,
-            'foto' => $randomize,
-            'default' => 'yes',
-            'jenis' => '1',
-        ]);
-        $reqBarang = RequestBarang::find($this->itemId);
-        $reqBarang->update(['status', '3']);
-
-
-       return redirect()->route('Pembelian-Index')->with('success', 'Berhasil');
     }
-
-
-
 }

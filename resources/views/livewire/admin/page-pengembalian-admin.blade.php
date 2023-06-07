@@ -1,6 +1,6 @@
 <div>
     @include('sweetalert::alert')
-    <div class="flex-auto px-0 pt-0 pb-2 bg-white">
+    <div class="flex-auto py-2 md:py-8 bg-white rounded-lg">
         <div class="p-0 overflow-x-auto">
             <div class="px-3 block sm:flex sm:justify-between">
 
