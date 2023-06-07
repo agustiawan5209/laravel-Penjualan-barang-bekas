@@ -1,7 +1,6 @@
 <div class="flex justify-center w-full py-3">
-    @if (session()->has('message'))
-        <x-Alert :message="session('message')" />
-    @endif
+    @include('sweetalert::alert')
+
     <div class="bg-white rounded-md shadow-md w-full">
         <div class="flex-auto px-0 pt-0 md:py-2 w-full">
             <div class="p-0 overflow-x-auto">
@@ -123,12 +122,15 @@
                                                 </path>
                                             </svg>
                                         </a>
-                                        <a href="{{ route('User.DetailRequest', ['id'=> $item->id]) }}"
+                                        <a href="{{ route('User.DetailRequest', ['id' => $item->id]) }}"
                                             class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-green-600 md:mx-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                              </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
 
                                         </a>
                                     </x-forms.td>
@@ -211,6 +213,17 @@
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                                Stok Produk
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                wire:model="stok" type="text" placeholder="******************">
+                            @error('stok')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                                 Deskripsi Produk
                             </label>
                             <textarea id="myeditorinstance"
@@ -246,6 +259,37 @@
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
+                        @if ($categories == 'Jual')
+                            <p class="leading-normal uppercase dark:text-black dark:opacity-60 text-size-sm">Jika Ingin Menjual Isi Metode Pembayaran Anda </p>
+                            <form class="flex flex-wrap -mx-3">
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="username"
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Bank</label>
+                                        <input type="text" wire:model="bank" placeholder="BRI/BCA/BNI/BTN"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="email"
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Nomor
+                                            Rekening</label>
+                                        <input type="email" wire:model="no_rekening" placeholder="302901020910299"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="first name"
+                                            class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-black/80">Nama
+                                            Pemilik</label>
+                                        <input type="text" wire:model="pemilik" placeholder="Jesse"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
                         <div class="flex items-center justify-between">
                             @if ($itemID == null)
                                 <button wire:click='Tambah()'

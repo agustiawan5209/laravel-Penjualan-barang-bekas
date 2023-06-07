@@ -29,7 +29,9 @@ class PageBarang extends Component
     {
         $barang = Barang::with('category')->limit(5)->paginate($this->row);
         if ($this->search != null) {
-            $barang = Barang::where('user_id', Auth::user()->id)->where('nama_produk', 'like', '%' . $this->search . '%')->paginate($this->row);
+            $barang = Barang::where('user_id', Auth::user()->id)
+                ->where('nama_produk', 'like', '%' . $this->search . '%')
+                ->paginate($this->row);
         }
         $this->categoryAll = Category::all();
         return view('livewire.admin.page-barang', [
@@ -43,7 +45,6 @@ class PageBarang extends Component
     {
         $this->addItem = false;
         $this->editItem = false;
-
     }
     // Fungsi Modal
     // Tampilkan Modal
@@ -76,13 +77,13 @@ class PageBarang extends Component
         // dd($randomize);
         // melakukan return foto
         $barang = Barang::create([
-            'user_id'=> Auth::user()->id,
+            'user_id' => Auth::user()->id,
             'foto_produk' => $randomize,
             'nama_produk' => $this->nama_produk,
             'harga' => $this->harga_produk,
             'deskripsi' => $this->deskripsi_produk,
             'categories' => $this->kategori_produk,
-            'stock'=> $this->stock,
+            'stock' => $this->stock,
         ]);
 
         if ($barang) {
@@ -139,7 +140,7 @@ class PageBarang extends Component
             'nama_produk' => $this->nama_produk,
             'harga' => $this->harga_produk,
             'deskripsi' => $this->deskripsi_produk,
-            'stock'=> $this->stock,
+            'stock' => $this->stock,
             'categories' => $this->kategori_produk,
         ]);
         Alert::info('Info', 'Berhasil');
@@ -175,7 +176,7 @@ class PageBarang extends Component
             'nama_kategory' => 'required',
         ]);
         $data = Category::create([
-            'kategory'=> $this->nama_kategory,
+            'kategory' => $this->nama_kategory,
         ]);
         Alert::info('Info', 'Berhasil');
         $this->nama_kategory = '';
@@ -195,7 +196,7 @@ class PageBarang extends Component
         $this->nama_produk = $barang->nama_produk;
         $this->itemID = $barang->id;
         $diskon = Diskon::where('barang_id', '=', $barang->id)->get();
-        foreach($diskon as $item){
+        foreach ($diskon as $item) {
             $this->itemID = $item->id;
             $this->nama_produk = $item->barang_id;
             $this->jumlah_diskon = $item->diskon;
@@ -225,14 +226,15 @@ class PageBarang extends Component
         ]);
         $this->diskonItem = false;
         Alert::info('Info', 'Berhasil');
-
     }
-    public function hapusDiskon($id){
+    public function hapusDiskon($id)
+    {
         Diskon::find($id)->delete();
         $this->diskonItem = false;
         Alert::success('Diskon', 'Dihapus');
     }
-    public function Promo(){
+    public function Promo()
+    {
         return redirect()->route('Admin.Promo');
     }
 }

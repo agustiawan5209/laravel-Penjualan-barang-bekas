@@ -39,7 +39,7 @@ class PageTambahFoto extends Component
         if ($this->foto_barang !== null) {
 
             // dd($this->foto_barang, $this->default_foto);
-            $randomize = $barang->nama_produk . '-' . $this->foto_barang->getClientOriginalName();
+            $randomize = md5($barang->nama_produk) . '-' . $this->foto_barang->getClientOriginalName();
             FotoBarang::create([
                 'barang_id' => $this->barang_id,
                 'foto' => $randomize,

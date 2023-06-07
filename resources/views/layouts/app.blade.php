@@ -45,7 +45,7 @@
         <div class="absolute w-full bg-slate-500  dark:hidden min-h-75"></div>
     @endcan
     <!-- sidenav  -->
-    @include('layouts.dekstop')
+    <x-sidebar-layout />
     @include('layouts.mobile')
 
     <!-- end sidenav -->

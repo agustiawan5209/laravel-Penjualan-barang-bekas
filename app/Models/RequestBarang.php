@@ -45,7 +45,7 @@ class RequestBarang extends Model
     use SoftDeletes;
     protected $table = "request_barangs";
     protected $fillable = [
-        'user_id','nama_produk','foto_produk','harga','deskripsi','categories','Alamat', 'status','alasan', 'komisi'
+        'user_id','nama_produk','foto_produk','harga','deskripsi','categories','Alamat', 'status','alasan', 'komisi' ,'stok'
     ];
     protected $hidden = ['user_id'];
 

@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\MetodePembayaran;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\RequestBarang as ModelsRequestBarang;
 
 class RequestBarang extends Component
 {
     use WithFileUploads;
-    public $foto_produk, $updatefoto, $nama_produk, $Alamat, $deskripsi, $categories, $harga;
+    public $bank, $no_rekening, $pemilik;
+
+    public $foto_produk, $updatefoto, $nama_produk, $Alamat, $deskripsi, $categories, $harga, $stok;
     public $addItem = false, $editItem = false, $hapus = false;
     public $itemID;
     public $row = 10;
@@ -32,6 +36,22 @@ class RequestBarang extends Component
         }
         return view('livewire.user.request-barang', [
             'barang' => $barang,
+        ]);
+    }
+
+    public function AddBank()
+    {
+        $this->validate([
+            'bank' => 'required|max:20',
+            'no_rekening' => 'required',
+            'pemilik' => 'required',
+        ]);
+
+        $bank = MetodePembayaran::insert([
+            'user_id' => Auth::user()->id,
+            'bank' => $this->bank,
+            'no_rekening' => $this->no_rekening,
+            'pemilik' => $this->pemilik,
         ]);
     }
     public function TambahModal()
@@ -66,9 +86,11 @@ class RequestBarang extends Component
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
             'categories' => $this->categories,
+            'stok' => $this->stok,
             'status' => "1",
         ]);
-        session()->flash("message", 'Berhasil Di Tambah');
+        $this->AddBank();
+        Alert::info('Info', 'Berhasil');
         $this->addItem = false;
     }
     public function editModal($id)
@@ -107,6 +129,7 @@ class RequestBarang extends Component
             'Alamat' => 'required',
             'categories' => 'required',
             'harga' => 'required|integer',
+            'stok' => 'required|integer',
         ]);
 
         $barang = ModelsRequestBarang::where('id', $id)->update([
@@ -117,7 +140,7 @@ class RequestBarang extends Component
             'categories' => $this->categories,
             'Alamat' => $this->Alamat,
         ]);
-        session()->flash('message', $barang ? 'Berhasil Di Update' : 'Gagal Di Update');
+        Alert::info('Info', 'Berhasil');
         $this->addItem = false;
     }
     public function deleteModal($id)
@@ -129,7 +152,7 @@ class RequestBarang extends Component
     public function delete($id)
     {
         $barang = ModelsRequestBarang::find($id)->delete();
-        session()->flash('message', $barang ? 'Berhasil Di Hapus' : 'Gagal Di Hapus');
+        Alert::info('Info', 'Berhasil');
         $this->hapus = false;
     }
 }

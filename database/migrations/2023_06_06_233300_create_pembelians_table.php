@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('request_id')->constrained('request_barangs');
             $table->string('bukti_transaksi', 100);
-            $table->integer('kode_transaksi',100);
-            $table->integer('total');
+            $table->string('kode_transaksi',100);
+            $table->integer('subtotal');
             $table->enum('status', ['1','2','3']);
             $table->timestamps();
         });

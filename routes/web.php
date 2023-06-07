@@ -34,6 +34,9 @@ use App\Http\Livewire\Admin\Promo\PromoLaris;
 use App\Http\Livewire\Admin\RequestBarangAdmin;
 use App\Http\Livewire\User\DetailRequestBarang;
 use App\Http\Livewire\Admin\PagePengembalianAdmin;
+use App\Http\Livewire\Admin\PembelianForm;
+use App\Http\Livewire\Admin\PembelianPage;
+use App\Http\Livewire\Admin\PembelianRequest;
 use App\Http\Livewire\Admin\Promo\PromoKadaluarsa;
 use App\Http\Livewire\Admin\UpdateTokoInformation;
 use App\Http\Livewire\Admin\Promo\PromoTidakTerpakai;
@@ -107,7 +110,9 @@ Route::middleware([
         Route::get("Request/Barang-Admin", RequestBarangAdmin::class)->name('Request-Barang-Admin');
 
         // Tampilan Pengembalian Barang
-
+        Route::get('Pembelian/', PembelianPage::class)->name('Pembelian-Index');
+        Route::get('Pembelian/Form', PembelianForm::class)->name('Pembelian-Form');
+        Route::get('Pembelian/RequestBarang', PembelianRequest::class)->name('Pembelian-Form-request');
         // Laporan Penjualan
         Route::get('Laporan/Penjualan', LaporanPenjualan::class)->name('laporan-Penjualan');
         Route::get('Laporan/Titip/Barang', LaporanTitipPage::class)->name('Laporan.titipbarang');

@@ -1,7 +1,5 @@
 <div class="flex justify-center w-full py-3">
-    @if (session()->has('message'))
-        <x-Alert :message="session('message')" />
-    @endif
+    @include('sweetalert::alert')
     <div class="bg-white rounded-md shadow-md w-full">
         <div class="flex-auto px-0 pt-0 md:py-2 w-full">
             <div class="p-0 overflow-x-auto">
@@ -94,10 +92,10 @@
                                             @else
                                                 <span>Telah Dikonfirmasi</span>
                                                 @if ($item->status != 4)
-                                                <a href="#_" wire:click='requestBarang({{ $item->id }})'
-                                                    class="inline-block px-2 py-1 text-xs mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
-                                                    Masukan Ke Produk
-                                                </a>
+                                                    <a href="#_" wire:click='requestBarang({{ $item->id }})'
+                                                        class="inline-block px-2 py-1 text-xs mx-auto text-white bg-blue-500 rounded-full hover:bg-red-600 md:mx-0">
+                                                        Masukan Ke Produk
+                                                    </a>
                                                 @endif
                                             @endif
                                         </div>
@@ -115,7 +113,7 @@
     {{-- Modal Detail Produk Pengguna --}}
     <x-jet-dialog-modal wire:model="statusItem">
         <x-slot name='title'>
-            {{ __('Detail Barang') }}
+            {{ __('Detail Barang') }} {{ $categories }}
         </x-slot>
         <x-slot name='content'>
             <div
@@ -189,9 +187,17 @@
                             class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-red-500 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Tolak
                             Request Barang</button>
 
-                        <button type="button" x-on:click="request =2"
-                            class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-slate-700 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Terima
-                            Request barang</button>
+                        @if ($categories == 'Titip')
+                            <button type="button" x-on:click="request =2"
+                                class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-slate-700 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Terima
+                                Request barang</button>
+                        @endif
+                        @if ($categories == 'Jual')
+                            <a href="{{ route('Pembelian-Form-request', ['slug' => $itemID]) }}"
+                                class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-slate-700 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
+                                Beli Barang
+                            </a>
+                        @endif
 
                     </div>
                     <form action="" x-show="request == 1">
@@ -208,36 +214,39 @@
                                 </div>
                                 <x-jet-button wire:click='konfirmasiStatus({{ $itemID }}, 3)'>Simpan
                                 </x-jet-button>
-                            </div>
-                        </div>
-                    </form>
-                    <form action="" x-show="request == 2">
-                        <div class="flex flex-wrap -mx-3">
-                            <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                                <div class="mb-4">
-                                    <label for="about me"
-                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Terima
-                                        Request</label>
-                                    <input type="text" wire:model='alasan'
-                                        value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
-                                        placeholder="Masukkan Detail">
-                                </div>
-                                <div class="mb-4">
-                                    <label for="about me"
-                                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Jumlah
-                                        Komisi</label>
-                                    <input type="number" wire:model='komisi'
-                                        value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
-                                        placeholder="Masukkan Jumlah Komisi Penjual">
-                                </div>
-                                <x-jet-button wire:click='konfirmasiStatus({{ $itemID }} , 2)'>Simpan
-                                </x-jet-button>
 
                             </div>
                         </div>
                     </form>
+                    @if ($categories == 'Titip')
+                        <form action="" x-show="request == 2">
+                            <div class="flex flex-wrap -mx-3">
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="about me"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Terima
+                                            Request</label>
+                                        <input type="text" wire:model='alasan'
+                                            value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+                                            placeholder="Masukkan Detail">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="about me"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-black/80">Jumlah
+                                            Komisi</label>
+                                        <input type="number" wire:model='komisi'
+                                            value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-black text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+                                            placeholder="Masukkan Jumlah Komisi Penjual">
+                                    </div>
+                                    <x-jet-button wire:click='konfirmasiStatus({{ $itemID }} , 2)'>Simpan
+                                    </x-jet-button>
+
+                                </div>
+                            </div>
+                        </form>
+                    @endif
                 </div>
             </div>
         </x-slot>
@@ -321,7 +330,7 @@
                                 <select id="countries" wire:model='categories'
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if ($category->count() > 0)
-                                    <option value="">---</option>
+                                        <option value="">---</option>
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}">{{ $item->kategory }}</option>
                                         @endforeach

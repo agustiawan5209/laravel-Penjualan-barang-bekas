@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\RequestBarang;
 use Illuminate\View\Component;
 
 class AppLayout extends Component

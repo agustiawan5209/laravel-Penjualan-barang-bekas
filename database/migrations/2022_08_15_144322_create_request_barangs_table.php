@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('foto_produk', 100);
             $table->string('nama_produk', 50);
             $table->integer('harga');
+            $table->integer('stok');
             $table->longText('deskripsi', 200);
             $table->string('categories',50);
             $table->string('Alamat',100);

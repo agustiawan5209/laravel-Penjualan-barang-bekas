@@ -11,6 +11,7 @@ use App\Models\PesanChat;
 use App\Models\FotoBarang;
 use App\Models\RequestBarang;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RequestBarangAdmin extends Component
 {
@@ -72,7 +73,7 @@ class RequestBarangAdmin extends Component
             $msg = "Request Barang Berhasil Di Tolak";
         }
         // $request->
-        session()->flash('message', $msg);
+        Alert::info('Info', $msg);
         $request = RequestBarang::find($id)->update([
             'status' => $status,
             'alasan' => $this->alasan,
@@ -100,7 +101,8 @@ class RequestBarangAdmin extends Component
         <li>Deksripsi = '. $barang->deskripsi .'</li>
             </ul>';
         $this->message = $text;
-        session()->put('textRequest', $text);
+        Alert::info('Info', $text);
+
         return redirect()->route('chat-single', ['id_chat' => $chat_id->id]);
     }
     /**
@@ -166,7 +168,8 @@ class RequestBarangAdmin extends Component
             'jenis' => '1',
         ]);
         $requestBarang->update(['status'=> '4']);
-        session()->flash('message', "Barhasil Di Buat");
+        Alert::info('Info', "Berhasil");
+
         $this->requestBarangVar = false;
         $this->categories = null;
     }

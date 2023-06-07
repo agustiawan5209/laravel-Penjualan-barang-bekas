@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\MetodePembayaran as ModelsMetodePembayaran;
 
 class MetodePembayaran extends Component
@@ -42,7 +43,7 @@ class MetodePembayaran extends Component
             'no_rekening' => $this->no_rekening,
             'pemilik' => $this->pemilik,
         ]);
-        session()->flash('message', $bank ? 'Metode Pembayaran Berhasil Ditambahkan' : 'Metode Pembayaran Gagal DItambahkan');
+        Alert::info("info", 'Berhasil');
     }
 
     public function EditModal($id)
@@ -66,7 +67,8 @@ class MetodePembayaran extends Component
             ]);
         }
         $this->editItem = false;
-        session()->flash('message', $bank ? 'Metode Pembayaran Berhasil Di Edit' : 'Metode Pembayaran Gagal Di Edit');
+        Alert::info("info", 'Berhasil');
+
     }
 
     public function HapusModal($id)
@@ -83,6 +85,7 @@ class MetodePembayaran extends Component
     public function hapus($id)
     {
         $bank = ModelsMetodePembayaran::find($id);
-        session()->flash('message', $bank ? 'Metode Pembayaran Berhasil Di Hapus' : 'Metode Pembayaran Gagal Di Hapus');
+        Alert::info("info", 'Berhasil');
+
     }
 }
