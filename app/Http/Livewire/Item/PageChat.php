@@ -14,6 +14,10 @@ use Livewire\Component;
 class PageChat extends Component
 {
     public $chat_id, $from, $to, $body;
+    public function mount()
+    {
+        PesanChat::where('to', Auth::user()->id)->update(['status' => 1]);
+    }
     public function cek_user()
     {
         if (Auth::check()) {

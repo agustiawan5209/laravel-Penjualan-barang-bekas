@@ -35,7 +35,7 @@ class PesanChat extends Model
     use HasFactory;
     protected $table = 'pesan_chats';
     protected $fillable = [
-        'chat_id','from', 'to', 'body',
+        'chat_id','from', 'to', 'body','status'
     ];
     public function chatid(){
         return $this->hasOne(Chatid::class,'id', 'chat_id');

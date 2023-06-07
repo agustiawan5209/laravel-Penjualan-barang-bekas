@@ -54,61 +54,77 @@
                         <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">Chatting Dengan <b>{{$nama_chat}}</b>
                         </h2>
                     </div>
-                    <div class="messages flex-1 overflow-auto ">
+                    <div class="messages flex-1 overflow-auto w-full ">
                         @if ($pesan != null)
-                        @foreach ($pesan as $item)
-                        @if ($item->from != 1)
-                        <div class="message mb-4 flex">
-                            <div class="flex-1 px-2">
-                                <div class="inline-block bg-gray-300 rounded-none p-2 px-6 text-gray-700">
-                                    <span>
-                                    {!! $item->body !!}
-                                    </span>
-                                </div>
-                                <div class="pl-4"><small class="text-gray-500">{{$item->created_at}}</small></div>
-                            </div>
-                        </div>
-                        @endif
-                        @if ($item->from == 1)
-                        <div class="message me mb-4 flex text-right">
-                            <div class="flex-1 px-2">
-                                <div class="inline-block bg-blue-600 rounded-none p-2 px-6 text-white">
-                                    <span>
-                                    {!! $item->body !!}
-                                    </span>
-                                </div>
-                                <div class="pr-4"><small class="text-gray-500">{{$item->created_at}}</small></div>
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach
+                            @foreach ($pesan as $item)
+                                @if ($item->from != 1)
+                                    <div class="message mb-4 flex flex-col">
+                                        <div class="flex items-center  px-2">
+                                            <div class="inline-block bg-gray-300 rounded-md p-2 px-6 text-gray-700">
+                                                <span>
+                                                    {!! $item->body !!}
+                                                </span>
+
+                                            </div>
+                                            <span>
+                                                @if ($item->status == '1')
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="pl-4"><small class="text-gray-500">{{ $item->created_at }}</small>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($item->from == 1)
+                                    <div class="message me mb-4 flex flex-col text-right">
+                                        <div class="flex items-center justify-end  px-2">
+                                            <span>
+                                                @if ($item->status == '1')
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                @endif
+                                            </span>
+                                            <div class="inline-block bg-blue-500 rounded-md p-2 px-6 text-gray-700">
+                                                <span>
+                                                    {!! $item->body !!}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="pr-4"><small
+                                                class="text-gray-500">{{ $item->created_at }}</small></div>
+                                    </div>
+                                @endif
+                            @endforeach
                         @else
-                        Maaf Pesan Kosong
+                            Maaf Pesan Kosong
                         @endif
 
                     </div>
                     @if ($pesan != null)
-                    <div class="flex-2 pt-4 pb-10">
-                        <div class="write bg-white shadow flex rounded-lg">
-                            <div class="flex-3 flex content-center items-center text-center p-4 pr-0">
-                                <span class="block text-center text-gray-400 hover:text-gray-800">
-                                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        stroke="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
-                                        <path
-                                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="flex-1">
-                                <textarea wire:model="message" id="editor" width='400' height="100"
-                                    class="w-full block outline-none py-4 px-4 bg-transparent border border-r-2"
-                                    placeholder="Type a message..." autofocus></textarea>
-                            </div>
-                            <div class="flex-2 w-32 p-2 flex content-center items-center">
+                        <div class="w-full">
+                            <div class="write bg-white shadow flex rounded-lg">
                                 <div class="flex-1">
-                                    <button class="bg-blue-400 w-10 h-10 rounded-full inline-block"
-                                        wire:click='loadmessage'>
+                                    <textarea wire:model="message" id="editor" rows="1" width='400' height="100"
+                                        class="w-full block outline-none py-4 px-4 bg-transparent border border-r-2" placeholder="Type a message..."
+                                        autofocus>{{ $message }}</textarea>
+                                    @error('message')
+                                        <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="flex-2 w-32 flex content-center items-center">
+                                    <button class="bg-blue-400 w-full h-full inline-block" wire:click='loadmessage'>
                                         <span class="inline-block align-text-bottom">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -120,7 +136,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endif
 
                 </div>

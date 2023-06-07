@@ -19,6 +19,7 @@ class PageChatSingle extends Component
         $this->id_chat= $id_chat;
         $this->message = session('textRequest');
         $this->selectChat($id_chat);
+        PesanChat::where('to', Auth::user()->id)->update(['status'=> '1']);
     }
     public function render()
     {
@@ -64,8 +65,19 @@ class PageChatSingle extends Component
             'from'=> Auth::user()->id,
             'to'=> $this->id_pemilik,
             'body'=> $this->message,
+            'status'=> '0',
         ]);
         $this->selectChat($this->id_chat);
         $this->message = '';
+    }
+    public $openChat = false;
+    public function OpenChatModal(){
+        if($this->openChat == false){
+            $this->openChat = true;
+        }
+        if($this->openChat == true){
+            $this->openChat = false;
+        }
+
     }
 }

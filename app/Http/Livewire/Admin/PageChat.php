@@ -14,6 +14,7 @@ class PageChat extends Component
     public $id_pemilik;
     public $id_chat;
     public $nama_chat;
+    public $openChat;
     public function render()
     {
         $chat_id = Chatid::all();
@@ -61,5 +62,14 @@ class PageChat extends Component
         ]);
         $this->selectChat($this->id_chat);
         $this->message = '';
+    }
+    public function OpenChatModal(){
+        if($this->openChat == false){
+            $this->openChat = true;
+        }
+        if($this->openChat == true){
+            $this->openChat = false;
+        }
+
     }
 }

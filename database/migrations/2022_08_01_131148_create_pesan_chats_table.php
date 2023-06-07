@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('from');
             $table->integer('to');
             $table->text('body');
+            $table->integer('status');
             $table->timestamps();
         });
     }
