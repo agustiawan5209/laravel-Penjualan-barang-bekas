@@ -21,7 +21,7 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app.78ddf4cb.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.ac0384d0.css') }}">
     @vite(['resources/js/app.js'])
     <style>
         .flickity-viewport {
