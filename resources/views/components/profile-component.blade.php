@@ -77,7 +77,7 @@
                     </div>
                     <div class="mt-6 text-center">
                         <h5 class="dark:text-black ">
-                            Mark Davis
+                            {{ Auth::user()->name }}
                             <span class="font-light">, 35</span>
                         </h5>
                         <div

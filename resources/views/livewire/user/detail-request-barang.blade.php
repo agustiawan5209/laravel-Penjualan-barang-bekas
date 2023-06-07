@@ -85,13 +85,33 @@
                             <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">
                                 {{ $barang->alasan }}</x-forms.th>
                         </tr>
-                        <tr>
-                            <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Jumlah Komisi
-                            </x-forms.th>
-                            <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">
-                               Rp. {{ number_format($barang->komisi,0,2) }}</x-forms.th>
-                        </tr>
+                       @if ($barang->categories == "Titip")
+                       <tr>
+                        <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Jumlah Komisi
+                        </x-forms.th>
+                        <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">
+                           Rp. {{ number_format($barang->komisi,0,2) }}</x-forms.th>
+                    </tr>
+                       @endif
                     </thead>
+                    @if ($barang->categories == "Jual")
+                        <tr>
+                            <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Bukti Transaksi</x-forms.th>
+                            <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap "><a href="{{ $barang->pembelian->bukti_transaksi }}" class="text-blue-500">File Transaksi</a></x-forms.th>
+                        </tr>
+                        <tr>
+                            <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Jumlah Pembelian</x-forms.th>
+                            <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">{{ $barang->pembelian->jumlah }}</x-forms.th>
+                        </tr>
+                        <tr>
+                            <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Total Pembelian</x-forms.th>
+                            <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">{{ $barang->pembelian->jumlah }}</x-forms.th>
+                        </tr>
+                        <tr>
+                            <x-forms.th class="w-48 text-base font-semibold whitespace-nowrap ">Status Pembelian</x-forms.th>
+                            <x-forms.th class="w-full text-lg font-semibold whitespace-nowrap ">{{ $barang->pembelian->status }}</x-forms.th>
+                        </tr>
+                    @endif
                 </x-forms.table>
 
             </div>

@@ -57,4 +57,9 @@ class RequestBarang extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function pembelian(){
+        return $this->hasOne(Pembelian::class, 'request_id', 'id');
+    }
+
 }

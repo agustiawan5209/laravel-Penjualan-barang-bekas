@@ -44,6 +44,12 @@ class MetodePembayaran extends Component
             'pemilik' => $this->pemilik,
         ]);
         Alert::info("info", 'Berhasil');
+        $this->addItem = false;
+        $this->bank = null;
+        $this->no_rekening = null;
+        $this->pemilik = null;
+
+
     }
 
     public function EditModal($id)
@@ -56,6 +62,7 @@ class MetodePembayaran extends Component
             $this->no_rekening = $bank->no_rekening;
         }
         $this->editItem = true;
+
     }
     public function edit($id)
     {
@@ -67,6 +74,9 @@ class MetodePembayaran extends Component
             ]);
         }
         $this->editItem = false;
+        $this->bank = null;
+        $this->no_rekening = null;
+        $this->pemilik = null;
         Alert::info("info", 'Berhasil');
 
     }
@@ -86,6 +96,10 @@ class MetodePembayaran extends Component
     {
         $bank = ModelsMetodePembayaran::find($id);
         Alert::info("info", 'Berhasil');
+        $this->bank = null;
+        $this->no_rekening = null;
+        $this->pemilik = null;
+        $this->hapusItem = false;
 
     }
 }
