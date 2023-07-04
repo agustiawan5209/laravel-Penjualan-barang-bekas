@@ -29,8 +29,18 @@ class Pagecheckout extends Component
         $this->itemID = $itemID;
         $this->nameID = $nameID;
         $foto = FotoBarang::where('barang_id', $this->itemID)->where('default', 'yes')->first();
+        $img = null;
+        if($foto == null){
+            $foto = FotoBarang::where('barang_id', $this->itemID)->latest()->first();
+            $img = $foto->foto;
+        }
+        if($img == null){
 
-        $this->itemFoto = $foto->foto;
+            $this->itemFoto = null;
+        }else{
+
+            $this->itemFoto = $foto->foto;
+        }
     }
     public function gantiFoto($id){
         $barang = Barang::find($this->itemID);
