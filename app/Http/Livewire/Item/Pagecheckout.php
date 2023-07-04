@@ -32,13 +32,13 @@ class Pagecheckout extends Component
         $img = null;
         if($foto == null){
             $foto = FotoBarang::where('barang_id', $this->itemID)->latest()->first();
-            $img = $foto->foto;
+            if($foto !== null){
+                $img = $foto->foto;
+            }
         }
         if($img == null){
-
             $this->itemFoto = null;
         }else{
-
             $this->itemFoto = $foto->foto;
         }
     }
